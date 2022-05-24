@@ -1,0 +1,308 @@
+<mat-card class="bloque-cb-1">
+    <!-- <mat-form-field appearance="fill">
+        <mat-label>Fecha</mat-label>
+        <input matInput [matDatepicker]="picker" required name="Fecini">
+
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field> -->
+    <div class="fecha">
+        <p>15-05-2022</p>
+    </div>
+
+    <section class="example-section radio-options-cb-alt">
+        <label class="cbradio-group-label">Calificación:</label>
+        <mat-radio-group aria-label="Calificación" required name="Califica">
+            <mat-radio-button class="cb-radio-button" [value]="A">A</mat-radio-button>
+            <mat-radio-button class="cb-radio-button" [value]="B">B</mat-radio-button>
+        </mat-radio-group>
+    </section>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Hora Inicio:</mat-label>
+        <input matInput type="time" placeholder="Hora Inicio" required name="horaInicio">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Hora Final:</mat-label>
+        <input matInput type="time" placeholder="Hora Final" required name="horaFinal">
+    </mat-form-field>
+
+    <section class="example-section radio-options-cb-alt">
+        <label class="cbradio-group-label">Prueba de Ruta:</label>
+        <mat-radio-group aria-label="Prueba de Ruta" required name="pruebaRuta">
+            <mat-radio-button class="cb-radio-button" [value]="si">Si</mat-radio-button>
+            <mat-radio-button class="cb-radio-button" [value]="no">No</mat-radio-button>
+        </mat-radio-group>
+    </section>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Nombre Inspector:</mat-label>
+        <input matInput placeholder="Nombre Inspector" name="Id_usu_inspector" value="Juan Perez">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Firma Inspector:</mat-label>
+        <input matInput placeholder="Firma Inspector" name="firmaInspector" value="Juan">
+    </mat-form-field>
+
+
+
+    <mat-form-field appearance="fill">
+        <mat-label>Calificación Estado:</mat-label>
+        <mat-select [(ngModel)]="selectedValue" name="Califica2">
+            <mat-option *ngFor="let calificacion of calificaciones" [value]="calificacion.value">
+                {{calificacion.viewValue}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</mat-card>
+
+<!-- Bloque 2 -->
+<mat-card class="bloque-cb-2">
+    <mat-form-field appearance="fill">
+        <mat-label>Placa:</mat-label>
+        <input matInput placeholder="Placa" name="placa" value="DSF-255">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Marca:</mat-label>
+        <input matInput placeholder="Marca" name="marca" value="Toyota">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Linea:</mat-label>
+        <input matInput placeholder="Linea" name="linea" value="DSF">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Cilindraje:</mat-label>
+        <input matInput placeholder="Cilindraje" name="cilindraje" value="120">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Color:</mat-label>
+        <input matInput placeholder="Color" name="color" value="Negro">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Referencia:</mat-label>
+        <input matInput placeholder="Referencia" name="referencia" value="Prado">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Modelo:</mat-label>
+        <input matInput placeholder="Modelo" name="modelo" value="1988">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Combustible:</mat-label>
+        <mat-select [(ngModel)]="selectedCombustible" name="combustible">
+            <mat-option *ngFor="let combustible of combustibles" [value]="combustible.value">
+                {{combustible.viewValue}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Matriculado en:</mat-label>
+        <input matInput placeholder="Lugar Matricula" name="lugar_matricula" value="Bogotá">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Capacidad Sillas:</mat-label>
+        <input matInput placeholder="Capacidad sillas" name="capacidad_sillas" value="5">
+    </mat-form-field>
+
+</mat-card>
+<!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+<!-- Tercer Bloque -->
+<mat-card class="bloque-cb-3">
+    <section class="example-section radio-options-cb">
+        <label class="cbradio-group-label" class="example-margin">Cojineria:</label>
+        <mat-radio-group aria-label="Cojineria" required name="cojineria">
+            <mat-radio-button class="cb-radio-button" [value]="tela">Tela</mat-radio-button>
+            <mat-radio-button class="cb-radio-button" [value]="cuero">Cuero</mat-radio-button>
+        </mat-radio-group>
+    </section>
+
+    <section class="example-section radio-options-cb radio-options-cb">
+        <label class="cbradio-group-label" class="example-margin">Caja:</label>
+        <mat-radio-group aria-label="Caja" required name="caja">
+            <mat-radio-button class="cb-radio-button" [value]="mecanica">Mecánica</mat-radio-button>
+            <mat-radio-button class="cb-radio-button" [value]="automatica">Automática</mat-radio-button>
+        </mat-radio-group>
+    </section>
+
+    <section class="example-section radio-options-cb">
+        <label class="cbradio-group-label" class="example-margin">Tracción:</label>
+        <mat-radio-group aria-label="Tracción" required name="traccion">
+            <mat-radio-button class="cb-radio-button" [value]="t4x2">4X2</mat-radio-button>
+            <mat-radio-button class="cb-radio-button" [value]="t4x4">4X4</mat-radio-button>
+        </mat-radio-group>
+    </section>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Kilometraje Actual:</mat-label>
+        <input matInput placeholder="Kilometraje Actual" name="km" value="200">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Próximo Mantenimiento</mat-label>
+        <input matInput [matDatepicker]="picker" required name="fec_prox_mantenimiento">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <section class="example-section radio-options-cb">
+        <label class="cbradio-group-label">Rin de Lujo:</label>
+        <mat-radio-group aria-label="Rin de Lujo" required name="rin">
+            <mat-radio-button class="cb-radio-button" [value]="si">Si</mat-radio-button>
+            <mat-radio-button class="cb-radio-button" [value]="no">No</mat-radio-button>
+        </mat-radio-group>
+    </section>
+
+    <section class="example-section radio-options-cb">
+        <label class="cbradio-group-label">Estribo de Lujo:</label>
+        <mat-radio-group aria-label="Estribo de Lujo" required name="estribo">
+            <mat-radio-button class="cb-radio-button" [value]="si">Si</mat-radio-button>
+            <mat-radio-button class="cb-radio-button" [value]="no">No</mat-radio-button>
+        </mat-radio-group>
+    </section>
+
+    <section class="example-section radio-options-cb">
+        <label class="cbradio-group-label">Vidrio Eléctrico:</label>
+        <mat-radio-group aria-label="Vidrio Eléctrico" required name="vidrios">
+            <mat-radio-button class="cb-radio-button" [value]="si">Si</mat-radio-button>
+            <mat-radio-button class="cb-radio-button" [value]="no">No</mat-radio-button>
+        </mat-radio-group>
+    </section>
+
+    <section class="example-section radio-options-cb">
+        <label class="cbradio-group-label">Techo Vidrio:</label>
+        <mat-radio-group aria-label="Techo Vidrio" required name="techo_vidrio">
+            <mat-radio-button class="cb-radio-button" [value]="si">Si</mat-radio-button>
+            <mat-radio-button class="cb-radio-button" [value]="no">No</mat-radio-button>
+        </mat-radio-group>
+    </section>
+
+    <section class="example-section radio-options-cb">
+        <label class="cbradio-group-label">Retrovisores Eléctricos:</label>
+        <mat-radio-group aria-label="Retrovisores Eléctricos" required name="retrovisores_electricos">
+            <mat-radio-button class="cb-radio-button" [value]="si">Si</mat-radio-button>
+            <mat-radio-button class="cb-radio-button" [value]="no">No</mat-radio-button>
+        </mat-radio-group>
+    </section>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Nº de Airbag:</mat-label>
+        <input matInput placeholder="Nº de Airbag" name="no_airbags" value="2">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Nº de Rin:</mat-label>
+        <input matInput placeholder="Nº de Rin" name="no_rin" value="4">
+    </mat-form-field>
+
+    <section class="example-section radio-options-cb">
+        <label class="cbradio-group-label">Barras De Techo:</label>
+        <mat-radio-group aria-label="Barras De Techo" required name="barra_techo">
+            <mat-radio-button class="cb-radio-button" [value]="si">Si</mat-radio-button>
+            <mat-radio-button class="cb-radio-button" [value]="no">No</mat-radio-button>
+        </mat-radio-group>
+    </section>
+
+    <section class="example-section radio-options-cb">
+        <label class="cbradio-group-label">Exploradoras:</label>
+        <mat-radio-group aria-label="Exploradoras" required name="exploradora">
+            <mat-radio-button class="cb-radio-button" [value]="si">Si</mat-radio-button>
+            <mat-radio-button class="cb-radio-button" [value]="no">No</mat-radio-button>
+        </mat-radio-group>
+    </section>
+</mat-card>
+
+<!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+<!-- Cuarto Bloque  -->
+<mat-card class="bloque-cb-4 radio-btn-cb">
+    <section class="example-section radio-options-cb">
+        <label class="cbradio-group-label">Repuesto Llaves:</label>
+        <mat-radio-group aria-label="Repuesto Llaves" required name="llave">
+            <mat-radio-button class="cb-radio-button" [value]="si">Si</mat-radio-button>
+            <mat-radio-button class="cb-radio-button" [value]="no">No</mat-radio-button>
+        </mat-radio-group>
+    </section>
+
+    <section class="example-section radio-options-cb">
+        <label class="cbradio-group-label">Libro Garantía:</label>
+        <mat-radio-group aria-label="Libro Garantía" required name="libro">
+            <mat-radio-button class="cb-radio-button" [value]="si">Si</mat-radio-button>
+            <mat-radio-button class="cb-radio-button" [value]="no">No</mat-radio-button>
+        </mat-radio-group>
+    </section>
+
+    <section class="example-section radio-options-cb">
+        <label class="cbradio-group-label">Cambio Correo:</label>
+        <mat-radio-group aria-label="Tiene Cambio Correo" required name="cambio_correa">
+            <mat-radio-button class="cb-radio-button" [value]="si">Si</mat-radio-button>
+            <mat-radio-button class="cb-radio-button" [value]="no">No</mat-radio-button>
+        </mat-radio-group>
+    </section>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Cambio Correa:</mat-label>
+        <input matInput placeholder="Donde Cambio Correa:" name="lugar_cambio_correa" value="Bogotá">
+    </mat-form-field>
+
+    <section class="example-section radio-options-cb">
+        <label class="cbradio-group-label">Herramienta Completa:</label>
+        <mat-radio-group aria-label="Herramienta Completa" required name="herramientaCompleta">
+            <mat-radio-button class="cb-radio-button" [value]="si">Si</mat-radio-button>
+            <mat-radio-button class="cb-radio-button" [value]="no">No</mat-radio-button>
+        </mat-radio-group>
+    </section>
+
+    <section class="example-section radio-options-cb">
+        <label class="cbradio-group-label">Manuales:</label>
+        <mat-radio-group aria-label="Manuales" required name="manuales">
+            <mat-radio-button class="cb-radio-button" [value]="si">Si</mat-radio-button>
+            <mat-radio-button class="cb-radio-button" [value]="no">No</mat-radio-button>
+        </mat-radio-group>
+    </section>
+
+    <section class="example-section radio-options-cb">
+        <label class="cbradio-group-label">Reclamos Aseguradora:</label>
+        <mat-radio-group aria-label="Reclamos Aseguradora" required name="reclamo_aseg">
+            <mat-radio-button class="cb-radio-button" [value]="si">Si</mat-radio-button>
+            <mat-radio-button class="cb-radio-button" [value]="no">No</mat-radio-button>
+        </mat-radio-group>
+    </section>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Valor Reclamo:</mat-label>
+        <input matInput placeholder="Valor Reclamo" name="valor_reclamo_aseg" value="50000">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Marca Radio:</mat-label>
+        <input matInput placeholder="Marca Radio" name="marca_radio" value="Panasonic">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Marca Llantas:</mat-label>
+        <input matInput placeholder="Marca Llantas" name="marca_llantas" value="Goodyeard">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Marca Batería:</mat-label>
+        <input matInput placeholder="Marca Batería" name="marca_bateria" value="Mat">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Lugar Mantenimiento:</mat-label>
+        <input matInput placeholder="Lugar Mantenimiento" name="lugar_mante" value="Medellin">
+    </mat-form-field>
+</mat-card>
+<!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->

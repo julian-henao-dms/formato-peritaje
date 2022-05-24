@@ -1,1 +1,47 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mat-radio-button~.mat-radio-button {
+    margin-left: 16px;
+}
+
+.mat-radio-outer-circle {
+    border-color: #b50411;
+}
+
+.mat-radio-button.mat-accent .mat-radio-inner-circle {
+    background-color: #b50411;
+}
+
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: #b50411;
+}
+
+.mat-checkbox-checked.mat-accent .mat-checkbox-background,
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+    background-color: #b50411;
+}
+
+.mat-calendar-body-selected {
+    background-color: #b50411;
+    color: #fff;
+}
+
+.mat-slider.mat-accent .mat-slider-track-fill,
+.mat-slider.mat-accent .mat-slider-thumb,
+.mat-slider.mat-accent .mat-slider-thumb-label {
+    background-color: #b50411;
+}
+
+.mat-form-field.mat-form-field-focused.mat-form-field-label {
+    color: #b50411;
+}

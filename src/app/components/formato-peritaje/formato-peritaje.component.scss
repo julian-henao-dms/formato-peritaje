@@ -1,0 +1,44 @@
+mat-card {
+    margin-bottom: 1.2em;
+}
+
+mat-card.bloque-cb-1 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+mat-card.bloque-cb-2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+mat-card.bloque-cb-3 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+mat-card.bloque-cb-4 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.group-radio-options-cb {
+    margin-bottom: 1.2em;
+}
+
+.example-margin,
+.cbradio-group-label {
+    margin: 0 10px;
+}
+
+.group-radio-options-cb mat-radio-group.mat-radio-group {
+    margin-bottom: 0.5em;
+}
