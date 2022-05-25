@@ -23,12 +23,14 @@ pubspec.lock
 .vscode/launch.json
 .vscode/settings.json
 .vscode/tasks.json
+.suo
 *.swo
 *.swp
 modules/.settings
 modules/.vscode
 .vimrc
 .nvimrc
+*.sqlite
 
 # Don't check in secret files
 *secret.js
