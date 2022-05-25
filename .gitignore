@@ -31,6 +31,7 @@ modules/.vscode
 .vimrc
 .nvimrc
 *.sqlite
+.vs/*
 
 # Don't check in secret files
 *secret.js
