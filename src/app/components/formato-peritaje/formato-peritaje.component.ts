@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
+import { ApiService } from '../../services/api.service';
+import { MessagesService } from '../../services/messages.service';
 import { ElementosAz } from './interfaces/elementos-az';
 import { EstadoPintura } from './interfaces/estado-pintura';
 import { ItemsVehiculosUsados } from './interfaces/items-vehiculo';
@@ -20,9 +24,18 @@ interface Combustible {
   styleUrls: ['./formato-peritaje.component.scss']
 })
 export class FormatoPeritajeComponent implements OnInit {
+  public listaElementos: ElementosAz[] = [];
+  public listaPartes: EstadoPintura[] = [];
+  public formularioVehiculos: ItemsVehiculosUsados;
+  public infoVehiculo: Vehiculo;
+  public placa: string;
+  public vin: string;
+  public assets: string;
+
+
   public A = 0;
   public B = 1;
-  public  si = 1;
+  public si = 1;
   public no = 0;
  
   public automatica = 1;
@@ -62,23 +75,15 @@ export class FormatoPeritajeComponent implements OnInit {
   
  ];
 
- public elementosAz: ElementosAz[] = [
-  { id: 0, id_veh_chk_usados: 0, id_chk_maestro_elementos: 0, elemento: 'Air Bag', est: 0, intervencion: 0,   valor: 0},
-  { id: 0, id_veh_chk_usados: 0, id_chk_maestro_elementos: 0, elemento: 'Adhesivos Instalados', est: 0, intervencion: 0 , valor: 0},
-  { id: 0, id_veh_chk_usados: 0, id_chk_maestro_elementos: 0, elemento: 'Aire Acondicionado', est: 0, intervencion: 0 , valor: 0}
-]
-public estadosPintura: EstadoPintura[] = [
-  { id: 0, id_veh_chk_usados: 0, id_chk_maestro_partes: 0, parte: 'Puerta Derecha', id_chk_estado: 0, estado: '', repi_tipo_a: 0, repi_tipo_b: 0, repar_tipo_a: 0, repar_tipo_b: 0, cambiada: 0, removida: 0},
-  { id: 0, id_veh_chk_usados: 0, id_chk_maestro_partes: 0, parte: 'Puerta Izquierda', id_chk_estado: 0, estado: '', repi_tipo_a: 0, repi_tipo_b: 0, repar_tipo_a: 0, repar_tipo_b: 0, cambiada: 0, removida: 0},
-  { id: 0, id_veh_chk_usados: 0, id_chk_maestro_partes: 0, parte: 'Capo', id_chk_estado: 0, estado: '', repi_tipo_a: 0, repi_tipo_b: 0, repar_tipo_a: 0, repar_tipo_b: 0, cambiada: 0, removida: 0},
-]
-
- public formularioVehiculos : ItemsVehiculosUsados;
- public infoVehiculo : Vehiculo;
-//  public elementosAz: ElementosAz;
-//  public estadosPintura: EstadoPintura;
-
-   constructor() { 
+  constructor(
+    private readonly router: Router,
+    private readonly apiService: ApiService,
+    private readonly messageService: MessagesService
+  )
+  {
+    this.placa = '';
+    this.vin = '';
+    this.assets = environment.assets;
      this.infoVehiculo = {
        Id : 0,
        Califica : '',
@@ -139,33 +144,115 @@ public estadosPintura: EstadoPintura[] = [
       marca: '',
       modelo: '',
      }
-    //  this.elementosAz = {
-    //   id: 0,
-    //   id_veh_chk_usados: 0,
-    //   id_chk_maestro_elementos: 0,
-    //   elemento: '',
-    //   est: 0,
-    //   intervencion: 0,
-    //   valor: 0
-    //  }
-    //  this.estadosPintura = {
-    //   id: 0,
-    //   id_veh_chk_usados: 0,
-    //   id_chk_maestro_partes: 0,
-    //   parte: '',
-    //   id_chk_estado: 0,
-    //   estado: '',
-    //   repi_tipo_a: 0,
-    //   repi_tipo_b: 0,
-    //   repar_tipo_a: 0,
-    //   repar_tipo_b: 0,
-    //   cambiada: 0,
-    //   removida: 0
-    //  }
    }
  
-   ngOnInit(): void {
+   async ngOnInit(): Promise<void> {
    }
- 
+
+  public async onEnter(): Promise<void> {
+    if (this.placa !== '' || this.vin !== '') {
+      this.messageService.info("Atencion", "Estamos Cargando la informacion solicitada");
+      let servicio = '/vehiculosusados/datos';
+      const params = '/309/' + (this.placa !== ''?this.placa:' ') + '/' + (this.vin !== ''?this.vin : ' ');
+      (await this.apiService.getInformacion(servicio, params)).subscribe(async (response: any) => {
+        if (response) {
+          console.log("datos");
+          this.infoVehiculo = response;
+          servicio = '/vehiculosusados/formulario';
+          (await this.apiService.getInformacion(servicio, params)).subscribe(async (resp: any) => {
+            this.formularioVehiculos = resp;
+            servicio = '/maestros/partes';
+            (await this.apiService.getInformacion(servicio, params)).subscribe(async (resp: any) => {
+              this.listaPartes = resp;
+              servicio = '/maestros/elementos';
+              (await this.apiService.getInformacion(servicio, params)).subscribe((resp: any) => {
+                this.listaElementos = resp;
+              }, error => {
+                this.messageService.error("Oops...", "Error interno en el servidor");
+              });
+            }, error => {
+              this.messageService.error("Oops...", "Error interno en el servidor");
+            });
+          }, error => {
+            this.messageService.error("Oops...", "Error interno en el servidor");
+          });
+        } else {
+          setTimeout(
+            () => {
+              this.messageService.info("Atencion...", "La placa o vin ingresados no corresponden a un vehiculo en el sistema");
+            }, 1000);
+        }
+      }, error => {
+        this.messageService.error("Oops...", "Error interno en el servidor");
+      });
+    } else {
+      this.messageService.info("Atencion...", "Debe ingresar una placa o vin para continuar");
+    }
+  }
+
+
+  private resetinitData(): void {
+    this.placa = '';
+    this.vin = '';
+    this.infoVehiculo = {
+      Id: 0,
+      Califica: '',
+      Fecini: new Date,
+      Id_usuario: 0,
+      Id_usu_inspector: 0,
+      Id_cot_item_lote: 0,
+      Prueba_ruta: 0,
+      Fecfin: new Date,
+      Califica2: 0,
+    }
+    this.formularioVehiculos = {
+      id_veh_chk_usados: 0,
+      califica: '',
+      fecini: new Date,
+      id_usuario: 0,
+      id_usu_inspector: 0,
+      id_cot_item_lote: 0,
+      prueba_ruta: 0,
+      fecfin: new Date,
+      califica2: 0,
+      id_veh_chk_usados_mas: 0,
+      llave: 0,
+      libro: 0,
+      cambio_correa: 0,
+      lugar_cambio_correa: '',
+      herramienta: 0,
+      manual: 0,
+      reclamo_aseg: 0,
+      valor_reclamo_aseg: 0,
+      marca_radio: '',
+      marca_llantas: '',
+      marca_bateria: '',
+      lugar_mante: '',
+      cilindraje: '',
+      color: '',
+      referencia: '',
+      clase: 0, // Que es Clase?
+      combustible: 0,
+      lugar_matricula: 0,
+      capacidad_sillas: 0,
+      km: 0,
+      fec_prox_mantenimiento: new Date,
+      cojineria: 0,
+      caja: 0,
+      traccion: 0,
+      rin: 0,
+      estribo: 0,
+      vidrios: 0,
+      techo_vidrio: 0,
+      retrovisores_electricos: 0,
+      no_airbags: 0,
+      no_rin: 0,
+      barra_techo: 0,
+      exploradora: 0,
+      placa: '',
+      linea: '',
+      marca: '',
+      modelo: '',
+    }
+  }
  }
- 
