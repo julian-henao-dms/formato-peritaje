@@ -10,7 +10,7 @@
         <p>15-05-2022</p>
     </div>
 
-    <section class="example-section radio-options-cb-alt">
+    <section class="example-section radio-options-cb">
         <label class="cbradio-group-label">Calificación:</label>
         <mat-radio-group aria-label="Calificación" required name="Califica">
             <mat-radio-button class="cb-radio-button" [value]="A">A</mat-radio-button>
@@ -28,7 +28,7 @@
         <input matInput type="time" placeholder="Hora Final" required name="fecfin" [(ngModel)]="formularioVehiculos.fecfin">
     </mat-form-field>
 
-    <section class="example-section radio-options-cb-alt">
+    <section class="example-section radio-options-cb">
         <label class="cbradio-group-label">Prueba de Ruta:</label>
         <mat-radio-group aria-label="Prueba de Ruta" required name="prueba_ruta" [(ngModel)]="formularioVehiculos.prueba_ruta">
             <mat-radio-button class="cb-radio-button" [value]="si">Si</mat-radio-button>
@@ -304,5 +304,47 @@
         <mat-label>Lugar Mantenimiento:</mat-label>
         <input matInput placeholder="Lugar Mantenimiento" name="lugar_mante" value="Medellin" [(ngModel)]="formularioVehiculos.lugar_mante">
     </mat-form-field>
+</mat-card>
+<!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+<!-- Estado Pintura  -->
+<mat-card class="bloque-cb-5 estado_pintura">
+    <!-- *ngFor="let estado of data.estadosPintura" -->
+    <div class="group-radio-options-cb" *ngFor="let estadoPintura of estadosPintura">
+        <section class="example-section radio-options-cb">
+            <label class="cbradio-group-label">{{estadoPintura.parte}}</label>
+            <mat-radio-group aria-label="Puerta Del Izq" required name="">
+                <mat-radio-button class="cb-radio-button" [value]="repiTipoA">Repi TIP A </mat-radio-button>
+                <mat-radio-button class="cb-radio-button" [value]="repiTipoB">Repi TIP B </mat-radio-button>
+            </mat-radio-group>
+        </section>
+        <section class="example-section radio-options-cb">
+            <mat-radio-group aria-label="Puerta Del Izq" required name="">
+                <mat-radio-button class="cb-radio-button" [value]="repiTipoA">Repar TIP A </mat-radio-button>
+                <mat-radio-button class="cb-radio-button" [value]="repiTipoB">Repar TIP B </mat-radio-button>
+            </mat-radio-group>
+        </section>
+        <section class="example-section radio-options-cb">
+            <mat-radio-group aria-label="Puerta Del Izq" required name="">
+                <mat-radio-button class="cb-radio-button" [value]="repiTipoA">Cambiado </mat-radio-button>
+                <mat-radio-button class="cb-radio-button" [value]="repiTipoB">Removido </mat-radio-button>
+            </mat-radio-group>
+        </section>
+    </div>
+
+
+</mat-card>
+<!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+<!-- Elemento A-Z -->
+<mat-card class="bloque-cb-7 elementos-az">
+    <section class="example-section radio-options-cb" *ngFor="let elementoAz of elementosAz">
+        <label class="cbradio-group-label">{{elementoAz.elemento}}:</label>
+        <mat-radio-group required name="{{elementoAz.elemento}}" [(ngModel)]="elementoAz.valor">
+            <mat-radio-button class="cb-radio-button" [value]="malo">Malo </mat-radio-button>
+            <mat-radio-button class="cb-radio-button" [value]="noTiene">No Tiene</mat-radio-button>
+        </mat-radio-group>
+    </section>
+
 </mat-card>
 <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->

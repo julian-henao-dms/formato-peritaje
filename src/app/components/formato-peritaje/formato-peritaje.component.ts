@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ElementosAz } from './interfaces/elementos-az';
+import { EstadoPintura } from './interfaces/estado-pintura';
 import { ItemsVehiculosUsados } from './interfaces/items-vehiculo';
 import { Vehiculo } from './interfaces/vehiculo';
 
@@ -29,6 +31,16 @@ export class FormatoPeritajeComponent implements OnInit {
   public t4x4 = 1;
   public tela = 0;
   public cuero = 1;
+
+  public repiTipoA = 0;
+  public repiTipoB = 1;
+  public reparTipoA = 0;
+  public reparTipoB = 1;
+  public cambiado = 0;
+  public removido = 1;
+
+  public malo = 0;
+  public noTiene = 1
  
   // public selectedValue: string | undefined;
   public selectedCombustible: string | undefined;
@@ -49,8 +61,23 @@ export class FormatoPeritajeComponent implements OnInit {
    {value: '4', viewValue: 'Eléctrico'},
   
  ];
+
+ public elementosAz: ElementosAz[] = [
+  { id: 0, id_veh_chk_usados: 0, id_chk_maestro_elementos: 0, elemento: 'Air Bag', est: 0, intervencion: 0,   valor: 0},
+  { id: 0, id_veh_chk_usados: 0, id_chk_maestro_elementos: 0, elemento: 'Adhesivos Instalados', est: 0, intervencion: 0 , valor: 0},
+  { id: 0, id_veh_chk_usados: 0, id_chk_maestro_elementos: 0, elemento: 'Aire Acondicionado', est: 0, intervencion: 0 , valor: 0}
+]
+public estadosPintura: EstadoPintura[] = [
+  { id: 0, id_veh_chk_usados: 0, id_chk_maestro_partes: 0, parte: 'Puerta Derecha', id_chk_estado: 0, estado: '', repi_tipo_a: 0, repi_tipo_b: 0, repar_tipo_a: 0, repar_tipo_b: 0, cambiada: 0, removida: 0},
+  { id: 0, id_veh_chk_usados: 0, id_chk_maestro_partes: 0, parte: 'Puerta Izquierda', id_chk_estado: 0, estado: '', repi_tipo_a: 0, repi_tipo_b: 0, repar_tipo_a: 0, repar_tipo_b: 0, cambiada: 0, removida: 0},
+  { id: 0, id_veh_chk_usados: 0, id_chk_maestro_partes: 0, parte: 'Capo', id_chk_estado: 0, estado: '', repi_tipo_a: 0, repi_tipo_b: 0, repar_tipo_a: 0, repar_tipo_b: 0, cambiada: 0, removida: 0},
+]
+
  public formularioVehiculos : ItemsVehiculosUsados;
  public infoVehiculo : Vehiculo;
+//  public elementosAz: ElementosAz;
+//  public estadosPintura: EstadoPintura;
+
    constructor() { 
      this.infoVehiculo = {
        Id : 0,
@@ -112,6 +139,29 @@ export class FormatoPeritajeComponent implements OnInit {
       marca: '',
       modelo: '',
      }
+    //  this.elementosAz = {
+    //   id: 0,
+    //   id_veh_chk_usados: 0,
+    //   id_chk_maestro_elementos: 0,
+    //   elemento: '',
+    //   est: 0,
+    //   intervencion: 0,
+    //   valor: 0
+    //  }
+    //  this.estadosPintura = {
+    //   id: 0,
+    //   id_veh_chk_usados: 0,
+    //   id_chk_maestro_partes: 0,
+    //   parte: '',
+    //   id_chk_estado: 0,
+    //   estado: '',
+    //   repi_tipo_a: 0,
+    //   repi_tipo_b: 0,
+    //   repar_tipo_a: 0,
+    //   repar_tipo_b: 0,
+    //   cambiada: 0,
+    //   removida: 0
+    //  }
    }
  
    ngOnInit(): void {
