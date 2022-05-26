@@ -10,5 +10,8 @@ export interface EstadoPintura{
     repar_tipo_a: number,
     repar_tipo_b: number,
     cambiada: number,
-    removida: number
+  removida: number,
+  repi_tipo: number,
+  repar_tipo: number,
+  estadoParte: number
 }

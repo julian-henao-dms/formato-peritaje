@@ -190,6 +190,24 @@ export class FormatoPeritajeComponent implements OnInit {
     }
   }
 
+  public prueba() {
+    console.log(this.listaPartes);
+  }
+
+  public guardarFormulario() : void{
+    this.procesarInformacion();
+  }
+
+  private procesarInformacion(): void {
+    this.listaPartes.forEach(function (parte) {
+      parte.repi_tipo_a = (parte.repi_tipo == 0 ? 1 : 0);
+      parte.repi_tipo_b = (parte.repi_tipo == 1 ? 1 : 0);
+      parte.repar_tipo_a = (parte.repar_tipo == 0 ? 1 : 0);
+      parte.repar_tipo_b = (parte.repar_tipo == 1 ? 1 : 0);
+      parte.cambiada = (parte.estadoParte == 0 ? 1 : 0);
+      parte.removida = (parte.estadoParte == 1 ? 1 : 0);
+    });
+  }
 
   private resetinitData(): void {
     this.placa = '';
