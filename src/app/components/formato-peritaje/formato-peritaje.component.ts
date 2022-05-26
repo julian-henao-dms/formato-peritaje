@@ -151,7 +151,7 @@ export class FormatoPeritajeComponent implements OnInit {
 
   public async onEnter(): Promise<void> {
     if (this.placa !== '' || this.vin !== '') {
-      this.messageService.info("Atencion", "Estamos Cargando la informacion solicitada");
+      this.messageService.info("Atención", "Estamos Cargando la información solicitada");
       let servicio = '/vehiculosusados/datos';
       const params = '/309/' + (this.placa !== ''?this.placa:' ') + '/' + (this.vin !== ''?this.vin : ' ');
       (await this.apiService.getInformacion(servicio, params)).subscribe(async (response: any) => {
@@ -179,14 +179,14 @@ export class FormatoPeritajeComponent implements OnInit {
         } else {
           setTimeout(
             () => {
-              this.messageService.info("Atencion...", "La placa o vin ingresados no corresponden a un vehiculo en el sistema");
+              this.messageService.info("Atención...", "La placa o vin ingresados no corresponden a un vehículo en el sistema");
             }, 1000);
         }
       }, error => {
         this.messageService.error("Oops...", "Error interno en el servidor");
       });
     } else {
-      this.messageService.info("Atencion...", "Debe ingresar una placa o vin para continuar");
+      this.messageService.info("Atención...", "Debe ingresar una placa o vin para continuar");
     }
   }
 
