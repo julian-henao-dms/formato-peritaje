@@ -299,18 +299,26 @@ export class FormatoPeritajeComponent implements OnInit {
     });
   }
 
-  async agregarParte(){
+  public async modificarParte(id:number, accion:number){
     if (this.parteNueva !== ''){
       console.log('agregar')
-      const params = {
+      const body = {
         idEmp : 309,
         descripcion : this.parteNueva,
-        id : 0,
-        accion : 0 
+        id : id,
+        accion : accion 
       };
-      const servicio = '/maestros/modificar';
-      (await this.apiService.saveInformacion(servicio, params)).subscribe((resp: any) => {
-        console.log('Respuesta', resp);
+      let servicio = '/maestros/modificar';
+      (await this.apiService.saveInformacion(servicio, body)).subscribe(async (response: any) => {
+        if (response) {
+          servicio = '/maestros/partes';
+          const params = '/309/' + (this.placa !== '' ? this.placa : ' ') + '/' + (this.vin !== '' ? this.vin : ' ');
+          (await this.apiService.getInformacion(servicio, params)).subscribe(async (response: any) => {
+            this.listaPartes = response;
+          }, error => {
+            this.messageService.error("Oops...", "Error interno en el servidor");
+          });
+        }
       }, error => {
         this.messageService.error("Oops...", "Error interno en el servidor");
       });

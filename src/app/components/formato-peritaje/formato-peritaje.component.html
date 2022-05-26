@@ -347,33 +347,35 @@ Crear Nuevo Estado
     <mat-label>Parte :</mat-label>
     <input matInput placeholder="Añadir Parte" [(ngModel)]="parteNueva">
 </mat-form-field>
-<button mat-button type="submit" (click)="agregarParte()" class="btn-form-cb">Agregar</button>
+<button mat-button type="submit" (click)="modificarParte(0,0)" class="btn-form-cb">Agregar</button>
 
 
 <!-- Estado Pintura  -->
 <mat-card class="bloque-cb-5 estado_pintura" *ngIf="listaPartes.length > 0">
     <!-- *ngFor="let estado of data.estadosPintura" -->
-    <div class="group-radio-options-cb" *ngFor="let estadoPintura of listaPartes">
-        <section class="example-section radio-options-cb">
-            <label class="cbradio-group-label">{{estadoPintura.parte}}</label>
-            <mat-radio-group required name="repi_tipo" [(ngModel)]="estadoPintura.repi_tipo">
-                <mat-radio-button class="cb-radio-button" [value]="repiTipoA">Repi TIP A </mat-radio-button>
-                <mat-radio-button class="cb-radio-button" [value]="repiTipoB">Repi TIP B </mat-radio-button>
-            </mat-radio-group>
-        </section>
-        <section class="example-section radio-options-cb">
-            <mat-radio-group required name="repar_tipo" [(ngModel)]="estadoPintura.repar_tipo">
-                <mat-radio-button class="cb-radio-button" [value]="reparTipoA">Repar TIP A </mat-radio-button>
-                <mat-radio-button class="cb-radio-button" [value]="reparTipoB">Repar TIP B </mat-radio-button>
-            </mat-radio-group>
-        </section>
-        <section class="example-section radio-options-cb">
-            <mat-radio-group required name="estado_parte" [(ngModel)]="estadoPintura.estadoParte">
-                <mat-radio-button class="cb-radio-button" [value]="cambiado">Cambiado </mat-radio-button>
-                <mat-radio-button class="cb-radio-button" [value]="removido">Removido </mat-radio-button>
-            </mat-radio-group>
-        </section>
-    </div>
+  <div class="group-radio-options-cb" *ngFor="let estadoPintura of listaPartes">
+    <button mat-button type="submit" (click)="modificarParte(estadoPintura.id_chk_maestro_partes,0)" class="btn-form-cb">edit</button>
+    <button mat-button type="submit" (click)="modificarParte(estadoPintura.id_chk_maestro_partes,1)" class="btn-form-cb">borrar</button>
+    <section class="example-section radio-options-cb">
+      <label class="cbradio-group-label">{{estadoPintura.parte}}</label>
+      <mat-radio-group required name="repi_tipo" [(ngModel)]="estadoPintura.repi_tipo">
+        <mat-radio-button class="cb-radio-button" [value]="repiTipoA">Repi TIP A </mat-radio-button>
+        <mat-radio-button class="cb-radio-button" [value]="repiTipoB">Repi TIP B </mat-radio-button>
+      </mat-radio-group>
+    </section>
+    <section class="example-section radio-options-cb">
+      <mat-radio-group required name="repar_tipo" [(ngModel)]="estadoPintura.repar_tipo">
+        <mat-radio-button class="cb-radio-button" [value]="reparTipoA">Repar TIP A </mat-radio-button>
+        <mat-radio-button class="cb-radio-button" [value]="reparTipoB">Repar TIP B </mat-radio-button>
+      </mat-radio-group>
+    </section>
+    <section class="example-section radio-options-cb">
+      <mat-radio-group required name="estado_parte" [(ngModel)]="estadoPintura.estadoParte">
+        <mat-radio-button class="cb-radio-button" [value]="cambiado">Cambiado </mat-radio-button>
+        <mat-radio-button class="cb-radio-button" [value]="removido">Removido </mat-radio-button>
+      </mat-radio-group>
+    </section>
+  </div>
 
 
 </mat-card>
