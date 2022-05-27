@@ -359,7 +359,7 @@ Crear Nuevo Estado
     <div class="parametro-container">
         <mat-form-field appearance="fill">
             <mat-label>Parte :</mat-label>
-            <input matInput placeholder="Añadir Parte" [(ngModel)]="parteNueva">
+            <input matInput placeholder="Añadir Parte" [(ngModel)]="nombreParte">
         </mat-form-field>
         <button mat-button type="submit" (click)="modificarParte(0,0)" class="btn-form-cb">Agregar</button>
     </div>
@@ -374,7 +374,7 @@ Crear Nuevo Estado
     <mat-card class="parametro-estado-pintura">
         <div class="group-radio-options-cb" *ngFor="let estadoPintura of listaPartes">
             <div class="group-btn-cb">
-                <button mat-mini-fab (click)="modificarParte(estadoPintura.id_chk_maestro_partes,0)" class="btn-form-cb"><mat-icon class="m-icon-cb">edit</mat-icon></button>
+                <button mat-mini-fab (click)="openEditParte(estadoPintura.id_chk_maestro_partes)" class="btn-form-cb"><mat-icon class="m-icon-cb">edit</mat-icon></button>
                 <button mat-mini-fab (click)="modificarParte(estadoPintura.id_chk_maestro_partes,1)" class="btn-form-cb"><mat-icon class="m-icon-cb">close</mat-icon></button>
             </div>
             <section class="example-section radio-options-cb">
@@ -427,9 +427,9 @@ Crear Nuevo Estado
 <!-- *ngFor="let estado of data.estadosPintura" -->
 
 <!-- <mat-card>
-        <div class="group-radio-options-cb">
+        <!-- <div class="group-radio-options-cb">
             <div class="group-btn-cb">
-                <button mat-mini-fab type="submit" class="btn-form-cb"><mat-icon class="m-icon-cb">edit</mat-icon></button>
+                <button mat-mini-fab type="submit" (click)="openEditParte()" class="btn-form-cb"><mat-icon class="m-icon-cb">edit</mat-icon></button>
                 <button mat-mini-fab type="submit" class="btn-form-cb"><mat-icon class="m-icon-cb">close</mat-icon></button>
             </div>
             <section class="example-section radio-options-cb">

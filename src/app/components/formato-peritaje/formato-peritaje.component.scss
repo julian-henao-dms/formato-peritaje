@@ -165,7 +165,15 @@ mat-icon.m-icon-cb {
     .btn-form-cb {
         height: 30px;
         width: 30px;
+        background: #fefefe;
+        color: #b50411;
+        border: solid 1px;
     }
+}
+
+.mat-fab:not([class*=mat-elevation-z]),
+.mat-mini-fab:not([class*=mat-elevation-z]) {
+    box-shadow: 0px 1px 3px -1px rgb(0 0 0 / 14%), 0px 2px 3px 0px rgb(0 0 0 / 14%), 0px 1px 6px 0px rgb(0 0 0 / 12%);
 }
 
 .rbtn-first {

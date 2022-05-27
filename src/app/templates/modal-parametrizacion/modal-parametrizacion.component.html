@@ -2,15 +2,15 @@
 
     <h1 class="title-modal" mat-dialog-title>{{data.name}}</h1>
     <mat-dialog-content>
-        <p>What's your favorite animal?</p>
+        <p>Escriba el nombre de la parte</p>
         <mat-form-field appearance="fill">
-            <mat-label>Favorite Animal</mat-label>
-            <input matInput [(ngModel)]="data.animal">
+            <mat-label>Parte:</mat-label>
+            <input matInput [(ngModel)]="data.parteEstado">
         </mat-form-field>
 
     </mat-dialog-content>
     <div mat-dialog-actions>
 
-        <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
+        <button mat-button [mat-dialog-close]="data.parteEstado" cdkFocusInitial>Ok</button>
     </div>
 </div>
