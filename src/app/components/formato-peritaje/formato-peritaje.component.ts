@@ -31,7 +31,7 @@ export interface DialogData {
   styleUrls: ['./formato-peritaje.component.scss']
 })
 export class FormatoPeritajeComponent implements OnInit {
-  public nombreParte : string;
+  public nombreItem : string;
 
   public listaElementos: ElementosAz[] = [];
   public listaPartes: EstadoPintura[] = [];
@@ -91,7 +91,7 @@ export class FormatoPeritajeComponent implements OnInit {
     public dialog: MatDialog,
   )
   {
-    this.nombreParte = '';
+    this.nombreItem = '';
     this.placa = '';
     this.vin = '';
     this.assets = environment.assets;
@@ -286,47 +286,39 @@ export class FormatoPeritajeComponent implements OnInit {
     }
   }
 
-  openDialog(): void {
-    const dialogRef = this.dialog.open(ModalParametrizacionComponent, {
-      width: '250px',
-      data: {nombreParte: this.nombreParte},
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-     
-      this.nombreParte = result;
-    });
-  }
-
   // Modal Edit
-  public openEditParte(id_chk_maestro_partes: number): void {
+  public openEditItem(item: string,id: number): void {
     const dialogRef = this.dialog.open(ModalParametrizacionComponent, {
-      width: '250px'  
+      width: '350px',
+      data: {}
     });
-
     dialogRef.afterClosed().subscribe(result => {
-      this.nombreParte = result;
-      this.modificarParte(id_chk_maestro_partes, 0);
+      this.nombreItem = result;
+      this.modificarItem(item,id, 0);
     });
   
 
   }
 
-  public async modificarParte(id:number, accion:number){
-    if (this.nombreParte !== ''){
+  public async modificarItem(item: string,id: number, accion: number) {
+    if (this.nombreItem !== '' || accion == 1) {
       const body = {
-        idEmp : 309,
-        descripcion : this.nombreParte,
-        id : id,
-        accion : accion 
+        idEmp: 309,
+        descripcion: this.nombreItem,
+        id: id,
+        accion: accion
       };
-      let servicio = '/maestros/modificarpartes';
+      let servicio = (item == 'parte' ? '/maestros/modificarpartes' : '/maestros/modificarelementos');
       (await this.apiService.saveInformacion(servicio, body)).subscribe(async (response: any) => {
         if (response) {
-          servicio = '/VehiculosUsados/PartesPintura';
+          servicio = (item == 'parte' ? '/VehiculosUsados/PartesPintura' : '/VehiculosUsados/Elementos');
           const params = '/309/0';
           (await this.apiService.getInformacion(servicio, params)).subscribe(async (response: any) => {
-            this.listaPartes = response;
+            if (item == 'parte') {
+              this.listaPartes = response;
+            } else {
+              this.listaElementos = response;
+            }
           }, error => {
             this.messageService.error("Oops...", "Error interno en el servidor");
           });
@@ -334,10 +326,9 @@ export class FormatoPeritajeComponent implements OnInit {
       }, error => {
         this.messageService.error("Oops...", "Error interno en el servidor");
       });
-      this.nombreParte = '';
+      this.nombreItem = '';
+    } else {
+
     }
-    
   }
-
-
  }
