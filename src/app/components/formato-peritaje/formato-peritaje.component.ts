@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ModalParametrizacionComponent } from 'src/app/templates/modal-parametrizacion/modal-parametrizacion.component';
 import { environment } from '../../../environments/environment';
 import { ApiService } from '../../services/api.service';
 import { MessagesService } from '../../services/messages.service';
@@ -7,6 +8,7 @@ import { ElementosAz } from './interfaces/elementos-az';
 import { EstadoPintura } from './interfaces/estado-pintura';
 import { ItemsVehiculosUsados } from './interfaces/items-vehiculo';
 import { Vehiculo } from './interfaces/vehiculo';
+import { MatDialog } from '@angular/material/dialog';
 
 interface CalificacionesEstado {
   value: string;
@@ -18,12 +20,21 @@ interface Combustible {
   viewValue: string;
 }
 
+export interface DialogData {
+  animal: string;
+  name: string;
+}
+
 @Component({
   selector: 'app-formato-peritaje',
   templateUrl: './formato-peritaje.component.html',
   styleUrls: ['./formato-peritaje.component.scss']
 })
 export class FormatoPeritajeComponent implements OnInit {
+  public parteNueva : string;
+  animal: string | undefined;
+  name: string | undefined;
+
   public listaElementos: ElementosAz[] = [];
   public listaPartes: EstadoPintura[] = [];
   public formularioVehiculos: ItemsVehiculosUsados;
@@ -78,9 +89,11 @@ export class FormatoPeritajeComponent implements OnInit {
   constructor(
     private readonly router: Router,
     private readonly apiService: ApiService,
-    private readonly messageService: MessagesService
+    private readonly messageService: MessagesService,
+    public dialog: MatDialog,
   )
   {
+    this.parteNueva = '';
     this.placa = '';
     this.vin = '';
     this.assets = environment.assets;
@@ -273,4 +286,45 @@ export class FormatoPeritajeComponent implements OnInit {
       modelo: '',
     }
   }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(ModalParametrizacionComponent, {
+      width: '250px',
+      data: {name: this.name, animal: this.animal},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.animal = result;
+    });
+  }
+
+  public async modificarParte(id:number, accion:number){
+    if (this.parteNueva !== ''){
+      console.log('agregar')
+      const body = {
+        idEmp : 309,
+        descripcion : this.parteNueva,
+        id : id,
+        accion : accion 
+      };
+      let servicio = '/maestros/modificar';
+      (await this.apiService.saveInformacion(servicio, body)).subscribe(async (response: any) => {
+        if (response) {
+          servicio = '/maestros/partes';
+          const params = '/309/' + (this.placa !== '' ? this.placa : ' ') + '/' + (this.vin !== '' ? this.vin : ' ');
+          (await this.apiService.getInformacion(servicio, params)).subscribe(async (response: any) => {
+            this.listaPartes = response;
+          }, error => {
+            this.messageService.error("Oops...", "Error interno en el servidor");
+          });
+        }
+      }, error => {
+        this.messageService.error("Oops...", "Error interno en el servidor");
+      });
+    }
+  
+  }
+
+
  }

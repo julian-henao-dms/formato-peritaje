@@ -23,16 +23,20 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatDialogModule } from '@angular/material/dialog';
+
 import { FormatoPeritajeComponent } from './components/formato-peritaje/formato-peritaje.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
+import { ModalParametrizacionComponent } from './templates/modal-parametrizacion/modal-parametrizacion.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FormatoPeritajeComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
+    ModalParametrizacionComponent
   ],
   imports: [
     BrowserModule,
@@ -53,6 +57,7 @@ import { HomeComponent } from './components/home/home.component';
     MatSelectModule,
     MatSnackBarModule,
     MatTooltipModule,
+    MatDialogModule,
     FormsModule,
     ReactiveFormsModule,
     MatExpansionModule,

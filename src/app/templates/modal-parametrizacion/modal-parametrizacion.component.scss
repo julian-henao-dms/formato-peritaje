@@ -1,0 +1,32 @@
+.header-icon-modal {
+    width: 100px;
+}
+
+.mat-b-success {
+    background-color: #2cae94;
+    color: white;
+}
+
+.mat-b-warning {
+    background-color: #b50411;
+    color: white;
+}
+
+.title-modal {
+    font-weight: 700;
+    color: #b50411;
+    text-decoration: underline;
+}
+
+.title-modal {
+    margin: 15px 0;
+}
+
+.modal-parametrizacion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 600px;
+    height: 90%;
+}
