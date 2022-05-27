@@ -3,25 +3,19 @@ mat-card {
 }
 
 mat-card.bloque-cb-1 {
-    // display: flex;
-    // flex-wrap: wrap;
-    // justify-content: space-between;
-    // align-items: center;
     display: flex;
     flex-wrap: wrap;
+    // justify-content: space-between;
     /* align-items: center; */
     flex-direction: column;
     justify-content: space-between;
 }
 
 mat-card.bloque-cb-2 {
-    // display: flex;
-    // flex-wrap: wrap;
-    // justify-content: space-between;
-    // align-items: center;
     display: flex;
     flex-wrap: wrap;
-    /* align-items: center; */
+    // justify-content: space-between;
+    // align-items: center;
     flex-direction: column;
     justify-content: space-between;
 }
@@ -29,15 +23,37 @@ mat-card.bloque-cb-2 {
 mat-card.bloque-cb-3 {
     display: flex;
     flex-wrap: wrap;
+    /* justify-content: space-between; */
+    /* align-items: center; */
+    flex-direction: column;
+}
+
+.radio-group-5 {
+    display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
-    align-items: center;
+    margin-bottom: 1em;
+    section {
+        margin-bottom: 1.2em;
+    }
+}
+
+.radio-group-6 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 1em;
+    section {
+        margin-bottom: 1.2em;
+    }
 }
 
 mat-card.bloque-cb-4 {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
+    // justify-content: space-between;
+    // align-items: center;
+    flex-direction: column;
 }
 
 mat-card.bloque-cb-5 {
@@ -101,7 +117,7 @@ mat-card.bloque-cb-7 {
 .radio-options-cb {
     display: flex;
     flex-direction: column;
-    min-width: 12em;
+    min-width: 15em;
 }
 
 mat-card {
@@ -129,4 +145,38 @@ section.rbtn-b1 {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+}
+
+.btn-form-cb {
+    background: #b50411;
+    color: white;
+    margin-left: 1.2em;
+}
+
+mat-icon.m-icon-cb {
+    height: 25px;
+    width: 25px;
+    font-size: 15px;
+}
+
+.group-btn-cb {
+    display: flex;
+    justify-content: end;
+    .btn-form-cb {
+        height: 30px;
+        width: 30px;
+    }
+}
+
+.rbtn-first {
+    width: 105px;
+}
+
+.mat-radio-button~.mat-radio-button {
+    margin-right: 4px;
+}
+
+.title-bloques-cb {
+    margin-left: 35px;
+    margin-top: 1.2em;
 }
