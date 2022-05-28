@@ -7,6 +7,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./modal-parametrizacion.component.scss']
 })
 export class ModalParametrizacionComponent implements OnInit {
+  public opcion: number = 0;
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) { 
 
   }
@@ -14,4 +15,7 @@ export class ModalParametrizacionComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  prueba() {
+    console.log(this.data.opcion);
+  }
 }

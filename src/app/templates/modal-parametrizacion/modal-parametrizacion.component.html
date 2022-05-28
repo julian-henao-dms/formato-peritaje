@@ -2,15 +2,38 @@
 
     <h1 class="title-modal" mat-dialog-title>{{data.name}}</h1>
     <mat-dialog-content>
-        <p>What's your favorite animal?</p>
-        <mat-form-field appearance="fill">
-            <mat-label>Favorite Animal</mat-label>
-            <input matInput [(ngModel)]="data.animal">
-        </mat-form-field>
+      <p>Escriba el nombre del Item</p>
+      <mat-form-field appearance="fill">
+        <mat-label>Item</mat-label>
+        <input matInput [(ngModel)]="data.parteEstado">
+      </mat-form-field>
+      <mat-card *ngIf="data.parteEstado !== ''">
+        <h4> Seleccione las opciones del Item: </h4>
+        <mat-radio-group required name="Opciones" [(ngModel)]="opcion">
+          <mat-card>
+            <mat-radio-button class="cb-radio-button" value="1" (click)="prueba()"></mat-radio-button>
+            <section>
+              <mat-checkbox required class="example-margin">Malo</mat-checkbox>
+            </section>
+          </mat-card>
+          <mat-card>
+            <mat-radio-button class="cb-radio-button" [value]="2"></mat-radio-button>
+            <!--<mat-radio-group required name="Fuga">
+    <mat-radio-button class="cb-radio-button" [value]="2">Leve</mat-radio-button>
+    <mat-radio-button class="cb-radio-button" [value]="3">Fuerte</mat-radio-button>
+  </mat-radio-group>-->
+          </mat-card>
+          <mat-card>
+            <mat-radio-button class="cb-radio-button" [value]="3"></mat-radio-button>
+          </mat-card>
+          <mat-card>
+            <mat-radio-button class="cb-radio-button" [value]="4"></mat-radio-button>
+          </mat-card>
+        </mat-radio-group>
+      </mat-card>
 
-    </mat-dialog-content>
+</mat-dialog-content>
     <div mat-dialog-actions>
-
-        <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
+      <button mat-button [mat-dialog-close]="data.parteEstado" cdkFocusInitial>Cerrar</button>
     </div>
 </div>

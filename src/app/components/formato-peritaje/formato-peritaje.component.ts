@@ -31,9 +31,7 @@ export interface DialogData {
   styleUrls: ['./formato-peritaje.component.scss']
 })
 export class FormatoPeritajeComponent implements OnInit {
-  public parteNueva : string;
-  animal: string | undefined;
-  name: string | undefined;
+  public nombreItem : string;
 
   public listaElementos: ElementosAz[] = [];
   public listaPartes: EstadoPintura[] = [];
@@ -62,9 +60,6 @@ export class FormatoPeritajeComponent implements OnInit {
   public reparTipoB = 1;
   public cambiado = 0;
   public removido = 1;
-
-  public malo = 0;
-  public noTiene = 1
  
   // public selectedValue: string | undefined;
   public selectedCombustible: string | undefined;
@@ -93,7 +88,7 @@ export class FormatoPeritajeComponent implements OnInit {
     public dialog: MatDialog,
   )
   {
-    this.parteNueva = '';
+    this.nombreItem = '';
     this.placa = '';
     this.vin = '';
     this.assets = environment.assets;
@@ -169,16 +164,16 @@ export class FormatoPeritajeComponent implements OnInit {
       const params = '/309/' + (this.placa !== ''?this.placa:' ') + '/' + (this.vin !== ''?this.vin : ' ');
       (await this.apiService.getInformacion(servicio, params)).subscribe(async (response: any) => {
         if (response) {
-          console.log("datos");
           this.infoVehiculo = response;
           servicio = '/vehiculosusados/formulario';
           (await this.apiService.getInformacion(servicio, params)).subscribe(async (resp: any) => {
             this.formularioVehiculos = resp;
-            servicio = '/maestros/partes';
-            (await this.apiService.getInformacion(servicio, params)).subscribe(async (resp: any) => {
+            servicio = '/VehiculosUsados/PartesPintura';
+            const parametros = '/309/0';
+            (await this.apiService.getInformacion(servicio, parametros )).subscribe(async (resp: any) => {
               this.listaPartes = resp;
-              servicio = '/maestros/elementos';
-              (await this.apiService.getInformacion(servicio, params)).subscribe((resp: any) => {
+              servicio = '/VehiculosUsados/Elementos';
+              (await this.apiService.getInformacion(servicio, parametros)).subscribe((resp: any) => {
                 this.listaElementos = resp;
               }, error => {
                 this.messageService.error("Oops...", "Error interno en el servidor");
@@ -287,34 +282,39 @@ export class FormatoPeritajeComponent implements OnInit {
     }
   }
 
-  openDialog(): void {
+  // Modal Edit
+  public openEditItem(item: string,id: number): void {
     const dialogRef = this.dialog.open(ModalParametrizacionComponent, {
-      width: '250px',
-      data: {name: this.name, animal: this.animal},
+      width: '350px',
+      data: {}
     });
-
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.animal = result;
+      this.nombreItem = result;
+      this.modificarItem(item,id, 0);
     });
+  
+
   }
 
-  public async modificarParte(id:number, accion:number){
-    if (this.parteNueva !== ''){
-      console.log('agregar')
+  public async modificarItem(item: string,id: number, accion: number) {
+    if (this.nombreItem !== '' || accion == 1) {
       const body = {
-        idEmp : 309,
-        descripcion : this.parteNueva,
-        id : id,
-        accion : accion 
+        idEmp: 309,
+        descripcion: this.nombreItem,
+        id: id,
+        accion: accion
       };
-      let servicio = '/maestros/modificar';
+      let servicio = (item == 'parte' ? '/maestros/modificarpartes' : '/maestros/modificarelementos');
       (await this.apiService.saveInformacion(servicio, body)).subscribe(async (response: any) => {
         if (response) {
-          servicio = '/maestros/partes';
-          const params = '/309/' + (this.placa !== '' ? this.placa : ' ') + '/' + (this.vin !== '' ? this.vin : ' ');
+          servicio = (item == 'parte' ? '/VehiculosUsados/PartesPintura' : '/VehiculosUsados/Elementos');
+          const params = '/309/0';
           (await this.apiService.getInformacion(servicio, params)).subscribe(async (response: any) => {
-            this.listaPartes = response;
+            if (item == 'parte') {
+              this.listaPartes = response;
+            } else {
+              this.listaElementos = response;
+            }
           }, error => {
             this.messageService.error("Oops...", "Error interno en el servidor");
           });
@@ -322,9 +322,9 @@ export class FormatoPeritajeComponent implements OnInit {
       }, error => {
         this.messageService.error("Oops...", "Error interno en el servidor");
       });
+      this.nombreItem = '';
+    } else {
+
     }
-  
   }
-
-
  }
