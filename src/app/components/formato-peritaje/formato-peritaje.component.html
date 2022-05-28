@@ -426,10 +426,29 @@ Crear Nuevo Estado
         <button mat-button color="warn" (click)="modificarItem('elemento',elementoAz.id_chk_maestro_elementos,1)" class="btn-form-cb"><mat-icon class="m-icon-cb">close</mat-icon></button>
       </div>
     </div>
-    <mat-radio-group required name="{{elementoAz.elemento}}" [(ngModel)]="elementoAz.valor">
-      <mat-radio-button class="cb-radio-button" [value]="malo">Malo </mat-radio-button>
-      <mat-radio-button class="cb-radio-button" [value]="noTiene">No Tiene</mat-radio-button>
-    </mat-radio-group>
+    <div *ngIf="elementoAz.valor_def == 1">
+      <section>
+        <mat-checkbox required class="example-margin" [(ngModel)]="elementoAz.valor">Malo</mat-checkbox>
+      </section>
+    </div>
+    <div *ngIf="elementoAz.valor_def == 2">
+      <mat-radio-group required name="{{elementoAz.elemento}}" [(ngModel)]="elementoAz.valor">
+        <mat-radio-button class="cb-radio-button" [value]="2">Leve</mat-radio-button>
+        <mat-radio-button class="cb-radio-button" [value]="3">Fuerte</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <div *ngIf="elementoAz.valor_def == 3">
+      <mat-radio-group required name="{{elementoAz.elemento}}" [(ngModel)]="elementoAz.valor">
+        <mat-radio-button class="cb-radio-button" [value]="4">OK</mat-radio-button>
+        <mat-radio-button class="cb-radio-button" [value]="5">Bajo</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <div *ngIf="elementoAz.valor_def == 4">
+      <mat-radio-group required name="{{elementoAz.elemento}}" [(ngModel)]="elementoAz.valor">
+        <mat-radio-button class="cb-radio-button" [value]="7">Si</mat-radio-button>
+        <mat-radio-button class="cb-radio-button" [value]="6">No</mat-radio-button>
+      </mat-radio-group>
+    </div>
   </section>
 
 </mat-card>

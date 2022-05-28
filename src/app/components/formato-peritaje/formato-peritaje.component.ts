@@ -60,9 +60,6 @@ export class FormatoPeritajeComponent implements OnInit {
   public reparTipoB = 1;
   public cambiado = 0;
   public removido = 1;
-
-  public malo = 0;
-  public noTiene = 1
  
   // public selectedValue: string | undefined;
   public selectedCombustible: string | undefined;
@@ -167,7 +164,6 @@ export class FormatoPeritajeComponent implements OnInit {
       const params = '/309/' + (this.placa !== ''?this.placa:' ') + '/' + (this.vin !== ''?this.vin : ' ');
       (await this.apiService.getInformacion(servicio, params)).subscribe(async (response: any) => {
         if (response) {
-          console.log("datos");
           this.infoVehiculo = response;
           servicio = '/vehiculosusados/formulario';
           (await this.apiService.getInformacion(servicio, params)).subscribe(async (resp: any) => {
