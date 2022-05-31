@@ -6,5 +6,5 @@ export interface ElementosAz{
   est: number,
   intervencion: number,
   valor: number,
-  valor_def: number
+  valor_def: number,
 }
