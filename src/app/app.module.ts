@@ -30,6 +30,7 @@ import { FormatoPeritajeComponent } from './components/formato-peritaje/formato-
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { ModalParametrizacionComponent } from './templates/modal-parametrizacion/modal-parametrizacion.component';
+import { ModalEditComponent } from './templates/modal-edit/modal-edit.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ModalParametrizacionComponent } from './templates/modal-parametrizacion
     FormatoPeritajeComponent,
     HeaderComponent,
     HomeComponent,
-    ModalParametrizacionComponent
+    ModalParametrizacionComponent,
+    ModalEditComponent
   ],
   imports: [
     BrowserModule,

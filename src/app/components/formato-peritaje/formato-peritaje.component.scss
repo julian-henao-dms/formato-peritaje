@@ -204,7 +204,13 @@ mat-icon.m-icon-cb {
     margin-left: 35px;
     margin-top: 1.2em;
 }
-
+.estados-pintura-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+.estado-pintura-container{
+    margin: 10px;
+}
 .add-fields {
     display: flex;
     align-items: flex-start;

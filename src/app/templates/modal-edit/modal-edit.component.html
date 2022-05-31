@@ -1,0 +1,50 @@
+<div class="modal-parametrizacion">
+  <h1 *ngIf="data.maestro.id !== 0" class="title-modal" mat-dialog-title>Editar {{data.nombre}}</h1>
+  <h1 *ngIf="data.maestro.id == 0" class="title-modal" mat-dialog-title>Crear nuevo {{data.nombre}}</h1>
+  <mat-dialog-content>
+    <mat-card>
+      <mat-form-field appearance="fill">
+        <mat-label>Item</mat-label>
+        <input matInput [(ngModel)]="data.maestro.descripcion">
+      </mat-form-field>
+      <mat-card-content *ngIf="data.nombre == 'elementos'">
+        <section>
+          <mat-radio-group required name="Opciones" class="opciones-container" [(ngModel)]="data.maestro.valor_def">
+            <div class="opcion-container">
+              <mat-radio-button class="cb-radio-button" [value]="1"></mat-radio-button>
+              <div class="card-content">
+                <p><mat-icon>check_box_outline_blank</mat-icon>&nbsp;Malo</p>
+              </div>
+            </div>
+            <div class="opcion-container">
+              <mat-radio-button class="cb-radio-button" [value]="2"></mat-radio-button>
+              <div class="card-content">
+                <p><mat-icon>radio_button_checked</mat-icon>&nbsp;Leve</p>
+                <p><mat-icon>radio_button_unchecked</mat-icon>&nbsp;Fuerte</p>
+              </div>
+            </div>
+            <div class="opcion-container">
+              <mat-radio-button class="cb-radio-button" [value]="3"></mat-radio-button>
+              <div class="card-content">
+                <p><mat-icon>radio_button_checked</mat-icon>&nbsp;OK</p>
+                <p><mat-icon>radio_button_unchecked</mat-icon>&nbsp;Bajo</p>
+              </div>
+            </div>
+            <div class="opcion-container">
+              <mat-radio-button class="cb-radio-button" [value]="4"></mat-radio-button>
+              <div class="card-content">
+                <p><mat-icon>radio_button_checked</mat-icon>&nbsp;Si</p>
+                <p><mat-icon>radio_button_unchecked</mat-icon>&nbsp;No</p>
+              </div>
+            </div>
+          </mat-radio-group>
+        </section>
+      </mat-card-content>
+    </mat-card>
+
+  </mat-dialog-content>
+  <div mat-dialog-actions>
+    <button mat-button *ngIf="data.maestro.descripcion != ''" [mat-dialog-close]="data.maestro.id" (click)="guardarItem(data.maestro)" cdkFocusInitial>Guardar</button>
+    <button mat-button *ngIf="data.maestro.descripcion == ''" [mat-dialog-close]="data.maestro.id" cdkFocusInitial>Cancelar</button>
+  </div>
+</div>
