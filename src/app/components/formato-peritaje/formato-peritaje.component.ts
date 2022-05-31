@@ -19,6 +19,10 @@ interface Combustible {
   value: string;
   viewValue: string;
 }
+export interface Elements {
+  value: string;
+  viewValue: string;
+}
 
 export interface DialogData {
   animal: string;
@@ -83,6 +87,12 @@ export class FormatoPeritajeComponent implements OnInit {
    {value: '4', viewValue: 'Eléctrico'},
   
  ];
+
+ elements: Elements[] = [
+  { value: '1', viewValue: 'Airbag' },
+  { value: '2', viewValue: 'Capo' },
+  { value: '3', viewValue: 'Antena' }
+];
 
   constructor(
     private readonly router: Router,

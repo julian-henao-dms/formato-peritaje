@@ -489,14 +489,22 @@
 <mat-card>
     <table class="table table-striped table-bordered">
         <thead>
-            <h2>Añadir Elemento para intervención</h2>
+            <h2>Añadir Elemento para Intervención</h2>
         </thead>
         <tbody>
             <tr>
                 <td>
                     <mat-form-field>
-                        <input matInput id="newAttributeElementoInterv" [(ngModel)]="newAttribute.elementoInterv" name="newAttributeElementoInterv" placeholder="Elemento Requiere Intervención">
+                        <mat-select id="newAttributeElementoInterv" placeholder="Elemento Requiere Intervención" [(ngModel)]="newAttribute.elementoInterv" name="newAttributeElementoInterv">
+                            <mat-option *ngFor="let element of elements" [value]="element.value">
+                                {{element.viewValue}}
+                            </mat-option>
+                        </mat-select>
                     </mat-form-field>
+                    <!-- <mat-form-field>
+                        <input matInput id="newAttributeElementoInterv" [(ngModel)]="newAttribute.elementoInterv" name="newAttributeElementoInterv" placeholder="Elemento Requiere Intervención">
+                    </mat-form-field> -->
+
                 </td>
                 <td>
                     <mat-form-field>
