@@ -24,6 +24,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatTableModule } from '@angular/material/table';
 
 import { FormatoPeritajeComponent } from './components/formato-peritaje/formato-peritaje.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -65,6 +66,7 @@ import { ModalEditComponent } from './templates/modal-edit/modal-edit.component'
     MatExpansionModule,
     MatNativeDateModule,
     MatSliderModule,
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -20,6 +20,10 @@ interface Combustible {
   value: string;
   viewValue: string;
 }
+export interface Elements {
+  value: string;
+  viewValue: string;
+}
 
 export interface DialogData {
   animal: string;
@@ -33,6 +37,8 @@ export interface DialogData {
 })
 export class FormatoPeritajeComponent implements OnInit {
   public nombreItem: string;
+  public fieldArray: Array<any> = [];
+  public newAttribute: any = {};
   public listaElementos: ElementosAz[] = [];
   public listaPartes: EstadoPintura[] = [];
   public formularioVehiculos: ItemsVehiculosUsados;
@@ -60,26 +66,30 @@ export class FormatoPeritajeComponent implements OnInit {
   public reparTipoB = 1;
   public cambiado = 0;
   public removido = 1;
-
-  // public selectedValue: string | undefined;
   public selectedCombustible: string | undefined;
 
   calificaciones: CalificacionesEstado[] = [
-    { value: '5', viewValue: 'Nuevo' }, //verificar si es string o number y cambiar en la interface según
-    { value: '4', viewValue: 'Muy Bueno' },
-    { value: '3', viewValue: 'Defectos' },
-    { value: '2', viewValue: 'Problemas' },
-    { value: '1', viewValue: 'Malo' },
-  ];
+   {value: '5', viewValue: 'Nuevo'}, 
+   {value: '4', viewValue: 'Muy Bueno'},
+   {value: '3', viewValue: 'Defectos'},
+   {value: '2', viewValue: 'Problemas'},
+   {value: '1', viewValue: 'Malo'},
+ ];
+ 
+ combustibles: Combustible[] = [
+   {value: '0', viewValue: 'Gasolina'},
+   {value: '1', viewValue: 'Diesel'},
+   {value: '2', viewValue: 'Gas'},
+   {value: '3', viewValue: 'Hibrido'},
+   {value: '4', viewValue: 'Eléctrico'},
+  
+ ];
 
-  combustibles: Combustible[] = [
-    { value: '0', viewValue: 'Gasolina' },
-    { value: '1', viewValue: 'Diesel' },
-    { value: '2', viewValue: 'Gas' },
-    { value: '3', viewValue: 'Hibrido' },
-    { value: '4', viewValue: 'Eléctrico' },
-
-  ];
+ elements: Elements[] = [
+  { value: '1', viewValue: 'Airbag' },
+  { value: '2', viewValue: 'Capo' },
+  { value: '3', viewValue: 'Antena' }
+];
 
   constructor(
     private readonly router: Router,
@@ -301,35 +311,12 @@ export class FormatoPeritajeComponent implements OnInit {
     });
   }
 
-  /*public async modificarItem(item: string,id: number, accion: number) {
-    if (this.nombreItem !== '' || accion == 1) {
-      const body = {
-        idEmp: 309,
-        descripcion: this.nombreItem,
-        id: id,
-        accion: accion
-      };
-      let servicio = (item == 'parte' ? '/maestros/modificarpartes' : '/maestros/modificarelementos');
-      (await this.apiService.saveInformacion(servicio, body)).subscribe(async (response: any) => {
-        if (response) {
-          servicio = (item == 'parte' ? '/VehiculosUsados/PartesPintura' : '/VehiculosUsados/Elementos');
-          const params = '/309/0';
-          (await this.apiService.getInformacion(servicio, params)).subscribe(async (response: any) => {
-            if (item == 'parte') {
-              this.listaPartes = response;
-            } else {
-              this.listaElementos = response;
-            }
-          }, error => {
-            this.messageService.error("Oops...", "Error interno en el servidor");
-          });
-        }
-      }, error => {
-        this.messageService.error("Oops...", "Error interno en el servidor");
-      });
-      this.nombreItem = '';
-    } else {
+  public addFieldValue() {
+    this.fieldArray.push(this.newAttribute)
+    this.newAttribute = {};
+  }
 
-    }
-  }*/
- }
+  public deleteFieldValue(index: number) {
+      this.fieldArray.splice(index, 1);
+  }
+}
