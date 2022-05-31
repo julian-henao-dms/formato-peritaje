@@ -20,10 +20,6 @@ interface Combustible {
   value: string;
   viewValue: string;
 }
-export interface Elements {
-  value: string;
-  viewValue: string;
-}
 
 export interface DialogData {
   animal: string;
@@ -46,6 +42,7 @@ export class FormatoPeritajeComponent implements OnInit {
   public placa: string;
   public vin: string;
   public assets: string;
+  public idElementoIntervencion: number;
 
 
   public A = 0;
@@ -85,12 +82,6 @@ export class FormatoPeritajeComponent implements OnInit {
   
  ];
 
- elements: Elements[] = [
-  { value: '1', viewValue: 'Airbag' },
-  { value: '2', viewValue: 'Capo' },
-  { value: '3', viewValue: 'Antena' }
-];
-
   constructor(
     private readonly router: Router,
     private readonly apiService: ApiService,
@@ -100,6 +91,7 @@ export class FormatoPeritajeComponent implements OnInit {
     this.nombreItem = '';
     this.placa = '';
     this.vin = '';
+    this.idElementoIntervencion = 0;
     this.assets = environment.assets;
     this.infoVehiculo = {
       Id: 0,
@@ -208,7 +200,7 @@ export class FormatoPeritajeComponent implements OnInit {
   }
 
   public prueba() {
-    console.log(this.listaPartes);
+    console.log(this.listaElementos);
   }
 
   public guardarFormulario(): void {
@@ -311,12 +303,15 @@ export class FormatoPeritajeComponent implements OnInit {
     });
   }
 
-  public addFieldValue() {
-    this.fieldArray.push(this.newAttribute)
-    this.newAttribute = {};
-  }
-
-  public deleteFieldValue(index: number) {
-      this.fieldArray.splice(index, 1);
+  public agregarIntervencion(): void {
+    if (this.idElementoIntervencion !== 0) {
+      for (let i = 0; i < this.listaElementos.length; i++) {
+        if (this.listaElementos[i].id_chk_maestro_elementos == this.idElementoIntervencion) {
+          this.listaElementos[i].intervencion = 1;
+          break;
+        }
+      }
+      this.idElementoIntervencion = 0;
+    }
   }
 }
