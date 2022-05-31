@@ -386,7 +386,10 @@
 <h2 class="title-bloques-cb">Elementos A - Z</h2>
 <mat-card class="bloque-cb-7 elementos-az" *ngIf="listaElementos.length > 0">
   <section class="example-section radio-options-cb" *ngFor="let elementoAz of listaElementos">
-    <label class="cbradio-group-label">{{elementoAz.elemento}}</label>
+    <div style="width: 100%">
+      <label class="item-label">{{elementoAz.elemento}}</label>
+      <button mat-button class="item-button"><mat-icon>remove_red_eye</mat-icon></button>
+    </div>
     <div *ngIf="elementoAz.valor_def == 1">
       <section>
         <mat-checkbox required class="example-margin" [(ngModel)]="elementoAz.est">Malo</mat-checkbox>

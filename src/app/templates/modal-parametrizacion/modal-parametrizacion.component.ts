@@ -41,7 +41,7 @@ export class ModalParametrizacionComponent implements OnInit {
       data: { nombre: nombre, maestro: maestro}
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log('after closed: changed ' + result);
+      this.cargarListaMaestros();
     });
   }
 
