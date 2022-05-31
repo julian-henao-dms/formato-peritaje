@@ -7,7 +7,8 @@ import { MessagesService } from '../../services/messages.service';
 import { ElementosAz } from './interfaces/elementos-az';
 import { EstadoPintura } from './interfaces/estado-pintura';
 import { ItemsVehiculosUsados } from './interfaces/items-vehiculo';
-import { Vehiculo } from './interfaces/vehiculo';
+import { formulario } from './interfaces/formulario.interface';
+
 import { MatDialog } from '@angular/material/dialog';
 
 interface CalificacionesEstado {
@@ -31,12 +32,11 @@ export interface DialogData {
   styleUrls: ['./formato-peritaje.component.scss']
 })
 export class FormatoPeritajeComponent implements OnInit {
-  public nombreItem : string;
-
+  public nombreItem: string;
   public listaElementos: ElementosAz[] = [];
   public listaPartes: EstadoPintura[] = [];
   public formularioVehiculos: ItemsVehiculosUsados;
-  public infoVehiculo: Vehiculo;
+  public infoVehiculo: formulario;
   public placa: string;
   public vin: string;
   public assets: string;
@@ -46,7 +46,7 @@ export class FormatoPeritajeComponent implements OnInit {
   public B = 1;
   public si = 1;
   public no = 0;
- 
+
   public automatica = 1;
   public mecanica = 0;
   public t4x2 = 0;
@@ -60,50 +60,49 @@ export class FormatoPeritajeComponent implements OnInit {
   public reparTipoB = 1;
   public cambiado = 0;
   public removido = 1;
- 
+
   // public selectedValue: string | undefined;
   public selectedCombustible: string | undefined;
- 
+
   calificaciones: CalificacionesEstado[] = [
-   {value: '5', viewValue: 'Nuevo'}, //verificar si es string o number y cambiar en la interface según
-   {value: '4', viewValue: 'Muy Bueno'},
-   {value: '3', viewValue: 'Defectos'},
-   {value: '2', viewValue: 'Problemas'},
-   {value: '1', viewValue: 'Malo'},
- ];
- 
- combustibles: Combustible[] = [
-   {value: '0', viewValue: 'Gasolina'},
-   {value: '1', viewValue: 'Diesel'},
-   {value: '2', viewValue: 'Gas'},
-   {value: '3', viewValue: 'Hibrido'},
-   {value: '4', viewValue: 'Eléctrico'},
-  
- ];
+    { value: '5', viewValue: 'Nuevo' }, //verificar si es string o number y cambiar en la interface según
+    { value: '4', viewValue: 'Muy Bueno' },
+    { value: '3', viewValue: 'Defectos' },
+    { value: '2', viewValue: 'Problemas' },
+    { value: '1', viewValue: 'Malo' },
+  ];
+
+  combustibles: Combustible[] = [
+    { value: '0', viewValue: 'Gasolina' },
+    { value: '1', viewValue: 'Diesel' },
+    { value: '2', viewValue: 'Gas' },
+    { value: '3', viewValue: 'Hibrido' },
+    { value: '4', viewValue: 'Eléctrico' },
+
+  ];
 
   constructor(
     private readonly router: Router,
     private readonly apiService: ApiService,
     private readonly messageService: MessagesService,
     public dialog: MatDialog,
-  )
-  {
+  ) {
     this.nombreItem = '';
     this.placa = '';
     this.vin = '';
     this.assets = environment.assets;
-     this.infoVehiculo = {
-       Id : 0,
-       Califica : '',
-       Fecini : new Date,
-       Id_usuario : 0,
-       Id_usu_inspector : 0,
-       Id_cot_item_lote : 0,
-       Prueba_ruta : 0,
-       Fecfin : new Date,
-       Califica2 : 0,
-     }
-     this.formularioVehiculos = {
+    this.infoVehiculo = {
+      Id: 0,
+      Califica: '',
+      Fecini: new Date,
+      Id_usuario: 0,
+      Id_usu_inspector: 0,
+      Id_cot_item_lote: 0,
+      Prueba_ruta: 0,
+      Fecfin: new Date,
+      Califica2: 0,
+    }
+    this.formularioVehiculos = {
       id_veh_chk_usados: 0,
       califica: '',
       fecini: new Date,
@@ -151,17 +150,17 @@ export class FormatoPeritajeComponent implements OnInit {
       linea: '',
       marca: '',
       modelo: '',
-     }
-   }
- 
-   async ngOnInit(): Promise<void> {
-   }
+    }
+  }
+
+  async ngOnInit(): Promise<void> {
+  }
 
   public async onEnter(): Promise<void> {
     if (this.placa !== '' || this.vin !== '') {
       this.messageService.info("Atención", "Estamos Cargando la información solicitada");
       let servicio = '/vehiculosusados/datos';
-      const params = '/309/' + (this.placa !== ''?this.placa:' ') + '/' + (this.vin !== ''?this.vin : ' ');
+      const params = '/309/' + (this.placa !== '' ? this.placa : ' ') + '/' + (this.vin !== '' ? this.vin : ' ');
       (await this.apiService.getInformacion(servicio, params)).subscribe(async (response: any) => {
         if (response) {
           this.infoVehiculo = response;
@@ -170,7 +169,7 @@ export class FormatoPeritajeComponent implements OnInit {
             this.formularioVehiculos = resp;
             servicio = '/VehiculosUsados/PartesPintura';
             const parametros = '/309/0';
-            (await this.apiService.getInformacion(servicio, parametros )).subscribe(async (resp: any) => {
+            (await this.apiService.getInformacion(servicio, parametros)).subscribe(async (resp: any) => {
               this.listaPartes = resp;
               servicio = '/VehiculosUsados/Elementos';
               (await this.apiService.getInformacion(servicio, parametros)).subscribe((resp: any) => {
@@ -202,7 +201,7 @@ export class FormatoPeritajeComponent implements OnInit {
     console.log(this.listaPartes);
   }
 
-  public guardarFormulario() : void{
+  public guardarFormulario(): void {
     this.procesarInformacion();
   }
 
@@ -282,21 +281,27 @@ export class FormatoPeritajeComponent implements OnInit {
     }
   }
 
-  // Modal Edit
-  public openEditItem(item: string,id: number): void {
+  public openModalCrudMaestros(maestro: string): void {
     const dialogRef = this.dialog.open(ModalParametrizacionComponent, {
-      width: '350px',
-      data: {}
+      width: '90%',
+      data: { nombre: maestro }
     });
-    dialogRef.afterClosed().subscribe(result => {
-      this.nombreItem = result;
-      this.modificarItem(item,id, 0);
+    dialogRef.afterClosed().subscribe(async result => {
+      const servicio = (result == 'partes' ? '/VehiculosUsados/PartesPintura' : '/VehiculosUsados/Elementos');
+      const params = '/309/0';
+      (await this.apiService.getInformacion(servicio, params)).subscribe(async (response: any) => {
+        if (result == 'partes') {
+          this.listaPartes = response;
+        } else {
+          this.listaElementos = response;
+        }
+      }, error => {
+        this.messageService.error("Oops...", "Error interno en el servidor");
+      });
     });
-  
-
   }
 
-  public async modificarItem(item: string,id: number, accion: number) {
+  /*public async modificarItem(item: string,id: number, accion: number) {
     if (this.nombreItem !== '' || accion == 1) {
       const body = {
         idEmp: 309,
@@ -326,5 +331,5 @@ export class FormatoPeritajeComponent implements OnInit {
     } else {
 
     }
-  }
+  }*/
  }

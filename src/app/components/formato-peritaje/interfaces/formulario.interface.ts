@@ -1,4 +1,4 @@
-export interface Vehiculo{
+export interface formulario{
     Id : number;
     Califica : string;
     Fecini : Date;

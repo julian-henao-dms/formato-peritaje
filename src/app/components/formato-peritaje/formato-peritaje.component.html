@@ -355,13 +355,14 @@ Crear Nuevo Estado
 
 <mat-card>
   <h2>Parametrización de partes vehículo</h2>
-  <div class="parametro-container">
+  <button mat-button (click)="openModalCrudMaestros('partes')" class="btn-form-cb">Modificar</button>
+  <!--<div class="parametro-container">
     <mat-form-field appearance="fill">
       <mat-label>Parte</mat-label>
       <input matInput placeholder="Añadir Parte" [(ngModel)]="nombreItem">
     </mat-form-field>
     <button mat-button type="submit" (click)="modificarItem('parte',0,0)" class="btn-form-cb">Agregar</button>
-  </div>
+  </div>-->
 </mat-card>
 
 
@@ -370,16 +371,10 @@ Crear Nuevo Estado
 <mat-card class="bloque-cb-5 estado_pintura" *ngIf="listaPartes.length > 0">
 
   <!-- *ngFor="let estado of data.estadosPintura" -->
-  <mat-card class="parametro-estado-pintura">
-    <div class="group-radio-options-cb" *ngFor="let estadoPintura of listaPartes">
+  <div class="estados-pintura-container">
+    <mat-card class="group-radio-options-cb estado-pintura-container" *ngFor="let estadoPintura of listaPartes">
+      <label class="cbradio-group-label">{{estadoPintura.parte}}</label>
       <section class="example-section radio-options-cb">
-        <div class="group-btn-cb">
-          <label class="cbradio-group-label">{{estadoPintura.parte}}</label>
-          <div>
-            <button mat-button (click)="openEditItem('parte',estadoPintura.id_chk_maestro_partes)" class="btn-form-cb"><mat-icon class="m-icon-cb">edit</mat-icon></button>
-            <button mat-button color="warn" (click)="modificarItem('parte',estadoPintura.id_chk_maestro_partes,1)" class="btn-form-cb"><mat-icon class="m-icon-cb">close</mat-icon></button>
-          </div>
-        </div>
         <mat-radio-group required name="repi_tipo" [(ngModel)]="estadoPintura.repi_tipo">
           <mat-radio-button class="cb-radio-button rbtn-first" [value]="repiTipoA">Repi TIP A </mat-radio-button>
           <mat-radio-button class="cb-radio-button" [value]="repiTipoB">Repi TIP B </mat-radio-button>
@@ -397,8 +392,8 @@ Crear Nuevo Estado
           <mat-radio-button class="cb-radio-button" [value]="removido">Removido </mat-radio-button>
         </mat-radio-group>
       </section>
-    </div>
-  </mat-card>
+    </mat-card>
+  </div>
 
 
 
@@ -407,44 +402,39 @@ Crear Nuevo Estado
 
 <mat-card>
   <h2>Parametrización de elementos A - Z</h2>
-  <div class="parametro-container">
+  <button mat-button (click)="openModalCrudMaestros('elementos')" class="btn-form-cb">Modificar</button>
+  <!--<div class="parametro-container">
     <mat-form-field appearance="fill">
       <mat-label>Elemento</mat-label>
       <input matInput placeholder="Añadir Elemento" [(ngModel)]="nombreItem">
     </mat-form-field>
     <button mat-button type="submit" (click)="modificarItem('elemento',0,0)" class="btn-form-cb">Agregar</button>
-  </div>
+  </div>-->
 </mat-card>
 <!-- Elemento A-Z -->
 <h2 class="title-bloques-cb">Elementos A - Z</h2>
 <mat-card class="bloque-cb-7 elementos-az" *ngIf="listaElementos.length > 0">
   <section class="example-section radio-options-cb" *ngFor="let elementoAz of listaElementos">
-    <div class="group-btn-cb">
-      <label class="cbradio-group-label">{{elementoAz.elemento}}</label>
-      <div>
-        <button mat-button (click)="openEditItem('elemento',elementoAz.id_chk_maestro_elementos)" class="btn-form-cb"><mat-icon class="m-icon-cb">edit</mat-icon></button>
-        <button mat-button color="warn" (click)="modificarItem('elemento',elementoAz.id_chk_maestro_elementos,1)" class="btn-form-cb"><mat-icon class="m-icon-cb">close</mat-icon></button>
-      </div>
-    </div>
+    <label class="cbradio-group-label">{{elementoAz.elemento}}</label>
     <div *ngIf="elementoAz.valor_def == 1">
       <section>
-        <mat-checkbox required class="example-margin" [(ngModel)]="elementoAz.valor">Malo</mat-checkbox>
+        <mat-checkbox required class="example-margin" [(ngModel)]="elementoAz.est">Malo</mat-checkbox>
       </section>
     </div>
     <div *ngIf="elementoAz.valor_def == 2">
-      <mat-radio-group required name="{{elementoAz.elemento}}" [(ngModel)]="elementoAz.valor">
+      <mat-radio-group required name="{{elementoAz.elemento}}" [(ngModel)]="elementoAz.est">
         <mat-radio-button class="cb-radio-button" [value]="2">Leve</mat-radio-button>
         <mat-radio-button class="cb-radio-button" [value]="3">Fuerte</mat-radio-button>
       </mat-radio-group>
     </div>
     <div *ngIf="elementoAz.valor_def == 3">
-      <mat-radio-group required name="{{elementoAz.elemento}}" [(ngModel)]="elementoAz.valor">
+      <mat-radio-group required name="{{elementoAz.elemento}}" [(ngModel)]="elementoAz.est">
         <mat-radio-button class="cb-radio-button" [value]="4">OK</mat-radio-button>
         <mat-radio-button class="cb-radio-button" [value]="5">Bajo</mat-radio-button>
       </mat-radio-group>
     </div>
     <div *ngIf="elementoAz.valor_def == 4">
-      <mat-radio-group required name="{{elementoAz.elemento}}" [(ngModel)]="elementoAz.valor">
+      <mat-radio-group required name="{{elementoAz.elemento}}" [(ngModel)]="elementoAz.est">
         <mat-radio-button class="cb-radio-button" [value]="7">Si</mat-radio-button>
         <mat-radio-button class="cb-radio-button" [value]="6">No</mat-radio-button>
       </mat-radio-group>

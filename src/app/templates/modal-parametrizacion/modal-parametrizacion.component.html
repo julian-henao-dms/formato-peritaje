@@ -1,39 +1,37 @@
 <div class="modal-parametrizacion">
-
-    <h1 class="title-modal" mat-dialog-title>{{data.name}}</h1>
+    <h1 class="title-modal" mat-dialog-title>Maestro de {{data.nombre}}</h1>
     <mat-dialog-content>
-      <p>Escriba el nombre del Item</p>
-      <mat-form-field appearance="fill">
-        <mat-label>Item</mat-label>
-        <input matInput [(ngModel)]="data.parteEstado">
-      </mat-form-field>
-      <mat-card *ngIf="data.parteEstado !== ''">
-        <h4> Seleccione las opciones del Item: </h4>
-        <mat-radio-group required name="Opciones" [(ngModel)]="opcion">
-          <mat-card>
-            <mat-radio-button class="cb-radio-button" value="1" (click)="prueba()"></mat-radio-button>
-            <section>
-              <mat-checkbox required class="example-margin">Malo</mat-checkbox>
-            </section>
-          </mat-card>
-          <mat-card>
-            <mat-radio-button class="cb-radio-button" [value]="2"></mat-radio-button>
-            <!--<mat-radio-group required name="Fuga">
-    <mat-radio-button class="cb-radio-button" [value]="2">Leve</mat-radio-button>
-    <mat-radio-button class="cb-radio-button" [value]="3">Fuerte</mat-radio-button>
-  </mat-radio-group>-->
-          </mat-card>
-          <mat-card>
-            <mat-radio-button class="cb-radio-button" [value]="3"></mat-radio-button>
-          </mat-card>
-          <mat-card>
-            <mat-radio-button class="cb-radio-button" [value]="4"></mat-radio-button>
-          </mat-card>
-        </mat-radio-group>
-      </mat-card>
-
-</mat-dialog-content>
+      <button mat-button (click)="openModalEdit(data.nombre,nuevoMaestro)"><mat-icon>add</mat-icon>&nbsp;Agregar Nuevo Item</button>
+      <div class="maestros-container">
+        <mat-card *ngFor="let maestro of listaMaestros; index as i" class="maestro-container">
+          <div class="card-header">
+            <mat-card-title class="card-title">{{maestro.descripcion}}</mat-card-title>
+            <div class="card-header-buttons">
+              <button mat-button class="header-button" (click)="openModalEdit(data.nombre,maestro)"><mat-icon>edit</mat-icon></button>
+              <button mat-button class="header-button" (click)="eliminarMaestro(i)"><mat-icon>close</mat-icon></button>
+            </div>
+          </div>
+          <mat-card-content>
+            <div class="card-content" *ngIf="maestro.valor_def == 1">
+              <p><mat-icon>check_box_outline_blank</mat-icon>&nbsp;Malo</p>
+            </div>
+            <div class="card-content" *ngIf="maestro.valor_def == 2">
+              <p><mat-icon>radio_button_checked</mat-icon>&nbsp;Leve</p>
+              <p><mat-icon>radio_button_unchecked</mat-icon>&nbsp;Fuerte</p>
+            </div>
+            <div class="card-content" *ngIf="maestro.valor_def == 3">
+              <p><mat-icon>radio_button_checked</mat-icon>&nbsp;OK</p>
+              <p><mat-icon>radio_button_unchecked</mat-icon>&nbsp;Bajo</p>
+            </div>
+            <div class="card-content" *ngIf="maestro.valor_def == 4">
+              <p><mat-icon>radio_button_checked</mat-icon>&nbsp;Si</p>
+              <p><mat-icon>radio_button_unchecked</mat-icon>&nbsp;No</p>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </mat-dialog-content>
     <div mat-dialog-actions>
-      <button mat-button [mat-dialog-close]="data.parteEstado" cdkFocusInitial>Cerrar</button>
+      <button mat-button [mat-dialog-close]="data.nombre" cdkFocusInitial>Cerrar</button>
     </div>
 </div>
