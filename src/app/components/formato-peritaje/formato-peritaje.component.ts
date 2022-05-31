@@ -31,6 +31,10 @@ export interface DialogData {
   styleUrls: ['./formato-peritaje.component.scss']
 })
 export class FormatoPeritajeComponent implements OnInit {
+
+  public fieldArray: Array<any> = [];
+  public newAttribute: any = {};
+
   public nombreItem : string;
 
   public listaElementos: ElementosAz[] = [];
@@ -61,11 +65,10 @@ export class FormatoPeritajeComponent implements OnInit {
   public cambiado = 0;
   public removido = 1;
  
-  // public selectedValue: string | undefined;
   public selectedCombustible: string | undefined;
  
   calificaciones: CalificacionesEstado[] = [
-   {value: '5', viewValue: 'Nuevo'}, //verificar si es string o number y cambiar en la interface según
+   {value: '5', viewValue: 'Nuevo'}, 
    {value: '4', viewValue: 'Muy Bueno'},
    {value: '3', viewValue: 'Defectos'},
    {value: '2', viewValue: 'Problemas'},
@@ -326,5 +329,14 @@ export class FormatoPeritajeComponent implements OnInit {
     } else {
 
     }
+  }
+
+  public addFieldValue() {
+    this.fieldArray.push(this.newAttribute)
+    this.newAttribute = {};
+}
+
+  public deleteFieldValue(index: number) {
+      this.fieldArray.splice(index, 1);
   }
  }
