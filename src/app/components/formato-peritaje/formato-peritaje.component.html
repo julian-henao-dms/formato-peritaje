@@ -5,7 +5,10 @@
     </div>
 </mat-card>
 <mat-card class="bloque-cb-1">
-    <h2>Buscar VIN o Placa</h2>
+    <div class="title-cb-card">
+        <mat-icon class="icon-title-card-cb">manage_search</mat-icon>
+        <h2>Buscar VIN o Placa</h2>
+    </div>
     <div class="vin-placa">
         <mat-form-field appearance="fill">
             <mat-label>VIN:</mat-label>
@@ -31,7 +34,7 @@
 
     <div class="form-group-cb">
 
-        <section class="example-section radio-options-cb rbtn-b1">
+        <section class="example-section radio-options-cb rbtn-b1 rbtn-initial">
             <label class="cbradio-group-label">Calificación:</label>
             <mat-radio-group aria-label="Calificación" required name="Califica" [(ngModel)]="infoVehiculo.Califica">
                 <mat-radio-button class="cb-radio-button" [value]="A">A</mat-radio-button>
@@ -39,7 +42,7 @@
             </mat-radio-group>
         </section>
 
-        <section class="example-section radio-options-cb rbtn-b1">
+        <section class="example-section radio-options-cb rbtn-b1 rbtn-initial">
             <label class="cbradio-group-label">Prueba de Ruta:</label>
             <mat-radio-group aria-label="Prueba de Ruta" required name="prueba_ruta" [(ngModel)]="formularioVehiculos.prueba_ruta">
                 <mat-radio-button class="cb-radio-button" [value]="si">Si</mat-radio-button>
@@ -342,7 +345,10 @@
 
 
 <mat-card>
-    <h2>Parametrización de partes vehículo</h2>
+    <div class="title-cb-card">
+        <mat-icon class="icon-title-card-cb">edit_note</mat-icon>
+        <h2>Parametrización de partes vehículo</h2>
+    </div>
     <button mat-button (click)="openModalCrudMaestros('partes')" class="btn-form-cb">Modificar</button>
 </mat-card>
 
@@ -380,7 +386,11 @@
 <!-- :::::::::::::::::::::::::::::::::::::::::: -->
 
 <mat-card>
-    <h2>Parametrización de elementos A - Z</h2>
+    <div class="title-cb-card">
+        <mat-icon class="icon-title-card-cb">checklist</mat-icon>
+        <h2>Parametrización de elementos A - Z</h2>
+    </div>
+
     <button mat-button (click)="openModalCrudMaestros('elementos')" class="btn-form-cb">Modificar</button>
 </mat-card>
 <!-- Elemento A-Z -->
@@ -425,7 +435,11 @@
 <!-- Porcentaje Llantas -->
 
 <mat-card class="porcentajes-llantas">
-    <h2 class="titulo-p-llanta">Porcentaje Vida LLantas(%)</h2>
+    <div class="title-cb-card">
+        <mat-icon class="icon-title-card-cb">percent</mat-icon>
+        <h2 class="titulo-p-llanta">Porcentaje Vida LLantas</h2>
+    </div>
+
     <div class="bloque-cb-6">
 
         <div class="form-group-cb">
@@ -461,7 +475,11 @@
 
 <!-- Campos material dinamicos -->
 <mat-card>
-    <h2>Añadir Elemento para Intervención</h2>
+    <div class="title-cb-card">
+        <mat-icon class="icon-title-card-cb">post_add</mat-icon>
+        <h2>Añadir Elemento para Intervención</h2>
+    </div>
+
     <div class="header-interv">
         <mat-form-field appearance="fill">
             <mat-label>Elemento a intervenir</mat-label>

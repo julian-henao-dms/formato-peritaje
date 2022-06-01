@@ -331,6 +331,27 @@ button.delete-interv-btn {
     }
 }
 
+.item-button {
+    float: right;
+}
+
+.item-label {
+    float: left;
+}
+
+.title-cb-card {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.2em;
+    h2 {
+        margin-bottom: 0;
+    }
+    .icon-title-card-cb {
+        color: $main-color;
+        margin-right: 0.5em;
+    }
+}
+
 @media(max-width: 520px) {
     .form-group-cb,
     .form-group-cb-b {
@@ -345,12 +366,11 @@ button.delete-interv-btn {
         grid-column: col1-start / col2-end;
         grid-row: row2-start;
     }
-}
-
-.item-button {
-    float: right;
-}
-
-.item-label {
-    float: left;
+    section.rbtn-b1.rbtn-initial {
+        margin-bottom: 1.2em;
+    }
+    .title-cb-card {
+        display: flex;
+        justify-content: center;
+    }
 }
