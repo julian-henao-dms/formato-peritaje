@@ -457,51 +457,28 @@
 
 <!-- Campos material dinamicos -->
 <mat-card>
-    <table class="table table-striped table-bordered">
-        <thead>
-            <h2>Añadir Elemento para Intervención</h2>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                    <mat-form-field>
-                        <mat-select id="newAttributeElementoInterv" placeholder="Elemento Requiere Intervención" [(ngModel)]="newAttribute.elementoInterv" name="newAttributeElementoInterv">
-                            <mat-option *ngFor="let element of elements" [value]="element.value">
-                                {{element.viewValue}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                    <!-- <mat-form-field>
-                        <input matInput id="newAttributeElementoInterv" [(ngModel)]="newAttribute.elementoInterv" name="newAttributeElementoInterv" placeholder="Elemento Requiere Intervención">
-                    </mat-form-field> -->
-
-                </td>
-                <td>
-                    <mat-form-field>
-                        <input matInput id="newAttributeValorAprox" [(ngModel)]="newAttribute.valorAprox" name="newAttributeValorAprox" placeholder="Valor Aproximado">
-                    </mat-form-field>
-
-                </td>
-                <td>
-                    <button mat-icon-button matTooltip="Añadir Elemento Intervención" class="btn btn-cb-interv" type="button" (click)="addFieldValue()"><mat-icon class="m-icon-cb">add</mat-icon></button>
-                </td>
-            </tr>
-            <tr *ngFor="let field of fieldArray; let i = index">
-                <td>
-                    <mat-form-field>
-                        <input matInput [(ngModel)]="field.elementoInterv" name="{{field.elementoInterv}}" placeholder="Elemento Requiere Intervención">
-                    </mat-form-field>
-                </td>
-                <td>
-                    <mat-form-field>
-                        <input matInput [(ngModel)]="field.valorAprox" name="{{field.valorAprox}}" placeholder="Valor Aproximado">
-                    </mat-form-field>
-                </td>
-                <td>
-                    <button mat-icon-button matTooltip="Eliminar" class="btn btn-cb-interv" type="button" (click)="deleteFieldValue(i)"><mat-icon class="m-icon-cb">delete_forever</mat-icon></button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+  <h2>Añadir Elemento para Intervención</h2>
+  <mat-form-field appearance="fill">
+    <mat-select [(ngModel)]="idElementoIntervencion">
+      <mat-option [value]="0">-- Selecione una opción --</mat-option>
+      <mat-option *ngFor="let elementoAZ of listaElementos" [value]="elementoAZ.id_chk_maestro_elementos">
+        {{elementoAZ.elemento}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-button (click)="agregarIntervencion()">Agregar&nbsp;<mat-icon>add</mat-icon></button>
+  <h2>Elementos que requieren Intervención</h2>
+  <div *ngFor="let elementoAZ of listaElementos">
+    <div *ngIf="elementoAZ.intervencion == 1">
+      <mat-form-field appearance="fill">
+        <input matInput [value]="elementoAZ.elemento" disabled/>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <label>Valor Aprox.</label>
+        <input matInput [(ngModel)]="elementoAZ.valor" (blur)="prueba()"/>
+      </mat-form-field>
+      <button mat-button (click)="elementoAZ.intervencion = 0"><mat-icon>close</mat-icon></button>
+    </div>
+  </div>
 </mat-card>
 <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
