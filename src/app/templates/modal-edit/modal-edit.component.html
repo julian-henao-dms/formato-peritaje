@@ -2,7 +2,8 @@
     <h1 *ngIf="data.maestro.id !== 0" class="title-modal-elements" mat-dialog-title>Editar {{data.nombre}}</h1>
     <h1 *ngIf="data.maestro.id == 0" class="title-modal-elements" mat-dialog-title>Crear nuevos {{data.nombre}}</h1>
     <mat-dialog-content>
-        <p class="new-element-text">Escriba el nombre del elemento a crear y seleccione uno de los tipos disponibles para crear el elemento con sus opciones de elección.</p>
+        <p *ngIf="data.maestro.id !== 0" class="new-element-text">Escriba el nombre descripcion </p>
+        <p *ngIf="data.maestro.id == 0" class="new-element-text">Escriba el nombre del elemento a crear y seleccione uno de los tipos disponibles para crear el elemento con sus opciones de elección.</p>
         <mat-card class="card-modal-elements">
             <mat-form-field class="new-element-input" appearance="fill">
                 <mat-label>Nuevo elemento</mat-label>

@@ -347,8 +347,9 @@
 </mat-card>
 
 <!-- Estado Pintura  -->
-<h2 class="title-bloques-cb">Estado Pintura</h2>
+
 <mat-card class="bloque-cb-5 estado_pintura" *ngIf="listaPartes.length > 0">
+    <h2 class="title-bloques-cb">Estado Pintura</h2>
 
     <!-- *ngFor="let estado of data.estadosPintura" -->
     <div class="estados-pintura-container">
@@ -383,37 +384,40 @@
     <button mat-button (click)="openModalCrudMaestros('elementos')" class="btn-form-cb">Modificar</button>
 </mat-card>
 <!-- Elemento A-Z -->
-<h2 class="title-bloques-cb">Elementos A - Z</h2>
+
 <mat-card class="bloque-cb-7 elementos-az" *ngIf="listaElementos.length > 0">
-    <section class="example-section radio-options-cb" *ngFor="let elementoAz of listaElementos">
-        <div style="width: 100%">
-            <label class="item-label cbradio-label-parametrizado">{{elementoAz.elemento}}</label>
-            <button mat-icon-button matTooltipPosition="above" matTooltip="Ocultar elemento" class="item-button"><mat-icon class="m-icon-cb">remove_red_eye</mat-icon></button>
-        </div>
-        <div *ngIf="elementoAz.valor_def == 1">
-            <section>
-                <mat-checkbox required class="example-margin" [(ngModel)]="elementoAz.est">Malo</mat-checkbox>
-            </section>
-        </div>
-        <div *ngIf="elementoAz.valor_def == 2">
-            <mat-radio-group required name="{{elementoAz.elemento}}" [(ngModel)]="elementoAz.est">
-                <mat-radio-button class="cb-radio-button" [value]="2">Leve</mat-radio-button>
-                <mat-radio-button class="cb-radio-button" [value]="3">Fuerte</mat-radio-button>
-            </mat-radio-group>
-        </div>
-        <div *ngIf="elementoAz.valor_def == 3">
-            <mat-radio-group required name="{{elementoAz.elemento}}" [(ngModel)]="elementoAz.est">
-                <mat-radio-button class="cb-radio-button" [value]="4">OK</mat-radio-button>
-                <mat-radio-button class="cb-radio-button" [value]="5">Bajo</mat-radio-button>
-            </mat-radio-group>
-        </div>
-        <div *ngIf="elementoAz.valor_def == 4">
-            <mat-radio-group required name="{{elementoAz.elemento}}" [(ngModel)]="elementoAz.est">
-                <mat-radio-button class="cb-radio-button" [value]="7">Si</mat-radio-button>
-                <mat-radio-button class="cb-radio-button" [value]="6">No</mat-radio-button>
-            </mat-radio-group>
-        </div>
-    </section>
+    <h2 class="title-bloques-cb">Elementos A - Z</h2>
+    <div class="elementos-a-z-container">
+        <section class="example-section radio-options-cb" *ngFor="let elementoAz of listaElementos">
+            <div style="width: 100%">
+                <label class="item-label cbradio-label-parametrizado">{{elementoAz.elemento}}</label>
+                <button mat-icon-button matTooltipPosition="above" matTooltip="Ocultar elemento" class="item-button"><mat-icon class="m-icon-cb eye-icon">remove_red_eye</mat-icon></button>
+            </div>
+            <div *ngIf="elementoAz.valor_def == 1">
+                <section>
+                    <mat-checkbox required class="" [(ngModel)]="elementoAz.est">Malo</mat-checkbox>
+                </section>
+            </div>
+            <div *ngIf="elementoAz.valor_def == 2">
+                <mat-radio-group required name="{{elementoAz.elemento}}" [(ngModel)]="elementoAz.est">
+                    <mat-radio-button class="cb-radio-button" [value]="2">Leve</mat-radio-button>
+                    <mat-radio-button class="cb-radio-button" [value]="3">Fuerte</mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <div *ngIf="elementoAz.valor_def == 3">
+                <mat-radio-group required name="{{elementoAz.elemento}}" [(ngModel)]="elementoAz.est">
+                    <mat-radio-button class="cb-radio-button" [value]="4">OK</mat-radio-button>
+                    <mat-radio-button class="cb-radio-button" [value]="5">Bajo</mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <div *ngIf="elementoAz.valor_def == 4">
+                <mat-radio-group required name="{{elementoAz.elemento}}" [(ngModel)]="elementoAz.est">
+                    <mat-radio-button class="cb-radio-button" [value]="7">Si</mat-radio-button>
+                    <mat-radio-button class="cb-radio-button" [value]="6">No</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </section>
+    </div>
 </mat-card>
 
 <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
@@ -458,26 +462,29 @@
 <!-- Campos material dinamicos -->
 <mat-card>
     <h2>Añadir Elemento para Intervención</h2>
-    <mat-form-field appearance="fill">
-        <mat-select [(ngModel)]="idElementoIntervencion">
-            <mat-option [value]="0">-- Selecione una opción --</mat-option>
-            <mat-option *ngFor="let elementoAZ of listaElementos" [value]="elementoAZ.id_chk_maestro_elementos">
-                {{elementoAZ.elemento}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
-    <button mat-button (click)="agregarIntervencion()">Agregar&nbsp;<mat-icon>add</mat-icon></button>
+    <div class="header-interv">
+        <mat-form-field appearance="fill">
+            <mat-select [(ngModel)]="idElementoIntervencion">
+                <mat-option [value]="0">-- Selecione una opción --</mat-option>
+                <mat-option *ngFor="let elementoAZ of listaElementos" [value]="elementoAZ.id_chk_maestro_elementos">
+                    {{elementoAZ.elemento}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button class="add-interv-btn" mat-button (click)="agregarIntervencion()">Agregar <mat-icon>add</mat-icon></button>
+    </div>
     <h2>Elementos que requieren Intervención</h2>
     <div *ngFor="let elementoAZ of listaElementos">
-        <div *ngIf="elementoAZ.intervencion == 1">
+        <div class="fields-interv" *ngIf="elementoAZ.intervencion == 1">
             <mat-form-field appearance="fill">
+                <mat-label>Elemento Intervención</mat-label>
                 <input matInput [value]="elementoAZ.elemento" disabled/>
             </mat-form-field>
             <mat-form-field appearance="fill">
-                <label>Valor Aprox.</label>
+                <mat-label>Valor Aprox.</mat-label>
                 <input matInput [(ngModel)]="elementoAZ.valor" (blur)="prueba()" />
             </mat-form-field>
-            <button mat-button (click)="elementoAZ.intervencion = 0"><mat-icon>close</mat-icon></button>
+            <button class="delete-interv-btn" matTooltip="Eliminar cmapo" mat-icon-button (click)="elementoAZ.intervencion = 0"><mat-icon class="m-icon-cb-interv">delete</mat-icon></button>
         </div>
     </div>
 </mat-card>

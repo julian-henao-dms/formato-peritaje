@@ -21,10 +21,10 @@ interface Combustible {
   viewValue: string;
 }
 
-export interface DialogData {
-  animal: string;
-  name: string;
-}
+// export interface DialogData {
+//   animal: string;
+//   name: string;
+// }
 
 @Component({
   selector: 'app-formato-peritaje',
@@ -285,8 +285,10 @@ export class FormatoPeritajeComponent implements OnInit {
 
   public openModalCrudMaestros(maestro: string): void {
     const dialogRef = this.dialog.open(ModalParametrizacionComponent, {
-      width: '90%',
-      data: { nombre: maestro }
+      width: '80%',
+      data: { 
+        nombre: maestro,
+       }
     });
     dialogRef.afterClosed().subscribe(async result => {
       const servicio = (result == 'partes' ? '/VehiculosUsados/PartesPintura' : '/VehiculosUsados/Elementos');

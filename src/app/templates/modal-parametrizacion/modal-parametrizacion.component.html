@@ -4,14 +4,14 @@
     </div>
     <h1 class="title-modal" mat-dialog-title>Maestro de {{data.nombre}}</h1>
     <mat-dialog-content>
-        <button mat-button (click)="openModalEdit(data.nombre,nuevoMaestro)"><mat-icon>add</mat-icon>&nbsp;Agregar Nuevo Item</button>
+        <button class="btn-modal-cb-icon" mat-button (click)="openModalEdit(data.nombre,nuevoMaestro)"><mat-icon>add</mat-icon>&nbsp;Agregar Nuevo Item</button>
         <div class="maestros-container">
             <mat-card *ngFor="let maestro of listaMaestros; index as i" class="maestro-container">
                 <div class="card-header">
-                    <mat-card-title class="card-title">{{maestro.descripcion}}</mat-card-title>
+                    <mat-card-title class="card-title card-title-parametrizacion">{{maestro.descripcion}}</mat-card-title>
                     <div class="card-header-buttons">
-                        <button mat-button class="header-button" (click)="openModalEdit(data.nombre,maestro)"><mat-icon>edit</mat-icon></button>
-                        <button mat-button class="header-button" (click)="eliminarMaestro(i)"><mat-icon>close</mat-icon></button>
+                        <button mat-button class="header-button" (click)="openModalEdit(data.nombre,maestro)"><mat-icon class="icon-button-header">edit</mat-icon></button>
+                        <button mat-button class="header-button" (click)="eliminarMaestro(i)"><mat-icon class="icon-button-header">close</mat-icon></button>
                     </div>
                 </div>
                 <mat-card-content>

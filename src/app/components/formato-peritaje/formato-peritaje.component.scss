@@ -52,19 +52,17 @@ mat-card.bloque-cb-3 {
 mat-card.bloque-cb-4 {
     display: flex;
     flex-wrap: wrap;
-    // justify-content: space-between;
-    // align-items: center;
     flex-direction: column;
 }
 
-mat-card.bloque-cb-5 {
+mat-card.bloque-cb-5,
+mat-card.bloque-cb-7 {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
 }
 
-mat-card.bloque-cb-7 {
+.elementos-a-z-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -166,6 +164,23 @@ mat-icon.m-icon-cb {
     font-size: 15px;
 }
 
+.eye-icon {
+    color: #7e7e7e;
+}
+
+.eye-icon:hover {
+    color: #fff;
+    background: $main-color;
+    border-radius: 50%;
+    height: 23px;
+    width: 25px;
+    font-size: 14px;
+}
+
+.m-icon-cb-interv {
+    color: $main-color;
+}
+
 .mat-tooltip {
     font-size: 14px;
 }
@@ -206,7 +221,7 @@ mat-icon.m-icon-cb {
 }
 
 .title-bloques-cb {
-    margin-left: 35px;
+    // margin-left: 35px;
     margin-top: 1.2em;
 }
 
@@ -281,6 +296,39 @@ mat-icon.m-icon-cb {
 .b {
     grid-column: col2-start;
     grid-row: row1-start;
+}
+
+.header-interv {
+    display: flex;
+    align-items: center;
+    mat-form-field {
+        margin-right: 1.2em;
+    }
+}
+
+.fields-interv.ng-star-inserted {
+    display: flex;
+    align-items: center;
+    mat-form-field {
+        margin-right: 1.2em;
+    }
+}
+
+button.add-interv-btn {
+    background: $main-color;
+    color: #fff;
+}
+
+button.delete-interv-btn {
+    color: $main-color;
+     :hover {
+        border: solid 1px #b50411;
+        border-radius: 50%;
+        background: #ffffff;
+        height: 24px;
+        width: 24px;
+        font-size: 21px;
+    }
 }
 
 @media(max-width: 520px) {
