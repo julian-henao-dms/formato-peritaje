@@ -13,6 +13,7 @@ import { ModalEditComponent } from '../modal-edit/modal-edit.component';
   styleUrls: ['./modal-parametrizacion.component.scss']
 })
 export class ModalParametrizacionComponent implements OnInit {
+  
   public opcion: number = 0;
   public listaMaestros: Maestro[] = [];
   public nuevoMaestro: Maestro;
@@ -38,7 +39,12 @@ export class ModalParametrizacionComponent implements OnInit {
   public openModalEdit(nombre: string, maestro: Maestro): void {
     const dialogRef = this.dialog.open(ModalEditComponent, {
       width: '400px',
-      data: { nombre: nombre, maestro: maestro}
+      data: { 
+        nombre: nombre, 
+        maestro: maestro,
+        textModalElement : 'Escriba el nombre del elemento a crear y seleccione uno de los tipos disponibles para crear el elemento con sus opciones de elección.',
+        textModalPart : 'Escriba el nombre de la parte a crear.',
+    }
     });
     dialogRef.afterClosed().subscribe(result => {
       this.cargarListaMaestros();

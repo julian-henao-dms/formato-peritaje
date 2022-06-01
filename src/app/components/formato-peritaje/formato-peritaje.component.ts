@@ -285,7 +285,7 @@ export class FormatoPeritajeComponent implements OnInit {
 
   public openModalCrudMaestros(maestro: string): void {
     const dialogRef = this.dialog.open(ModalParametrizacionComponent, {
-      width: '80%',
+      width: '60%',
       data: { 
         nombre: maestro,
        }
