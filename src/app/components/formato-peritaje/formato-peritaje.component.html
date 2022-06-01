@@ -425,7 +425,7 @@
 <!-- Porcentaje Llantas -->
 
 <mat-card class="porcentajes-llantas">
-    <h3 class="titulo-p-llanta">Porcentaje Vida LLantas(%)</h3>
+    <h2 class="titulo-p-llanta">Porcentaje Vida LLantas(%)</h2>
     <div class="bloque-cb-6">
 
         <div class="form-group-cb">
@@ -464,6 +464,7 @@
     <h2>Añadir Elemento para Intervención</h2>
     <div class="header-interv">
         <mat-form-field appearance="fill">
+            <mat-label>Elemento a intervenir</mat-label>
             <mat-select [(ngModel)]="idElementoIntervencion">
                 <mat-option [value]="0">-- Selecione una opción --</mat-option>
                 <mat-option *ngFor="let elementoAZ of listaElementos" [value]="elementoAZ.id_chk_maestro_elementos">
@@ -473,7 +474,7 @@
         </mat-form-field>
         <button class="add-interv-btn" mat-button (click)="agregarIntervencion()">Agregar <mat-icon>add</mat-icon></button>
     </div>
-    <h2>Elementos que requieren Intervención</h2>
+    <h3>Elementos que requieren Intervención</h3>
     <div *ngFor="let elementoAZ of listaElementos">
         <div class="fields-interv" *ngIf="elementoAZ.intervencion == 1">
             <mat-form-field appearance="fill">

@@ -1,6 +1,6 @@
 <div class="modal-parametrizacion">
     <div class="close-div-container">
-        <button mat-icon-button matTooltip="Cerrar" [mat-dialog-close]="data.nombre" cdkFocusInitial><mat-icon class="m-icon-cb">close</mat-icon></button>
+        <button mat-icon-button class="close-modal" matTooltip="Cerrar" [mat-dialog-close]="data.nombre" cdkFocusInitial><mat-icon class="m-icon-cb">close</mat-icon></button>
     </div>
     <h1 class="title-modal" mat-dialog-title>Maestro de {{data.nombre}}</h1>
     <mat-dialog-content>
@@ -10,8 +10,8 @@
                 <div class="card-header">
                     <mat-card-title class="card-title card-title-parametrizacion">{{maestro.descripcion}}</mat-card-title>
                     <div class="card-header-buttons">
-                        <button mat-button class="header-button" (click)="openModalEdit(data.nombre,maestro)"><mat-icon class="icon-button-header">edit</mat-icon></button>
-                        <button mat-button class="header-button" (click)="eliminarMaestro(i)"><mat-icon class="icon-button-header">close</mat-icon></button>
+                        <button mat-button class="header-button" matTooltip="Editar" (click)="openModalEdit(data.nombre,maestro)"><mat-icon class="icon-button-header">edit</mat-icon></button>
+                        <button mat-button class="header-button" matTooltip="Borrar" (click)="eliminarMaestro(i)"><mat-icon class="icon-button-header">delete</mat-icon></button>
                     </div>
                 </div>
                 <mat-card-content>
