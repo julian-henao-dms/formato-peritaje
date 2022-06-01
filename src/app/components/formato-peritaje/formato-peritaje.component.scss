@@ -1,3 +1,4 @@
+$main-color: #b50411;
 mat-card {
     margin-bottom: 1.2em;
 }
@@ -148,14 +149,14 @@ section.rbtn-b1 {
 }
 
 .btn-form-cb {
-    background: #b50411;
+    background: $main-color;
     color: white;
     margin-left: 1.2em;
 }
 
 .btn-form-cb-icon {
     background: #fff;
-    color: #b50411;
+    color: $main-color;
     // margin-left: 1.2em;
 }
 
@@ -163,6 +164,10 @@ mat-icon.m-icon-cb {
     height: 25px;
     width: 25px;
     font-size: 15px;
+}
+
+.mat-tooltip {
+    font-size: 14px;
 }
 
 .group-btn-cb-ico {
@@ -177,13 +182,13 @@ mat-icon.m-icon-cb {
         height: 30px;
         width: 30px;
         background: #fefefe;
-        color: #b50411;
+        color: $main-color;
         border: solid 1px;
     }
 }
 
 .btn-cb-interv {
-    color: #b50411;
+    color: $main-color;
     font-size: 18px;
 }
 
@@ -204,19 +209,22 @@ mat-icon.m-icon-cb {
     margin-left: 35px;
     margin-top: 1.2em;
 }
-.estados-pintura-container{
+
+.estados-pintura-container {
     display: flex;
     flex-wrap: wrap;
 }
-.estado-pintura-container{
+
+.estado-pintura-container {
     margin: 10px;
 }
+
 .add-fields {
     display: flex;
     align-items: flex-start;
     flex-wrap: wrap;
     button {
-        color: #b50411;
+        color: $main-color;
         font-size: 18px;
     }
 }
@@ -257,6 +265,14 @@ mat-icon.m-icon-cb {
     width: 100%;
 }
 
+.cbradio-label-parametrizado {
+    display: block;
+    margin: 0.6em 0;
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-color: $main-color;
+}
+
 .a {
     grid-column: col1-start;
     grid-row: row1-start;
@@ -282,9 +298,11 @@ mat-icon.m-icon-cb {
         grid-row: row2-start;
     }
 }
-.item-button{
+
+.item-button {
     float: right;
 }
-.item-label{
+
+.item-label {
     float: left;
 }
