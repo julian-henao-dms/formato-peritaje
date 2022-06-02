@@ -45,20 +45,27 @@ h1.title-cb {
     color: #fff;
     text-align: center;
 }
+h4.subtitle-cb {
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+  text-align: center;
+}
 
 @media (max-width: 800px) {
-    .header-container {
-        display: flex;
-        justify-content: center;
-    }
-    .title-container-cb h1 {
-        margin-top: 0.5em;
-        font-size: 18px;
-        padding: 0 0.5em;
-    }
-    ul.codigo-revision-fecha {
-        padding-left: 0;
-    }
+  .header-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .title-container-cb h1 {
+    margin-top: 0.5em;
+    font-size: 18px;
+    padding: 0 0.5em;
+  }
+
+  ul.codigo-revision-fecha {
+    padding-left: 0;
+  }
 }
 
 @media (max-width: 640px) {

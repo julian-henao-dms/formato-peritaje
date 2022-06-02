@@ -1,7 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BusquedaFormPeritajeComponent } from './components/busqueda-form-peritaje/busqueda-form-peritaje.component';
+import { ElementosFormPeritajeComponent } from './components/elementos-form-peritaje/elementos-form-peritaje.component';
+import { FormatoPeritajeComponent } from './components/formato-peritaje/formato-peritaje.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { PartesFormPeritajeComponent } from './components/partes-form-peritaje/partes-form-peritaje.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: '', redirectTo: 'main', pathMatch: 'full' },
+  { path: 'main', component: MenuComponent },
+  { path: 'formato-peritaje', component: BusquedaFormPeritajeComponent },
+  { path: 'formato-peritaje/encabezados', component: FormatoPeritajeComponent },
+  { path: 'formato-peritaje/listaPartes', component: PartesFormPeritajeComponent },
+  { path: 'formato-peritaje/listaelementos', component: ElementosFormPeritajeComponent }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
