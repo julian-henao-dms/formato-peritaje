@@ -33,6 +33,7 @@ export interface DialogData {
 export class FormatoPeritajeComponent implements OnInit {
   public nombreItem: string;
   public idElementoIntervencion: number;
+  public estados: {id: number, descripcion: string}[] = [];
   public listaElementos: ElementosAz[] = [];
   public listaPartes: EstadoPintura[] = [];
   public encabezados: Encabezados;
@@ -162,6 +163,12 @@ export class FormatoPeritajeComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
+    const servicio = '/vehiculosusados/estadospintura';
+    (await this.apiService.getInformacion(servicio, '')).subscribe(async (response: any) => {
+      this.estados = response;
+    }, error => {
+      this.messageService.error("Oops...", "Error interno en el servidor");
+    });
   }
 
   public async onEnter(): Promise<void> {
@@ -209,7 +216,6 @@ export class FormatoPeritajeComponent implements OnInit {
   }
 
   public prueba() {
-    //this.procesarInformacion();
     console.log(this.listaElementos);
   }
 
@@ -237,7 +243,7 @@ export class FormatoPeritajeComponent implements OnInit {
                 });
                 (await this.apiService.saveInformacion(servicio, this.listaElementos)).subscribe(async (response: any) => {
                   if (response) {
-                    console.log("agregados elementos");
+                    this.messageService.success("Perfecto", "El formato de peritaje fue guardado correctamente");
                   } else {
                     this.messageService.error("Oops...", "No se pudieron guardar los elementos AZ del formulario");
                   }
@@ -272,13 +278,6 @@ export class FormatoPeritajeComponent implements OnInit {
       parte.repar_tipo_b = (parte.repar_tipo == 1 ? 1 : 0);
       parte.cambiada = (parte.estadoParte == 0 ? 1 : 0);
       parte.removida = (parte.estadoParte == 1 ? 1 : 0);
-    });
-    this.listaElementos.forEach(function (elemento) {
-      if (elemento.est) {
-        elemento.est = 1;
-      } else {
-        elemento.est = 0;
-      }
     });
   }
 

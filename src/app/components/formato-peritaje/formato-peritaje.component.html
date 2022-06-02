@@ -367,7 +367,17 @@
     <!-- *ngFor="let estado of data.estadosPintura" -->
     <div class="estados-pintura-container">
       <mat-card class="group-radio-options-cb estado-pintura-container" *ngFor="let estadoPintura of listaPartes">
-        <label class="cbradio-group-label">{{estadoPintura.parte}}</label>
+        <div >
+          <label class="cbradio-group-label" style="margin-right:10px">{{estadoPintura.parte}}</label>
+          <mat-form-field>
+            <mat-select name="{{estadoPintura.parte}}-estado" [(ngModel)]="estadoPintura.id_chk_estado">
+                <mat-option [value]="0">Buen estado</mat-option>
+                <mat-option *ngFor="let estado of estados" [value]="estado.id">
+                  {{estado.descripcion}}
+                </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
         <section class="example-section radio-options-cb">
           <mat-radio-group required name="{{estadoPintura.parte}}-repi_tipo" [(ngModel)]="estadoPintura.repi_tipo">
             <mat-radio-button class="cb-radio-button rbtn-first" [value]="repiTipoA">Repi TIP A </mat-radio-button>
