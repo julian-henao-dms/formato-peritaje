@@ -1,3 +1,4 @@
+$main-color: #b50411;
 .header-icon-modal {
     width: 100px;
 }
@@ -8,18 +9,21 @@
 }
 
 .mat-b-warning {
-    background-color: #b50411;
+    background-color: $main-color;
     color: white;
 }
 
 .title-modal {
-    font-weight: 700;
-    color: #b50411;
+    font-weight: 600;
+    // color: #b50411;
     text-decoration: underline;
+    margin: 15px 0;
 }
 
-.title-modal {
-    margin: 15px 0;
+.close-div-container {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
 }
 
 .modal-parametrizacion {
@@ -29,36 +33,73 @@
     justify-content: center;
     height: 90%;
 }
-.card-title{
+
+.card-title {
     max-width: 200px;
 }
+
 .card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
+
 .card-header-buttons {
-  margin-left: 25px;
+    margin-left: 25px;
 }
-.header-button{
+
+.header-button {
     min-width: 30px;
     padding: 0 5px;
 }
+
 .card-content p {
-  display: flex;
-  align-items: center;
-  margin:3px 9px;
+    display: flex;
+    align-items: center;
+    margin: 3px 9px;
 }
+
 .card-content {
-    display:flex;
+    display: flex;
 }
-.maestros-container{
-    display:flex;
+
+.maestros-container {
+    display: flex;
     flex-wrap: wrap;
 }
+
 .maestro-container {
-  margin: 10px;
-  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
-      0px 2px 2px 0px rgb(0 0 0 / 25%),
-      0px 1px 3px 0px rgb(0 0 0 / 12%);
+    margin: 10px;
+    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 25%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+}
+
+.btn-modal-cb-icon {
+    color: #fff;
+    background: #b50411;
+    margin-left: 0.7em;
+}
+
+.card-title-parametrizacion {
+    font-size: 17px;
+}
+
+.header-button .icon-button-header {
+    font-size: 18px;
+    color: $main-color;
+}
+
+.close-modal {
+    border: solid 3px #b50411;
+    background-color: #fff;
+    color: #b50411;
+    width: 29px;
+    height: 29px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 5px -1px #0003, 0 6px 10px #00000024, 0 1px 18px #0000001f;
+    mat-icon.m-icon-cb {
+        font-size: 18px;
+        font-weight: 600;
+    }
 }

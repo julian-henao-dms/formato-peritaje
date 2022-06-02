@@ -20,11 +20,6 @@ interface Combustible {
   viewValue: string;
 }
 
-export interface DialogData {
-  animal: string;
-  name: string;
-}
-
 @Component({
   selector: 'app-formato-peritaje',
   templateUrl: './formato-peritaje.component.html',
@@ -46,8 +41,9 @@ export class FormatoPeritajeComponent implements OnInit {
   public assets: string;
 
   private idChk: number;
-
   public displayedColumns: string[] = ['id', 'califica', 'fecini', 'fecfin'];
+  public calificaciones: CalificacionesEstado[];
+  public combustibles: Combustible[];
 
   public A = 0;
   public B = 1;
@@ -68,23 +64,6 @@ export class FormatoPeritajeComponent implements OnInit {
   public cambiado = 0;
   public removido = 1;
   public selectedCombustible: string | undefined;
-
-  calificaciones: CalificacionesEstado[] = [
-   {value: 5, viewValue: 'Nuevo'}, 
-   {value: 4, viewValue: 'Muy Bueno'},
-   {value: 3, viewValue: 'Defectos'},
-   {value: 2, viewValue: 'Problemas'},
-   {value: 1, viewValue: 'Malo'},
- ];
- 
- combustibles: Combustible[] = [
-   {value: '0', viewValue: 'Gasolina'},
-   {value: '1', viewValue: 'Diesel'},
-   {value: '2', viewValue: 'Gas'},
-   {value: '3', viewValue: 'Hibrido'},
-   {value: '4', viewValue: 'Eléctrico'},
-  
- ];
 
   constructor(
     private readonly router: Router,
@@ -160,7 +139,21 @@ export class FormatoPeritajeComponent implements OnInit {
       marca: '',
       modelo: '',
     }
-  }
+  calificaciones = [
+    {value: 5, viewValue: 'Nuevo'}, 
+    {value: 4, viewValue: 'Muy Bueno'},
+    {value: 3, viewValue: 'Defectos'},
+    {value: 2, viewValue: 'Problemas'},
+    {value: 1, viewValue: 'Malo'}
+  ];
+  combustibles = [
+    {value: '0', viewValue: 'Gasolina'},
+    {value: '1', viewValue: 'Diesel'},
+    {value: '2', viewValue: 'Gas'},
+    {value: '3', viewValue: 'Hibrido'},
+    {value: '4', viewValue: 'Eléctrico'}
+  ];
+}
 
   async ngOnInit(): Promise<void> {
     const servicio = '/vehiculosusados/estadospintura';

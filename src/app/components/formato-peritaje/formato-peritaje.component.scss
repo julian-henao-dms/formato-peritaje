@@ -1,3 +1,4 @@
+$main-color: #b50411;
 mat-card {
     margin-bottom: 1.2em;
 }
@@ -51,19 +52,17 @@ mat-card.bloque-cb-3 {
 mat-card.bloque-cb-4 {
     display: flex;
     flex-wrap: wrap;
-    // justify-content: space-between;
-    // align-items: center;
     flex-direction: column;
 }
 
-mat-card.bloque-cb-5 {
+mat-card.bloque-cb-5,
+mat-card.bloque-cb-7 {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
 }
 
-mat-card.bloque-cb-7 {
+.elementos-a-z-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -148,14 +147,14 @@ section.rbtn-b1 {
 }
 
 .btn-form-cb {
-    background: #b50411;
+    background: $main-color;
     color: white;
     margin-left: 1.2em;
 }
 
 .btn-form-cb-icon {
     background: #fff;
-    color: #b50411;
+    color: $main-color;
     // margin-left: 1.2em;
 }
 
@@ -163,6 +162,27 @@ mat-icon.m-icon-cb {
     height: 25px;
     width: 25px;
     font-size: 15px;
+}
+
+.eye-icon {
+    color: #7e7e7e;
+}
+
+.eye-icon:hover {
+    color: #fff;
+    background: $main-color;
+    border-radius: 50%;
+    height: 23px;
+    width: 25px;
+    font-size: 14px;
+}
+
+.m-icon-cb-interv {
+    color: $main-color;
+}
+
+.mat-tooltip {
+    font-size: 14px;
 }
 
 .group-btn-cb-ico {
@@ -177,13 +197,13 @@ mat-icon.m-icon-cb {
         height: 30px;
         width: 30px;
         background: #fefefe;
-        color: #b50411;
+        color: $main-color;
         border: solid 1px;
     }
 }
 
 .btn-cb-interv {
-    color: #b50411;
+    color: $main-color;
     font-size: 18px;
 }
 
@@ -201,22 +221,25 @@ mat-icon.m-icon-cb {
 }
 
 .title-bloques-cb {
-    margin-left: 35px;
+    // margin-left: 35px;
     margin-top: 1.2em;
 }
-.estados-pintura-container{
+
+.estados-pintura-container {
     display: flex;
     flex-wrap: wrap;
 }
-.estado-pintura-container{
+
+.estado-pintura-container {
     margin: 10px;
 }
+
 .add-fields {
     display: flex;
     align-items: flex-start;
     flex-wrap: wrap;
     button {
-        color: #b50411;
+        color: $main-color;
         font-size: 18px;
     }
 }
@@ -257,6 +280,14 @@ mat-icon.m-icon-cb {
     width: 100%;
 }
 
+.cbradio-label-parametrizado {
+    display: block;
+    margin: 0.6em 0;
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-color: $main-color;
+}
+
 .a {
     grid-column: col1-start;
     grid-row: row1-start;
@@ -265,6 +296,60 @@ mat-icon.m-icon-cb {
 .b {
     grid-column: col2-start;
     grid-row: row1-start;
+}
+
+.header-interv {
+    display: flex;
+    align-items: center;
+    mat-form-field {
+        margin-right: 1.2em;
+    }
+}
+
+.fields-interv.ng-star-inserted {
+    display: flex;
+    align-items: center;
+    mat-form-field {
+        margin-right: 1.2em;
+    }
+}
+
+button.add-interv-btn {
+    background: $main-color;
+    color: #fff;
+}
+
+button.delete-interv-btn {
+    color: $main-color;
+     :hover {
+        border: solid 1px #b50411;
+        border-radius: 50%;
+        background: #ffffff;
+        height: 24px;
+        width: 24px;
+        font-size: 21px;
+    }
+}
+
+.item-button {
+    float: right;
+}
+
+.item-label {
+    float: left;
+}
+
+.title-cb-card {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.2em;
+    h2 {
+        margin-bottom: 0;
+    }
+    .icon-title-card-cb {
+        color: $main-color;
+        margin-right: 0.5em;
+    }
 }
 
 @media(max-width: 520px) {
@@ -281,10 +366,11 @@ mat-icon.m-icon-cb {
         grid-column: col1-start / col2-end;
         grid-row: row2-start;
     }
-}
-.item-button{
-    float: right;
-}
-.item-label{
-    float: left;
+    section.rbtn-b1.rbtn-initial {
+        margin-bottom: 1.2em;
+    }
+    .title-cb-card {
+        display: flex;
+        justify-content: center;
+    }
 }
