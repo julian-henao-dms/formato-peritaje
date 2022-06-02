@@ -1,4 +1,4 @@
-export interface ItemsVehiculosUsados{
+export interface Encabezados{
     id_veh_chk_usados: number;
     califica: string;
     fecini: Date;
@@ -21,12 +21,12 @@ export interface ItemsVehiculosUsados{
     marca_llantas: string;
     marca_bateria: string;
     lugar_mante: string;
-    cilindraje: string;
+    cilindraje: number;
     color: string;
     referencia: string;
     clase: number; // Que es Clase?
     combustible: number;
-    lugar_matricula: number;
+    lugar_matricula: string;
     capacidad_sillas: number;
     km: number;
     fec_prox_mantenimiento: Date;

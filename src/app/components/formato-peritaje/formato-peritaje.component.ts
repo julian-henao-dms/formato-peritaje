@@ -1,18 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ModalParametrizacionComponent } from 'src/app/templates/modal-parametrizacion/modal-parametrizacion.component';
+import { ModalParametrizacionComponent } from '../../templates/modal-parametrizacion/modal-parametrizacion.component';
 import { environment } from '../../../environments/environment';
 import { ApiService } from '../../services/api.service';
 import { MessagesService } from '../../services/messages.service';
 import { ElementosAz } from './interfaces/elementos-az';
 import { EstadoPintura } from './interfaces/estado-pintura';
-import { ItemsVehiculosUsados } from './interfaces/items-vehiculo';
 import { formulario } from './interfaces/formulario.interface';
-
+import { Encabezados } from './interfaces/encabezados.interface';
 import { MatDialog } from '@angular/material/dialog';
 
 interface CalificacionesEstado {
-  value: string;
+  value: number;
   viewValue: string;
 }
 
@@ -33,17 +32,21 @@ export interface DialogData {
 })
 export class FormatoPeritajeComponent implements OnInit {
   public nombreItem: string;
-  public fieldArray: Array<any> = [];
-  public newAttribute: any = {};
+  public idElementoIntervencion: number;
   public listaElementos: ElementosAz[] = [];
   public listaPartes: EstadoPintura[] = [];
-  public formularioVehiculos: ItemsVehiculosUsados;
-  public infoVehiculo: formulario;
+  public encabezados: Encabezados;
+  public listaFormularios: formulario[] = [];
+  public formulario: formulario;
+  public formActivo: boolean;
+  public showButton: boolean;
   public placa: string;
   public vin: string;
   public assets: string;
-  public idElementoIntervencion: number;
 
+  private idChk: number;
+
+  public displayedColumns: string[] = ['id', 'califica', 'fecini', 'fecfin'];
 
   public A = 0;
   public B = 1;
@@ -66,11 +69,11 @@ export class FormatoPeritajeComponent implements OnInit {
   public selectedCombustible: string | undefined;
 
   calificaciones: CalificacionesEstado[] = [
-   {value: '5', viewValue: 'Nuevo'}, 
-   {value: '4', viewValue: 'Muy Bueno'},
-   {value: '3', viewValue: 'Defectos'},
-   {value: '2', viewValue: 'Problemas'},
-   {value: '1', viewValue: 'Malo'},
+   {value: 5, viewValue: 'Nuevo'}, 
+   {value: 4, viewValue: 'Muy Bueno'},
+   {value: 3, viewValue: 'Defectos'},
+   {value: 2, viewValue: 'Problemas'},
+   {value: 1, viewValue: 'Malo'},
  ];
  
  combustibles: Combustible[] = [
@@ -91,28 +94,31 @@ export class FormatoPeritajeComponent implements OnInit {
     this.nombreItem = '';
     this.placa = '';
     this.vin = '';
+    this.formActivo = false;
+    this.showButton = false;
     this.idElementoIntervencion = 0;
+    this.idChk = 0;
     this.assets = environment.assets;
-    this.infoVehiculo = {
+    this.formulario = {
       Id: 0,
       Califica: '',
-      Fecini: new Date,
-      Id_usuario: 0,
-      Id_usu_inspector: 0,
+      Fecini: new Date(),
+      Id_usuario: 1, // usuario quemado
+      Id_usu_inspector: 1, // usuario inspector quemado
       Id_cot_item_lote: 0,
       Prueba_ruta: 0,
-      Fecfin: new Date,
-      Califica2: 0,
+      Fecfin: new Date(),
+      Califica2: 0
     }
-    this.formularioVehiculos = {
+    this.encabezados = {
       id_veh_chk_usados: 0,
       califica: '',
-      fecini: new Date,
-      id_usuario: 0,
-      id_usu_inspector: 0,
+      fecini: new Date(),
+      id_usuario: 1,
+      id_usu_inspector: 1,
       id_cot_item_lote: 0,
       prueba_ruta: 0,
-      fecfin: new Date,
+      fecfin: new Date(),
       califica2: 0,
       id_veh_chk_usados_mas: 0,
       llave: 0,
@@ -127,15 +133,15 @@ export class FormatoPeritajeComponent implements OnInit {
       marca_llantas: '',
       marca_bateria: '',
       lugar_mante: '',
-      cilindraje: '',
+      cilindraje: 0,
       color: '',
       referencia: '',
       clase: 0, // Que es Clase?
       combustible: 0,
-      lugar_matricula: 0,
+      lugar_matricula: '',
       capacidad_sillas: 0,
       km: 0,
-      fec_prox_mantenimiento: new Date,
+      fec_prox_mantenimiento: new Date(),
       cojineria: 0,
       caja: 0,
       traccion: 0,
@@ -161,50 +167,101 @@ export class FormatoPeritajeComponent implements OnInit {
   public async onEnter(): Promise<void> {
     if (this.placa !== '' || this.vin !== '') {
       this.messageService.info("Atención", "Estamos Cargando la información solicitada");
-      let servicio = '/vehiculosusados/datos';
+      let servicio = '/vehiculosusados/formularios';
       const params = '/309/' + (this.placa !== '' ? this.placa : ' ') + '/' + (this.vin !== '' ? this.vin : ' ');
       (await this.apiService.getInformacion(servicio, params)).subscribe(async (response: any) => {
-        if (response) {
-          this.infoVehiculo = response;
-          servicio = '/vehiculosusados/formulario';
-          (await this.apiService.getInformacion(servicio, params)).subscribe(async (resp: any) => {
-            this.formularioVehiculos = resp;
-            servicio = '/VehiculosUsados/PartesPintura';
-            const parametros = '/309/0';
-            (await this.apiService.getInformacion(servicio, parametros)).subscribe(async (resp: any) => {
-              this.listaPartes = resp;
-              servicio = '/VehiculosUsados/Elementos';
-              (await this.apiService.getInformacion(servicio, parametros)).subscribe((resp: any) => {
-                this.listaElementos = resp;
-              }, error => {
-                this.messageService.error("Oops...", "Error interno en el servidor");
-              });
-            }, error => {
-              this.messageService.error("Oops...", "Error interno en el servidor");
-            });
-          }, error => {
-            this.messageService.error("Oops...", "Error interno en el servidor");
-          });
-        } else {
+        this.listaFormularios = response;
+        this.showButton = true;
+        if (response.length == 0) {
           setTimeout(
             () => {
               this.messageService.info("Atención...", "La placa o vin ingresados no corresponden a un vehículo en el sistema");
+              this.showButton = false;
             }, 1000);
         }
       }, error => {
         this.messageService.error("Oops...", "Error interno en el servidor");
+        this.showButton = false;
       });
     } else {
       this.messageService.info("Atención...", "Debe ingresar una placa o vin para continuar");
+      this.showButton = false;
     }
   }
 
+  public async nuevoFormulario(): Promise<void> {
+    const servicio = '/vehiculosusados/encabezados';
+    const params = '/309/' + (this.placa !== '' ? this.placa : ' ') + '/' + (this.vin !== '' ? this.vin : ' ');
+    (await this.apiService.getInformacion(servicio, params)).subscribe(async (response: any) => {
+      this.encabezados = response;
+      this.formulario.Id_cot_item_lote = this.encabezados.id_cot_item_lote;
+      this.encabezados.id_usuario = 1; // usuario quemado
+      this.encabezados.id_usu_inspector = 1; // usuario inspector quemado
+      this.formActivo = true;
+      this.cargarlistaPartes();
+      setTimeout(
+        () => {
+          this.cargarlistaElementos();
+        }, 1000);
+    }, error => {
+      this.messageService.error("Oops...", "Error interno en el servidor");
+    });
+  }
+
   public prueba() {
+    //this.procesarInformacion();
     console.log(this.listaElementos);
   }
 
-  public guardarFormulario(): void {
+  public async guardarFormulario(): Promise<void> {
     this.procesarInformacion();
+    let servicio = '/vehiculosusados/guardarformulario';
+    (await this.apiService.saveInformacion(servicio, this.formulario)).subscribe(async (response: any) => {
+      if (response > 0) {
+        this.idChk = response;
+        this.encabezados.id_veh_chk_usados = this.idChk;
+        servicio = '/vehiculosusados/guardarencabezados';
+        (await this.apiService.saveInformacion(servicio, this.encabezados)).subscribe(async (response: any) => {
+          if (response) {
+            servicio = '/vehiculosusados/guardarpartes';
+            this.listaPartes.forEach( (parte) => {
+              parte.id_veh_chk_usados = this.idChk;
+              parte.accion = 0;
+            });
+            (await this.apiService.saveInformacion(servicio, this.listaPartes)).subscribe(async (response: any) => {
+              if (response) {
+                servicio = '/vehiculosusados/guardarelementos';
+                this.listaElementos.forEach((elemento) => {
+                  elemento.id_veh_chk_usados = this.idChk;
+                  elemento.accion = 0;
+                });
+                (await this.apiService.saveInformacion(servicio, this.listaElementos)).subscribe(async (response: any) => {
+                  if (response) {
+                    console.log("agregados elementos");
+                  } else {
+                    this.messageService.error("Oops...", "No se pudieron guardar los elementos AZ del formulario");
+                  }
+                }, error => {
+                  this.messageService.error("Oops...", "Error interno en el servidor");
+                });
+              } else {
+                this.messageService.error("Oops...", "No se pudieron guardar los estados Pintura del formulario");
+              }
+            }, error => {
+              this.messageService.error("Oops...", "Error interno en el servidor");
+            });
+          } else {
+            this.messageService.error("Oops...", "No se pudieron guardar los encabezados del formulario");
+          }
+        }, error => {
+          this.messageService.error("Oops...", "Error interno en el servidor");
+        });
+      } else {
+        this.messageService.error("Oops...", "No se pudo guardar el formulario");
+      }
+    }, error => {
+      this.messageService.error("Oops...", "Error interno en el servidor");
+    });
   }
 
   private procesarInformacion(): void {
@@ -216,12 +273,67 @@ export class FormatoPeritajeComponent implements OnInit {
       parte.cambiada = (parte.estadoParte == 0 ? 1 : 0);
       parte.removida = (parte.estadoParte == 1 ? 1 : 0);
     });
+    this.listaElementos.forEach(function (elemento) {
+      if (elemento.est) {
+        elemento.est = 1;
+      } else {
+        elemento.est = 0;
+      }
+    });
   }
+
+  public openModalCrudMaestros(maestro: string): void {
+    const dialogRef = this.dialog.open(ModalParametrizacionComponent, {
+      width: '90%',
+      data: { nombre: maestro }
+    });
+    dialogRef.afterClosed().subscribe(async result => {
+      if (result == 'partes') {
+        await this.cargarlistaPartes();
+      } else if (result == 'elementos') {
+        await this.cargarlistaElementos();
+      }
+    });
+  }
+
+  public agregarIntervencion(): void {
+    if (this.idElementoIntervencion !== 0) {
+      for (let i = 0; i < this.listaElementos.length; i++) {
+        if (this.listaElementos[i].id_chk_maestro_elementos == this.idElementoIntervencion) {
+          this.listaElementos[i].intervencion = 1;
+          break;
+        }
+      }
+      this.idElementoIntervencion = 0;
+    }
+  }
+
+  private async cargarlistaElementos(idChk: number = 0): Promise<void> {
+    const servicio = '/VehiculosUsados/Elementos';
+    const params = '/309/' + idChk.toString();
+    (await this.apiService.getInformacion(servicio, params)).subscribe((response: any) => {
+      this.listaElementos = response;
+    }, error => {
+      this.messageService.error("Oops...", "Error interno en el servidor");
+    });
+  }
+
+  private async cargarlistaPartes(idChk: number = 0): Promise<void> {
+    const servicio = '/VehiculosUsados/PartesPintura';
+    const params = '/309/' + idChk.toString();
+    (await this.apiService.getInformacion(servicio, params)).subscribe((response: any) => {
+      this.listaPartes = response;
+    }, error => {
+      this.messageService.error("Oops...", "Error interno en el servidor");
+    });
+  }
+
+
 
   private resetinitData(): void {
     this.placa = '';
     this.vin = '';
-    this.infoVehiculo = {
+    this.formulario = {
       Id: 0,
       Califica: '',
       Fecini: new Date,
@@ -232,7 +344,7 @@ export class FormatoPeritajeComponent implements OnInit {
       Fecfin: new Date,
       Califica2: 0,
     }
-    this.formularioVehiculos = {
+    this.encabezados = {
       id_veh_chk_usados: 0,
       califica: '',
       fecini: new Date,
@@ -255,12 +367,12 @@ export class FormatoPeritajeComponent implements OnInit {
       marca_llantas: '',
       marca_bateria: '',
       lugar_mante: '',
-      cilindraje: '',
+      cilindraje: 0,
       color: '',
       referencia: '',
       clase: 0, // Que es Clase?
       combustible: 0,
-      lugar_matricula: 0,
+      lugar_matricula: '',
       capacidad_sillas: 0,
       km: 0,
       fec_prox_mantenimiento: new Date,
@@ -280,38 +392,6 @@ export class FormatoPeritajeComponent implements OnInit {
       linea: '',
       marca: '',
       modelo: '',
-    }
-  }
-
-  public openModalCrudMaestros(maestro: string): void {
-    const dialogRef = this.dialog.open(ModalParametrizacionComponent, {
-      width: '90%',
-      data: { nombre: maestro }
-    });
-    dialogRef.afterClosed().subscribe(async result => {
-      const servicio = (result == 'partes' ? '/VehiculosUsados/PartesPintura' : '/VehiculosUsados/Elementos');
-      const params = '/309/0';
-      (await this.apiService.getInformacion(servicio, params)).subscribe(async (response: any) => {
-        if (result == 'partes') {
-          this.listaPartes = response;
-        } else {
-          this.listaElementos = response;
-        }
-      }, error => {
-        this.messageService.error("Oops...", "Error interno en el servidor");
-      });
-    });
-  }
-
-  public agregarIntervencion(): void {
-    if (this.idElementoIntervencion !== 0) {
-      for (let i = 0; i < this.listaElementos.length; i++) {
-        if (this.listaElementos[i].id_chk_maestro_elementos == this.idElementoIntervencion) {
-          this.listaElementos[i].intervencion = 1;
-          break;
-        }
-      }
-      this.idElementoIntervencion = 0;
     }
   }
 }
