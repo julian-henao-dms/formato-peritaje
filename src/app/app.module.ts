@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
@@ -27,9 +27,13 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
+import { MenuComponent } from './components/menu/menu.component';
+import { BusquedaFormPeritajeComponent } from './components/busqueda-form-peritaje/busqueda-form-peritaje.component';
 import { FormatoPeritajeComponent } from './components/formato-peritaje/formato-peritaje.component';
-import { HeaderComponent } from './components/header/header.component';
-import { HomeComponent } from './components/home/home.component';
+import { PartesFormPeritajeComponent } from './components/partes-form-peritaje/partes-form-peritaje.component';
+import { ElementosFormPeritajeComponent } from './components/elementos-form-peritaje/elementos-form-peritaje.component';
+
+import { HeaderComponent } from './templates/header/header.component';
 import { ModalParametrizacionComponent } from './templates/modal-parametrizacion/modal-parametrizacion.component';
 import { ModalEditComponent } from './templates/modal-edit/modal-edit.component';
 
@@ -38,9 +42,12 @@ import { ModalEditComponent } from './templates/modal-edit/modal-edit.component'
     AppComponent,
     FormatoPeritajeComponent,
     HeaderComponent,
-    HomeComponent,
     ModalParametrizacionComponent,
-    ModalEditComponent
+    ModalEditComponent,
+    BusquedaFormPeritajeComponent,
+    MenuComponent,
+    PartesFormPeritajeComponent,
+    ElementosFormPeritajeComponent
   ],
   imports: [
     BrowserModule,

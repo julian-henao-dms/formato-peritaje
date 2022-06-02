@@ -9,6 +9,7 @@ import { EstadoPintura } from './interfaces/estado-pintura';
 import { formulario } from './interfaces/formulario.interface';
 import { Encabezados } from './interfaces/encabezados.interface';
 import { MatDialog } from '@angular/material/dialog';
+import { SharedService } from '../../services/shared.service';
 
 interface CalificacionesEstado {
   value: number;
@@ -26,6 +27,8 @@ interface Combustible {
   styleUrls: ['./formato-peritaje.component.scss']
 })
 export class FormatoPeritajeComponent implements OnInit {
+  private readonly title: string = 'FormatoPeritaje';
+  private readonly subtitle: string = 'formulario';
   public nombreItem: string;
   public idElementoIntervencion: number;
   public estados: {id: number, descripcion: string}[] = [];
@@ -68,6 +71,7 @@ export class FormatoPeritajeComponent implements OnInit {
   constructor(
     private readonly router: Router,
     private readonly apiService: ApiService,
+    private readonly sharedService: SharedService,
     private readonly messageService: MessagesService,
     public dialog: MatDialog,
   ) {
@@ -139,21 +143,21 @@ export class FormatoPeritajeComponent implements OnInit {
       marca: '',
       modelo: '',
     }
-  calificaciones = [
-    {value: 5, viewValue: 'Nuevo'}, 
-    {value: 4, viewValue: 'Muy Bueno'},
-    {value: 3, viewValue: 'Defectos'},
-    {value: 2, viewValue: 'Problemas'},
-    {value: 1, viewValue: 'Malo'}
-  ];
-  combustibles = [
-    {value: '0', viewValue: 'Gasolina'},
-    {value: '1', viewValue: 'Diesel'},
-    {value: '2', viewValue: 'Gas'},
-    {value: '3', viewValue: 'Hibrido'},
-    {value: '4', viewValue: 'Eléctrico'}
-  ];
-}
+    this.calificaciones = [
+      {value: 5, viewValue: 'Nuevo'}, 
+      {value: 4, viewValue: 'Muy Bueno'},
+      {value: 3, viewValue: 'Defectos'},
+      {value: 2, viewValue: 'Problemas'},
+      {value: 1, viewValue: 'Malo'}
+    ];
+    this.combustibles = [
+      {value: '0', viewValue: 'Gasolina'},
+      {value: '1', viewValue: 'Diesel'},
+      {value: '2', viewValue: 'Gas'},
+      {value: '3', viewValue: 'Hibrido'},
+      {value: '4', viewValue: 'Eléctrico'}
+    ];
+  }
 
   async ngOnInit(): Promise<void> {
     const servicio = '/vehiculosusados/estadospintura';
