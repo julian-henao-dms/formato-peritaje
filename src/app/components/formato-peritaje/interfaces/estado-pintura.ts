@@ -14,5 +14,6 @@ export interface EstadoPintura{
   valor_def: number,
   repi_tipo: number,
   repar_tipo: number,
-  estadoParte: number
+  estadoParte: number,
+  accion?: number
 }

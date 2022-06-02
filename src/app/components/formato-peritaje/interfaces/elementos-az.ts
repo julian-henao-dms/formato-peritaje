@@ -7,4 +7,5 @@ export interface ElementosAz{
   intervencion: number,
   valor: number,
   valor_def: number,
+  accion?: number
 }
