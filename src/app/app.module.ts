@@ -36,7 +36,7 @@ import { ElementosFormPeritajeComponent } from './components/elementos-form-peri
 import { HeaderComponent } from './templates/header/header.component';
 import { ModalParametrizacionComponent } from './templates/modal-parametrizacion/modal-parametrizacion.component';
 import { ModalEditComponent } from './templates/modal-edit/modal-edit.component';
-import { FormPeritajeParametrizacionComponent } from './components/form-peritaje-parametrizacion/form-peritaje-parametrizacion.component';
+import { ParametrizacionFormPeritrajeComponent } from './components/parametrizacion-form-peritaje/parametrizacion-form-peritaje.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +49,7 @@ import { FormPeritajeParametrizacionComponent } from './components/form-peritaje
     MenuComponent,
     PartesFormPeritajeComponent,
     ElementosFormPeritajeComponent,
-    FormPeritajeParametrizacionComponent
+    ParametrizacionFormPeritrajeComponent
   ],
   imports: [
     BrowserModule,

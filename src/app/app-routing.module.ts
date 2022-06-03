@@ -4,12 +4,14 @@ import { BusquedaFormPeritajeComponent } from './components/busqueda-form-perita
 import { ElementosFormPeritajeComponent } from './components/elementos-form-peritaje/elementos-form-peritaje.component';
 import { FormatoPeritajeComponent } from './components/formato-peritaje/formato-peritaje.component';
 import { MenuComponent } from './components/menu/menu.component';
+import { ParametrizacionFormPeritrajeComponent } from './components/parametrizacion-form-peritaje/parametrizacion-form-peritaje.component';
 import { PartesFormPeritajeComponent } from './components/partes-form-peritaje/partes-form-peritaje.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'main', pathMatch: 'full' },
   { path: 'main', component: MenuComponent },
   { path: 'formato-peritaje', component: BusquedaFormPeritajeComponent },
+  { path: 'formato-peritaje/parametrizacion', component: ParametrizacionFormPeritrajeComponent },
   { path: 'formato-peritaje/encabezados', component: FormatoPeritajeComponent },
   { path: 'formato-peritaje/listaPartes', component: PartesFormPeritajeComponent },
   { path: 'formato-peritaje/listaelementos', component: ElementosFormPeritajeComponent }
