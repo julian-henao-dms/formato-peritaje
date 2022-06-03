@@ -180,7 +180,6 @@ export class FormatoPeritajeComponent implements OnInit {
           setTimeout(
             () => {
               this.messageService.info("Atención...", "La placa o vin ingresados no corresponden a un vehículo en el sistema");
-              this.showButton = false;
             }, 1000);
         }
       }, error => {
