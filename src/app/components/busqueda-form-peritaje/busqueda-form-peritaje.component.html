@@ -1,1 +1,7 @@
-<p>busqueda-form-peritaje works!</p>
+<input matInput placeholder="placa" [(ngModel)]="placa" #placaInput (blur)="onEnter()" (keyup.enter)="onEnter()" (click)="vinInput.value = ''" />
+<input matInput placeholder="vin" [(ngModel)]="vin" #vinInput (blur)="onEnter()" (keyup.enter)="onEnter()" (click)="placaInput.value = ''" />
+<ul>
+  <li *ngFor="let form of formularios">
+    {{form.id}}
+  </li>
+</ul>
