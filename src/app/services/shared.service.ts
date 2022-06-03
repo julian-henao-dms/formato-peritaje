@@ -19,6 +19,7 @@ export class SharedService {
       isEmpty: true
     };
     this.sesion = {
+      empresa: '',
       isEmpty: true
     };
     this.execute = false;
