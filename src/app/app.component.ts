@@ -37,6 +37,10 @@ export class AppComponent {
           this.subtitle = 'Buscar Vehiculo';
           this.navigateBack = '';
         }
+        if (event.subtitle === 'parametrizacion') {
+          this.subtitle = 'Parametrización';
+          this.navigateBack = '';
+        }
         if (event.subtitle === 'formulario') {
           this.subtitle = 'Encabezados';
           this.navigateBack = '';
