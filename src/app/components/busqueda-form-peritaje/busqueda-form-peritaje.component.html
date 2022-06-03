@@ -1,7 +1,32 @@
-<input matInput placeholder="placa" [(ngModel)]="placa" #placaInput (blur)="onEnter()" (keyup.enter)="onEnter()" (click)="vinInput.value = ''" />
-<input matInput placeholder="vin" [(ngModel)]="vin" #vinInput (blur)="onEnter()" (keyup.enter)="onEnter()" (click)="placaInput.value = ''" />
-<ul>
-  <li *ngFor="let form of formularios">
-    {{form.id}}
-  </li>
-</ul>
+<mat-card class="example-card busqueda-peritaje">
+    <mat-card-title class="title-card-pritaje">
+        <mat-icon class="icon-title-card-peritaje">manage_search</mat-icon>
+        <h2>Buscar Formatos de Peritaje</h2>
+    </mat-card-title>
+    <mat-card-subtitle>- Ingrese una Placa o VIN para encontrar resultados -</mat-card-subtitle>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+        <div class="vin-placa">
+            <mat-form-field appearance="fill">
+                <mat-label>Placa:</mat-label>
+                <input matInput placeholder="placa" [(ngModel)]="placa" #placaInput (blur)="onEnter()" (keyup.enter)="onEnter()" (click)="vinInput.value = ''" />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>VIN:</mat-label>
+                <input matInput placeholder="vin" [(ngModel)]="vin" #vinInput (blur)="onEnter()" (keyup.enter)="onEnter()" (click)="placaInput.value = ''" />
+            </mat-form-field>
+        </div>
+        <button mat-raised-button color="warn">Buscar</button>
+        <!-- <input matInput placeholder="placa" [(ngModel)]="placa" #placaInput (blur)="onEnter()" (keyup.enter)="onEnter()" (click)="vinInput.value = ''" />
+        <input matInput placeholder="vin" [(ngModel)]="vin" #vinInput (blur)="onEnter()" (keyup.enter)="onEnter()" (click)="placaInput.value = ''" /> -->
+        <ul>
+            <li *ngFor="let form of formularios">
+                {{form.id}}
+            </li>
+            <!-- <li class="formularios-peritaje"> Link al Formulario</li> -->
+        </ul>
+    </mat-card-content>
+    <mat-card-actions>
+
+    </mat-card-actions>
+</mat-card>
