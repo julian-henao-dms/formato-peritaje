@@ -1,11 +1,11 @@
 export interface formulario{
-    Id : number;
-    Califica : string;
-    Fecini : Date;
-    Id_usuario : number;
-    Id_usu_inspector : number;
-    Id_cot_item_lote : number;
-    Prueba_ruta : number;
-    Fecfin : Date;
-    Califica2 : number;
+    id : number;
+    califica : string;
+    fecini : Date;
+    id_usuario : number;
+    id_usu_inspector : number;
+    id_cot_item_lote : number;
+    prueba_ruta : number;
+    fecfin : Date;
+    califica2 : number;
 }

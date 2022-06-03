@@ -41,6 +41,8 @@ export class FormatoPeritajeComponent implements OnInit {
   public showButton: boolean;
   public placa: string;
   public vin: string;
+  public shared: any;
+  private sesion: any;
   public assets: string;
 
   private idChk: number;
@@ -48,8 +50,6 @@ export class FormatoPeritajeComponent implements OnInit {
   public calificaciones: CalificacionesEstado[];
   public combustibles: Combustible[];
 
-  public A = 0;
-  public B = 1;
   public si = 1;
   public no = 0;
 
@@ -84,15 +84,15 @@ export class FormatoPeritajeComponent implements OnInit {
     this.idChk = 0;
     this.assets = environment.assets;
     this.formulario = {
-      Id: 0,
-      Califica: '',
-      Fecini: new Date(),
-      Id_usuario: 1, // usuario quemado
-      Id_usu_inspector: 1, // usuario inspector quemado
-      Id_cot_item_lote: 0,
-      Prueba_ruta: 0,
-      Fecfin: new Date(),
-      Califica2: 0
+      id: 0,
+      califica: '',
+      fecini: new Date(),
+      id_usuario: 1, // usuario quemado
+      id_usu_inspector: 1, // usuario inspector quemado
+      id_cot_item_lote: 0,
+      prueba_ruta: 0,
+      fecfin: new Date(),
+      califica2: 0
     }
     this.encabezados = {
       id_veh_chk_usados: 0,
@@ -160,6 +160,9 @@ export class FormatoPeritajeComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
+    this.sesion = await this.sharedService.getSesion();
+    this.shared = await this.sharedService.getValues();
+
     const servicio = '/vehiculosusados/estadospintura';
     (await this.apiService.getInformacion(servicio, '')).subscribe(async (response: any) => {
       this.estados = response;
@@ -176,6 +179,7 @@ export class FormatoPeritajeComponent implements OnInit {
       (await this.apiService.getInformacion(servicio, params)).subscribe(async (response: any) => {
         this.listaFormularios = response;
         this.showButton = true;
+        this.nuevoFormulario();
         if (response.length == 0) {
           setTimeout(
             () => {
@@ -197,9 +201,11 @@ export class FormatoPeritajeComponent implements OnInit {
     const params = '/309/' + (this.placa !== '' ? this.placa : ' ') + '/' + (this.vin !== '' ? this.vin : ' ');
     (await this.apiService.getInformacion(servicio, params)).subscribe(async (response: any) => {
       this.encabezados = response;
-      this.formulario.Id_cot_item_lote = this.encabezados.id_cot_item_lote;
+      this.formulario.id_cot_item_lote = this.encabezados.id_cot_item_lote;
+      this.shared.formulario = this.formulario;
       this.encabezados.id_usuario = 1; // usuario quemado
       this.encabezados.id_usu_inspector = 1; // usuario inspector quemado
+      this.shared.encabezados = this.encabezados;
       this.formActivo = true;
       this.cargarlistaPartes();
       setTimeout(
@@ -212,7 +218,7 @@ export class FormatoPeritajeComponent implements OnInit {
   }
 
   public prueba() {
-    console.log(this.listaElementos);
+    console.log(this.shared);
   }
 
   public async guardarFormulario(): Promise<void> {
@@ -329,15 +335,15 @@ export class FormatoPeritajeComponent implements OnInit {
     this.placa = '';
     this.vin = '';
     this.formulario = {
-      Id: 0,
-      Califica: '',
-      Fecini: new Date,
-      Id_usuario: 0,
-      Id_usu_inspector: 0,
-      Id_cot_item_lote: 0,
-      Prueba_ruta: 0,
-      Fecfin: new Date,
-      Califica2: 0,
+      id: 0,
+      califica: '',
+      fecini: new Date,
+      id_usuario: 0,
+      id_usu_inspector: 0,
+      id_cot_item_lote: 0,
+      prueba_ruta: 0,
+      fecfin: new Date,
+      califica2: 0,
     }
     this.encabezados = {
       id_veh_chk_usados: 0,
