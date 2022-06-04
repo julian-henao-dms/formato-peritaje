@@ -66,29 +66,23 @@ public rowSelect(row:any){
       const servicio = '/vehiculosusados/formularios';
       const params = '/' + idEmp + '/' + (this.placa === '' ? '%20' : this.placa) + '/' + (this.vin === '' ? '%20' : this.vin) + '';
       (await this.apiService.getInformacion(servicio, params)).subscribe((response: any) => {
-        this.disabledBtnCrear = false;
         this.formularios = response.data;
         console.log(this.formularios);
-        if (response.data.length === 0 && response.messages === "" ) {
-          setTimeout(
-            () => {
-              this.messageService.info("Atención...", "La Placa o VIN ingresado no tiene ningún formulario previamente diligenciado");
-            }, 1000);
-        }
-        if (response.data.length === 0 && response.messages === 'FVH' ) {
+        if (response.data.length == 0 && response.message == 'FVH' ) {
           setTimeout(
             () => {
               this.messageService.info("Atención...", "La Placa o VIN ingresados no corresponden a ningún vehículo asociado");
             }, 1000);
-        } 
-        if (response.data.length === 0 && response.messages === 'FPV' ) {
-          setTimeout(
-            () => {
-              this.messageService.info("Atencion...", "Debe ingresar una Placa o VIN para continuar");
-            }, 1000);
-        } else {
-           this.disabledBtnCrear = true;
-        }
+        } else{
+          this.disabledBtnCrear = false;
+          if (response.data.length === 0 ) {
+            setTimeout(
+              () => {
+                this.messageService.info("Atención...", "La Placa o VIN ingresado no tiene ningún formulario previamente diligenciado");
+              }, 1000);
+          } 
+        }  
+       
       }, error => {
         this.messageService.error("Oops...", "Error interno en el servidor, no se pudieron consultar los formularios de peritaje");
       });
@@ -100,6 +94,7 @@ public rowSelect(row:any){
   private resetinitData(): void {
     this.disabledBtnCrear = true;
     this.disabledBtnEditar = true;
+    this.formularios = []
   }
 
   async ngOnDestroy(): Promise<void> {

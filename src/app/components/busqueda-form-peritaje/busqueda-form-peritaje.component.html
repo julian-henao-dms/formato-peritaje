@@ -16,21 +16,13 @@
                 <input matInput placeholder="vin" [(ngModel)]="vin" #vinInput (keyup.enter)="onEnter()" (click)="placaInput.value = ''" />
             </mat-form-field>
         </div>
-        <button mat-raised-button (click)="onEnter()" color="warn">Buscar</button>
-        <!-- <input matInput placeholder="placa" [(ngModel)]="placa" #placaInput (blur)="onEnter()" (keyup.enter)="onEnter()" (click)="vinInput.value = ''" />
-        <input matInput placeholder="vin" [(ngModel)]="vin" #vinInput (blur)="onEnter()" (keyup.enter)="onEnter()" (click)="placaInput.value = ''" /> -->
-        <!-- <ul>
-            <li *ngFor="let form of formularios">
-                {{form.id}}
-            </li>
-           <li class="formularios-peritaje"> Link al Formulario</li> 
-        </ul> -->
+        <button mat-raised-button (click)="onEnter()" class="btns-search-peritaje"> <mat-icon class="icon-title-card-cb">search</mat-icon>Buscar</button>
         <div class="demo-button-container btns-form-peritaje">
-            <button mat-raised-button class="demo-button" [disabled]="disabledBtnCrear">
-            Crear Formulario
+            <button mat-raised-button class="demo-button btns-search-peritaje" [disabled]="disabledBtnCrear">
+            <mat-icon>fact_check</mat-icon> Crear Formulario
           </button>
-            <button mat-raised-button class="demo-button" [disabled]="disabledBtnEditar">
-            Editar
+            <button mat-raised-button class="demo-button btns-search-peritaje" [disabled]="disabledBtnEditar">
+                <mat-icon>edit_note</mat-icon>  Editar Formulario 
           </button>
         </div>
 
