@@ -106,7 +106,6 @@ export class SharedService {
 
   public async deleteValues(): Promise<void> {
     sessionStorage.removeItem('datos');
-    sessionStorage.removeItem('images');
     this.resetValues();
   }
 
