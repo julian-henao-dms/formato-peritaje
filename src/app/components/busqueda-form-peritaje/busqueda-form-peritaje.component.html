@@ -18,10 +18,10 @@
         </div>
         <button mat-raised-button (click)="onEnter()" class="btns-search-peritaje"> <mat-icon class="icon-title-card-cb">search</mat-icon>Buscar</button>
         <div class="demo-button-container btns-form-peritaje">
-            <button mat-raised-button class="demo-button btns-search-peritaje" [disabled]="disabledBtnCrear">
+            <button mat-raised-button class="demo-button btns-search-peritaje" [disabled]="disabledBtnCrear" (click)="nuevoFormulario()">
             <mat-icon>fact_check</mat-icon> Crear Formulario
           </button>
-            <button mat-raised-button class="demo-button btns-search-peritaje" [disabled]="disabledBtnEditar">
+            <button mat-raised-button class="demo-button btns-search-peritaje" [disabled]="disabledBtnEditar" (click)="editarFormulario()">
                 <mat-icon>edit_note</mat-icon>  Editar Formulario 
           </button>
         </div>
@@ -49,6 +49,5 @@
         </table>
     </mat-card-content>
     <mat-card-actions>
-
     </mat-card-actions>
 </mat-card>
