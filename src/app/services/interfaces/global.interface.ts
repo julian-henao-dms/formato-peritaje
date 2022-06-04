@@ -5,6 +5,5 @@ import { formulario } from "../../components/formato-peritaje/interfaces/formula
 export interface Global {
   isEmpty: boolean,
   formulario: formulario,
-  encabezados: Encabezados,
-  listaPartes: EstadoPintura[]
+  encabezados: Encabezados
 }
