@@ -9,22 +9,52 @@
         <div class="vin-placa">
             <mat-form-field appearance="fill">
                 <mat-label>Placa:</mat-label>
-                <input matInput placeholder="placa" [(ngModel)]="placa" #placaInput (blur)="onEnter()" (keyup.enter)="onEnter()" (click)="vinInput.value = ''" />
+                <input matInput placeholder="placa" [(ngModel)]="placa" #placaInput (keyup.enter)="onEnter()" (click)="vinInput.value = ''" />
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>VIN:</mat-label>
-                <input matInput placeholder="vin" [(ngModel)]="vin" #vinInput (blur)="onEnter()" (keyup.enter)="onEnter()" (click)="placaInput.value = ''" />
+                <input matInput placeholder="vin" [(ngModel)]="vin" #vinInput (keyup.enter)="onEnter()" (click)="placaInput.value = ''" />
             </mat-form-field>
         </div>
-        <button mat-raised-button color="warn">Buscar</button>
+        <button mat-raised-button (click)="onEnter()" color="warn">Buscar</button>
         <!-- <input matInput placeholder="placa" [(ngModel)]="placa" #placaInput (blur)="onEnter()" (keyup.enter)="onEnter()" (click)="vinInput.value = ''" />
         <input matInput placeholder="vin" [(ngModel)]="vin" #vinInput (blur)="onEnter()" (keyup.enter)="onEnter()" (click)="placaInput.value = ''" /> -->
-        <ul>
+        <!-- <ul>
             <li *ngFor="let form of formularios">
                 {{form.id}}
             </li>
-            <!-- <li class="formularios-peritaje"> Link al Formulario</li> -->
-        </ul>
+           <li class="formularios-peritaje"> Link al Formulario</li> 
+        </ul> -->
+        <div class="demo-button-container btns-form-peritaje">
+            <button mat-raised-button class="demo-button" [disabled]="disabledBtnCrear">
+            Crear Formulario
+          </button>
+            <button mat-raised-button class="demo-button" [disabled]="disabledBtnEditar">
+            Editar
+          </button>
+        </div>
+
+        <table mat-table class="mat-elevation-z8 demo-table table-form-peritaje" [dataSource]="formularios">
+            <ng-container matColumnDef="Id">
+                <th mat-header-cell *matHeaderCellDef>ID.</th>
+                <td mat-cell *matCellDef="let element">{{element.id}}</td>
+            </ng-container>
+            <ng-container matColumnDef="Fecini">
+                <th mat-header-cell *matHeaderCellDef>Fecha Inicial</th>
+                <td mat-cell *matCellDef="let element">{{element.fecini}}</td>
+            </ng-container>
+            <ng-container matColumnDef="Fecfin">
+                <th mat-header-cell *matHeaderCellDef>Fecha</th>
+                <td mat-cell *matCellDef="let element">{{element.fecfin}}</td>
+            </ng-container>
+            <ng-container matColumnDef="Califica">
+                <th mat-header-cell *matHeaderCellDef>Calificación</th>
+                <td mat-cell *matCellDef="let element">{{element.califica}}</td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr class="row-peritaje" mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlight': selectedRowIndex===row.id}" (click)="rowSelect(row)">
+            </tr>
+        </table>
     </mat-card-content>
     <mat-card-actions>
 

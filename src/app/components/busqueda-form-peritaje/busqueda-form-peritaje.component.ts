@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { ApiService } from '../../services/api.service';
@@ -12,6 +13,24 @@ import { formulario } from './interfaces/formulario.interface';
   styleUrls: ['./busqueda-form-peritaje.component.scss']
 })
 export class BusquedaFormPeritajeComponent implements OnInit, OnDestroy {
+  
+  displayedColumns: string[] = ['Id', 'Fecini', 'Fecfin', 'Califica'];
+  selectedRowIndex = -1;
+  
+
+public rowSelect(row:any){
+    console.log(row);
+    if(row.id == this.selectedRowIndex){
+    this.selectedRowIndex = -1;
+    this.disabledBtnEditar = true;
+    }else
+    {
+      this.selectedRowIndex = row.id;
+      this.disabledBtnEditar = false;
+    }
+    
+}
+  
   private readonly title: string = 'FormatoPeritaje';
   private readonly subtitle: string = 'busqueda';
   public disabledBtnCrear: boolean;
@@ -48,20 +67,33 @@ export class BusquedaFormPeritajeComponent implements OnInit, OnDestroy {
       const params = '/' + idEmp + '/' + (this.placa === '' ? '%20' : this.placa) + '/' + (this.vin === '' ? '%20' : this.vin) + '';
       (await this.apiService.getInformacion(servicio, params)).subscribe((response: any) => {
         this.disabledBtnCrear = false;
-        this.formularios = response;
-        if (response.length == 0) {
+        this.formularios = response.data;
+        console.log(this.formularios);
+        if (response.data.length === 0 && response.messages === "" ) {
           setTimeout(
             () => {
-              this.messageService.info("Atención...", "La placa o vin ingresados no corresponden a un vehículo en el sistema");
+              this.messageService.info("Atención...", "La Placa o VIN ingresado no tiene ningún formulario previamente diligenciado");
+            }, 1000);
+        }
+        if (response.data.length === 0 && response.messages === 'FVH' ) {
+          setTimeout(
+            () => {
+              this.messageService.info("Atención...", "La Placa o VIN ingresados no corresponden a ningún vehículo asociado");
+            }, 1000);
+        } 
+        if (response.data.length === 0 && response.messages === 'FPV' ) {
+          setTimeout(
+            () => {
+              this.messageService.info("Atencion...", "Debe ingresar una Placa o VIN para continuar");
             }, 1000);
         } else {
-          this.disabledBtnEditar = false;
+           this.disabledBtnCrear = true;
         }
       }, error => {
-        this.messageService.error("Oops...", "Error interno en el servidor, no se pudieron consultar los formatos de peritaje");
+        this.messageService.error("Oops...", "Error interno en el servidor, no se pudieron consultar los formularios de peritaje");
       });
     } else {
-      this.messageService.info("Atencion...", "Debe ingresar una placa o vin para continuar");
+      this.messageService.info("Atencion...", "Debe ingresar una Placa o VIN para continuar");
     }
   }
 

@@ -36,3 +36,29 @@ $main-color: #b50411;
         }
     }
 }
+
+.demo-table,
+.table-form-peritaje {
+    width: 100%;
+}
+
+.demo-button-container,
+.btns-form-peritaje {
+    padding-bottom: 16px;
+    margin-top: 1.2em;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.demo-button+.demo-button {
+    margin-left: 8px;
+}
+
+.highlight {
+    background: #f0e0df;
+}
+
+.row-peritaje:hover {
+    cursor: pointer;
+}
