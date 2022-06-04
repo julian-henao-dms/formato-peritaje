@@ -79,6 +79,7 @@ export class SharedService {
       }
     };
     this.sesion = {
+      empresa: '',
       isEmpty: true
     };
     this.execute = false;

@@ -1,0 +1,76 @@
+$main-color: #b50411;
+.title-card-pritaje {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.2em;
+    h2 {
+        margin-bottom: -3px;
+        font-size: 18px;
+        text-transform: uppercase;
+    }
+    .icon-title-card-peritaje {
+        color: $main-color;
+        margin-right: 0.5em;
+    }
+}
+
+.busqueda-peritaje {
+    margin: 1.2em 1.2em;
+    mat-card-subtitle {
+        display: flex;
+        justify-content: center;
+    }
+    mat-card-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        .vin-placa {
+            margin-top: 2em;
+            display: flex;
+            flex-wrap: wrap;
+            mat-form-field {
+                margin-right: 1.2em;
+            }
+        }
+    }
+}
+
+.demo-table,
+.table-form-peritaje {
+    width: 100%;
+}
+
+.demo-button-container,
+.btns-form-peritaje {
+    padding-bottom: 16px;
+    margin-top: 1.2em;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.demo-button+.demo-button {
+    margin-left: 8px;
+}
+
+.highlight {
+    background: #f0e0df;
+}
+
+.row-peritaje:hover {
+    cursor: pointer;
+}
+
+.btns-search-peritaje {
+    background-color: $main-color;
+    color: #fff;
+    padding: 0 1em 0 0.5em;
+}
+
+span.mat-button-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
