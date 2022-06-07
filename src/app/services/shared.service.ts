@@ -76,7 +76,9 @@ export class SharedService {
         linea: '',
         marca: '',
         modelo: ''
-      }
+      },
+      listaPartes: [],
+      listaElementos: []
     };
     this.sesion = {
       empresa: '',
@@ -189,7 +191,9 @@ export class SharedService {
         linea: '',
         marca: '',
         modelo: ''
-      }
+      },
+      listaPartes: [],
+      listaElementos: []
     };
   }
 }
