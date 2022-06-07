@@ -1,0 +1,75 @@
+$main-color: #b50411;
+mat-card.bloque-cb-7 {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.elementos-a-z-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.group-radio-options-cb {
+  margin-bottom: 1.2em;
+}
+
+.example-margin,
+.cbradio-group-label {
+  margin: 0 10px;
+}
+
+.group-radio-options-cb mat-radio-group.mat-radio-group {
+  margin-bottom: 0.5em;
+}
+
+.elementos-az section.example-section.radio-options-cb.ng-star-inserted {
+  margin-bottom: 1.2em;
+  border-bottom: solid 2px #cecece;
+  padding: 5px 0 8px 8px;
+}
+
+.group-radio-options-cb {
+  margin-bottom: 1.2em;
+}
+
+.group-radio-options-cb mat-radio-group.mat-radio-group {
+  margin-bottom: 0.5em;
+}
+
+.example-radio-group {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
+  align-items: flex-start;
+}
+
+.example-radio-button {
+  margin: 5px;
+}
+
+.example-margin,
+.cbradio-group-label {
+  // margin: 0 10px;
+  margin: 5px 0;
+}
+
+.radio-options-cb {
+  display: flex;
+  flex-direction: column;
+  min-width: 15em;
+}
+
+mat-card {
+  margin: 0.6em 1.5em;
+}
+
+.cbradio-label-parametrizado {
+  display: block;
+  margin: 0.6em 0;
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: $main-color;
+}
