@@ -59,20 +59,6 @@ mat-card.bloque-cb-4 {
     flex-direction: column;
 }
 
-mat-card.bloque-cb-5,
-mat-card.bloque-cb-7 {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-}
-
-.elementos-a-z-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-}
-
 .group-radio-options-cb {
     margin-bottom: 1.2em;
 }
@@ -232,20 +218,6 @@ mat-icon.m-icon-cb {
 
 .mat-radio-button~.mat-radio-button {
     margin-right: 4px;
-}
-
-.title-bloques-cb {
-    // margin-left: 35px;
-    margin-top: 1.2em;
-}
-
-.estados-pintura-container {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.estado-pintura-container {
-    margin: 10px;
 }
 
 .add-fields {
