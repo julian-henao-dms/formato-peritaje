@@ -12,9 +12,6 @@
             <mat-button-toggle value="elementos" (click)="toogleTagPartes()">Parametrización Elementos</mat-button-toggle>
         </mat-button-toggle-group>
 
-
-
-
         <div class="container-elementosAz">
             <div class="header-btn-new-parametrizacion">
                 <div class="title-card-pritaje">
@@ -26,65 +23,45 @@
                 <button class="new_params" *ngIf="parametrizacion == 'partes'" (click)="openModalEdit('partes', nuevoMaestro)" mat-raised-button><mat-icon>fact_check</mat-icon> Nuevo</button>
                 <button class="new_params" *ngIf="parametrizacion == 'elementos'" (click)="openModalEdit('elementos', nuevoMaestro)" mat-raised-button><mat-icon>fact_check</mat-icon> Nuevo</button>
             </div>
-            <!-- <div class="header-btn-new-parametrizacion" *ngIf="parametrizacion == 'elementos'">
-                <div class="title-card-pritaje">
-                    <mat-icon class="icon-title-card-peritaje">car_repair</mat-icon>
-                    <h2 class="title-bloques-cb">Elementos A-Z</h2>
-                </div>
-                <button class="new_params" (click)="openModalEdit('{{parametrizacion}}', nuevoMaestro)" mat-raised-button><mat-icon>fact_check</mat-icon> Nuevo</button>
-            </div> -->
 
             <div class="modal-parametrizacion">
-                <!-- <div class="close-div-container">
-                    <button mat-icon-button class="close-modal" matTooltip="Cerrar" [mat-dialog-close]="{{parametrizacion}}" cdkFocusInitial><mat-icon class="m-icon-cb">close</mat-icon></button>
-                </div> -->
-
-                <mat-dialog-content>
-                    <!-- <button class="btn-modal-cb-icon" mat-button (click)="openModalEdit('{{parametrizacion}}', nuevoMaestro)"><mat-icon>add</mat-icon>&nbsp;Agregar Nuevo Item</button> -->
-                    <div class="maestros-container">
-                        <mat-card *ngFor="let maestro of listaMaestros; index as i" class="maestro-container">
-                            <div class="card-header">
-                                <mat-card-title class="card-title card-title-parametrizacion">{{maestro.descripcion}}</mat-card-title>
-                                <div class="card-header-buttons">
-                                    <button mat-button class="header-button" matTooltip="Editar" *ngIf="parametrizacion == 'partes'" (click)="openModalEdit('partes',maestro)"><mat-icon class="icon-button-header">edit</mat-icon></button>
-                                    <button mat-button class="header-button" matTooltip="Editar" *ngIf="parametrizacion == 'elementos'" (click)="openModalEdit('elementos',maestro)"><mat-icon class="icon-button-header">edit</mat-icon></button>
-                                    <button mat-button class="header-button" matTooltip="Borrar" (click)="eliminarMaestro(i)"><mat-icon class="icon-button-header">delete</mat-icon></button>
-                                </div>
+                <div class="maestros-container">
+                    <mat-card *ngFor="let maestro of listaMaestros; index as i" class="maestro-container">
+                        <div class="card-header">
+                            <mat-card-title class="card-title card-title-parametrizacion">{{maestro.descripcion}}</mat-card-title>
+                            <div class="card-header-buttons">
+                                <button mat-button class="header-button" matTooltip="Editar" *ngIf="parametrizacion == 'partes'" (click)="openModalEdit('partes',maestro)"><mat-icon class="icon-button-header">edit</mat-icon></button>
+                                <button mat-button class="header-button" matTooltip="Editar" *ngIf="parametrizacion == 'elementos'" (click)="openModalEdit('elementos',maestro)"><mat-icon class="icon-button-header">edit</mat-icon></button>
+                                <button mat-button class="header-button" matTooltip="Borrar" (click)="eliminarMaestro(i)"><mat-icon class="icon-button-header">delete</mat-icon></button>
                             </div>
-                            <mat-card-content>
-                                <div class="card-content" *ngIf="maestro.valor_def == 1">
-                                    <p>
-                                        <mat-icon>check_box_outline_blank</mat-icon>&nbsp;Malo</p>
-                                </div>
-                                <div class="card-content" *ngIf="maestro.valor_def == 2">
-                                    <p>
-                                        <mat-icon>radio_button_checked</mat-icon>&nbsp;Leve</p>
-                                    <p>
-                                        <mat-icon>radio_button_unchecked</mat-icon>&nbsp;Fuerte</p>
-                                </div>
-                                <div class="card-content" *ngIf="maestro.valor_def == 3">
-                                    <p>
-                                        <mat-icon>radio_button_checked</mat-icon>&nbsp;OK</p>
-                                    <p>
-                                        <mat-icon>radio_button_unchecked</mat-icon>&nbsp;Bajo</p>
-                                </div>
-                                <div class="card-content" *ngIf="maestro.valor_def == 4">
-                                    <p>
-                                        <mat-icon>radio_button_checked</mat-icon>&nbsp;Si</p>
-                                    <p>
-                                        <mat-icon>radio_button_unchecked</mat-icon>&nbsp;No</p>
-                                </div>
-                            </mat-card-content>
-                        </mat-card>
-                    </div>
-                </mat-dialog-content>
-
+                        </div>
+                        <mat-card-content>
+                            <div class="card-content" *ngIf="maestro.valor_def == 1">
+                                <p>
+                                    <mat-icon>check_box_outline_blank</mat-icon>&nbsp;Malo</p>
+                            </div>
+                            <div class="card-content" *ngIf="maestro.valor_def == 2">
+                                <p>
+                                    <mat-icon>radio_button_checked</mat-icon>&nbsp;Leve</p>
+                                <p>
+                                    <mat-icon>radio_button_unchecked</mat-icon>&nbsp;Fuerte</p>
+                            </div>
+                            <div class="card-content" *ngIf="maestro.valor_def == 3">
+                                <p>
+                                    <mat-icon>radio_button_checked</mat-icon>&nbsp;OK</p>
+                                <p>
+                                    <mat-icon>radio_button_unchecked</mat-icon>&nbsp;Bajo</p>
+                            </div>
+                            <div class="card-content" *ngIf="maestro.valor_def == 4">
+                                <p>
+                                    <mat-icon>radio_button_checked</mat-icon>&nbsp;Si</p>
+                                <p>
+                                    <mat-icon>radio_button_unchecked</mat-icon>&nbsp;No</p>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
             </div>
-
         </div>
     </mat-card-content>
-    <mat-card-actions>
-
-    </mat-card-actions>
-
 </mat-card>
