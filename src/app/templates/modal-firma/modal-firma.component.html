@@ -1,0 +1,43 @@
+<div class="modal-firma">
+  <div class="close-div-container">
+    <button mat-icon-button class="close-modal" matTooltip="Cerrar" [mat-dialog-close]="" cdkFocusInitial><mat-icon class="m-icon-cb">close</mat-icon></button>
+  </div>
+  <h1 mat-dialog-title>Firma {{data.nombre}}</h1>
+  <mat-dialog-content>
+    <canvas id="canvasFirma"
+            class="espacio-firma"
+            width="300"
+            height="200"
+            #canvasFirmaRef>
+    </canvas>
+  </mat-dialog-content>
+  <div mat-dialog-actions>
+    <button mat-button><mat-icon class="m-icon-cb">clean</mat-icon>Limpiar</button>
+    <button mat-button [mat-dialog-close]="data.firma" cdkFocusInitial><mat-icon class="m-icon-cb">check</mat-icon>Aceptar</button>
+  </div>
+</div>
+
+
+<!--<p-dialog [header]="'Firma Inspector'" [(visible)]="displayModalFirma" [modal]="true"
+          [style]="{ width: '50vw' }" styleClass="direccion-modal" [baseZIndex]="10000">
+  <div class="card">
+    <canvas id="canvasFirma"
+            class="espacio-firma"
+            width="300"
+            height="200"
+            #canvasFirmaRef>
+    </canvas>
+  </div>
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-times"
+              (click)="limpiarCanvas()"
+              label="Limpiar"
+              styleClass="p-button-danger p-button-text">
+    </p-button>
+    <p-button icon="pi pi-check"
+              (click)="displayModalFirma=false; generarFirma()"
+              label="Aceptar"
+              styleClass="p-button-text">
+    </p-button>
+  </ng-template>
+</p-dialog>-->

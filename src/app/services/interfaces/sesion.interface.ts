@@ -1,3 +1,4 @@
 export interface Sesion {
-  isEmpty: boolean
+  isEmpty: boolean,
+  empresa: string
 }
