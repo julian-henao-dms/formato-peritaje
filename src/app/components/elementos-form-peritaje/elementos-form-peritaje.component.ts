@@ -4,6 +4,8 @@ import { environment } from '../../../environments/environment';
 import { ApiService } from '../../services/api.service';
 import { MessagesService } from '../../services/messages.service';
 import { SharedService } from '../../services/shared.service';
+import { ElementosAz } from '../formato-peritaje/interfaces/elementos-az';
+import { EstadoPintura } from '../formato-peritaje/interfaces/estadoPintura.interface';
 
 @Component({
   selector: 'app-elementos-form-peritaje',
@@ -13,7 +15,11 @@ import { SharedService } from '../../services/shared.service';
 export class ElementosFormPeritajeComponent implements OnInit {
   private readonly title: string = 'FormatoPeritaje';
   private readonly subtitle: string = 'listaElementos';
-
+  public listaElementos: ElementosAz[] = [];
+  public idElementoIntervencion: number;
+  public idChk: number;
+  private sesion: any;
+  public shared: any;
   public assets: string;
 
   constructor(
@@ -23,9 +29,97 @@ export class ElementosFormPeritajeComponent implements OnInit {
     private readonly messageService: MessagesService
   ) {
     this.assets = environment.assets;
+    this.idElementoIntervencion = 0;
+    this.idChk = 0;
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    this.sesion = await this.sharedService.getSesion();
+    this.shared = await this.sharedService.getValues();
+    this.cargarlistaElementos();
   }
 
+  private async cargarlistaElementos(idChk: number = 0): Promise<void> {
+    const servicio = '/VehiculosUsados/Elementos';
+    const idEmp = this.sesion.empresa;
+    const params = '/' + idEmp + '/' + idChk.toString();
+    (await this.apiService.getInformacion(servicio, params)).subscribe((response: any) => {
+      this.listaElementos = response;
+    }, error => {
+      this.messageService.error("Oops...", "Error interno en el servidor");
+    });
+  }
+
+  public agregarIntervencion(): void {
+    if (this.idElementoIntervencion !== 0) {
+      for (let i = 0; i < this.listaElementos.length; i++) {
+        if (this.listaElementos[i].id_chk_maestro_elementos == this.idElementoIntervencion) {
+          this.listaElementos[i].intervencion = 1;
+          break;
+        }
+      }
+      this.idElementoIntervencion = 0;
+    }
+  }
+
+  public async guardarFormulario(): Promise<void> {
+    this.shared.listaElementos = this.listaElementos;
+    console.log(this.shared);
+    let servicio = '/vehiculosusados/guardarformulario';
+    (await this.apiService.saveInformacion(servicio, this.shared.formulario)).subscribe(async (response: any) => {
+      if (response > 0) {
+        this.idChk = response;
+        this.shared.encabezados.id_veh_chk_usados = this.idChk;
+        servicio = '/vehiculosusados/guardarencabezados';
+        (await this.apiService.saveInformacion(servicio, this.shared.encabezados)).subscribe(async (response: any) => {
+          if (response) {
+            servicio = '/vehiculosusados/guardarpartes';
+            this.shared.listaPartes.forEach((parte: EstadoPintura) => {
+              parte.id_veh_chk_usados = this.idChk;
+              parte.accion = 0;
+            });
+            (await this.apiService.saveInformacion(servicio, this.shared.listaPartes)).subscribe(async (response: any) => {
+              if (response) {
+                servicio = '/vehiculosusados/guardarelementos';
+                this.shared.listaElementos.forEach((elemento: ElementosAz) => {
+                  elemento.id_veh_chk_usados = this.idChk;
+                  elemento.accion = 0;
+                });
+                (await this.apiService.saveInformacion(servicio, this.shared.listaElementos)).subscribe(async (response: any) => {
+                  if (response) {
+                    this.messageService.success("Perfecto", "El formato de peritaje fue guardado correctamente");
+                  } else {
+                    this.messageService.error("Oops...", "No se pudieron guardar los elementos AZ del formulario");
+                  }
+                }, error => {
+                  this.messageService.error("Oops...", "Error interno en el servidor");
+                });
+              } else {
+                this.messageService.error("Oops...", "No se pudieron guardar los estados Pintura del formulario");
+              }
+            }, error => {
+              this.messageService.error("Oops...", "Error interno en el servidor");
+            });
+          } else {
+            this.messageService.error("Oops...", "No se pudieron guardar los encabezados del formulario");
+          }
+        }, error => {
+          this.messageService.error("Oops...", "Error interno en el servidor");
+        });
+      } else {
+        this.messageService.error("Oops...", "No se pudo guardar el formulario");
+      }
+    }, error => {
+      this.messageService.error("Oops...", "Error interno en el servidor");
+    });
+    this.router.navigate(['formato-peritaje']);
+  }
+
+  public atras(): void {
+    this.router.navigate(['formato-peritaje/listaElementos']);
+  }
+
+  async ngOnDestroy(): Promise<void> {
+    this.sharedService.setValues(this.shared);
+  }
 }
