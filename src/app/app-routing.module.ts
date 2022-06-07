@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'formato-peritaje/parametrizacion', component: ParametrizacionFormPeritrajeComponent },
   { path: 'formato-peritaje/encabezados', component: FormatoPeritajeComponent },
   { path: 'formato-peritaje/listaPartes', component: PartesFormPeritajeComponent },
-  { path: 'formato-peritaje/listaelementos', component: ElementosFormPeritajeComponent }
+  { path: 'formato-peritaje/listaElementos', component: ElementosFormPeritajeComponent }
 ];
 
 @NgModule({

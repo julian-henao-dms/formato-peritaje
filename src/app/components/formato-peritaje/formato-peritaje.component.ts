@@ -3,8 +3,6 @@ import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { ApiService } from '../../services/api.service';
 import { MessagesService } from '../../services/messages.service';
-import { ElementosAz } from './interfaces/elementos-az';
-import { EstadoPintura } from './interfaces/estado-pintura';
 import { SharedService } from '../../services/shared.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { OnDestroy } from '@angular/core';
