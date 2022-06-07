@@ -16,35 +16,39 @@
 
 
         <div class="container-elementosAz">
-            <div class="header-btn-new-parametrizacion" *ngIf="parametrizacion == 'partes'">
+            <div class="header-btn-new-parametrizacion">
                 <div class="title-card-pritaje">
-                    <mat-icon class="icon-title-card-peritaje">format_color_fill</mat-icon>
-                    <h2 class="title-bloques-cb">Estado Pintura</h2>
+                    <mat-icon class="icon-title-card-peritaje" *ngIf="parametrizacion == 'partes'">format_color_fill</mat-icon>
+                    <mat-icon class="icon-title-card-peritaje" *ngIf="parametrizacion == 'elementos'">car_repair</mat-icon>
+                    <h2 class="title-bloques-cb" *ngIf="parametrizacion == 'partes'">Estado Pintura</h2>
+                    <h2 class="title-bloques-cb" *ngIf="parametrizacion == 'elementos'">Elementos A-Z</h2>
                 </div>
-                <button class="new_params" mat-raised-button><mat-icon>fact_check</mat-icon> Nuevo</button>
+                <button class="new_params" *ngIf="parametrizacion == 'partes'" (click)="openModalEdit('partes', nuevoMaestro)" mat-raised-button><mat-icon>fact_check</mat-icon> Nuevo</button>
+                <button class="new_params" *ngIf="parametrizacion == 'elementos'" (click)="openModalEdit('elementos', nuevoMaestro)" mat-raised-button><mat-icon>fact_check</mat-icon> Nuevo</button>
             </div>
-            <div class="header-btn-new-parametrizacion" *ngIf="parametrizacion == 'elementos'">
+            <!-- <div class="header-btn-new-parametrizacion" *ngIf="parametrizacion == 'elementos'">
                 <div class="title-card-pritaje">
                     <mat-icon class="icon-title-card-peritaje">car_repair</mat-icon>
                     <h2 class="title-bloques-cb">Elementos A-Z</h2>
                 </div>
-                <button class="new_params" mat-raised-button><mat-icon>fact_check</mat-icon> Nuevo</button>
-            </div>
+                <button class="new_params" (click)="openModalEdit('{{parametrizacion}}', nuevoMaestro)" mat-raised-button><mat-icon>fact_check</mat-icon> Nuevo</button>
+            </div> -->
 
             <div class="modal-parametrizacion">
                 <!-- <div class="close-div-container">
                     <button mat-icon-button class="close-modal" matTooltip="Cerrar" [mat-dialog-close]="{{parametrizacion}}" cdkFocusInitial><mat-icon class="m-icon-cb">close</mat-icon></button>
                 </div> -->
-                <h1 class="title-modal" mat-dialog-title>Maestro de {{parametrizacion}}</h1>
+
                 <mat-dialog-content>
-                    <!-- <button class="btn-modal-cb-icon" mat-button (click)="openModalEdit({{parametrizacion}},nuevoMaestro)"><mat-icon>add</mat-icon>&nbsp;Agregar Nuevo Item</button> -->
+                    <!-- <button class="btn-modal-cb-icon" mat-button (click)="openModalEdit('{{parametrizacion}}', nuevoMaestro)"><mat-icon>add</mat-icon>&nbsp;Agregar Nuevo Item</button> -->
                     <div class="maestros-container">
                         <mat-card *ngFor="let maestro of listaMaestros; index as i" class="maestro-container">
                             <div class="card-header">
                                 <mat-card-title class="card-title card-title-parametrizacion">{{maestro.descripcion}}</mat-card-title>
                                 <div class="card-header-buttons">
-                                    <!-- <button mat-button class="header-button" matTooltip="Editar" (click)="openModalEdit({{parametrizacion}},maestro)"><mat-icon class="icon-button-header">edit</mat-icon></button>
-                                    <button mat-button class="header-button" matTooltip="Borrar" (click)="eliminarMaestro(i)"><mat-icon class="icon-button-header">delete</mat-icon></button> -->
+                                    <button mat-button class="header-button" matTooltip="Editar" *ngIf="parametrizacion == 'partes'" (click)="openModalEdit('partes',maestro)"><mat-icon class="icon-button-header">edit</mat-icon></button>
+                                    <button mat-button class="header-button" matTooltip="Editar" *ngIf="parametrizacion == 'elementos'" (click)="openModalEdit('elementos',maestro)"><mat-icon class="icon-button-header">edit</mat-icon></button>
+                                    <button mat-button class="header-button" matTooltip="Borrar" (click)="eliminarMaestro(i)"><mat-icon class="icon-button-header">delete</mat-icon></button>
                                 </div>
                             </div>
                             <mat-card-content>
@@ -74,9 +78,7 @@
                         </mat-card>
                     </div>
                 </mat-dialog-content>
-                <div mat-dialog-actions>
-                    <!-- <button mat-button [mat-dialog-close]="data.nombre" cdkFocusInitial>Cerrar</button> -->
-                </div>
+
             </div>
 
         </div>

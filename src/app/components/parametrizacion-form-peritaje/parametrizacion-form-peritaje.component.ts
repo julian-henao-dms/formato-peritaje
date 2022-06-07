@@ -9,6 +9,7 @@ import { ElementosAz } from '../formato-peritaje/interfaces/elementos-az';
 import { EstadoPintura } from '../formato-peritaje/interfaces/estado-pintura';
 import { ModalEditComponent } from 'src/app/templates/modal-edit/modal-edit.component';
 import { MatDialog } from '@angular/material/dialog';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -77,6 +78,32 @@ export class ParametrizacionFormPeritrajeComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.cargarListaMaestros();
     });
+  }
+
+  public eliminarMaestro(index: number): void {
+    Swal.fire({
+      title: 'Esta seguro?',
+      text: "Esta accion eliminará el item de la base de datos!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'Cancelar',
+      confirmButtonText: 'Si, Borrar!'
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        let servicio = (this.parametrizacion == 'partes' ? '/Maestros/ModificarPartes' : '/Maestros/ModificarElementos');
+        let body: Maestro = this.listaMaestros[index];
+        body.accion = 1;
+        (await this.apiService.saveInformacion(servicio, body)).subscribe(async (response: any) => {
+          console.log(response);
+          await this.cargarListaMaestros();
+        }, error => {
+          this.messageService.error("Oops...", "Error interno en el servidor");
+        });
+        this.messageService.success("Perfecto","El item fue eliminado correctamente");
+      }
+    })
   }
 
   private async cargarListaMaestros(): Promise<void> {
