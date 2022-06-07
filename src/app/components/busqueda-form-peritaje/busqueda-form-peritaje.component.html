@@ -9,11 +9,11 @@
         <div class="vin-placa">
             <mat-form-field appearance="fill">
                 <mat-label>Placa:</mat-label>
-                <input matInput placeholder="placa" [(ngModel)]="placa" #placaInput (keyup.enter)="onEnter()" (click)="vinInput.value = ''" />
+                <input matInput placeholder="placa" [(ngModel)]="placa" #placaInput (keyup.enter)="onEnter()" (click)="vin = ''" />
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>VIN:</mat-label>
-                <input matInput placeholder="vin" [(ngModel)]="vin" #vinInput (keyup.enter)="onEnter()" (click)="placaInput.value = ''" />
+                <input matInput placeholder="vin" [(ngModel)]="vin" #vinInput (keyup.enter)="onEnter()" (click)="placa = ''" />
             </mat-form-field>
         </div>
         <button mat-raised-button (click)="onEnter()" class="btns-search-peritaje"> <mat-icon class="icon-title-card-cb">search</mat-icon>Buscar</button>
