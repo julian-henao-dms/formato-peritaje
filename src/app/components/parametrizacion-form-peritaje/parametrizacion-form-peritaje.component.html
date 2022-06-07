@@ -1,144 +1,88 @@
 <mat-card class="card-parametrizacion">
-    <h2>Parametrización de partes y elementos AZ</h2>
-    <mat-button-toggle-group name="parametrizacion">
-        <mat-button-toggle value="partes" (click)="toogleTagPartes('1')">Parametrización Partes</mat-button-toggle>
-        <mat-button-toggle value="elementosAz" (click)="toogleTagPartes('2')">Parametrización Elementos</mat-button-toggle>
-    </mat-button-toggle-group>
+    <mat-card-title class="title-card-pritaje">
+        <mat-icon class="icon-title-card-peritaje">fact_check</mat-icon>
+        <h2>Parametrización de partes y elementos AZ</h2>
+    </mat-card-title>
+    <mat-card-subtitle>- Elija una opción de parametrización de partes o elementos según lo requiera -</mat-card-subtitle>
+    <mat-divider></mat-divider>
+
+    <mat-card-content>
+        <mat-button-toggle-group name="parametrizacion" [(ngModel)]="parametrizacion" class="btns-parametrizacion">
+            <mat-button-toggle value="partes" (click)="toogleTagPartes()">Parametrización Partes</mat-button-toggle>
+            <mat-button-toggle value="elementos" (click)="toogleTagPartes()">Parametrización Elementos</mat-button-toggle>
+        </mat-button-toggle-group>
 
 
-    <div class="estados-pintura-container" *ngIf="showPartes">
-        <h2 class="title-bloques-cb">Estado Pintura</h2>
 
-        <!-- *ngFor="let estado of data.estadosPintura" -->
 
-        <!-- <mat-card class="group-radio-options-cb estado-pintura-container" *ngFor="let estadoPintura of shared">
-            <div>
-                <label class="cbradio-label-parametrizado" style="margin-right:10px">{{estadoPintura.parte}}</label>
-                <mat-form-field>
-                    <mat-select name="{{estadoPintura.parte}}-estado" [(ngModel)]="estadoPintura.id_chk_estado">
-                        <mat-option [value]="0">Buen estado</mat-option>
-                        <mat-option *ngFor="let estado of estados" [value]="estado.id">
-                            {{estado.descripcion}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
+        <div class="container-elementosAz">
+            <div class="header-btn-new-parametrizacion" *ngIf="parametrizacion == 'partes'">
+                <div class="title-card-pritaje">
+                    <mat-icon class="icon-title-card-peritaje">format_color_fill</mat-icon>
+                    <h2 class="title-bloques-cb">Estado Pintura</h2>
+                </div>
+                <button class="new_params" mat-raised-button><mat-icon>fact_check</mat-icon> Nuevo</button>
             </div>
-            <section class="example-section radio-options-cb">
-                <mat-radio-group required name="{{estadoPintura.parte}}-repi_tipo" [(ngModel)]="estadoPintura.repi_tipo">
-                    <mat-radio-button class="cb-radio-button rbtn-first" [value]="repiTipoA">Repi TIPO A </mat-radio-button>
-                    <mat-radio-button class="cb-radio-button" [value]="repiTipoB">Repi TIPO B </mat-radio-button>
-                </mat-radio-group>
-            </section>
-            <section class="example-section radio-options-cb">
-                <mat-radio-group required name="{{estadoPintura.parte}}-repar_tipo" [(ngModel)]="estadoPintura.repar_tipo">
-                    <mat-radio-button class="cb-radio-button rbtn-first" [value]="reparTipoA">Repar TIPO A </mat-radio-button>
-                    <mat-radio-button class="cb-radio-button" [value]="reparTipoB">Repar TIPO B </mat-radio-button>
-                </mat-radio-group>
-            </section>
-            <section class="example-section radio-options-cb">
-                <mat-radio-group required name="{{estadoPintura.parte}}-estado_parte" [(ngModel)]="estadoPintura.estadoParte">
-                    <mat-radio-button class="cb-radio-button rbtn-first" [value]="cambiado">Cambiado </mat-radio-button>
-                    <mat-radio-button class="cb-radio-button" [value]="removido">Removido </mat-radio-button>
-                </mat-radio-group>
-            </section>
-        </mat-card> -->
-        <mat-card class="group-radio-options-cb estado-pintura-container">
-            <div>
-                <label class="cbradio-label-parametrizado" style="margin-right:10px">Nombre</label>
-                <mat-form-field>
-                    <mat-select name="-estado">
-                        <mat-option [value]="0">Buen estado</mat-option>
-                        <mat-option *ngFor="let estado of estados" [value]="estado.id">
-                            {{estado.descripcion}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
+            <div class="header-btn-new-parametrizacion" *ngIf="parametrizacion == 'elementos'">
+                <div class="title-card-pritaje">
+                    <mat-icon class="icon-title-card-peritaje">car_repair</mat-icon>
+                    <h2 class="title-bloques-cb">Elementos A-Z</h2>
+                </div>
+                <button class="new_params" mat-raised-button><mat-icon>fact_check</mat-icon> Nuevo</button>
             </div>
-            <section class="example-section radio-options-cb">
-                <mat-radio-group required name="-repi_tipo">
-                    <mat-radio-button class="cb-radio-button rbtn-first" [value]="repiTipoA">Repi TIPO A </mat-radio-button>
-                    <mat-radio-button class="cb-radio-button" [value]="repiTipoB">Repi TIPO B </mat-radio-button>
-                </mat-radio-group>
-            </section>
-            <section class="example-section radio-options-cb">
-                <mat-radio-group required name="-repar_tipo">
-                    <mat-radio-button class="cb-radio-button rbtn-first" [value]="reparTipoA">Repar TIPO A </mat-radio-button>
-                    <mat-radio-button class="cb-radio-button" [value]="reparTipoB">Repar TIPO B </mat-radio-button>
-                </mat-radio-group>
-            </section>
-            <section class="example-section radio-options-cb">
-                <mat-radio-group required name="-estado_parte">
-                    <mat-radio-button class="cb-radio-button rbtn-first" [value]="cambiado">Cambiado </mat-radio-button>
-                    <mat-radio-button class="cb-radio-button" [value]="removido">Removido </mat-radio-button>
-                </mat-radio-group>
-            </section>
-        </mat-card>
-    </div>
 
-    <div class="container-elementosAz" *ngIf="showElementos">
-        <h2>Elementos A-Z</h2>
-        <!-- <div class="elementos-a-z-container">
-            <section class="example-section radio-options-cb" *ngFor="let elementoAz of shared">
-                <div style="width: 100%">
-                    <label class="item-label cbradio-label-parametrizado">{{elementoAz.elemento}}</label>
-                    <button mat-icon-button matTooltipPosition="above" matTooltip="Ocultar elemento" class="item-button"><mat-icon class="m-icon-cb eye-icon">remove_red_eye</mat-icon></button>
+            <div class="modal-parametrizacion">
+                <!-- <div class="close-div-container">
+                    <button mat-icon-button class="close-modal" matTooltip="Cerrar" [mat-dialog-close]="{{parametrizacion}}" cdkFocusInitial><mat-icon class="m-icon-cb">close</mat-icon></button>
+                </div> -->
+                <h1 class="title-modal" mat-dialog-title>Maestro de {{parametrizacion}}</h1>
+                <mat-dialog-content>
+                    <!-- <button class="btn-modal-cb-icon" mat-button (click)="openModalEdit({{parametrizacion}},nuevoMaestro)"><mat-icon>add</mat-icon>&nbsp;Agregar Nuevo Item</button> -->
+                    <div class="maestros-container">
+                        <mat-card *ngFor="let maestro of listaMaestros; index as i" class="maestro-container">
+                            <div class="card-header">
+                                <mat-card-title class="card-title card-title-parametrizacion">{{maestro.descripcion}}</mat-card-title>
+                                <div class="card-header-buttons">
+                                    <!-- <button mat-button class="header-button" matTooltip="Editar" (click)="openModalEdit({{parametrizacion}},maestro)"><mat-icon class="icon-button-header">edit</mat-icon></button>
+                                    <button mat-button class="header-button" matTooltip="Borrar" (click)="eliminarMaestro(i)"><mat-icon class="icon-button-header">delete</mat-icon></button> -->
+                                </div>
+                            </div>
+                            <mat-card-content>
+                                <div class="card-content" *ngIf="maestro.valor_def == 1">
+                                    <p>
+                                        <mat-icon>check_box_outline_blank</mat-icon>&nbsp;Malo</p>
+                                </div>
+                                <div class="card-content" *ngIf="maestro.valor_def == 2">
+                                    <p>
+                                        <mat-icon>radio_button_checked</mat-icon>&nbsp;Leve</p>
+                                    <p>
+                                        <mat-icon>radio_button_unchecked</mat-icon>&nbsp;Fuerte</p>
+                                </div>
+                                <div class="card-content" *ngIf="maestro.valor_def == 3">
+                                    <p>
+                                        <mat-icon>radio_button_checked</mat-icon>&nbsp;OK</p>
+                                    <p>
+                                        <mat-icon>radio_button_unchecked</mat-icon>&nbsp;Bajo</p>
+                                </div>
+                                <div class="card-content" *ngIf="maestro.valor_def == 4">
+                                    <p>
+                                        <mat-icon>radio_button_checked</mat-icon>&nbsp;Si</p>
+                                    <p>
+                                        <mat-icon>radio_button_unchecked</mat-icon>&nbsp;No</p>
+                                </div>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                </mat-dialog-content>
+                <div mat-dialog-actions>
+                    <!-- <button mat-button [mat-dialog-close]="data.nombre" cdkFocusInitial>Cerrar</button> -->
                 </div>
-                <div *ngIf="elementoAz.valor_def == 1">
-                    <section>
-                        <mat-checkbox required class="" [(ngModel)]="elementoAz.est" (change)="elementoAz.est ? elementoAz.est = 1 : elementoAz.est = 0">Malo</mat-checkbox>
-                    </section>
-                </div>
-                <div *ngIf="elementoAz.valor_def == 2">
-                    <mat-radio-group required name="{{elementoAz.elemento}}" [(ngModel)]="elementoAz.est">
-                        <mat-radio-button class="cb-radio-button" [value]="2">Leve</mat-radio-button>
-                        <mat-radio-button class="cb-radio-button" [value]="3">Fuerte</mat-radio-button>
-                    </mat-radio-group>
-                </div>
-                <div *ngIf="elementoAz.valor_def == 3">
-                    <mat-radio-group required name="{{elementoAz.elemento}}" [(ngModel)]="elementoAz.est">
-                        <mat-radio-button class="cb-radio-button" [value]="4">OK</mat-radio-button>
-                        <mat-radio-button class="cb-radio-button" [value]="5">Bajo</mat-radio-button>
-                    </mat-radio-group>
-                </div>
-                <div *ngIf="elementoAz.valor_def == 4">
-                    <mat-radio-group required name="{{elementoAz.elemento}}" [(ngModel)]="elementoAz.est">
-                        <mat-radio-button class="cb-radio-button" [value]="7">Si</mat-radio-button>
-                        <mat-radio-button class="cb-radio-button" [value]="6">No</mat-radio-button>
-                    </mat-radio-group>
-                </div>
-            </section>
-        </div> -->
-        <div class="elementos-a-z-container">
-            <section class="example-section radio-options-cb">
-                <div style="width: 100%">
-                    <label class="item-label cbradio-label-parametrizado">Title</label>
-                    <!-- <button mat-icon-button matTooltipPosition="above" matTooltip="Ocultar elemento" class="item-button"><mat-icon class="m-icon-cb eye-icon">remove_red_eye</mat-icon></button> -->
-                </div>
-                <div>
-                    <section>
-                        <mat-checkbox required class="">Malo</mat-checkbox>
-                    </section>
-                </div>
-                <div>
-                    <mat-radio-group required name="">
-                        <mat-radio-button class="cb-radio-button" [value]="2">Leve</mat-radio-button>
-                        <mat-radio-button class="cb-radio-button" [value]="3">Fuerte</mat-radio-button>
-                    </mat-radio-group>
-                </div>
-                <div>
-                    <mat-radio-group required name="">
-                        <mat-radio-button class="cb-radio-button" [value]="4">OK</mat-radio-button>
-                        <mat-radio-button class="cb-radio-button" [value]="5">Bajo</mat-radio-button>
-                    </mat-radio-group>
-                </div>
-                <div>
-                    <mat-radio-group required name="">
-                        <mat-radio-button class="cb-radio-button" [value]="7">Si</mat-radio-button>
-                        <mat-radio-button class="cb-radio-button" [value]="6">No</mat-radio-button>
-                    </mat-radio-group>
-                </div>
-            </section>
+            </div>
+
         </div>
-    </div>
+    </mat-card-content>
+    <mat-card-actions>
+
+    </mat-card-actions>
 
 </mat-card>

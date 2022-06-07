@@ -16,9 +16,7 @@ export class SharedService {
 
   constructor(private readonly messageService: MessagesService) {
     this.global = {
-      isEmpty: true,
-      listaPartes: [],
-      listaElementos: [],
+      isEmpty: true
     };
     this.sesion = {
       isEmpty: true
@@ -72,8 +70,6 @@ export class SharedService {
   private resetValues(): void {
     this.global = {
       isEmpty: true,
-      listaPartes: [],
-      listaElementos: [],
     };
   }
 }
