@@ -34,7 +34,7 @@ import { PartesFormPeritajeComponent } from './components/partes-form-peritaje/p
 import { ElementosFormPeritajeComponent } from './components/elementos-form-peritaje/elementos-form-peritaje.component';
 
 import { HeaderComponent } from './templates/header/header.component';
-import { ModalParametrizacionComponent } from './templates/modal-parametrizacion/modal-parametrizacion.component';
+import { ModalFirmaComponent } from './templates/modal-firma/modal-firma.component';
 import { ModalEditComponent } from './templates/modal-edit/modal-edit.component';
 import { ParametrizacionFormPeritrajeComponent } from './components/parametrizacion-form-peritaje/parametrizacion-form-peritaje.component';
 
@@ -43,7 +43,7 @@ import { ParametrizacionFormPeritrajeComponent } from './components/parametrizac
     AppComponent,
     FormatoPeritajeComponent,
     HeaderComponent,
-    ModalParametrizacionComponent,
+    ModalFirmaComponent,
     ModalEditComponent,
     BusquedaFormPeritajeComponent,
     MenuComponent,

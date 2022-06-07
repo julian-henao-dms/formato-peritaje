@@ -38,7 +38,7 @@ export class AppComponent {
           this.navigateBack = '';
         }
         if (event.subtitle === 'parametrizacion') {
-          this.subtitle = 'Parametrización';
+          this.subtitle = 'ParametrizaciÃ³n';
           this.navigateBack = '';
         }
         if (event.subtitle === 'formulario') {
@@ -56,6 +56,8 @@ export class AppComponent {
       }
     } else {
       this.title = 'Casa Britanica';
+      this.subtitle = '';
+      this.showSubtitle = false;
     }
   }
 }
