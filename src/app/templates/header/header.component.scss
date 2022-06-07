@@ -1,76 +1,73 @@
-.header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
 .header-casa-britanica {
     background-color: #000;
     border-radius: 0;
 }
 
-.header-info-cb p {
-    color: #fff;
-    font-size: 16px;
-    >span {
-        color: #b50411;
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    div {
+        width: 20em;
+    }
+    h1.title-cb {
+        margin-top: 10px;
+    }
+    .logo-cb {
+        width: 190px;
     }
 }
 
-form-casa-britanica {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
-}
-
-.cb-full-width {
-    width: 100%;
-}
-
-.logo-cb {
-    width: 275px;
-}
-
-ul.codigo-revision-fecha {
-    list-style: none;
-}
-
-ul.codigo-revision-fecha>li>span {
-    margin-left: 0.5em;
+.header-info-cb {
+    display: flex;
+    justify-content: flex-end;
+    p {
+        color: #fff;
+        font-size: 16px;
+        margin: 10px 0 0 0;
+        >span {
+            color: #b50411;
+        }
+    }
 }
 
 h1.title-cb {
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+h1.title-cb,
+h4.subtitle-cb {
     text-transform: uppercase;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     color: #fff;
     text-align: center;
-}
-h4.subtitle-cb {
-  font-family: 'Poppins', sans-serif;
-  color: #fff;
-  text-align: center;
+    margin: 0;
 }
 
 @media (max-width: 800px) {
-  .header-container {
-    display: flex;
-    justify-content: center;
-  }
-
-  .title-container-cb h1 {
-    margin-top: 0.5em;
-    font-size: 18px;
-    padding: 0 0.5em;
-  }
-
-  ul.codigo-revision-fecha {
-    padding-left: 0;
-  }
+    .header-container {
+        display: flex;
+        justify-content: center;
+    }
+    .title-container-cb h1 {
+        margin-top: 0.5em;
+        font-size: 18px;
+        padding: 0 0.5em;
+    }
+    .header-info-cb {
+        display: flex;
+        justify-content: center;
+    }
 }
 
 @media (max-width: 640px) {
     .header-container {
         display: flex;
         flex-direction: column;
+    }
+    .logo-container {
+        display: flex;
+        justify-content: center;
     }
 }
