@@ -1,1 +1,43 @@
-<p>partes-form-peritaje works!</p>
+<mat-card class="bloque-cb-5 estado_pintura">
+  <h2 class="title-bloques-cb">Estado Pintura</h2>
+
+  <!-- *ngFor="let estado of data.estadosPintura" -->
+  <div class="estados-pintura-container" *ngIf="listaPartes.length > 0">
+    <mat-card class="group-radio-options-cb estado-pintura-container" *ngFor="let estadoPintura of listaPartes">
+      <div>
+        <label class="cbradio-label-parametrizado" style="margin-right:10px">{{estadoPintura.parte}}</label>
+        <mat-form-field>
+          <mat-select name="{{estadoPintura.parte}}-estado" [(ngModel)]="estadoPintura.id_chk_estado">
+            <mat-option [value]="0">Buen estado</mat-option>
+            <mat-option *ngFor="let estado of estados" [value]="estado.id">
+              {{estado.descripcion}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <section class="example-section radio-options-cb">
+        <mat-radio-group required name="{{estadoPintura.parte}}-repi_tipo" [(ngModel)]="estadoPintura.repi_tipo">
+          <mat-radio-button class="cb-radio-button rbtn-first" [value]="repiTipoA">Repi TIPO A </mat-radio-button>
+          <mat-radio-button class="cb-radio-button" [value]="repiTipoB">Repi TIPO B </mat-radio-button>
+        </mat-radio-group>
+      </section>
+      <section class="example-section radio-options-cb">
+        <mat-radio-group required name="{{estadoPintura.parte}}-repar_tipo" [(ngModel)]="estadoPintura.repar_tipo">
+          <mat-radio-button class="cb-radio-button rbtn-first" [value]="reparTipoA">Repar TIPO A </mat-radio-button>
+          <mat-radio-button class="cb-radio-button" [value]="reparTipoB">Repar TIPO B </mat-radio-button>
+        </mat-radio-group>
+      </section>
+      <section class="example-section radio-options-cb">
+        <mat-radio-group required name="{{estadoPintura.parte}}-estado_parte" [(ngModel)]="estadoPintura.estadoParte">
+          <mat-radio-button class="cb-radio-button rbtn-first" [value]="cambiado">Cambiado </mat-radio-button>
+          <mat-radio-button class="cb-radio-button" [value]="removido">Removido </mat-radio-button>
+        </mat-radio-group>
+      </section>
+    </mat-card>
+  </div>
+</mat-card>
+
+<div class="footer-button">
+  <button mat-raised-button color="warn" (click)="atras()">Atras</button>
+  <button mat-raised-button color="warn" (click)="siguiente()">Siguiente</button>
+</div>

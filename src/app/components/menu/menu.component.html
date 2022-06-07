@@ -1,1 +1,19 @@
-<p>menu works!</p>
+<div class="menu">
+  <div class="menu-list">
+    <ul class="menu-item">
+      <div *ngFor="let opcion of opciones; let i = index">
+        <li class="item">
+          <img [src]="opcion.imagen" alt="">
+          <div (click)="mostrarMenu(opcion.id, opcion.isOpen)">
+            {{opcion.titulo}}<mat-icon>{{opcion.icono}}</mat-icon>
+          </div>
+        </li>
+        <ul class="menu-subitem" [ngClass]="{'isOpen': opcion.isOpen}">
+          <li class="subitem" *ngFor="let item of opcion.items" [ngStyle]="item.border">
+            <a [routerLink]="[item.ruta]">{{item.titulo}}</a>
+          </li>
+        </ul>
+      </div>
+    </ul>
+   </div>
+</div>
