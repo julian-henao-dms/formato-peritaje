@@ -54,6 +54,6 @@
     </mat-dialog-content>
     <div mat-dialog-actions class="actions-new-elements">
         <button mat-button *ngIf="data.maestro.descripcion != ''" [mat-dialog-close]="data.maestro.id" (click)="guardarItem(data.maestro)" cdkFocusInitial>Guardar</button>
-        <button mat-button *ngIf="data.maestro.descripcion == ''" [mat-dialog-close]="data.maestro.id" cdkFocusInitial>Cancelar</button>
+        <button class="cancel-btn-peritaje" mat-button [mat-dialog-close]="data.maestro.id" cdkFocusInitial>Cancelar</button>
     </div>
 </div>

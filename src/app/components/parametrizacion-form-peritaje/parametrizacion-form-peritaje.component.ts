@@ -65,11 +65,11 @@ export class ParametrizacionFormPeritrajeComponent implements OnInit {
       await this.cargarListaMaestros();
   }
 
-  public openModalEdit(nombre: string, maestro: Maestro): void {
+  public openModalEdit(maestro: Maestro): void {
     const dialogRef = this.dialog.open(ModalEditComponent, {
       width: '400px',
       data: { 
-        nombre: nombre, 
+        nombre: this.parametrizacion, 
         maestro: maestro,
         textModalElement : 'Escriba el nombre del elemento a crear y seleccione uno de los tipos disponibles para crear el elemento con sus opciones de elección.',
         textModalPart : 'Escriba el nombre de la parte a crear.',
