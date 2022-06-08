@@ -19,6 +19,7 @@ export class BusquedaFormPeritajeComponent implements OnInit, OnDestroy {
   public selectedRowIndex = -1;
   public disabledBtnCrear: boolean;
   public disabledBtnEditar: boolean;
+  public disabledBtnParametr: boolean;
   public formularios: formulario[] = [];
   public selectedFormulario: formulario | undefined;
   public placa: string = '';
@@ -35,6 +36,7 @@ export class BusquedaFormPeritajeComponent implements OnInit, OnDestroy {
   ) {
     this.disabledBtnCrear = true;
     this.disabledBtnEditar = true;
+    this.disabledBtnParametr = true;
     this.assets = environment.assets;
   }
 
@@ -117,6 +119,10 @@ export class BusquedaFormPeritajeComponent implements OnInit, OnDestroy {
     }, error => {
       this.messageService.error("Oops...", "Error interno en el servidor");
     });
+  }
+
+  public parametrizarCampos(){
+
   }
 
   public rowSelect(row: any): void {

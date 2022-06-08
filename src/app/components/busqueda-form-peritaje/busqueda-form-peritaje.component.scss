@@ -74,3 +74,23 @@ span.mat-button-wrapper {
     align-items: center;
     justify-content: flex-start;
 }
+
+.table-form-peritaje {
+    tr,
+    th {
+        text-align: center;
+    }
+    th {
+        color: $main-color;
+        text-transform: uppercase;
+    }
+}
+
+@media(max-width: 520px) {
+    .vin-placa mat-form-field {
+        width: 100%;
+    }
+    .btns-form-peritaje .btns-search-peritaje span {
+        display: none;
+    }
+}
