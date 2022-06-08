@@ -2,7 +2,8 @@ $main-color: #b50411;
 mat-card {
     margin-bottom: 1.2em;
 }
-mat-hint{
+
+mat-hint {
     font-size: 9px;
     color: red;
 }
@@ -131,13 +132,13 @@ section.rbtn-b1 {
 }
 
 .form-group-cb .firma {
-  background-color: whitesmoke;
-  width: 20%;
-  height: auto;
-  min-height: 60px;
-  padding-bottom: 5px;
-  text-align: center;
-  border-radius: 5px;
+    background-color: whitesmoke;
+    width: 20%;
+    height: auto;
+    min-height: 60px;
+    padding-bottom: 5px;
+    text-align: center;
+    border-radius: 5px;
 }
 
 .form-group-cb-b {
@@ -339,10 +340,21 @@ button.delete-interv-btn {
 }
 
 .footer-button {
-  display: flex;
-  justify-content: space-evenly;
-  width: 100%;
-  padding: 15px 0;
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    padding: 15px 0;
+    button {
+        background-color: $main-color;
+        color: #fff;
+        padding: 0 0.6em;
+    }
+    .back-btn mat-icon {
+        margin-right: 0.3em;
+    }
+    .next-btn mat-icon {
+        margin-left: 0.3em;
+    }
 }
 
 @media(max-width: 520px) {
