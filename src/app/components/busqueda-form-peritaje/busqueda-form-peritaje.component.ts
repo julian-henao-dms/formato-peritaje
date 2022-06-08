@@ -86,6 +86,7 @@ export class BusquedaFormPeritajeComponent implements OnInit, OnDestroy {
       this.shared.formulario = this.estructuraFormulario(response.id_cot_item_lote);
       this.shared.encabezados.id_usuario = 1; // usuario quemado
       this.shared.encabezados.id_usu_inspector = 1; // usuario inspector quemado
+      this.shared.encabezados.fec_prox_mantenimiento = (this.shared.encabezados.fec_prox_mantenimiento == '0001-01-01T00:00:00' ? new Date() : this.shared.encabezados.fec_prox_mantenimiento);
       console.log(this.shared);
       this.router.navigate(['formato-peritaje/encabezados']);
     }, error => {
@@ -119,15 +120,22 @@ export class BusquedaFormPeritajeComponent implements OnInit, OnDestroy {
     });
   }
 
+  public abrirParametrizacion() {
+    this.router.navigate(['/formato-peritaje/parametrizacion']);
+  }
+
   public rowSelect(row: any): void {
     if (row.id == this.selectedRowIndex) {
       this.selectedFormulario = undefined;
       this.selectedRowIndex = -1;
       this.disabledBtnEditar = true;
+      this.disabledBtnCrear  = false;
     } else {
       this.selectedFormulario = row;
       this.selectedRowIndex = row.id;
       this.disabledBtnEditar = false;
+      this.disabledBtnCrear  = true;
+      
     }
   }
 
