@@ -1,27 +1,80 @@
-mat-card.bloque-cb-5{
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
+$main-color: #b50411;
+mat-card.bloque-cb-5 {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin: 1.2em;
 }
 
-.title-bloques-cb {
-  // margin-left: 35px;
-  margin-top: 1.2em;
+.title-card-pritaje {
+    display: flex;
+    margin: 0 0 1.2em 1.2em;
+    align-items: center;
+    h2 {
+        margin-bottom: -3px;
+        font-size: 18px;
+        text-transform: uppercase;
+    }
+    .icon-title-card-peritaje {
+        color: $main-color;
+        margin-right: 0.5em;
+    }
+}
+
+.label-select {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    mat-form-field.select-estado {
+        max-width: 160px;
+    }
 }
 
 .estados-pintura-container {
-  display: flex;
-  flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .estado-pintura-container {
+        margin: 10px;
+    }
 }
 
-.estado-pintura-container {
-  margin: 10px;
+label.cbradio-label-parametrizado {
+    text-decoration: underline;
+    font-size: 15px;
+    text-decoration-color: #b50411;
 }
 
 .group-radio-options-cb {
-  margin-bottom: 1.2em;
+    margin-bottom: 1.2em;
 }
 
-.group-radio-options-cb mat-radio-group{
-  margin-bottom: 0.5em;
+.group-radio-options-cb mat-radio-group {
+    margin-bottom: 0.5em;
+}
+
+.footer-button {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    padding: 15px 0;
+    button {
+        background-color: $main-color;
+        color: #fff;
+        padding: 0 0.6em;
+    }
+    .back-btn mat-icon {
+        margin-right: 0.3em;
+    }
+    .next-btn mat-icon {
+        margin-left: 0.3em;
+    }
+}
+
+.rbtn-first {
+    min-width: 110px;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-infix {
+    padding: 0.4375em 0 0;
 }
