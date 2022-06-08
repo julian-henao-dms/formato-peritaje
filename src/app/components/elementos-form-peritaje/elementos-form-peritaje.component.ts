@@ -4,8 +4,8 @@ import { environment } from '../../../environments/environment';
 import { ApiService } from '../../services/api.service';
 import { MessagesService } from '../../services/messages.service';
 import { SharedService } from '../../services/shared.service';
-import { ElementosAz } from '../formato-peritaje/interfaces/elementos-az';
-import { EstadoPintura } from '../formato-peritaje/interfaces/estadoPintura.interface';
+import { ElementosAz } from './interfaces/elementosAZ.interface';
+import { EstadoPintura } from './interfaces/estadoPintura.interface';
 
 @Component({
   selector: 'app-elementos-form-peritaje',
@@ -36,13 +36,14 @@ export class ElementosFormPeritajeComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.sesion = await this.sharedService.getSesion();
     this.shared = await this.sharedService.getValues();
+    this.idChk = this.shared.formulario.id;
     this.cargarlistaElementos();
   }
 
-  private async cargarlistaElementos(idChk: number = 0): Promise<void> {
+  private async cargarlistaElementos(): Promise<void> {
     const servicio = '/VehiculosUsados/Elementos';
     const idEmp = this.sesion.empresa;
-    const params = '/' + idEmp + '/' + idChk.toString();
+    const params = '/' + idEmp + '/' + this.idChk.toString();
     (await this.apiService.getInformacion(servicio, params)).subscribe((response: any) => {
       this.listaElementos = response;
     }, error => {
@@ -62,6 +63,11 @@ export class ElementosFormPeritajeComponent implements OnInit {
     }
   }
 
+  public borrarIntervencion(elementoAZ: ElementosAz) {
+    elementoAZ.intervencion = 0
+    elementoAZ.valor = 0;
+  }
+
   public async guardarFormulario(): Promise<void> {
     this.shared.listaElementos = this.listaElementos;
     console.log(this.shared);
@@ -76,14 +82,12 @@ export class ElementosFormPeritajeComponent implements OnInit {
             servicio = '/vehiculosusados/guardarpartes';
             this.shared.listaPartes.forEach((parte: EstadoPintura) => {
               parte.id_veh_chk_usados = this.idChk;
-              parte.accion = 0;
             });
             (await this.apiService.saveInformacion(servicio, this.shared.listaPartes)).subscribe(async (response: any) => {
               if (response) {
                 servicio = '/vehiculosusados/guardarelementos';
                 this.shared.listaElementos.forEach((elemento: ElementosAz) => {
                   elemento.id_veh_chk_usados = this.idChk;
-                  elemento.accion = 0;
                 });
                 (await this.apiService.saveInformacion(servicio, this.shared.listaElementos)).subscribe(async (response: any) => {
                   if (response) {
