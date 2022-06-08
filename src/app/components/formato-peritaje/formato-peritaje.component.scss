@@ -2,6 +2,10 @@ $main-color: #b50411;
 mat-card {
     margin-bottom: 1.2em;
 }
+mat-hint{
+    font-size: 9px;
+    color: red;
+}
 
 mat-card.bloque-cb-1 {
     display: flex;
@@ -53,20 +57,6 @@ mat-card.bloque-cb-4 {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-}
-
-mat-card.bloque-cb-5,
-mat-card.bloque-cb-7 {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-}
-
-.elementos-a-z-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
 }
 
 .group-radio-options-cb {
@@ -138,6 +128,16 @@ section.rbtn-b1 {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+}
+
+.form-group-cb .firma {
+  background-color: whitesmoke;
+  width: 20%;
+  height: auto;
+  min-height: 60px;
+  padding-bottom: 5px;
+  text-align: center;
+  border-radius: 5px;
 }
 
 .form-group-cb-b {
@@ -218,20 +218,6 @@ mat-icon.m-icon-cb {
 
 .mat-radio-button~.mat-radio-button {
     margin-right: 4px;
-}
-
-.title-bloques-cb {
-    // margin-left: 35px;
-    margin-top: 1.2em;
-}
-
-.estados-pintura-container {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.estado-pintura-container {
-    margin: 10px;
 }
 
 .add-fields {
@@ -350,6 +336,13 @@ button.delete-interv-btn {
         color: $main-color;
         margin-right: 0.5em;
     }
+}
+
+.footer-button {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  padding: 15px 0;
 }
 
 @media(max-width: 520px) {
