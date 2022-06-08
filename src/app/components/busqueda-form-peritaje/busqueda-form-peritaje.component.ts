@@ -36,7 +36,7 @@ export class BusquedaFormPeritajeComponent implements OnInit, OnDestroy {
   ) {
     this.disabledBtnCrear = true;
     this.disabledBtnEditar = true;
-    this.disabledBtnParametr = true;
+    this.disabledBtnParametr = false;
     this.assets = environment.assets;
   }
 
