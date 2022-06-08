@@ -45,11 +45,10 @@ export class PartesFormPeritajeComponent implements OnInit {
     const servicio = '/vehiculosusados/estadospintura';
     (await this.apiService.getInformacion(servicio, '')).subscribe(async (response: any) => {
       this.estados = response;
+      this.cargarlistaPartes();
     }, error => {
       this.messageService.error("Oops...", "Error interno en el servidor");
     });
-
-    this.cargarlistaPartes();
   }
 
   private procesarInformacion(): void {
