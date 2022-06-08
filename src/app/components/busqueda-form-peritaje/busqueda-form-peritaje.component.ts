@@ -40,12 +40,12 @@ export class BusquedaFormPeritajeComponent implements OnInit, OnDestroy {
 
   async ngOnInit(): Promise<void> {
     this.sesion = await this.sharedService.getSesion();
-    this.shared = await this.sharedService.getValues();
   }
 
   public async onEnter(): Promise<void> {
     await this.sharedService.deleteValues();
     await this.resetinitData();
+    this.shared = await this.sharedService.getValues();
     if (this.placa !== '' || this.vin !== '') {
       this.messageService.info("Atencion", "Estamos cargando los formatos asociados");
       const idEmp = this.sesion.empresa;
