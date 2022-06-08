@@ -4,7 +4,7 @@ import { environment } from '../../../environments/environment';
 import { ApiService } from '../../services/api.service';
 import { MessagesService } from '../../services/messages.service';
 import { SharedService } from '../../services/shared.service';
-import { EstadoPintura } from '../formato-peritaje/interfaces/estadoPintura.interface';
+import { EstadoPintura } from './interfaces/estadoPintura.interface';
 
 @Component({
   selector: 'app-partes-form-peritaje',

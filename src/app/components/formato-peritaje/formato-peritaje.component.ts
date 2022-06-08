@@ -1,7 +1,6 @@
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
-import { ApiService } from '../../services/api.service';
 import { MessagesService } from '../../services/messages.service';
 import { SharedService } from '../../services/shared.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';

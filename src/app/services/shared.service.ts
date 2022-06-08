@@ -76,7 +76,6 @@ export class SharedService {
         linea: '',
         marca: '',
         modelo: '',
-        
       },
       listaPartes: [],
       listaElementos: []

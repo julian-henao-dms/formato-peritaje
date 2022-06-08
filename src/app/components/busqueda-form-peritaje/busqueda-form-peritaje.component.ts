@@ -129,13 +129,10 @@ export class BusquedaFormPeritajeComponent implements OnInit, OnDestroy {
       this.selectedFormulario = undefined;
       this.selectedRowIndex = -1;
       this.disabledBtnEditar = true;
-      this.disabledBtnCrear  = false;
     } else {
       this.selectedFormulario = row;
       this.selectedRowIndex = row.id;
       this.disabledBtnEditar = false;
-      this.disabledBtnCrear  = true;
-      
     }
   }
 
