@@ -63,6 +63,7 @@ export class BusquedaFormPeritajeComponent implements OnInit, OnDestroy {
             }, 1000);
         } else{
           this.disabledBtnCrear = false;
+          this.disabledBtnParametr = false;
           if (response.data.length === 0 ) {
             setTimeout(
               () => {
@@ -130,10 +131,15 @@ export class BusquedaFormPeritajeComponent implements OnInit, OnDestroy {
       this.selectedFormulario = undefined;
       this.selectedRowIndex = -1;
       this.disabledBtnEditar = true;
+      this.disabledBtnParametr  = false;
+      this.disabledBtnCrear  = false;
     } else {
       this.selectedFormulario = row;
       this.selectedRowIndex = row.id;
       this.disabledBtnEditar = false;
+      this.disabledBtnParametr  = true;
+      this.disabledBtnCrear  = true;
+      
     }
   }
 
