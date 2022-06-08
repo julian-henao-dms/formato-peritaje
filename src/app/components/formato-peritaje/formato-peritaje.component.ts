@@ -26,11 +26,6 @@ interface Combustible {
 export class FormatoPeritajeComponent implements OnInit, OnDestroy {
   private readonly title: string = 'FormatoPeritaje';
   private readonly subtitle: string = 'formulario';
-  /*public nombreItem: string;
-  public idElementoIntervencion: number;
-  public estados: {id: number, descripcion: string}[] = [];
-  public listaElementos: ElementosAz[] = [];
-  public listaPartes: EstadoPintura[] = [];*/
   public kmActual: number;
   public firma: any;
   public shared: any;
@@ -50,14 +45,11 @@ export class FormatoPeritajeComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly router: Router,
-    private readonly apiService: ApiService,
     private readonly sharedService: SharedService,
     private readonly messageService: MessagesService,
     public dialog: MatDialog
   ) {
     this.kmActual = 0;
-    /*this.nombreItem = '';
-    this.idElementoIntervencion = 0;*/
     this.assets = environment.assets;
     this.calificaciones = [
       {value: 5, viewValue: 'Nuevo'}, 
@@ -79,12 +71,6 @@ export class FormatoPeritajeComponent implements OnInit, OnDestroy {
     this.sesion = await this.sharedService.getSesion();
     this.shared = await this.sharedService.getValues();
     this.kmActual = this.shared.encabezados.km;
-    /*const servicio = '/vehiculosusados/estadospintura';
-    (await this.apiService.getInformacion(servicio, '')).subscribe(async (response: any) => {
-      this.estados = response;
-    }, error => {
-      this.messageService.error("Oops...", "Error interno en el servidor");
-    });*/
   }
 
   public openModalFirma(nombre: string): void {
@@ -138,15 +124,27 @@ export class FormatoPeritajeComponent implements OnInit, OnDestroy {
 
     if (valid) { //Kilometraje menor al actual
       if (this.shared.encabezados.km < this.kmActual) {
+        document.getElementById('kmInput')?.focus();
         this.messageService.warning('Oops...', 'El kilometraje actual no puede ser menor al kilometraje anterior');
-        valid = false;
         this.shared.encabezados.km = this.kmActual;
+        valid = false;
       }
     }
     if (valid) { //Cilindraje valor numerico decimal
       this.shared.encabezados.cilindraje = this.shared.encabezados.cilindraje.replace(',','.');
       if (isNaN(this.shared.encabezados.cilindraje)) {
+        document.getElementById('cilindrajeInput')?.focus();
         this.messageService.warning('Oops...', 'El cilindraje del vehiculo debe ser un valor numerico');
+        this.shared.encabezados.cilindraje = 0;
+        valid = false;
+      }
+    }
+    if (valid) {
+      const fechaProxMant: Date = new Date(this.shared.encabezados.fec_prox_mantenimiento);
+      if (fechaProxMant.getTime() < new Date(new Date().getTime() - 86400000).getTime()) {
+        document.getElementById('fechaProxMantInput')?.focus();
+        this.messageService.warning('Oops...', 'La fecha del proximo mantenimiento debe ser mayor o igual a la fecha actual');
+        this.shared.encabezados.fec_prox_mantenimiento = new Date();
         valid = false;
       }
     }
