@@ -1,19 +1,15 @@
 $main-color: #b50411;
-mat-card {
+mat-card,
+.group-radio-options-cb {
     margin-bottom: 1.2em;
 }
-mat-hint{
+
+mat-hint {
     font-size: 9px;
     color: red;
 }
 
-mat-card.bloque-cb-1 {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
+mat-card.bloque-cb-1,
 mat-card.bloque-cb-2 {
     display: flex;
     flex-wrap: wrap;
@@ -21,28 +17,15 @@ mat-card.bloque-cb-2 {
     justify-content: space-between;
 }
 
-mat-card.bloque-cb-3 {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-}
-
+mat-card.bloque-cb-3,
+mat-card.bloque-cb-4,
 .bloque-cb-6 {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
 }
 
-.radio-group-5 {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-bottom: 1em;
-    section {
-        margin-bottom: 1.2em;
-    }
-}
-
+.radio-group-5,
 .radio-group-6 {
     display: flex;
     flex-wrap: wrap;
@@ -53,33 +36,9 @@ mat-card.bloque-cb-3 {
     }
 }
 
-mat-card.bloque-cb-4 {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-}
-
-.group-radio-options-cb {
-    margin-bottom: 1.2em;
-}
-
 .example-margin,
 .cbradio-group-label {
     margin: 0 10px;
-}
-
-.group-radio-options-cb mat-radio-group.mat-radio-group {
-    margin-bottom: 0.5em;
-}
-
-.elementos-az section.example-section.radio-options-cb.ng-star-inserted {
-    margin-bottom: 1.2em;
-    border-bottom: solid 2px #cecece;
-    padding: 5px 0 8px 8px;
-}
-
-.group-radio-options-cb {
-    margin-bottom: 1.2em;
 }
 
 .group-radio-options-cb mat-radio-group.mat-radio-group {
@@ -99,7 +58,6 @@ mat-card.bloque-cb-4 {
 
 .example-margin,
 .cbradio-group-label {
-    // margin: 0 10px;
     margin: 5px 0;
 }
 
@@ -124,26 +82,21 @@ section.rbtn-b1 {
     width: 180px;
 }
 
-.form-group-cb {
+.form-group-cb,
+.form-group-cb-b {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
 }
 
 .form-group-cb .firma {
-  background-color: whitesmoke;
-  width: 20%;
-  height: auto;
-  min-height: 60px;
-  padding-bottom: 5px;
-  text-align: center;
-  border-radius: 5px;
-}
-
-.form-group-cb-b {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    background-color: whitesmoke;
+    width: 20%;
+    height: auto;
+    min-height: 60px;
+    padding-bottom: 5px;
+    text-align: center;
+    border-radius: 5px;
 }
 
 .btn-form-cb {
@@ -155,26 +108,12 @@ section.rbtn-b1 {
 .btn-form-cb-icon {
     background: #fff;
     color: $main-color;
-    // margin-left: 1.2em;
 }
 
 mat-icon.m-icon-cb {
     height: 25px;
     width: 25px;
     font-size: 15px;
-}
-
-.eye-icon {
-    color: #7e7e7e;
-}
-
-.eye-icon:hover {
-    color: #fff;
-    background: $main-color;
-    border-radius: 50%;
-    height: 23px;
-    width: 25px;
-    font-size: 14px;
 }
 
 .m-icon-cb-interv {
@@ -230,11 +169,6 @@ mat-icon.m-icon-cb {
     }
 }
 
-.new-check-list {
-    border: solid 1px #8BC34A;
-    color: #8BC34A
-}
-
 .peritajes {
     display: flex;
     flex-wrap: wrap;
@@ -266,14 +200,6 @@ mat-icon.m-icon-cb {
     width: 100%;
 }
 
-.cbradio-label-parametrizado {
-    display: block;
-    margin: 0.6em 0;
-    font-weight: 500;
-    text-decoration: underline;
-    text-decoration-color: $main-color;
-}
-
 .a {
     grid-column: col1-start;
     grid-row: row1-start;
@@ -282,39 +208,6 @@ mat-icon.m-icon-cb {
 .b {
     grid-column: col2-start;
     grid-row: row1-start;
-}
-
-.header-interv {
-    display: flex;
-    align-items: center;
-    mat-form-field {
-        margin-right: 1.2em;
-    }
-}
-
-.fields-interv.ng-star-inserted {
-    display: flex;
-    align-items: center;
-    mat-form-field {
-        margin-right: 1.2em;
-    }
-}
-
-button.add-interv-btn {
-    background: $main-color;
-    color: #fff;
-}
-
-button.delete-interv-btn {
-    color: $main-color;
-     :hover {
-        border: solid 1px #b50411;
-        border-radius: 50%;
-        background: #ffffff;
-        height: 24px;
-        width: 24px;
-        font-size: 21px;
-    }
 }
 
 .item-button {
@@ -330,19 +223,32 @@ button.delete-interv-btn {
     align-items: center;
     margin-bottom: 1.2em;
     h2 {
-        margin-bottom: 0;
+        margin-bottom: -3px;
+        font-size: 18px;
+        text-transform: uppercase;
     }
-    .icon-title-card-cb {
+    .icon-title-card-peritaje {
         color: $main-color;
         margin-right: 0.5em;
     }
 }
 
 .footer-button {
-  display: flex;
-  justify-content: space-evenly;
-  width: 100%;
-  padding: 15px 0;
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    padding: 15px 0;
+    button {
+        background-color: $main-color;
+        color: #fff;
+        padding: 0 0.6em;
+    }
+    .back-btn mat-icon {
+        margin-right: 0.3em;
+    }
+    .next-btn mat-icon {
+        margin-left: 0.3em;
+    }
 }
 
 @media(max-width: 520px) {
