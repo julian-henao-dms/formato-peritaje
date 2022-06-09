@@ -10,3 +10,4 @@ export interface Global {
   listaPartes: EstadoPintura[],
   listaElementos: ElementosAz[]
 }
+

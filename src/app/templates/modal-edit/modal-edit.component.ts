@@ -19,19 +19,30 @@ export class ModalEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(this.data.nombre == 'elementos'){
+      this.data.maestro.valor_def = 1;
+    }else{
+      this.data.maestro.valor_def = 0;
+    }
+
   }
 
   public async guardarItem(maestro: Maestro): Promise<void>{
-    if (maestro.descripcion !== '') {
-      const servicio = (this.data.nombre == 'partes' ? '/Maestros/ModificarPartes' : '/Maestros/ModificarElementos');
-      maestro.accion = 0;
-      console.log(maestro);
-      (await this.apiService.saveInformacion(servicio, maestro)).subscribe(async (response: any) => {
-        console.log(response);
-      }, error => {
-        this.messageService.error("Oops...", "Error interno en el servidor");
-      });
-      this.messageService.success("Perfecto", "Los cambios fueron guardados");
+    if(!this.data.listaMaestros.find((x:any) => x.descripcion == maestro.descripcion )){
+      if (maestro.descripcion !== '') {
+        const servicio = (this.data.nombre == 'partes' ? '/Maestros/ModificarPartes' : '/Maestros/ModificarElementos');
+        maestro.accion = 0;
+      
+        (await this.apiService.saveInformacion(servicio, maestro)).subscribe(async (response: any) => {
+         
+        }, error => {
+          this.messageService.error("Oops...", "Error interno en el servidor");
+        });
+        this.messageService.success("Perfecto", "Los cambios fueron guardados");
+      }
+    }else{
+      this.messageService.warning("Oops...", "Error, el nombre del maestro ya existe");
     }
+  
   }
 }

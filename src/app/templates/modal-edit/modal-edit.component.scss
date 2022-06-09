@@ -51,4 +51,14 @@
         color: #fff;
         background: #b50411;
     }
+    .cancel-btn-peritaje {
+        background: rgb(75 75 75 / 87%);
+    }
+}
+
+@media(max-width: 520px) {
+    .opcion-container mat-radio-button {
+        min-width: 4em;
+        margin-left: 5px;
+    }
 }

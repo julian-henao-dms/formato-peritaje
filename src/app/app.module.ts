@@ -26,6 +26,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 import { MenuComponent } from './components/menu/menu.component';
 import { BusquedaFormPeritajeComponent } from './components/busqueda-form-peritaje/busqueda-form-peritaje.component';
@@ -77,7 +78,8 @@ import { ParametrizacionFormPeritrajeComponent } from './components/parametrizac
     MatNativeDateModule,
     MatSliderModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatButtonToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]
