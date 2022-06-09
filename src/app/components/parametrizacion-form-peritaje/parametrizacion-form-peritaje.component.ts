@@ -73,6 +73,7 @@ export class ParametrizacionFormPeritrajeComponent implements OnInit {
         maestro: maestro,
         textModalElement : 'Escriba el nombre del elemento a crear y seleccione uno de los tipos disponibles para crear el elemento con sus opciones de elección.',
         textModalPart : 'Escriba el nombre de la parte a crear.',
+        listaMaestros: this.listaMaestros
     }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -96,7 +97,7 @@ export class ParametrizacionFormPeritrajeComponent implements OnInit {
         let body: Maestro = this.listaMaestros[index];
         body.accion = 1;
         (await this.apiService.saveInformacion(servicio, body)).subscribe(async (response: any) => {
-          console.log(response);
+
           await this.cargarListaMaestros();
         }, error => {
           this.messageService.error("Oops...", "Error interno en el servidor");
@@ -111,7 +112,6 @@ export class ParametrizacionFormPeritrajeComponent implements OnInit {
     const param = '/309';
     (await this.apiService.getInformacion(servicio, param)).subscribe((response: any) => {
       this.listaMaestros = response;
-      console.log(this.listaMaestros);
     }, error => {
       this.messageService.error("Oops...", "Error interno en el servidor");
     });
