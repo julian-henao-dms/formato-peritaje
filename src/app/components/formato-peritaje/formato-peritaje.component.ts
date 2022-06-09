@@ -82,6 +82,12 @@ export class FormatoPeritajeComponent implements OnInit, OnDestroy {
     });
   }
 
+  public cambioCorrea(): void {
+    if (this.shared.encabezados.cambio_correa == 0) {
+      this.shared.encabezados.lugar_cambio_correa = ''
+    }
+  }
+
   private validarCampos(): boolean {
     let valid = true;
     //Campos vacios del formulario
@@ -138,7 +144,7 @@ export class FormatoPeritajeComponent implements OnInit, OnDestroy {
         valid = false;
       }
     }
-    if (valid) {
+    if (valid) { // fecha proximo mantenimiento
       const fechaProxMant: Date = new Date(this.shared.encabezados.fec_prox_mantenimiento);
       if (fechaProxMant.getTime() < new Date(new Date().getTime() - 86400000).getTime()) {
         document.getElementById('fechaProxMantInput')?.focus();
@@ -174,98 +180,4 @@ export class FormatoPeritajeComponent implements OnInit, OnDestroy {
   async ngOnDestroy(): Promise<void> {
     this.sharedService.setValues(this.shared);
   }
-  /*
-  public async guardarFormulario(): Promise<void> {
-    this.procesarInformacion();
-    let servicio = '/vehiculosusados/guardarformulario';
-    (await this.apiService.saveInformacion(servicio, this.formulario)).subscribe(async (response: any) => {
-      if (response > 0) {
-        this.idChk = response;
-        this.encabezados.id_veh_chk_usados = this.idChk;
-        servicio = '/vehiculosusados/guardarencabezados';
-        (await this.apiService.saveInformacion(servicio, this.encabezados)).subscribe(async (response: any) => {
-          if (response) {
-            servicio = '/vehiculosusados/guardarpartes';
-            this.listaPartes.forEach( (parte) => {
-              parte.id_veh_chk_usados = this.idChk;
-              parte.accion = 0;
-            });
-            (await this.apiService.saveInformacion(servicio, this.listaPartes)).subscribe(async (response: any) => {
-              if (response) {
-                servicio = '/vehiculosusados/guardarelementos';
-                this.listaElementos.forEach((elemento) => {
-                  elemento.id_veh_chk_usados = this.idChk;
-                  elemento.accion = 0;
-                });
-                (await this.apiService.saveInformacion(servicio, this.listaElementos)).subscribe(async (response: any) => {
-                  if (response) {
-                    this.messageService.success("Perfecto", "El formato de peritaje fue guardado correctamente");
-                  } else {
-                    this.messageService.error("Oops...", "No se pudieron guardar los elementos AZ del formulario");
-                  }
-                }, error => {
-                  this.messageService.error("Oops...", "Error interno en el servidor");
-                });
-              } else {
-                this.messageService.error("Oops...", "No se pudieron guardar los estados Pintura del formulario");
-              }
-            }, error => {
-              this.messageService.error("Oops...", "Error interno en el servidor");
-            });
-          } else {
-            this.messageService.error("Oops...", "No se pudieron guardar los encabezados del formulario");
-          }
-        }, error => {
-          this.messageService.error("Oops...", "Error interno en el servidor");
-        });
-      } else {
-        this.messageService.error("Oops...", "No se pudo guardar el formulario");
-      }
-    }, error => {
-      this.messageService.error("Oops...", "Error interno en el servidor");
-    });
-  }*/
-
-  /*private procesarInformacion(): void {
-    this.listaPartes.forEach(function (parte) {
-      parte.repi_tipo_a = (parte.repi_tipo == 0 ? 1 : 0);
-      parte.repi_tipo_b = (parte.repi_tipo == 1 ? 1 : 0);
-      parte.repar_tipo_a = (parte.repar_tipo == 0 ? 1 : 0);
-      parte.repar_tipo_b = (parte.repar_tipo == 1 ? 1 : 0);
-      parte.cambiada = (parte.estadoParte == 0 ? 1 : 0);
-      parte.removida = (parte.estadoParte == 1 ? 1 : 0);
-    });
-  }*/
-
-  /*public agregarIntervencion(): void {
-    if (this.idElementoIntervencion !== 0) {
-      for (let i = 0; i < this.listaElementos.length; i++) {
-        if (this.listaElementos[i].id_chk_maestro_elementos == this.idElementoIntervencion) {
-          this.listaElementos[i].intervencion = 1;
-          break;
-        }
-      }
-      this.idElementoIntervencion = 0;
-    }
-  }
-
-  private async cargarlistaElementos(idChk: number = 0): Promise<void> {
-    const servicio = '/VehiculosUsados/Elementos';
-    const params = '/309/' + idChk.toString();
-    (await this.apiService.getInformacion(servicio, params)).subscribe((response: any) => {
-      this.listaElementos = response;
-    }, error => {
-      this.messageService.error("Oops...", "Error interno en el servidor");
-    });
-  }
-
-  private async cargarlistaPartes(idChk: number = 0): Promise<void> {
-    const servicio = '/VehiculosUsados/PartesPintura';
-    const params = '/309/' + idChk.toString();
-    (await this.apiService.getInformacion(servicio, params)).subscribe((response: any) => {
-      this.listaPartes = response;
-    }, error => {
-      this.messageService.error("Oops...", "Error interno en el servidor");
-    });
-  }*/
 }

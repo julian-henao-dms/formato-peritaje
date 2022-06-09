@@ -81,6 +81,7 @@ export class ParametrizacionFormPeritrajeComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       this.cargarListaMaestros();
+      this.nuevoMaestro = this.resetMaestro();
     });
   }
 
@@ -100,18 +101,19 @@ export class ParametrizacionFormPeritrajeComponent implements OnInit {
         let body: Maestro = this.listaMaestros[index];
         body.accion = 1;
         (await this.apiService.saveInformacion(servicio, body)).subscribe(async (response: any) => {
-          if(!response.success){
-            if(response.message === 'MaestroEnUso'){
-              this.messageService.error("Oops...", "Error, no puede eliminar partes o elementos que estén siendo usados en un formulario");            
-            }else{
+          if (!response.success) {
+            if (response.message === 'MaestroEnUso') {
+              this.messageService.error("Oops...", "El item no puede ser eliminado porque esta siendo utilizado en un formulario");
+            } else {
               this.messageService.error("Oops...", "Error interno en el servidor");
             }
+          } else {
+            this.messageService.success("Perfecto", "El item fue eliminado correctamente");
           }
           await this.cargarListaMaestros();
         }, error => {
           this.messageService.error("Oops...", "Error interno en el servidor");
         });
-        this.messageService.success("Perfecto","El item fue eliminado correctamente");
       }
     })
   }
@@ -130,4 +132,13 @@ export class ParametrizacionFormPeritrajeComponent implements OnInit {
     this.router.navigate(['/formato-peritaje']);
   }
 
+  private resetMaestro(): Maestro {
+    return {
+      id: 0,
+      id_emp: 309,
+      descripcion: '',
+      valor_def: 0,
+      accion: 0
+    };
+  }
 }

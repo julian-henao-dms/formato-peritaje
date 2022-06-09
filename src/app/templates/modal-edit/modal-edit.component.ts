@@ -24,7 +24,6 @@ export class ModalEditComponent implements OnInit {
     }else{
       this.data.maestro.valor_def = 0;
     }
-
   }
 
   public async guardarItem(maestro: Maestro): Promise<void>{
@@ -46,11 +45,13 @@ export class ModalEditComponent implements OnInit {
       maestro.accion = 0;
     
       (await this.apiService.saveInformacion(servicio, maestro)).subscribe(async (response: any) => {
-       
+        if (response)
+          this.messageService.success("Perfecto", "Los cambios fueron guardados");
+        else
+          this.messageService.error("Oops...", "No se pudo guardar el maestro");
       }, error => {
         this.messageService.error("Oops...", "Error interno en el servidor");
       });
-      this.messageService.success("Perfecto", "Los cambios fueron guardados");
     }
   }
 }

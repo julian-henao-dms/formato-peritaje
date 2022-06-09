@@ -273,7 +273,7 @@
 
         <section class="example-section radio-options-cb">
             <label class="cbradio-group-label">Cambio Correa:</label>
-            <mat-radio-group aria-label="Tiene Cambio Correa" required name="cambio_correa" [(ngModel)]="shared.encabezados.cambio_correa">
+            <mat-radio-group aria-label="Tiene Cambio Correa" required name="cambio_correa" [(ngModel)]="shared.encabezados.cambio_correa" (change)="cambioCorrea()">
                 <mat-radio-button class="cb-radio-button" [value]="1">Si</mat-radio-button>
                 <mat-radio-button class="cb-radio-button" [value]="0">No</mat-radio-button>
             </mat-radio-group>
@@ -283,8 +283,8 @@
     <div class="form-group-cb">
         <mat-form-field appearance="fill">
             <mat-label>Lugar Cambio Correa:</mat-label>
-            <input matInput placeholder="Donde Cambio Correa:" class="encabezado-required" name="lugar_cambio_correa" [(ngModel)]="shared.encabezados.lugar_cambio_correa">
-            <mat-hint>* Campo requerido</mat-hint>
+            <input matInput placeholder="Donde Cambio Correa:" name="lugar_cambio_correa" [(ngModel)]="shared.encabezados.lugar_cambio_correa" [disabled]="shared.encabezados.cambio_correa == 0">
+            <mat-hint [ngClass]="{'hidden': shared.encabezados.cambio_correa == 0}">* Campo requerido</mat-hint>
         </mat-form-field>
 
         <mat-form-field appearance="fill">

@@ -116,11 +116,13 @@ export class ElementosFormPeritajeComponent implements OnInit {
     }, error => {
       this.messageService.error("Oops...", "Error interno en el servidor");
     });
-    this.router.navigate(['formato-peritaje']);
+    setTimeout(() => {
+      this.router.navigate(['formato-peritaje']);
+    }, 2000);
   }
 
   public atras(): void {
-    this.router.navigate(['formato-peritaje/listaElementos']);
+    this.router.navigate(['formato-peritaje/listaPartes']);
   }
 
   async ngOnDestroy(): Promise<void> {
