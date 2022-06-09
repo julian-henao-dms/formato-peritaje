@@ -28,21 +28,29 @@ export class ModalEditComponent implements OnInit {
   }
 
   public async guardarItem(maestro: Maestro): Promise<void>{
-    if(!this.data.listaMaestros.find((x:any) => x.descripcion == maestro.descripcion )){
-      if (maestro.descripcion !== '') {
-        const servicio = (this.data.nombre == 'partes' ? '/Maestros/ModificarPartes' : '/Maestros/ModificarElementos');
-        maestro.accion = 0;
-      
-        (await this.apiService.saveInformacion(servicio, maestro)).subscribe(async (response: any) => {
-         
-        }, error => {
-          this.messageService.error("Oops...", "Error interno en el servidor");
-        });
-        this.messageService.success("Perfecto", "Los cambios fueron guardados");
+    if(!this.data.editMaestro){
+      if(!this.data.listaMaestros.find((x:any) => x.descripcion == maestro.descripcion )){
+        this.saveItem(maestro);
+      }else{
+        this.messageService.warning("Oops...", "Error, el nombre del maestro ya existe");
       }
     }else{
-      this.messageService.warning("Oops...", "Error, el nombre del maestro ya existe");
-    }
+      this.saveItem(maestro);
+  }
   
+  }
+
+  public async saveItem(maestro: Maestro): Promise<void>{
+    if (maestro.descripcion !== '') {
+      const servicio = (this.data.nombre == 'partes' ? '/Maestros/ModificarPartes' : '/Maestros/ModificarElementos');
+      maestro.accion = 0;
+    
+      (await this.apiService.saveInformacion(servicio, maestro)).subscribe(async (response: any) => {
+       
+      }, error => {
+        this.messageService.error("Oops...", "Error interno en el servidor");
+      });
+      this.messageService.success("Perfecto", "Los cambios fueron guardados");
+    }
   }
 }

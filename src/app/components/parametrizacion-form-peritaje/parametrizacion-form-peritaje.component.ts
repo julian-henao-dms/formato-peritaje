@@ -33,6 +33,7 @@ export class ParametrizacionFormPeritrajeComponent implements OnInit {
 
   private sesion: any;
   public assets: string;
+  public editMaestro: boolean = false;
 
 
 
@@ -65,7 +66,7 @@ export class ParametrizacionFormPeritrajeComponent implements OnInit {
       await this.cargarListaMaestros();
   }
 
-  public openModalEdit(maestro: Maestro): void {
+  public openModalEdit(maestro: Maestro, value:boolean): void {
     const dialogRef = this.dialog.open(ModalEditComponent, {
       width: '400px',
       data: { 
@@ -73,7 +74,8 @@ export class ParametrizacionFormPeritrajeComponent implements OnInit {
         maestro: maestro,
         textModalElement : 'Escriba el nombre del elemento a crear y seleccione uno de los tipos disponibles para crear el elemento con sus opciones de elección.',
         textModalPart : 'Escriba el nombre de la parte a crear.',
-        listaMaestros: this.listaMaestros
+        listaMaestros: this.listaMaestros,
+        editMaestro: value,
     }
     });
     dialogRef.afterClosed().subscribe(result => {
