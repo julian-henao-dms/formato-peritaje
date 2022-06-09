@@ -119,4 +119,8 @@ export class ParametrizacionFormPeritrajeComponent implements OnInit {
     });
   }
 
+  public atras(){
+    this.router.navigate(['/formato-peritaje']);
+  }
+
 }

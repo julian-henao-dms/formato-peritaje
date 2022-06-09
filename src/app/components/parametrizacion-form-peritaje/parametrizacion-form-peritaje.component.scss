@@ -15,6 +15,21 @@ $main-color: #b50411;
     }
 }
 
+.footer-button {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    padding: 15px 0;
+    button {
+        background-color: $main-color;
+        color: #fff;
+        padding: 0 0.6em;
+    }
+    .back-btn mat-icon {
+        margin-right: 0.3em;
+    }
+}
+
 .card-parametrizacion {
     margin: 1.2em 1.2em;
     mat-card-subtitle {
