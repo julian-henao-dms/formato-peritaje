@@ -99,7 +99,11 @@ export class ParametrizacionFormPeritrajeComponent implements OnInit {
         let body: Maestro = this.listaMaestros[index];
         body.accion = 1;
         (await this.apiService.saveInformacion(servicio, body)).subscribe(async (response: any) => {
-
+          if(!response.success){
+            if(response.message === 'MaestroEnUso'){
+              this.messageService.error("Oops...", "Error, no puede eliminar partes o elementos que estén siendo usados en un formulario");            
+            }
+          }
           await this.cargarListaMaestros();
         }, error => {
           this.messageService.error("Oops...", "Error interno en el servidor");
