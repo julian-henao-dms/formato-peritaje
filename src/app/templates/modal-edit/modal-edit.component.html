@@ -17,6 +17,10 @@
                             <div class="card-content">
                                 <p>
                                     <mat-icon>check_box_outline_blank</mat-icon>&nbsp;Malo</p>
+                                <!-- <p>
+                                    <mat-icon>radio_button_checked</mat-icon>&nbsp;No tiene</p>
+                                <p>
+                                    <mat-icon>radio_button_unchecked</mat-icon>&nbsp;Malo</p> -->
                             </div>
                         </div>
                         <div class="opcion-container">
@@ -54,6 +58,6 @@
     </mat-dialog-content>
     <div mat-dialog-actions class="actions-new-elements">
         <button mat-button *ngIf="data.maestro.descripcion != ''" [mat-dialog-close]="data.maestro.id" (click)="guardarItem(data.maestro)" cdkFocusInitial>Guardar</button>
-        <button mat-button *ngIf="data.maestro.descripcion == ''" [mat-dialog-close]="data.maestro.id" cdkFocusInitial>Cancelar</button>
+        <button class="cancel-btn-peritaje" mat-button [mat-dialog-close]="data.maestro.id" cdkFocusInitial>Cancelar</button>
     </div>
 </div>

@@ -75,8 +75,10 @@ export class SharedService {
         placa: '',
         linea: '',
         marca: '',
-        modelo: ''
-      }
+        modelo: '',
+      },
+      listaPartes: [],
+      listaElementos: []
     };
     this.sesion = {
       empresa: '',
@@ -106,7 +108,6 @@ export class SharedService {
 
   public async deleteValues(): Promise<void> {
     sessionStorage.removeItem('datos');
-    sessionStorage.removeItem('images');
     this.resetValues();
   }
 
@@ -190,7 +191,9 @@ export class SharedService {
         linea: '',
         marca: '',
         modelo: ''
-      }
+      },
+      listaPartes: [],
+      listaElementos: []
     };
   }
 }

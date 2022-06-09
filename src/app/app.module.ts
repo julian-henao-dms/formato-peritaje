@@ -26,6 +26,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 import { MenuComponent } from './components/menu/menu.component';
 import { BusquedaFormPeritajeComponent } from './components/busqueda-form-peritaje/busqueda-form-peritaje.component';
@@ -34,7 +35,7 @@ import { PartesFormPeritajeComponent } from './components/partes-form-peritaje/p
 import { ElementosFormPeritajeComponent } from './components/elementos-form-peritaje/elementos-form-peritaje.component';
 
 import { HeaderComponent } from './templates/header/header.component';
-import { ModalParametrizacionComponent } from './templates/modal-parametrizacion/modal-parametrizacion.component';
+import { ModalFirmaComponent } from './templates/modal-firma/modal-firma.component';
 import { ModalEditComponent } from './templates/modal-edit/modal-edit.component';
 import { ParametrizacionFormPeritrajeComponent } from './components/parametrizacion-form-peritaje/parametrizacion-form-peritaje.component';
 
@@ -43,7 +44,7 @@ import { ParametrizacionFormPeritrajeComponent } from './components/parametrizac
     AppComponent,
     FormatoPeritajeComponent,
     HeaderComponent,
-    ModalParametrizacionComponent,
+    ModalFirmaComponent,
     ModalEditComponent,
     BusquedaFormPeritajeComponent,
     MenuComponent,
@@ -77,7 +78,8 @@ import { ParametrizacionFormPeritrajeComponent } from './components/parametrizac
     MatNativeDateModule,
     MatSliderModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatButtonToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

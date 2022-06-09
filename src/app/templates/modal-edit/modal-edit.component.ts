@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Maestro } from '../../components/formato-peritaje/interfaces/maestro.interface';
+import { Maestro } from '../../components/parametrizacion-form-peritaje/interfaces/maestro.interface';
 import { ApiService } from '../../services/api.service';
 import { MessagesService } from '../../services/messages.service';
 
@@ -19,19 +19,39 @@ export class ModalEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(this.data.nombre == 'elementos'){
+      this.data.maestro.valor_def = 1;
+    }else{
+      this.data.maestro.valor_def = 0;
+    }
   }
 
   public async guardarItem(maestro: Maestro): Promise<void>{
+    if(!this.data.editMaestro){
+      if(!this.data.listaMaestros.find((x:any) => x.descripcion == maestro.descripcion )){
+        this.saveItem(maestro);
+      }else{
+        this.messageService.warning("Oops...", "Error, el nombre del maestro ya existe");
+      }
+    }else{
+      this.saveItem(maestro);
+  }
+  
+  }
+
+  public async saveItem(maestro: Maestro): Promise<void>{
     if (maestro.descripcion !== '') {
       const servicio = (this.data.nombre == 'partes' ? '/Maestros/ModificarPartes' : '/Maestros/ModificarElementos');
       maestro.accion = 0;
-      console.log(maestro);
+    
       (await this.apiService.saveInformacion(servicio, maestro)).subscribe(async (response: any) => {
-        console.log(response);
+        if (response)
+          this.messageService.success("Perfecto", "Los cambios fueron guardados");
+        else
+          this.messageService.error("Oops...", "No se pudo guardar el maestro");
       }, error => {
         this.messageService.error("Oops...", "Error interno en el servidor");
       });
-      this.messageService.success("Perfecto", "Los cambios fueron guardados");
     }
   }
 }

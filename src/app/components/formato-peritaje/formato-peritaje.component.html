@@ -1,508 +1,360 @@
 <mat-card>
     <div class="fecha">
-        <p> <strong>Fecha: </strong></p>
+        <p> <strong>Fecha: {{shared.formulario.fecini | date: 'dd/MM/yyyy'}}</strong></p>
     </div>
 </mat-card>
+
 <mat-card class="bloque-cb-1">
-    <div class="title-cb-card">
-        <mat-icon class="icon-title-card-cb">manage_search</mat-icon>
-        <h2>Buscar VIN o Placa</h2>
-    </div>
-    <div class="vin-placa">
+    <div class="form-group-cb">
+        <section class="example-section radio-options-cb rbtn-b1 rbtn-initial">
+            <label class="cbradio-group-label">Calificación:</label>
+            <mat-radio-group aria-label="Calificación" [(ngModel)]="shared.formulario.califica">
+                <mat-radio-button class="formulario-required cb-radio-button" name="califica" [value]="'A'">A</mat-radio-button>
+                <mat-radio-button class="cb-radio-button" [value]="'B'">B</mat-radio-button>
+            </mat-radio-group>
+            <mat-hint>* Campo requerido</mat-hint>
+        </section>
+
+        <section class="example-section radio-options-cb rbtn-b1 rbtn-initial">
+            <label class="cbradio-group-label">Prueba de Ruta:</label>
+            <mat-radio-group aria-label="Prueba de Ruta" required [(ngModel)]="shared.formulario.prueba_ruta">
+                <mat-radio-button class="formulario-required cb-radio-button" name="prueba_ruta" [value]="1">Si</mat-radio-button>
+                <mat-radio-button class="cb-radio-button" [value]="0">No</mat-radio-button>
+            </mat-radio-group>
+        </section>
+
         <mat-form-field appearance="fill">
-            <mat-label>VIN:</mat-label>
-            <input matInput placeholder="Vin" #vinInput [(ngModel)]="vin" (blur)="onEnter()" (click)="placaInput.value = ''">
+            <mat-label>Fecha Final:</mat-label>
+            <input matInput [matDatepicker]="datepicker" [(ngModel)]="shared.formulario.fecfin">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+            <mat-datepicker #datepicker></mat-datepicker>
+        </mat-form-field>
+
+    </div>
+
+    <div class="form-group-cb">
+
+        <mat-form-field appearance="fill">
+            <mat-label>Nombre Inspector:</mat-label>
+            <input matInput placeholder="Nombre Inspector" name="Id_usu_inspector" disabled>
+        </mat-form-field>
+
+        <!--<div class="firma" (click)="openModalFirma('Inspector')">
+      <p *ngIf="!firma">Firma</p>
+      <img class="imagen-firma" [src]="firma" *ngIf="firma">
+      <p>Inspector</p>
+    </div>-->
+
+        <mat-form-field appearance="fill">
+            <mat-label>Marca:</mat-label>
+            <input matInput placeholder="Marca" class="encabezado-required" name="marca" [ngModel]="shared.encabezados.marca" disabled>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Linea:</mat-label>
+            <input matInput placeholder="Linea" class="encabezado-required" name="linea" [ngModel]="shared.encabezados.linea" disabled>
+        </mat-form-field>
+
+    </div>
+
+    <div class="form-group-cb">
+
+        <mat-form-field appearance="fill">
+            <mat-label>Calificación Estado:</mat-label>
+            <mat-select [(ngModel)]="shared.formulario.califica2" name="Califica2">
+                <mat-option *ngFor="let calificacion of calificaciones" [value]="calificacion.value">
+                    {{calificacion.viewValue}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="a">
+            <mat-label>Matriculado en:</mat-label>
+            <input matInput placeholder="Lugar Matricula" class="encabezado-required" name="lugar_matricula" [(ngModel)]="shared.encabezados.lugar_matricula">
+            <mat-hint>* Campo requerido</mat-hint>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="fill" class="b">
+            <mat-label>Capacidad Sillas:</mat-label>
+            <input matInput type="number" placeholder="Capacidad sillas" class="encabezado-required" name="capacidad_sillas" [(ngModel)]="shared.encabezados.capacidad_sillas">
+        </mat-form-field>
+
+
+        <mat-form-field appearance="fill">
+            <mat-label>Cilindraje:</mat-label>
+            <input matInput id="cilindrajeInput" placeholder="Cilindraje" class="encabezado-required" name="cilindraje" [(ngModel)]="shared.encabezados.cilindraje">
+        </mat-form-field>
+    </div>
+    <div class="form-group-cb">
+        <mat-form-field appearance="fill">
+            <mat-label>Color:</mat-label>
+            <input matInput placeholder="Color" class="encabezado-required" name="color" [(ngModel)]="shared.encabezados.color">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Referencia:</mat-label>
+            <input matInput placeholder="Referencia" class="encabezado-required" name="referencia" [(ngModel)]="shared.encabezados.referencia">
+            <mat-hint>* Campo requerido</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Modelo:</mat-label>
+            <input matInput placeholder="Modelo" class="encabezado-required" name="modelo" [ngModel]="shared.encabezados.modelo" disabled>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Combustible:</mat-label>
+            <mat-select name="combustible" [(ngModel)]="shared.encabezados.combustible">
+                <mat-option *ngFor="let combustible of combustibles" [value]="combustible.value">
+                    {{combustible.viewValue}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</mat-card>
+<!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+<!-- Tercer Bloque -->
+<mat-card class="bloque-cb-3">
+    <div class="radio-group-5">
+        <section class="example-section radio-options-cb">
+            <label class="cbradio-group-label example-margin">Cojineria:</label>
+            <mat-radio-group aria-label="Cojineria" required name="cojineria" [(ngModel)]="shared.encabezados.cojineria">
+                <mat-radio-button class="cb-radio-button" [value]="tela">Tela</mat-radio-button>
+                <mat-radio-button class="cb-radio-button" [value]="cuero">Cuero</mat-radio-button>
+            </mat-radio-group>
+        </section>
+
+        <section class="example-section radio-options-cb radio-options-cb">
+            <label class="example-margin cbradio-group-label">Caja:</label>
+            <mat-radio-group aria-label="Caja" required name="caja" [(ngModel)]="shared.encabezados.caja">
+                <mat-radio-button class="cb-radio-button" [value]="mecanica">Mecánica</mat-radio-button>
+                <mat-radio-button class="cb-radio-button" [value]="automatica">Automática</mat-radio-button>
+            </mat-radio-group>
+        </section>
+
+        <section class="example-section radio-options-cb">
+            <label class="example-margin cbradio-group-label">Tracción:</label>
+            <mat-radio-group aria-label="Tracción" required name="traccion" [(ngModel)]="shared.encabezados.traccion">
+                <mat-radio-button class="cb-radio-button" [value]="t4x2">4X2</mat-radio-button>
+                <mat-radio-button class="cb-radio-button" [value]="t4x4">4X4</mat-radio-button>
+            </mat-radio-group>
+        </section>
+
+        <section class="example-section radio-options-cb">
+            <label class="cbradio-group-label">Rin de Lujo:</label>
+            <mat-radio-group aria-label="Rin de Lujo" required name="rin" [(ngModel)]="shared.encabezados.rin">
+                <mat-radio-button class="cb-radio-button" [value]="1">Si</mat-radio-button>
+                <mat-radio-button class="cb-radio-button" [value]="0">No</mat-radio-button>
+            </mat-radio-group>
+        </section>
+
+        <section class="example-section radio-options-cb">
+            <label class="cbradio-group-label">Estribo de Lujo:</label>
+            <mat-radio-group aria-label="Estribo de Lujo" required name="estribo" [(ngModel)]="shared.encabezados.estribo">
+                <mat-radio-button class="cb-radio-button" [value]="1">Si</mat-radio-button>
+                <mat-radio-button class="cb-radio-button" [value]="0">No</mat-radio-button>
+            </mat-radio-group>
+        </section>
+    </div>
+
+    <div class="radio-group-5">
+        <section class="example-section radio-options-cb">
+            <label class="cbradio-group-label">Vidrio Eléctrico:</label>
+            <mat-radio-group aria-label="Vidrio Eléctrico" required name="vidrios" [(ngModel)]="shared.encabezados.vidrios">
+                <mat-radio-button class="cb-radio-button" [value]="1">Si</mat-radio-button>
+                <mat-radio-button class="cb-radio-button" [value]="0">No</mat-radio-button>
+            </mat-radio-group>
+        </section>
+
+        <section class="example-section radio-options-cb">
+            <label class="cbradio-group-label">Techo Vidrio:</label>
+            <mat-radio-group aria-label="Techo Vidrio" required name="techo_vidrio" [(ngModel)]="shared.encabezados.techo_vidrio">
+                <mat-radio-button class="cb-radio-button" [value]="1">Si</mat-radio-button>
+                <mat-radio-button class="cb-radio-button" [value]="0">No</mat-radio-button>
+            </mat-radio-group>
+        </section>
+
+        <section class="example-section radio-options-cb">
+            <label class="cbradio-group-label">Retrovisores Eléctricos:</label>
+            <mat-radio-group aria-label="Retrovisores Eléctricos" required name="retrovisores_electricos" [(ngModel)]="shared.encabezados.retrovisores_electricos">
+                <mat-radio-button class="cb-radio-button" [value]="1">Si</mat-radio-button>
+                <mat-radio-button class="cb-radio-button" [value]="0">No</mat-radio-button>
+            </mat-radio-group>
+        </section>
+        <section class="example-section radio-options-cb">
+            <label class="cbradio-group-label">Barras De Techo:</label>
+            <mat-radio-group aria-label="Barras De Techo" required name="barra_techo" [(ngModel)]="shared.encabezados.barra_techo">
+                <mat-radio-button class="cb-radio-button" [value]="1">Si</mat-radio-button>
+                <mat-radio-button class="cb-radio-button" [value]="0">No</mat-radio-button>
+            </mat-radio-group>
+        </section>
+
+        <section class="example-section radio-options-cb">
+            <label class="cbradio-group-label">Exploradoras:</label>
+            <mat-radio-group aria-label="Exploradoras" required name="exploradora" [(ngModel)]="shared.encabezados.exploradora">
+                <mat-radio-button class="cb-radio-button" [value]="1">Si</mat-radio-button>
+                <mat-radio-button class="cb-radio-button" [value]="0">No</mat-radio-button>
+            </mat-radio-group>
+        </section>
+    </div>
+    <div class="form-group-cb">
+        <mat-form-field appearance="fill">
+            <mat-label>Nº de Airbag:</mat-label>
+            <input matInput type="number" placeholder="Nº de Airbag" class="encabezado-required" name="no_airbags" [(ngModel)]="shared.encabezados.no_airbags">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Nº de Rin:</mat-label>
+            <input matInput type="number" placeholder="Nº de Rin" class="encabezado-required" name="no_rin" [(ngModel)]="shared.encabezados.no_rin">
         </mat-form-field>
         <mat-form-field appearance="fill">
-            <mat-label>Placa:</mat-label>
-            <input matInput placeholder="Placa" #placaInput [(ngModel)]="placa" (blur)="onEnter()" (click)="vinInput.value = ''">
+            <mat-label>Kilometraje Actual:</mat-label>
+            <input matInput id="kmInput" type="number" placeholder="Kilometraje Actual" class="encabezado-required" name="km" [(ngModel)]="shared.encabezados.km" />
+            <mat-hint>* Campo requerido</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Próximo Mantenimiento</mat-label>
+            <input matInput id="fechaProxMantInput" [matDatepicker]="picker" required class="encabezado-required" name="fec_prox_mantenimiento" [(ngModel)]="shared.encabezados.fec_prox_mantenimiento">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
     </div>
 </mat-card>
 
-<div *ngIf="formActivo">
-    <mat-card class="bloque-cb-1">
-        <div class="form-group-cb">
-            <section class="example-section radio-options-cb rbtn-b1 rbtn-initial">
-                <label class="cbradio-group-label">Calificación:</label>
-                <mat-radio-group aria-label="Calificación" required name="Califica" [(ngModel)]="shared.formulario.califica">
-                    <mat-radio-button class="cb-radio-button" [value]="'A'">A</mat-radio-button>
-                    <mat-radio-button class="cb-radio-button" [value]="'B'">B</mat-radio-button>
-                </mat-radio-group>
-            </section>
+<!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+<!-- Cuarto Bloque  -->
+<mat-card class="bloque-cb-4 radio-btn-cb">
+    <div class="radio-group-6">
+        <section class="example-section radio-options-cb">
+            <label class="cbradio-group-label">Repuesto Llaves:</label>
+            <mat-radio-group aria-label="Repuesto Llaves" required name="llave" [(ngModel)]="shared.encabezados.llave">
+                <mat-radio-button class="cb-radio-button" [value]="1">Si</mat-radio-button>
+                <mat-radio-button class="cb-radio-button" [value]="0">No</mat-radio-button>
+            </mat-radio-group>
+        </section>
 
-            <section class="example-section radio-options-cb rbtn-b1 rbtn-initial">
-                <label class="cbradio-group-label">Prueba de Ruta:</label>
-                <mat-radio-group aria-label="Prueba de Ruta" required name="prueba_ruta" [(ngModel)]="shared.formulario.prueba_ruta">
-                    <mat-radio-button class="cb-radio-button" [value]="si">Si</mat-radio-button>
-                    <mat-radio-button class="cb-radio-button" [value]="no">No</mat-radio-button>
-                </mat-radio-group>
-            </section>
-
-            <mat-form-field appearance="fill">
-                <mat-label>Feecha Final:</mat-label>
-                <input matInput [matDatepicker]="datepicker" disabled [(ngModel)]="shared.formulario.fecfin">
-                <mat-hint>MM/DD/YYYY</mat-hint>
-                <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
-                <mat-datepicker #datepicker disabled="false"></mat-datepicker>
-            </mat-form-field>
-
-            <!--<mat-form-field appearance="fill">
-        <mat-label>Hora Final:</mat-label>
-        <input matInput type="time" placeholder="Hora Final" required name="fecfin" [(ngModel)]="shared.formulario.fecfin">
-      </mat-form-field>-->
-
-        </div>
-
-        <div class="form-group-cb">
-
-            <mat-form-field appearance="fill">
-                <mat-label>Nombre Inspector:</mat-label>
-                <input matInput placeholder="Nombre Inspector" name="Id_usu_inspector" disabled>
-            </mat-form-field>
-
-            <mat-form-field appearance="fill">
-                <mat-label>Firma Inspector:</mat-label>
-                <input matInput placeholder="Firma Inspector" name="firmaInspector" value="firma">
-            </mat-form-field>
-
-            <mat-form-field appearance="fill">
-                <mat-label>Marca:</mat-label>
-                <input matInput placeholder="Marca" name="marca" [ngModel]="shared.encabezados.marca" disabled>
-            </mat-form-field>
-
-            <mat-form-field appearance="fill">
-                <mat-label>Linea:</mat-label>
-                <input matInput placeholder="Linea" name="linea" [ngModel]="shared.encabezados.linea" disabled>
-            </mat-form-field>
-
-        </div>
-
-        <div class="form-group-cb">
-
-            <mat-form-field appearance="fill">
-                <mat-label>Calificación Estado:</mat-label>
-                <mat-select [(ngModel)]="shared.formulario.califica2" name="Califica2">
-                    <mat-option *ngFor="let calificacion of calificaciones" [value]="calificacion.value">
-                        {{calificacion.viewValue}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-
-            <mat-form-field appearance="fill" class="a">
-                <mat-label>Matriculado en:</mat-label>
-                <input matInput placeholder="Lugar Matricula" (click)="prueba()" name="lugar_matricula" value="Bogotá" [(ngModel)]="shared.encabezados.lugar_matricula">
-            </mat-form-field>
-
-
-            <mat-form-field appearance="fill" class="b">
-                <mat-label>Capacidad Sillas:</mat-label>
-                <input matInput placeholder="Capacidad sillas" name="capacidad_sillas" value="5" [(ngModel)]="shared.encabezados.capacidad_sillas">
-            </mat-form-field>
-
-
-            <mat-form-field appearance="fill">
-                <mat-label>Cilindraje:</mat-label>
-                <input matInput placeholder="Cilindraje" name="cilindraje" [(ngModel)]="shared.encabezados.cilindraje">
-            </mat-form-field>
-        </div>
-        <div class="form-group-cb">
-            <mat-form-field appearance="fill">
-                <mat-label>Color:</mat-label>
-                <input matInput placeholder="Color" name="color" [(ngModel)]="shared.encabezados.color">
-            </mat-form-field>
-
-            <mat-form-field appearance="fill">
-                <mat-label>Referencia:</mat-label>
-                <input matInput placeholder="Referencia" name="referencia" [(ngModel)]="shared.encabezados.referencia">
-            </mat-form-field>
-
-            <mat-form-field appearance="fill">
-                <mat-label>Modelo:</mat-label>
-                <input matInput placeholder="Modelo" name="modelo" [ngModel]="shared.encabezados.modelo" disabled>
-            </mat-form-field>
-
-            <mat-form-field appearance="fill">
-                <mat-label>Combustible:</mat-label>
-                <mat-select name="combustible" [(ngModel)]="shared.encabezados.combustible">
-                    <mat-option *ngFor="let combustible of combustibles" [value]="combustible.value">
-                        {{combustible.viewValue}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-    </mat-card>
-    <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
-    <!-- Tercer Bloque -->
-    <mat-card class="bloque-cb-3">
-        <div class="radio-group-5">
-            <section class="example-section radio-options-cb">
-                <label class="cbradio-group-label example-margin">Cojineria:</label>
-                <mat-radio-group aria-label="Cojineria" required name="cojineria" [(ngModel)]="shared.encabezados.cojineria">
-                    <mat-radio-button class="cb-radio-button" [value]="tela">Tela</mat-radio-button>
-                    <mat-radio-button class="cb-radio-button" [value]="cuero">Cuero</mat-radio-button>
-                </mat-radio-group>
-            </section>
-
-            <section class="example-section radio-options-cb radio-options-cb">
-                <label class="example-margin cbradio-group-label">Caja:</label>
-                <mat-radio-group aria-label="Caja" required name="caja" [(ngModel)]="shared.encabezados.caja">
-                    <mat-radio-button class="cb-radio-button" [value]="mecanica">Mecánica</mat-radio-button>
-                    <mat-radio-button class="cb-radio-button" [value]="automatica">Automática</mat-radio-button>
-                </mat-radio-group>
-            </section>
-
-            <section class="example-section radio-options-cb">
-                <label class="example-margin cbradio-group-label">Tracción:</label>
-                <mat-radio-group aria-label="Tracción" required name="traccion" [(ngModel)]="shared.encabezados.traccion">
-                    <mat-radio-button class="cb-radio-button" [value]="t4x2">4X2</mat-radio-button>
-                    <mat-radio-button class="cb-radio-button" [value]="t4x4">4X4</mat-radio-button>
-                </mat-radio-group>
-            </section>
-
-            <section class="example-section radio-options-cb">
-                <label class="cbradio-group-label">Rin de Lujo:</label>
-                <mat-radio-group aria-label="Rin de Lujo" required name="rin" [(ngModel)]="shared.encabezados.rin">
-                    <mat-radio-button class="cb-radio-button" [value]="si">Si</mat-radio-button>
-                    <mat-radio-button class="cb-radio-button" [value]="no">No</mat-radio-button>
-                </mat-radio-group>
-            </section>
-
-            <section class="example-section radio-options-cb">
-                <label class="cbradio-group-label">Estribo de Lujo:</label>
-                <mat-radio-group aria-label="Estribo de Lujo" required name="estribo" [(ngModel)]="shared.encabezados.estribo">
-                    <mat-radio-button class="cb-radio-button" [value]="si">Si</mat-radio-button>
-                    <mat-radio-button class="cb-radio-button" [value]="no">No</mat-radio-button>
-                </mat-radio-group>
-            </section>
-        </div>
-
-        <div class="radio-group-5">
-            <section class="example-section radio-options-cb">
-                <label class="cbradio-group-label">Vidrio Eléctrico:</label>
-                <mat-radio-group aria-label="Vidrio Eléctrico" required name="vidrios" [(ngModel)]="shared.encabezados.vidrios">
-                    <mat-radio-button class="cb-radio-button" [value]="si">Si</mat-radio-button>
-                    <mat-radio-button class="cb-radio-button" [value]="no">No</mat-radio-button>
-                </mat-radio-group>
-            </section>
-
-            <section class="example-section radio-options-cb">
-                <label class="cbradio-group-label">Techo Vidrio:</label>
-                <mat-radio-group aria-label="Techo Vidrio" required name="techo_vidrio" [(ngModel)]="shared.encabezados.techo_vidrio">
-                    <mat-radio-button class="cb-radio-button" [value]="si">Si</mat-radio-button>
-                    <mat-radio-button class="cb-radio-button" [value]="no">No</mat-radio-button>
-                </mat-radio-group>
-            </section>
-
-            <section class="example-section radio-options-cb">
-                <label class="cbradio-group-label">Retrovisores Eléctricos:</label>
-                <mat-radio-group aria-label="Retrovisores Eléctricos" required name="retrovisores_electricos" [(ngModel)]="shared.encabezados.retrovisores_electricos">
-                    <mat-radio-button class="cb-radio-button" [value]="si">Si</mat-radio-button>
-                    <mat-radio-button class="cb-radio-button" [value]="no">No</mat-radio-button>
-                </mat-radio-group>
-            </section>
-            <section class="example-section radio-options-cb">
-                <label class="cbradio-group-label">Barras De Techo:</label>
-                <mat-radio-group aria-label="Barras De Techo" required name="barra_techo" [(ngModel)]="shared.encabezados.barra_techo">
-                    <mat-radio-button class="cb-radio-button" [value]="si">Si</mat-radio-button>
-                    <mat-radio-button class="cb-radio-button" [value]="no">No</mat-radio-button>
-                </mat-radio-group>
-            </section>
-
-            <section class="example-section radio-options-cb">
-                <label class="cbradio-group-label">Exploradoras:</label>
-                <mat-radio-group aria-label="Exploradoras" required name="exploradora" [(ngModel)]="shared.encabezados.exploradora">
-                    <mat-radio-button class="cb-radio-button" [value]="si">Si</mat-radio-button>
-                    <mat-radio-button class="cb-radio-button" [value]="no">No</mat-radio-button>
-                </mat-radio-group>
-            </section>
-        </div>
-        <div class="form-group-cb">
-            <mat-form-field appearance="fill">
-                <mat-label>Nº de Airbag:</mat-label>
-                <input matInput placeholder="Nº de Airbag" name="no_airbags" value="2" [(ngModel)]="shared.encabezados.no_airbags">
-            </mat-form-field>
-
-            <mat-form-field appearance="fill">
-                <mat-label>Nº de Rin:</mat-label>
-                <input matInput placeholder="Nº de Rin" name="no_rin" value="4" [(ngModel)]="shared.encabezados.no_rin">
-            </mat-form-field>
-            <mat-form-field appearance="fill">
-                <mat-label>Kilometraje Actual:</mat-label>
-                <input matInput placeholder="Kilometraje Actual" name="km" value="200" [(ngModel)]="shared.encabezados.km">
-            </mat-form-field>
-
-            <mat-form-field appearance="fill">
-                <mat-label>Próximo Mantenimiento</mat-label>
-                <input matInput [matDatepicker]="picker" required name="fec_prox_mantenimiento" [(ngModel)]="shared.encabezados.fec_prox_mantenimiento">
-                <mat-hint>MM/DD/YYYY</mat-hint>
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
-        </div>
-    </mat-card>
-
-    <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
-    <!-- Cuarto Bloque  -->
-    <mat-card class="bloque-cb-4 radio-btn-cb">
-        <div class="radio-group-6">
-            <section class="example-section radio-options-cb">
-                <label class="cbradio-group-label">Repuesto Llaves:</label>
-                <mat-radio-group aria-label="Repuesto Llaves" required name="llave" [(ngModel)]="shared.encabezados.llave">
-                    <mat-radio-button class="cb-radio-button" [value]="si">Si</mat-radio-button>
-                    <mat-radio-button class="cb-radio-button" [value]="no">No</mat-radio-button>
-                </mat-radio-group>
-            </section>
-
-            <section class="example-section radio-options-cb">
-                <label class="cbradio-group-label">Libro Garantía:</label>
-                <mat-radio-group aria-label="Libro Garantía" required name="libro" [(ngModel)]="shared.encabezados.libro">
-                    <mat-radio-button class="cb-radio-button" [value]="si">Si</mat-radio-button>
-                    <mat-radio-button class="cb-radio-button" [value]="no">No</mat-radio-button>
-                </mat-radio-group>
-            </section>
+        <section class="example-section radio-options-cb">
+            <label class="cbradio-group-label">Libro Garantía:</label>
+            <mat-radio-group aria-label="Libro Garantía" required name="libro" [(ngModel)]="shared.encabezados.libro">
+                <mat-radio-button class="cb-radio-button" [value]="1">Si</mat-radio-button>
+                <mat-radio-button class="cb-radio-button" [value]="0">No</mat-radio-button>
+            </mat-radio-group>
+        </section>
 
 
 
-            <section class="example-section radio-options-cb">
-                <label class="cbradio-group-label">Herramienta Completa:</label>
-                <mat-radio-group aria-label="Herramienta Completa" required name="herramienta" [(ngModel)]="shared.encabezados.herramienta">
-                    <mat-radio-button class="cb-radio-button" [value]="si">Si</mat-radio-button>
-                    <mat-radio-button class="cb-radio-button" [value]="no">No</mat-radio-button>
-                </mat-radio-group>
-            </section>
+        <section class="example-section radio-options-cb">
+            <label class="cbradio-group-label">Herramienta Completa:</label>
+            <mat-radio-group aria-label="Herramienta Completa" required name="herramienta" [(ngModel)]="shared.encabezados.herramienta">
+                <mat-radio-button class="cb-radio-button" [value]="1">Si</mat-radio-button>
+                <mat-radio-button class="cb-radio-button" [value]="0">No</mat-radio-button>
+            </mat-radio-group>
+        </section>
 
-            <section class="example-section radio-options-cb">
-                <label class="cbradio-group-label">Manuales:</label>
-                <mat-radio-group aria-label="Manuales" required name="manual" [(ngModel)]="shared.encabezados.manual">
-                    <mat-radio-button class="cb-radio-button" [value]="si">Si</mat-radio-button>
-                    <mat-radio-button class="cb-radio-button" [value]="no">No</mat-radio-button>
-                </mat-radio-group>
-            </section>
+        <section class="example-section radio-options-cb">
+            <label class="cbradio-group-label">Manuales:</label>
+            <mat-radio-group aria-label="Manuales" required name="manual" [(ngModel)]="shared.encabezados.manual">
+                <mat-radio-button class="cb-radio-button" [value]="1">Si</mat-radio-button>
+                <mat-radio-button class="cb-radio-button" [value]="0">No</mat-radio-button>
+            </mat-radio-group>
+        </section>
 
-            <section class="example-section radio-options-cb">
-                <label class="cbradio-group-label">Reclamos Aseguradora:</label>
-                <mat-radio-group aria-label="Reclamos Aseguradora" required name="reclamo_aseg" [(ngModel)]="shared.encabezados.reclamo_aseg">
-                    <mat-radio-button class="cb-radio-button" [value]="si">Si</mat-radio-button>
-                    <mat-radio-button class="cb-radio-button" [value]="no">No</mat-radio-button>
-                </mat-radio-group>
-            </section>
+        <section class="example-section radio-options-cb">
+            <label class="cbradio-group-label">Reclamos Aseguradora:</label>
+            <mat-radio-group aria-label="Reclamos Aseguradora" required name="reclamo_aseg" [(ngModel)]="shared.encabezados.reclamo_aseg">
+                <mat-radio-button class="cb-radio-button" [value]="1">Si</mat-radio-button>
+                <mat-radio-button class="cb-radio-button" [value]="0">No</mat-radio-button>
+            </mat-radio-group>
+        </section>
 
-            <section class="example-section radio-options-cb">
-                <label class="cbradio-group-label">Cambio Correa:</label>
-                <mat-radio-group aria-label="Tiene Cambio Correa" required name="cambio_correa" [(ngModel)]="shared.encabezados.cambio_correa">
-                    <mat-radio-button class="cb-radio-button" [value]="si">Si</mat-radio-button>
-                    <mat-radio-button class="cb-radio-button" [value]="no">No</mat-radio-button>
-                </mat-radio-group>
-            </section>
-        </div>
-
-        <div class="form-group-cb">
-            <mat-form-field appearance="fill">
-                <mat-label>Lugar Cambio Correa:</mat-label>
-                <input matInput placeholder="Donde Cambio Correa:" name="lugar_cambio_correa" value="Bogotá" [(ngModel)]="shared.encabezados.lugar_cambio_correa">
-            </mat-form-field>
-
-            <mat-form-field appearance="fill">
-                <mat-label>Valor Reclamo:</mat-label>
-                <input matInput placeholder="Valor Reclamo" name="valor_reclamo_aseg" value="50000" [(ngModel)]="shared.encabezados.valor_reclamo_aseg">
-            </mat-form-field>
-
-            <mat-form-field appearance="fill">
-                <mat-label>Marca Radio:</mat-label>
-                <input matInput placeholder="Marca Radio" name="marca_radio" value="Panasonic" [(ngModel)]="shared.encabezados.marca_radio">
-            </mat-form-field>
-
-            <mat-form-field appearance="fill">
-                <mat-label>Marca Llantas:</mat-label>
-                <input matInput placeholder="Marca Llantas" name="marca_llantas" value="Goodyeard" [(ngModel)]="shared.encabezados.marca_llantas">
-            </mat-form-field>
-
-            <mat-form-field appearance="fill">
-                <mat-label>Marca Batería:</mat-label>
-                <input matInput placeholder="Marca Batería" name="marca_bateria" value="Mat" [(ngModel)]="shared.encabezados.marca_bateria">
-            </mat-form-field>
-
-            <mat-form-field appearance="fill">
-                <mat-label>Lugar Mantenimiento:</mat-label>
-                <input matInput placeholder="Lugar Mantenimiento" name="lugar_mante" value="Medellin" [(ngModel)]="shared.encabezados.lugar_mante">
-            </mat-form-field>
-        </div>
-    </mat-card>
-    <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
-
-    <mat-card>
-        <div class="title-cb-card">
-            <mat-icon class="icon-title-card-cb">edit_note</mat-icon>
-            <h2>Parametrización de partes vehículo</h2>
-        </div>
-        <button mat-button (click)="openModalCrudMaestros('partes')" class="btn-form-cb">Parametrizacion</button>
-    </mat-card>
-
-
-    <!-- Estado Pintura  -->
-    <mat-card class="bloque-cb-5 estado_pintura" *ngIf="listaPartes.length > 0">
-        <h2 class="title-bloques-cb">Estado Pintura</h2>
-
-        <!-- *ngFor="let estado of data.estadosPintura" -->
-        <div class="estados-pintura-container">
-            <mat-card class="group-radio-options-cb estado-pintura-container" *ngFor="let estadoPintura of listaPartes">
-                <div>
-                    <label class="cbradio-label-parametrizado" style="margin-right:10px">{{estadoPintura.parte}}</label>
-                    <mat-form-field>
-                        <mat-select name="{{estadoPintura.parte}}-estado" [(ngModel)]="estadoPintura.id_chk_estado">
-                            <mat-option [value]="0">Buen estado</mat-option>
-                            <mat-option *ngFor="let estado of estados" [value]="estado.id">
-                                {{estado.descripcion}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
-                <section class="example-section radio-options-cb">
-                    <mat-radio-group required name="{{estadoPintura.parte}}-repi_tipo" [(ngModel)]="estadoPintura.repi_tipo">
-                        <mat-radio-button class="cb-radio-button rbtn-first" [value]="repiTipoA">Repi TIPO A </mat-radio-button>
-                        <mat-radio-button class="cb-radio-button" [value]="repiTipoB">Repi TIPO B </mat-radio-button>
-                    </mat-radio-group>
-                </section>
-                <section class="example-section radio-options-cb">
-                    <mat-radio-group required name="{{estadoPintura.parte}}-repar_tipo" [(ngModel)]="estadoPintura.repar_tipo">
-                        <mat-radio-button class="cb-radio-button rbtn-first" [value]="reparTipoA">Repar TIPO A </mat-radio-button>
-                        <mat-radio-button class="cb-radio-button" [value]="reparTipoB">Repar TIPO B </mat-radio-button>
-                    </mat-radio-group>
-                </section>
-                <section class="example-section radio-options-cb">
-                    <mat-radio-group required name="{{estadoPintura.parte}}-estado_parte" [(ngModel)]="estadoPintura.estadoParte">
-                        <mat-radio-button class="cb-radio-button rbtn-first" [value]="cambiado">Cambiado </mat-radio-button>
-                        <mat-radio-button class="cb-radio-button" [value]="removido">Removido </mat-radio-button>
-                    </mat-radio-group>
-                </section>
-            </mat-card>
-        </div>
-    </mat-card>
-    <!-- :::::::::::::::::::::::::::::::::::::::::: -->
-
-    <mat-card>
-        <div class="title-cb-card">
-            <mat-icon class="icon-title-card-cb">checklist</mat-icon>
-            <h2>Parametrización de elementos A - Z</h2>
-        </div>
-        <button mat-button (click)="openModalCrudMaestros('elementos')" class="btn-form-cb">Parametrizacion</button>
-    </mat-card>
-    <!-- Elemento A-Z -->
-
-    <mat-card class="bloque-cb-7 elementos-az" *ngIf="listaElementos.length > 0">
-        <h2 class="title-bloques-cb">Elementos A - Z</h2>
-        <div class="elementos-a-z-container">
-            <section class="example-section radio-options-cb" *ngFor="let elementoAz of listaElementos">
-                <div style="width: 100%">
-                    <label class="item-label cbradio-label-parametrizado">{{elementoAz.elemento}}</label>
-                    <button mat-icon-button matTooltipPosition="above" matTooltip="Ocultar elemento" class="item-button"><mat-icon class="m-icon-cb eye-icon">remove_red_eye</mat-icon></button>
-                </div>
-                <div *ngIf="elementoAz.valor_def == 1">
-                    <section>
-                        <mat-checkbox required class="" [(ngModel)]="elementoAz.est" (change)="elementoAz.est ? elementoAz.est = 1 : elementoAz.est = 0">Malo</mat-checkbox>
-                    </section>
-                </div>
-                <div *ngIf="elementoAz.valor_def == 2">
-                    <mat-radio-group required name="{{elementoAz.elemento}}" [(ngModel)]="elementoAz.est">
-                        <mat-radio-button class="cb-radio-button" [value]="2">Leve</mat-radio-button>
-                        <mat-radio-button class="cb-radio-button" [value]="3">Fuerte</mat-radio-button>
-                    </mat-radio-group>
-                </div>
-                <div *ngIf="elementoAz.valor_def == 3">
-                    <mat-radio-group required name="{{elementoAz.elemento}}" [(ngModel)]="elementoAz.est">
-                        <mat-radio-button class="cb-radio-button" [value]="4">OK</mat-radio-button>
-                        <mat-radio-button class="cb-radio-button" [value]="5">Bajo</mat-radio-button>
-                    </mat-radio-group>
-                </div>
-                <div *ngIf="elementoAz.valor_def == 4">
-                    <mat-radio-group required name="{{elementoAz.elemento}}" [(ngModel)]="elementoAz.est">
-                        <mat-radio-button class="cb-radio-button" [value]="7">Si</mat-radio-button>
-                        <mat-radio-button class="cb-radio-button" [value]="6">No</mat-radio-button>
-                    </mat-radio-group>
-                </div>
-            </section>
-        </div>
-    </mat-card>
-
-    <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
-
-    <!-- Porcentaje Llantas -->
-
-    <mat-card class="porcentajes-llantas">
-        <div class="title-cb-card">
-            <mat-icon class="icon-title-card-cb">percent</mat-icon>
-            <h2 class="titulo-p-llanta">Porcentaje Vida LLantas</h2>
-        </div>
-        <div class="bloque-cb-6">
-
-            <div class="form-group-cb">
-                <mat-form-field appearance="fill">
-                    <mat-label>Delantera Izquierda:</mat-label>
-                    <input matInput (click)="prueba()" placeholder="Delantera Izquierda" name="vida_llanta_del_izq" value="20">
-                </mat-form-field>
-
-                <mat-form-field appearance="fill">
-                    <mat-label>Delantera Derecha:</mat-label>
-                    <input matInput placeholder="Delantera derecha" name="vida_llanta_del_der" value="50">
-                </mat-form-field>
-
-                <mat-form-field appearance="fill">
-                    <mat-label>Trasera Derecha:</mat-label>
-                    <input matInput placeholder="Trasera Derecha" name="vida_llanta_tras_der" value="50">
-                </mat-form-field>
-
-                <mat-form-field appearance="fill">
-                    <mat-label>Trasera Izquierda:</mat-label>
-                    <input matInput placeholder="Trasera Izquierda" name="vida_llanta_tras_izq" value="50">
-                </mat-form-field>
-
-                <mat-form-field appearance="fill">
-                    <mat-label>Repuesto:</mat-label>
-                    <input matInput placeholder="Repuesto" name="vida_llanta_repuesto" value="50">
-                </mat-form-field>
-
-            </div>
-        </div>
-    </mat-card>
-    <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
-
-    <!-- Campos material dinamicos -->
-    <mat-card>
-        <div class="title-cb-card">
-            <mat-icon class="icon-title-card-cb">post_add</mat-icon>
-            <h2>Añadir Elemento para Intervención</h2>
-        </div>
-
-        <div class="header-interv">
-            <mat-form-field appearance="fill">
-                <mat-label>Elemento a intervenir</mat-label>
-                <mat-select [(ngModel)]="idElementoIntervencion">
-                    <mat-option [value]="0">-- Selecione una opción --</mat-option>
-                    <mat-option *ngFor="let elementoAZ of listaElementos" [value]="elementoAZ.id_chk_maestro_elementos">
-                        {{elementoAZ.elemento}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-            <button class="add-interv-btn" mat-button (click)="agregarIntervencion()">Agregar <mat-icon>add</mat-icon></button>
-        </div>
-        <h3>Elementos que requieren Intervención</h3>
-
-        <div *ngFor="let elementoAZ of listaElementos">
-            <div class="fields-interv" *ngIf="elementoAZ.intervencion == 1">
-                <mat-form-field appearance="fill">
-                    <mat-label>Elemento Intervención</mat-label>
-                    <input matInput [value]="elementoAZ.elemento" disabled/>
-                </mat-form-field>
-                <mat-form-field appearance="fill">
-                    <mat-label>Valor Aprox.</mat-label>
-                    <input matInput [(ngModel)]="elementoAZ.valor" />
-                </mat-form-field>
-                <button class="delete-interv-btn" matTooltip="Eliminar cmapo" mat-icon-button (click)="elementoAZ.intervencion = 0"><mat-icon class="m-icon-cb-interv">delete</mat-icon></button>
-            </div>
-        </div>
-    </mat-card>
-    <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
-    <div style="display:flex; justify-content: center">
-        <button mat-raised-button color="warn" (click)="guardarFormulario()">Guardar</button>
+        <section class="example-section radio-options-cb">
+            <label class="cbradio-group-label">Cambio Correa:</label>
+            <mat-radio-group aria-label="Tiene Cambio Correa" required name="cambio_correa" [(ngModel)]="shared.encabezados.cambio_correa" (change)="cambioCorrea()">
+                <mat-radio-button class="cb-radio-button" [value]="1">Si</mat-radio-button>
+                <mat-radio-button class="cb-radio-button" [value]="0">No</mat-radio-button>
+            </mat-radio-group>
+        </section>
     </div>
+
+    <div class="form-group-cb">
+        <mat-form-field appearance="fill">
+            <mat-label>Lugar Cambio Correa:</mat-label>
+            <input matInput placeholder="Donde Cambio Correa:" name="lugar_cambio_correa" [(ngModel)]="shared.encabezados.lugar_cambio_correa" [disabled]="shared.encabezados.cambio_correa == 0">
+            <mat-hint [ngClass]="{'hidden': shared.encabezados.cambio_correa == 0}">* Campo requerido</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Valor Reclamo:</mat-label>
+            <input matInput type="number" placeholder="Valor Reclamo" class="encabezado-required" name="valor_reclamo_aseg" [(ngModel)]="shared.encabezados.valor_reclamo_aseg">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Marca Radio:</mat-label>
+            <input matInput placeholder="Marca Radio" class="encabezado-required" name="marca_radio" [(ngModel)]="shared.encabezados.marca_radio">
+            <mat-hint>* Campo requerido</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Marca Llantas:</mat-label>
+            <input matInput placeholder="Marca Llantas" class="encabezado-required" name="marca_llantas" [(ngModel)]="shared.encabezados.marca_llantas">
+            <mat-hint>* Campo requerido</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Marca Batería:</mat-label>
+            <input matInput placeholder="Marca Batería" class="encabezado-required" name="marca_bateria" [(ngModel)]="shared.encabezados.marca_bateria">
+            <mat-hint>* Campo requerido</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Lugar Mantenimiento:</mat-label>
+            <input matInput placeholder="Lugar Mantenimiento" class="encabezado-required" name="lugar_mante" [(ngModel)]="shared.encabezados.lugar_mante">
+            <mat-hint>* Campo requerido</mat-hint>
+        </mat-form-field>
+    </div>
+</mat-card>
+<mat-card class="porcentajes-llantas">
+    <div class="title-cb-card">
+        <mat-icon class="icon-title-card-peritaje">percent</mat-icon>
+        <h2 class="titulo-p-llanta">Porcentaje Vida LLantas</h2>
+    </div>
+    <div class="bloque-cb-6">
+
+        <div class="form-group-cb">
+            <mat-form-field appearance="fill">
+                <mat-label>Delantera Izquierda:</mat-label>
+                <input matInput placeholder="Delantera Izquierda" name="vida_llanta_del_izq" value="20">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Delantera Derecha:</mat-label>
+                <input matInput placeholder="Delantera derecha" name="vida_llanta_del_der" value="50">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Trasera Derecha:</mat-label>
+                <input matInput placeholder="Trasera Derecha" name="vida_llanta_tras_der" value="50">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Trasera Izquierda:</mat-label>
+                <input matInput placeholder="Trasera Izquierda" name="vida_llanta_tras_izq" value="50">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Repuesto:</mat-label>
+                <input matInput placeholder="Repuesto" name="vida_llanta_repuesto" value="50">
+            </mat-form-field>
+
+        </div>
+    </div>
+</mat-card>
+
+<div class="footer-button">
+    <button class="back-btn" mat-raised-button (click)="atras()"><mat-icon>keyboard_backspace</mat-icon>Atras</button>
+    <button class="next-btn" mat-raised-button (click)="siguiente()">Siguiente<mat-icon>east</mat-icon></button>
+</div>
