@@ -18,10 +18,8 @@ export class BusquedaFormPeritajeComponent implements OnInit, OnDestroy {
   public displayedColumns: string[] = ['Id', 'Fecini', 'Fecfin', 'Califica', 'Editar'];
   public selectedRowIndex = -1;
   public disabledBtnCrear: boolean;
-  public disabledBtnEditar: boolean;
-  public disabledBtnParametr: boolean;
   public formularios: formulario[] = [];
-  public selectedFormulario: formulario | undefined;
+  // public selectedFormulario: formulario | undefined;
   public placa: string = '';
   public vin: string = '';
   public shared: any;
@@ -35,8 +33,6 @@ export class BusquedaFormPeritajeComponent implements OnInit, OnDestroy {
     private readonly messageService: MessagesService
   ) {
     this.disabledBtnCrear = true;
-    this.disabledBtnEditar = true;
-    this.disabledBtnParametr = false;
     this.assets = environment.assets;
   }
 
@@ -64,7 +60,6 @@ export class BusquedaFormPeritajeComponent implements OnInit, OnDestroy {
             this.disabledBtnCrear = false;
         } else{
           this.disabledBtnCrear = false;
-          this.disabledBtnParametr = false;
           if (response.data.length === 0 ) {
             setTimeout(
               () => {
@@ -127,22 +122,22 @@ export class BusquedaFormPeritajeComponent implements OnInit, OnDestroy {
 
   }
 
-  public rowSelect(row: any): void {
-    if (row.id == this.selectedRowIndex) {
-      this.selectedFormulario = undefined;
-      this.selectedRowIndex = -1;
-      this.disabledBtnEditar = true;
-      this.disabledBtnParametr  = false;
-      this.disabledBtnCrear  = false;
-    } else {
-      this.selectedFormulario = row;
-      this.selectedRowIndex = row.id;
-      this.disabledBtnEditar = false;
-      this.disabledBtnParametr  = true;
-      this.disabledBtnCrear  = true;
+  // public rowSelect(row: any): void {
+  //   if (row.id == this.selectedRowIndex) {
+  //     this.selectedFormulario = undefined;
+  //     this.selectedRowIndex = -1;
+  //     this.disabledBtnEditar = true;
+  //     this.disabledBtnParametr  = false;
+  //     this.disabledBtnCrear  = false;
+  //   } else {
+  //     this.selectedFormulario = row;
+  //     this.selectedRowIndex = row.id;
+  //     this.disabledBtnEditar = false;
+  //     this.disabledBtnParametr  = true;
+  //     this.disabledBtnCrear  = true;
       
-    }
-  }
+  //   }
+  // }
 
   private estructuraFormulario(id_cot_item_lote: number): formulario {
     return {
@@ -160,7 +155,6 @@ export class BusquedaFormPeritajeComponent implements OnInit, OnDestroy {
 
   private resetinitData(): void {
     this.disabledBtnCrear = true;
-    this.disabledBtnEditar = true;
     this.formularios = []
   }
 
