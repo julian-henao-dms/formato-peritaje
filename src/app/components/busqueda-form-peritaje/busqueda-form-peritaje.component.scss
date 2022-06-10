@@ -30,11 +30,20 @@ $main-color: #b50411;
             margin-top: 2em;
             display: flex;
             flex-wrap: wrap;
+            align-items: center;
             mat-form-field {
                 margin-right: 1.2em;
             }
+            .btns-search-peritaje {
+                margin-top: -1.2em;
+            }
         }
     }
+}
+
+.ico-table {
+    font-size: 20px;
+    color: $main-color;
 }
 
 .demo-table,
