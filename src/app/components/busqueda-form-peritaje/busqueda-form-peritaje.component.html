@@ -15,20 +15,22 @@
                 <mat-label>VIN:</mat-label>
                 <input matInput placeholder="vin" [(ngModel)]="vin" #vinInput (keyup.enter)="onEnter()" (click)="placa = ''" />
             </mat-form-field>
+            <button mat-raised-button (click)="onEnter()" class="btns-search-peritaje"> <mat-icon class="icon-title-card-cb">search</mat-icon>Buscar</button>
         </div>
-        <button mat-raised-button (click)="onEnter()" class="btns-search-peritaje"> <mat-icon class="icon-title-card-cb">search</mat-icon>Buscar</button>
+
         <div class="demo-button-container btns-form-peritaje">
-            <div class="btn-edit-create">
-                <button mat-raised-button class="demo-button btns-search-peritaje" [disabled]="disabledBtnCrear" (click)="nuevoFormulario()">
-                <mat-icon>fact_check</mat-icon> Crear <span>Formulario</span>
-              </button>
-                <button mat-raised-button class="demo-button btns-search-peritaje" [disabled]="disabledBtnEditar" (click)="editarFormulario()">
-                    <mat-icon>edit_note</mat-icon>  Editar <span>Formulario</span>
-              </button>
-            </div>
+
             <button mat-raised-button class="demo-button btns-search-peritaje" [routerLink]="['/formato-peritaje/parametrizacion']" [disabled]="disabledBtnParametr" (click)="parametrizarCampos()">
                 <mat-icon>settings_suggest</mat-icon>  Parametrización 
           </button>
+
+            <!-- <button mat-raised-button class="demo-button btns-search-peritaje" [disabled]="disabledBtnEditar" (click)="editarFormulario()">
+                    <mat-icon>edit_note</mat-icon>  Editar <span>Formulario</span>
+              </button> -->
+
+            <button mat-raised-button class="demo-button btns-search-peritaje" [disabled]="disabledBtnCrear" (click)="nuevoFormulario()">
+                <mat-icon>fact_check</mat-icon> Crear <span>Formulario</span>
+              </button>
         </div>
 
         <table mat-table class="mat-elevation-z8 demo-table table-form-peritaje" [dataSource]="formularios">
@@ -48,8 +50,14 @@
                 <th mat-header-cell *matHeaderCellDef>Calificación</th>
                 <td mat-cell *matCellDef="let element">{{element.califica}}</td>
             </ng-container>
+            <ng-container matColumnDef="Editar">
+                <th mat-header-cell *matHeaderCellDef>Edición</th>
+                <td mat-cell *matCellDef="let element">
+                    <mat-icon matTooltip="Editar Formulario" class="ico-table" (click)="editarFormulario(element)">edit</mat-icon>
+                </td>
+            </ng-container>
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr class="row-peritaje" mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlight': selectedRowIndex===row.id}" (click)="rowSelect(row)">
+            <tr class="row-peritaje" mat-row *matRowDef="let row; columns: displayedColumns;">
             </tr>
         </table>
     </mat-card-content>

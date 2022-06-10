@@ -15,7 +15,7 @@ import { formulario } from './interfaces/formulario.interface';
 export class BusquedaFormPeritajeComponent implements OnInit, OnDestroy {
   private readonly title: string = 'FormatoPeritaje';
   private readonly subtitle: string = 'busqueda';
-  public displayedColumns: string[] = ['Id', 'Fecini', 'Fecfin', 'Califica'];
+  public displayedColumns: string[] = ['Id', 'Fecini', 'Fecfin', 'Califica', 'Editar'];
   public selectedRowIndex = -1;
   public disabledBtnCrear: boolean;
   public disabledBtnEditar: boolean;
@@ -61,6 +61,7 @@ export class BusquedaFormPeritajeComponent implements OnInit, OnDestroy {
             () => {
               this.messageService.info("Atención...", "La Placa o VIN ingresados no corresponden a ningún vehículo asociado");
             }, 1000);
+            this.disabledBtnCrear = false;
         } else{
           this.disabledBtnCrear = false;
           this.disabledBtnParametr = false;
@@ -96,10 +97,10 @@ export class BusquedaFormPeritajeComponent implements OnInit, OnDestroy {
     });
   }
 
-  public async editarFormulario(): Promise<void> {
+  public async editarFormulario(element: any): Promise<void> {
     const servicio = '/vehiculosusados/formulariocompleto';
     const idEmp = this.sesion.empresa;
-    const params = '/' + idEmp + '/' + this.selectedFormulario?.id;
+    const params = '/' + idEmp + '/' + element.id;
     (await this.apiService.getInformacion(servicio, params)).subscribe(async (response: any) => {
       if (response.length > 0) {
         this.shared.encabezados = response[0];
