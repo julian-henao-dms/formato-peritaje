@@ -38,12 +38,12 @@ export class BusquedaFormPeritajeComponent implements OnInit, OnDestroy {
 
   async ngOnInit(): Promise<void> {
     this.sesion = await this.sharedService.getSesion();
-    this.shared = await this.sharedService.getValues();
   }
 
   public async onEnter(): Promise<void> {
     await this.sharedService.deleteValues();
     await this.resetinitData();
+    this.shared = await this.sharedService.getValues();
     if (this.placa !== '' || this.vin !== '') {
       this.messageService.info("Atencion", "Estamos cargando los formatos asociados");
       const idEmp = this.sesion.empresa;
@@ -85,6 +85,7 @@ export class BusquedaFormPeritajeComponent implements OnInit, OnDestroy {
       this.shared.formulario = this.estructuraFormulario(response.id_cot_item_lote);
       this.shared.encabezados.id_usuario = 1; // usuario quemado
       this.shared.encabezados.id_usu_inspector = 1; // usuario inspector quemado
+      this.shared.encabezados.fec_prox_mantenimiento = (this.shared.encabezados.fec_prox_mantenimiento == '0001-01-01T00:00:00' ? new Date() : this.shared.encabezados.fec_prox_mantenimiento);
       console.log(this.shared);
       this.router.navigate(['formato-peritaje/encabezados']);
     }, error => {
@@ -118,8 +119,8 @@ export class BusquedaFormPeritajeComponent implements OnInit, OnDestroy {
     });
   }
 
-  public parametrizarCampos(){
-
+  public abrirParametrizacion() {
+    this.router.navigate(['/formato-peritaje/parametrizacion']);
   }
 
   // public rowSelect(row: any): void {

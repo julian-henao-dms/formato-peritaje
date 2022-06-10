@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Maestro } from '../../components/formato-peritaje/interfaces/maestro.interface';
+import { Maestro } from '../../components/parametrizacion-form-peritaje/interfaces/maestro.interface';
 import { ApiService } from '../../services/api.service';
 import { MessagesService } from '../../services/messages.service';
 

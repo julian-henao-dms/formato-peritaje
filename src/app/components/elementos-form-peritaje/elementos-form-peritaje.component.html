@@ -1,72 +1,75 @@
 <mat-card class="bloque-cb-7 elementos-az">
-  <h2 class="title-bloques-cb">Elementos A - Z</h2>
-  <div class="elementos-a-z-container" *ngIf="listaElementos.length > 0">
-    <section class="example-section radio-options-cb" *ngFor="let elementoAz of listaElementos">
-      <div style="width: 100%">
-        <label class="item-label cbradio-label-parametrizado">{{elementoAz.elemento}}</label>
-      </div>
-      <div *ngIf="elementoAz.valor_def == 1">
-        <section>
-          <mat-checkbox required class="" [(ngModel)]="elementoAz.est" (change)="elementoAz.est ? elementoAz.est = 1 : elementoAz.est = 0">Malo</mat-checkbox>
+    <div class="title-card-pritaje">
+        <mat-icon class="icon-title-card-peritaje">car_repair</mat-icon>
+        <h2 class="title-bloques-cb">Elementos A - Z</h2>
+    </div>
+    <div class="elementos-a-z-container" *ngIf="listaElementos.length > 0">
+        <section class="example-section radio-options-cb" *ngFor="let elementoAz of listaElementos">
+            <div style="width: 100%">
+                <label class="item-label cbradio-label-parametrizado">{{elementoAz.elemento}}</label>
+            </div>
+            <div *ngIf="elementoAz.valor_def == 1">
+                <section>
+                    <mat-checkbox required class="" [(ngModel)]="elementoAz.est" (change)="elementoAz.est ? elementoAz.est = 1 : elementoAz.est = 0">Malo</mat-checkbox>
+                </section>
+            </div>
+            <div *ngIf="elementoAz.valor_def == 2">
+                <mat-radio-group required name="{{elementoAz.elemento}}" [(ngModel)]="elementoAz.est">
+                    <mat-radio-button class="cb-radio-button" [value]="2">Leve</mat-radio-button>
+                    <mat-radio-button class="cb-radio-button" [value]="3">Fuerte</mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <div *ngIf="elementoAz.valor_def == 3">
+                <mat-radio-group required name="{{elementoAz.elemento}}" [(ngModel)]="elementoAz.est">
+                    <mat-radio-button class="cb-radio-button" [value]="4">OK</mat-radio-button>
+                    <mat-radio-button class="cb-radio-button" [value]="5">Bajo</mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <div *ngIf="elementoAz.valor_def == 4">
+                <mat-radio-group required name="{{elementoAz.elemento}}" [(ngModel)]="elementoAz.est">
+                    <mat-radio-button class="cb-radio-button" [value]="7">Si</mat-radio-button>
+                    <mat-radio-button class="cb-radio-button" [value]="6">No</mat-radio-button>
+                </mat-radio-group>
+            </div>
         </section>
-      </div>
-      <div *ngIf="elementoAz.valor_def == 2">
-        <mat-radio-group required name="{{elementoAz.elemento}}" [(ngModel)]="elementoAz.est">
-          <mat-radio-button class="cb-radio-button" [value]="2">Leve</mat-radio-button>
-          <mat-radio-button class="cb-radio-button" [value]="3">Fuerte</mat-radio-button>
-        </mat-radio-group>
-      </div>
-      <div *ngIf="elementoAz.valor_def == 3">
-        <mat-radio-group required name="{{elementoAz.elemento}}" [(ngModel)]="elementoAz.est">
-          <mat-radio-button class="cb-radio-button" [value]="4">OK</mat-radio-button>
-          <mat-radio-button class="cb-radio-button" [value]="5">Bajo</mat-radio-button>
-        </mat-radio-group>
-      </div>
-      <div *ngIf="elementoAz.valor_def == 4">
-        <mat-radio-group required name="{{elementoAz.elemento}}" [(ngModel)]="elementoAz.est">
-          <mat-radio-button class="cb-radio-button" [value]="7">Si</mat-radio-button>
-          <mat-radio-button class="cb-radio-button" [value]="6">No</mat-radio-button>
-        </mat-radio-group>
-      </div>
-    </section>
-  </div>
+    </div>
 </mat-card>
 
 <mat-card>
-  <div class="title-cb-card">
-    <mat-icon class="icon-title-card-cb">post_add</mat-icon>
-    <h2>Añadir Elemento para Intervención</h2>
-  </div>
-
-  <div class="header-interv">
-    <mat-form-field appearance="fill">
-      <mat-label>Elemento a intervenir</mat-label>
-      <mat-select [(ngModel)]="idElementoIntervencion">
-        <mat-option [value]="0">-- Selecione una opción --</mat-option>
-        <mat-option *ngFor="let elementoAZ of listaElementos" [value]="elementoAZ.id_chk_maestro_elementos">
-          {{elementoAZ.elemento}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <button class="add-interv-btn" mat-button (click)="agregarIntervencion()">Agregar <mat-icon>add</mat-icon></button>
-  </div>
-  <h3>Elementos que requieren Intervención</h3>
-
-  <div *ngFor="let elementoAZ of listaElementos">
-    <div class="fields-interv" *ngIf="elementoAZ.intervencion == 1">
-      <mat-form-field appearance="fill">
-        <mat-label>Elemento Intervención</mat-label>
-        <input matInput [value]="elementoAZ.elemento" disabled />
-      </mat-form-field>
-      <mat-form-field appearance="fill">
-        <mat-label>Valor Aprox.</mat-label>
-        <input matInput [(ngModel)]="elementoAZ.valor" />
-      </mat-form-field>
-      <button class="delete-interv-btn" matTooltip="Eliminar cmapo" mat-icon-button (click)="elementoAZ.intervencion = 0"><mat-icon class="m-icon-cb-interv">delete</mat-icon></button>
+    <div class="title-card-pritaje">
+        <mat-icon class="icon-title-card-peritaje">post_add</mat-icon>
+        <h2>Añadir Elemento para Intervención</h2>
     </div>
-  </div>
-</mat-card>-->
+
+    <div class="header-interv">
+        <mat-form-field appearance="fill">
+            <mat-label>Elemento a intervenir</mat-label>
+            <mat-select [(ngModel)]="idElementoIntervencion">
+                <mat-option [value]="0">-- Selecione una opción --</mat-option>
+                <mat-option *ngFor="let elementoAZ of listaElementos" [value]="elementoAZ.id_chk_maestro_elementos">
+                    {{elementoAZ.elemento}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button class="add-interv-btn" mat-button (click)="agregarIntervencion()">Agregar <mat-icon>add</mat-icon></button>
+    </div>
+    <h3>Elementos que requieren Intervención</h3>
+
+    <div *ngFor="let elementoAZ of listaElementos">
+        <div class="fields-interv" *ngIf="elementoAZ.intervencion == 1">
+            <mat-form-field appearance="fill">
+                <mat-label>Elemento Intervención</mat-label>
+                <input matInput [value]="elementoAZ.elemento" disabled />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Valor Aprox.</mat-label>
+                <input matInput [(ngModel)]="elementoAZ.valor" />
+            </mat-form-field>
+            <button class="delete-interv-btn" matTooltip="Eliminar campo" mat-icon-button (click)="borrarIntervencion(elementoAZ)"><mat-icon class="m-icon-cb-interv">delete</mat-icon></button>
+        </div>
+    </div>
+</mat-card>
 <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
-<div style="display:flex; justify-content: center">
-  <button mat-raised-button color="warn" (click)="guardarFormulario()">Guardar</button>
-</div>-->
+<div class="container-save">
+    <button mat-raised-button class="btn-save" (click)="guardarFormulario()"><mat-icon class="icon-title-card-peritaje">save</mat-icon>Guardar</button>
+</div>
