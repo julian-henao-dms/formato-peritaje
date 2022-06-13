@@ -1,7 +1,8 @@
 $main-color: #b50411;
-.hidden{
+.hidden {
     display: none;
 }
+
 mat-card,
 .group-radio-options-cb {
     margin-bottom: 1.6em;
@@ -21,6 +22,10 @@ mat-card.bloque-cb-2 {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+}
+
+mat-card.bloque-cb-1 {
+    align-items: center;
 }
 
 mat-card.bloque-cb-4,
@@ -81,14 +86,14 @@ mat-card.bloque-cb-3 {
 .radio-options-table {
     display: flex;
     flex-direction: column;
-    padding: 0.2em 0.2em;
+    padding: 0em 0.2em;
     min-width: 15em;
 }
 
 table.table-form-peritaje {
-    width: 60%;
+    // width: 40%;
     .label-td {
-        min-width: 13em;
+        min-width: 11em;
     }
     tr.ng-star-inserted td {
         width: 10em;
@@ -125,10 +130,13 @@ section.rbtn-b1 {
 
 .form-group-cb-alt {
     display: flex;
-    width: 35%;
+    width: 56%;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
     mat-form-field {
-        width: 90%;
+        // width: 90%;
+        margin: 1.2em;
     }
 }
 

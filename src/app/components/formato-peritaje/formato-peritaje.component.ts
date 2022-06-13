@@ -84,6 +84,11 @@ export class FormatoPeritajeComponent implements OnInit, OnDestroy {
       {name: 'retrovisores_electricos', label: 'Retrovisores Eléctricos', option1: 1, optionTitle1: 'Si', option2: 0, optionTitle2: 'No'},
       {name: 'barra_techo', label: 'Barras De Techo', option1: 1, optionTitle1: 'Si', option2: 0, optionTitle2: 'No'},
       {name: 'exploradora', label: 'Exploradoras', option1: 1, optionTitle1: 'Si', option2: 0, optionTitle2: 'No'},
+      {name: 'llave', label: 'Repuesto Llaves', option1: 1, optionTitle1: 'Si', option2: 0, optionTitle2: 'No'},
+      {name: 'herramienta', label: 'Herramienta Completa', option1: 1, optionTitle1: 'Si', option2: 0, optionTitle2: 'No'},
+      {name: 'manual', label: 'Manuales', option1: 1, optionTitle1: 'Si', option2: 0, optionTitle2: 'No'},
+      {name: 'reclamo_aseg', label: 'Reclamos Aseguradora', option1: 1, optionTitle1: 'Si', option2: 0, optionTitle2: 'No'},
+      {name: 'cambio_correa', label: 'Cambio Correa', option1: 1, optionTitle1: 'Si', option2: 0, optionTitle2: 'No'},
       
 
     ];

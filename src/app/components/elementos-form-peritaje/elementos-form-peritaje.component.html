@@ -4,13 +4,91 @@
         <h2 class="title-bloques-cb">Elementos A - Z</h2>
     </div>
     <div class="elementos-a-z-container" *ngIf="listaElementos.length > 0">
-        <section class="example-section radio-options-cb" *ngFor="let elementoAz of listaElementos">
+        <table class="mat-elevation-z2 demo-table table-form-peritaje">
+
+            <tbody>
+
+
+                <tr *ngFor="let elementoAz of listaElementos">
+                    <div *ngIf="elementoAz.valor_def == 1">
+                        <section class="example-section radio-options-table">
+                            <mat-radio-group aria-label="Cojineria" required name="{{elementoAz.elemento}}" [(ngModel)]="elementoAz.est">
+                                <td class="label-td">
+                                    <label class="item-label cbradio-label-parametrizado">{{elementoAz.elemento}}</label>
+                                </td>
+
+                                <td>
+                                    <mat-radio-button class="cb-radio-button" [value]="0">No Tiene</mat-radio-button>
+                                </td>
+                                <td>
+                                    <mat-radio-button class="cb-radio-button" [value]="1">Malo</mat-radio-button>
+                                </td>
+                            </mat-radio-group>
+                        </section>
+                    </div>
+                    <div *ngIf="elementoAz.valor_def == 2">
+                        <section class="example-section radio-options-table">
+                            <mat-radio-group aria-label="Cojineria" required name="{{elementoAz.elemento}}" [(ngModel)]="elementoAz.est">
+                                <td class="label-td">
+                                    <label class="item-label cbradio-label-parametrizado">{{elementoAz.elemento}}</label>
+                                </td>
+
+                                <td>
+                                    <mat-radio-button class="cb-radio-button" [value]="2">Leve</mat-radio-button>
+                                </td>
+                                <td>
+                                    <mat-radio-button class="cb-radio-button" [value]="3">Fuerte</mat-radio-button>
+                                </td>
+                            </mat-radio-group>
+                        </section>
+                    </div>
+                    <div *ngIf="elementoAz.valor_def == 3">
+                        <section class="example-section radio-options-table">
+                            <mat-radio-group aria-label="Cojineria" required name="{{elementoAz.elemento}}" [(ngModel)]="elementoAz.est">
+                                <td class="label-td">
+                                    <label class="item-label cbradio-label-parametrizado">{{elementoAz.elemento}}</label>
+                                </td>
+
+                                <td>
+                                    <mat-radio-button class="cb-radio-button" [value]="4">OK</mat-radio-button>
+                                </td>
+                                <td>
+                                    <mat-radio-button class="cb-radio-button" [value]="5">Bajo</mat-radio-button>
+                                </td>
+                            </mat-radio-group>
+                        </section>
+                    </div>
+                    <div *ngIf="elementoAz.valor_def == 4">
+                        <section class="example-section radio-options-table">
+                            <mat-radio-group aria-label="Cojineria" required name="{{elementoAz.elemento}}" [(ngModel)]="elementoAz.est">
+                                <td class="label-td">
+                                    <label class="item-label cbradio-label-parametrizado">{{elementoAz.elemento}}</label>
+                                </td>
+
+                                <td>
+                                    <mat-radio-button class="cb-radio-button" [value]="7">Si</mat-radio-button>
+                                </td>
+                                <td>
+                                    <mat-radio-button class="cb-radio-button" [value]="6">No</mat-radio-button>
+                                </td>
+                            </mat-radio-group>
+                        </section>
+                    </div>
+                </tr>
+
+            </tbody>
+        </table>
+        <!-- <section class="example-section radio-options-cb" *ngFor="let elementoAz of listaElementos">
             <div style="width: 100%">
                 <label class="item-label cbradio-label-parametrizado">{{elementoAz.elemento}}</label>
             </div>
             <div *ngIf="elementoAz.valor_def == 1">
-                <section>
-                    <mat-checkbox required class="" [(ngModel)]="elementoAz.est" (change)="elementoAz.est ? elementoAz.est = 1 : elementoAz.est = 0">Malo</mat-checkbox>
+                <section> -->
+        <!-- <mat-checkbox required class="" [(ngModel)]="elementoAz.est" (change)="elementoAz.est ? elementoAz.est = 1 : elementoAz.est = 0">Malo</mat-checkbox> -->
+        <!-- <mat-radio-group required name="{{elementoAz.elemento}}" [(ngModel)]="elementoAz.est">
+                        <mat-radio-button class="cb-radio-button" [value]="0">No Tiene</mat-radio-button>
+                        <mat-radio-button class="cb-radio-button" [value]="1">Malo</mat-radio-button>
+                    </mat-radio-group>
                 </section>
             </div>
             <div *ngIf="elementoAz.valor_def == 2">
@@ -31,7 +109,7 @@
                     <mat-radio-button class="cb-radio-button" [value]="6">No</mat-radio-button>
                 </mat-radio-group>
             </div>
-        </section>
+        </section> -->
     </div>
 </mat-card>
 
@@ -71,6 +149,6 @@
 </mat-card>
 <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
 <div class="container-save">
-  <button class="back-btn" mat-raised-button (click)="atras()"><mat-icon>keyboard_backspace</mat-icon>Atras</button>
-  <button mat-raised-button class="btn-save" (click)="guardarFormulario()"><mat-icon class="icon-title-card-peritaje">save</mat-icon>Guardar</button>
+    <button class="back-btn" mat-raised-button (click)="atras()"><mat-icon>keyboard_backspace</mat-icon>Atras</button>
+    <button mat-raised-button class="btn-save" (click)="guardarFormulario()"><mat-icon class="icon-title-card-peritaje">save</mat-icon>Guardar</button>
 </div>

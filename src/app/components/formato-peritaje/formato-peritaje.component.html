@@ -4,7 +4,7 @@
     </div>
 </mat-card> -->
 
-<mat-card class="bloque-cb-1">
+<mat-card class="bloque-cb-1 mat-elevation-z8">
     <div class="form-group-cb">
         <section class="example-section radio-options-cb rbtn-b1 rbtn-initial">
             <label class="cbradio-group-label">Calificación:</label>
@@ -113,7 +113,7 @@
 </mat-card>
 <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
 <!-- Tercer Bloque -->
-<mat-card class="bloque-cb-3">
+<mat-card class="bloque-cb-2 mat-elevation-z8">
     <table class="mat-elevation-z2 demo-table table-form-peritaje">
 
         <tbody>
@@ -121,7 +121,7 @@
 
             <tr *ngFor="let i of optionsRadios; let c = index">
                 <section class="example-section radio-options-table">
-                    <mat-radio-group aria-label="Cojineria" required name="'{{i.name}}'" [(ngModel)]="shared.encabezados[i.name]">
+                    <mat-radio-group aria-label="Cojineria" required name="{{i.name}}" [(ngModel)]="shared.encabezados[i.name]">
                         <td class="label-td">
                             <label class="cbradio-group-label example-margin">{{i.label}}:</label>
                         </td>
@@ -238,35 +238,72 @@
         </section> -->
     <!-- </div> -->
     <div class="form-group-cb-alt">
-        <mat-form-field appearance="fill">
+        <mat-form-field>
             <mat-label>Nº de Airbag:</mat-label>
             <input matInput type="number" placeholder="Nº de Airbag" class="encabezado-required" name="no_airbags" [(ngModel)]="shared.encabezados.no_airbags">
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
+        <mat-form-field>
             <mat-label>Nº de Rin:</mat-label>
             <input matInput type="number" placeholder="Nº de Rin" class="encabezado-required" name="no_rin" [(ngModel)]="shared.encabezados.no_rin">
         </mat-form-field>
-        <mat-form-field appearance="fill">
+        <mat-form-field>
             <mat-label>Kilometraje Actual:</mat-label>
             <input matInput id="kmInput" type="number" placeholder="Kilometraje Actual" class="encabezado-required" name="km" [(ngModel)]="shared.encabezados.km" />
             <mat-hint>* Campo requerido</mat-hint>
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
+
+
+        <mat-form-field>
+            <mat-label>Valor Reclamo:</mat-label>
+            <input matInput type="number" placeholder="Valor Reclamo" class="encabezado-required" name="valor_reclamo_aseg" [(ngModel)]="shared.encabezados.valor_reclamo_aseg">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Marca Radio:</mat-label>
+            <input matInput placeholder="Marca Radio" class="encabezado-required" name="marca_radio" [(ngModel)]="shared.encabezados.marca_radio">
+            <mat-hint>* Campo requerido</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Marca Llantas:</mat-label>
+            <input matInput placeholder="Marca Llantas" class="encabezado-required" name="marca_llantas" [(ngModel)]="shared.encabezados.marca_llantas">
+            <mat-hint>* Campo requerido</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Marca Batería:</mat-label>
+            <input matInput placeholder="Marca Batería" class="encabezado-required" name="marca_bateria" [(ngModel)]="shared.encabezados.marca_bateria">
+            <mat-hint>* Campo requerido</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Lugar Mantenimiento:</mat-label>
+            <input matInput placeholder="Lugar Mantenimiento" class="encabezado-required" name="lugar_mante" [(ngModel)]="shared.encabezados.lugar_mante">
+            <mat-hint>* Campo requerido</mat-hint>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Lugar Cambio Correa:</mat-label>
+            <input matInput placeholder="Donde Cambio Correa:" name="lugar_cambio_correa" [(ngModel)]="shared.encabezados.lugar_cambio_correa" [disabled]="shared.encabezados.cambio_correa == 0">
+            <mat-hint [ngClass]="{'hidden': shared.encabezados.cambio_correa == 0}">* Campo requerido</mat-hint>
+        </mat-form-field>
+        <mat-form-field>
             <mat-label>Próximo Mantenimiento</mat-label>
             <input matInput id="fechaProxMantInput" [matDatepicker]="picker" required class="encabezado-required" name="fec_prox_mantenimiento" [(ngModel)]="shared.encabezados.fec_prox_mantenimiento">
             <mat-hint>MM/DD/YYYY</mat-hint>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
+
+
     </div>
 </mat-card>
 
 <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
 <!-- Cuarto Bloque  -->
-<mat-card class="bloque-cb-4 radio-btn-cb">
-    <div class="radio-group-6">
+<!-- <mat-card class="bloque-cb-4 radio-btn-cb mat-elevation-z8"> -->
+<!-- <div class="radio-group-6">
         <section class="example-section radio-options-cb">
             <label class="cbradio-group-label">Repuesto Llaves:</label>
             <mat-radio-group aria-label="Repuesto Llaves" required name="llave" [(ngModel)]="shared.encabezados.llave">
@@ -316,9 +353,9 @@
                 <mat-radio-button class="cb-radio-button" [value]="0">No</mat-radio-button>
             </mat-radio-group>
         </section>
-    </div>
+    </div> -->
 
-    <div class="form-group-cb">
+<!-- <div class="form-group-cb">
         <mat-form-field appearance="fill">
             <mat-label>Lugar Cambio Correa:</mat-label>
             <input matInput placeholder="Donde Cambio Correa:" name="lugar_cambio_correa" [(ngModel)]="shared.encabezados.lugar_cambio_correa" [disabled]="shared.encabezados.cambio_correa == 0">
@@ -353,9 +390,9 @@
             <input matInput placeholder="Lugar Mantenimiento" class="encabezado-required" name="lugar_mante" [(ngModel)]="shared.encabezados.lugar_mante">
             <mat-hint>* Campo requerido</mat-hint>
         </mat-form-field>
-    </div>
-</mat-card>
-<mat-card class="porcentajes-llantas">
+    </div> -->
+<!-- </mat-card> -->
+<mat-card class="porcentajes-llantas mat-elevation-z8">
     <div class="title-cb-card">
         <mat-icon class="icon-title-card-peritaje">percent</mat-icon>
         <h2 class="titulo-p-llanta">Porcentaje Vida LLantas</h2>
