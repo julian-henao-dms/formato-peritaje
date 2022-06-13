@@ -16,6 +16,14 @@ interface Combustible {
   value: string;
   viewValue: string;
 }
+interface RadioOptionForm{
+  name: string,
+  label: string;
+  option1: number;
+  optionTitle1: string;
+  option2: number;
+  optionTitle2: string;
+}
 
 @Component({
   selector: 'app-formato-peritaje',
@@ -23,6 +31,7 @@ interface Combustible {
   styleUrls: ['./formato-peritaje.component.scss']
 })
 export class FormatoPeritajeComponent implements OnInit, OnDestroy {
+  
   private readonly title: string = 'FormatoPeritaje';
   private readonly subtitle: string = 'formulario';
   public kmActual: number;
@@ -33,6 +42,7 @@ export class FormatoPeritajeComponent implements OnInit, OnDestroy {
 
   public calificaciones: CalificacionesEstado[];
   public combustibles: Combustible[];
+  public optionsRadios: RadioOptionForm[];
   public automatica = 1;
   public mecanica = 0;
   public t4x2 = 0;
@@ -63,6 +73,19 @@ export class FormatoPeritajeComponent implements OnInit, OnDestroy {
       {value: '2', viewValue: 'Gas'},
       {value: '3', viewValue: 'Hibrido'},
       {value: '4', viewValue: 'Eléctrico'}
+    ];
+    this.optionsRadios = [
+      {name: 'cojineria', label: 'Cojineria', option1: this.tela, optionTitle1: 'Tela', option2: this.cuero, optionTitle2: 'Cuero'},
+      {name: 'caja', label: 'Caja', option1: this.mecanica, optionTitle1: 'Mecánica', option2: this.automatica, optionTitle2: 'Automática'},
+      {name: 'traccion', label: 'Tracción', option1: this.t4x2, optionTitle1: '4X2', option2: this.t4x4, optionTitle2: '4X4'},
+      {name: 'rin', label: 'Rin de Lujo', option1: 1, optionTitle1: 'Si', option2: 0, optionTitle2: 'No'},
+      {name: 'vidrios', label: 'Vidrio Eléctrico', option1: 1, optionTitle1: 'Si', option2: 0, optionTitle2: 'No'},
+      {name: 'techo_vidrio', label: 'Techo Vidrio', option1: 1, optionTitle1: 'Si', option2: 0, optionTitle2: 'No'},
+      {name: 'retrovisores_electricos', label: 'Retrovisores Eléctricos', option1: 1, optionTitle1: 'Si', option2: 0, optionTitle2: 'No'},
+      {name: 'barra_techo', label: 'Barras De Techo', option1: 1, optionTitle1: 'Si', option2: 0, optionTitle2: 'No'},
+      {name: 'exploradora', label: 'Exploradoras', option1: 1, optionTitle1: 'Si', option2: 0, optionTitle2: 'No'},
+      
+
     ];
   }
 
