@@ -4,7 +4,7 @@ $main-color: #b50411;
 }
 mat-card,
 .group-radio-options-cb {
-    margin-bottom: 1.2em;
+    margin-bottom: 1.6em;
 }
 
 mat-hint {
@@ -14,18 +14,26 @@ mat-hint {
 
 mat-card.bloque-cb-1,
 mat-card.bloque-cb-2 {
+    // display: flex;
+    // flex-wrap: wrap;
+    // flex-direction: column;
+    // justify-content: space-between;
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
-mat-card.bloque-cb-3,
 mat-card.bloque-cb-4,
 .bloque-cb-6 {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
+}
+
+mat-card.bloque-cb-3 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .radio-group-5,
@@ -70,8 +78,31 @@ mat-card.bloque-cb-4,
     min-width: 15em;
 }
 
+.radio-options-table {
+    display: flex;
+    flex-direction: column;
+    padding: 0.2em 0.2em;
+    min-width: 15em;
+}
+
+table.table-form-peritaje {
+    width: 60%;
+    .label-td {
+        min-width: 13em;
+    }
+    tr.ng-star-inserted td {
+        width: 10em;
+        border: solid 1px #ddd;
+        padding: 0.5em;
+    }
+}
+
+.mat-form-field {
+    margin: 1.2em;
+}
+
 mat-card {
-    margin: 0.6em 1.5em;
+    margin: 2em;
 }
 
 .fecha p {
@@ -90,6 +121,15 @@ section.rbtn-b1 {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+}
+
+.form-group-cb-alt {
+    display: flex;
+    width: 35%;
+    flex-wrap: wrap;
+    mat-form-field {
+        width: 90%;
+    }
 }
 
 .form-group-cb .firma {
