@@ -113,192 +113,194 @@
 </mat-card>
 <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
 <!-- Tercer Bloque -->
-<mat-card class="bloque-cb-2 mat-elevation-z8">
-    <table class="mat-elevation-z2 demo-table table-form-peritaje">
+<div class="grid-peritaje">
+    <mat-card class="bloque-cb-2 mat-elevation-z5">
+        <table class="demo-table table-form-peritaje">
 
-        <tbody>
+            <tbody>
+                <tr *ngFor="let i of optionsRadios; let c = index">
+                    <section class="example-section radio-options-table">
+                        <mat-radio-group aria-label="Cojineria" required name="{{i.name}}" [(ngModel)]="shared.encabezados[i.name]">
+                            <td class="label-td">
+                                <label class="cbradio-group-label example-margin">{{i.label}}:</label>
+                            </td>
 
+                            <td>
+                                <mat-radio-button class="cb-radio-button" [value]="i.option1">{{i.optionTitle1}}</mat-radio-button>
+                            </td>
+                            <td>
+                                <mat-radio-button class="cb-radio-button" [value]="i.option2">{{i.optionTitle2}}</mat-radio-button>
+                            </td>
+                        </mat-radio-group>
+                    </section>
+                </tr>
 
-            <tr *ngFor="let i of optionsRadios; let c = index">
-                <section class="example-section radio-options-table">
-                    <mat-radio-group aria-label="Cojineria" required name="{{i.name}}" [(ngModel)]="shared.encabezados[i.name]">
-                        <td class="label-td">
-                            <label class="cbradio-group-label example-margin">{{i.label}}:</label>
-                        </td>
-
-                        <td>
-                            <mat-radio-button class="cb-radio-button" [value]="i.option1">{{i.optionTitle1}}</mat-radio-button>
-                        </td>
-                        <td>
-                            <mat-radio-button class="cb-radio-button" [value]="i.option2">{{i.optionTitle2}}</mat-radio-button>
-                        </td>
+                <!-- <section class="example-section radio-options-cb">
+                    <mat-radio-group aria-label="Tracción" required name="traccion" [(ngModel)]="shared.encabezados.caja">
+                        <tr>
+                            <td>
+                                <label class="cbradio-group-label example-margin">Caja:</label>
+                            </td>
+    
+                            <td>
+                                <mat-radio-button class="cb-radio-button" [value]="mecanica">Mecánica</mat-radio-button>
+                            </td>
+                            <td>
+                                <mat-radio-button class="cb-radio-button" [value]="automatica">Automática</mat-radio-button>
+                            </td>
+                        </tr>
                     </mat-radio-group>
-                </section>
-            </tr>
+                </section> -->
 
-            <!-- <section class="example-section radio-options-cb">
-                <mat-radio-group aria-label="Tracción" required name="traccion" [(ngModel)]="shared.encabezados.caja">
-                    <tr>
-                        <td>
-                            <label class="cbradio-group-label example-margin">Caja:</label>
-                        </td>
-
-                        <td>
-                            <mat-radio-button class="cb-radio-button" [value]="mecanica">Mecánica</mat-radio-button>
-                        </td>
-                        <td>
-                            <mat-radio-button class="cb-radio-button" [value]="automatica">Automática</mat-radio-button>
-                        </td>
-                    </tr>
+            </tbody>
+        </table>
+        <!-- <div class="radio-group-5"> -->
+        <!-- <section class="example-section radio-options-cb">
+                <label class="cbradio-group-label example-margin">Cojineria:</label>
+                <mat-radio-group aria-label="Cojineria" required name="cojineria" [(ngModel)]="shared.encabezados.cojineria">
+                    <mat-radio-button class="cb-radio-button" [value]="tela">Tela</mat-radio-button>
+                    <mat-radio-button class="cb-radio-button" [value]="cuero">Cuero</mat-radio-button>
                 </mat-radio-group>
             </section> -->
 
-        </tbody>
-    </table>
-    <!-- <div class="radio-group-5"> -->
-    <!-- <section class="example-section radio-options-cb">
-            <label class="cbradio-group-label example-margin">Cojineria:</label>
-            <mat-radio-group aria-label="Cojineria" required name="cojineria" [(ngModel)]="shared.encabezados.cojineria">
-                <mat-radio-button class="cb-radio-button" [value]="tela">Tela</mat-radio-button>
-                <mat-radio-button class="cb-radio-button" [value]="cuero">Cuero</mat-radio-button>
-            </mat-radio-group>
-        </section> -->
+        <!-- <section class="example-section radio-options-cb radio-options-cb">
+                <label class="example-margin cbradio-group-label">Caja:</label>
+                <mat-radio-group aria-label="Caja" required name="caja" [(ngModel)]="shared.encabezados.caja">
+                    <mat-radio-button class="cb-radio-button" [value]="mecanica">Mecánica</mat-radio-button>
+                    <mat-radio-button class="cb-radio-button" [value]="automatica">Automática</mat-radio-button>
+                </mat-radio-group>
+            </section> -->
 
-    <!-- <section class="example-section radio-options-cb radio-options-cb">
-            <label class="example-margin cbradio-group-label">Caja:</label>
-            <mat-radio-group aria-label="Caja" required name="caja" [(ngModel)]="shared.encabezados.caja">
-                <mat-radio-button class="cb-radio-button" [value]="mecanica">Mecánica</mat-radio-button>
-                <mat-radio-button class="cb-radio-button" [value]="automatica">Automática</mat-radio-button>
-            </mat-radio-group>
-        </section> -->
+        <!-- <section class="example-section radio-options-cb">
+                <label class="example-margin cbradio-group-label">Tracción:</label>
+                <mat-radio-group aria-label="Tracción" required name="traccion" [(ngModel)]="shared.encabezados.traccion">
+                    <mat-radio-button class="cb-radio-button" [value]="t4x2">4X2</mat-radio-button>
+                    <mat-radio-button class="cb-radio-button" [value]="t4x4">4X4</mat-radio-button>
+                </mat-radio-group>
+            </section> -->
 
-    <!-- <section class="example-section radio-options-cb">
-            <label class="example-margin cbradio-group-label">Tracción:</label>
-            <mat-radio-group aria-label="Tracción" required name="traccion" [(ngModel)]="shared.encabezados.traccion">
-                <mat-radio-button class="cb-radio-button" [value]="t4x2">4X2</mat-radio-button>
-                <mat-radio-button class="cb-radio-button" [value]="t4x4">4X4</mat-radio-button>
-            </mat-radio-group>
-        </section> -->
+        <!-- <section class="example-section radio-options-cb">
+                <label class="cbradio-group-label">Rin de Lujo:</label>
+                <mat-radio-group aria-label="Rin de Lujo" required name="rin" [(ngModel)]="shared.encabezados.rin">
+                    <mat-radio-button class="cb-radio-button" [value]="1">Si</mat-radio-button>
+                    <mat-radio-button class="cb-radio-button" [value]="0">No</mat-radio-button>
+                </mat-radio-group>
+            </section> -->
 
-    <!-- <section class="example-section radio-options-cb">
-            <label class="cbradio-group-label">Rin de Lujo:</label>
-            <mat-radio-group aria-label="Rin de Lujo" required name="rin" [(ngModel)]="shared.encabezados.rin">
-                <mat-radio-button class="cb-radio-button" [value]="1">Si</mat-radio-button>
-                <mat-radio-button class="cb-radio-button" [value]="0">No</mat-radio-button>
-            </mat-radio-group>
-        </section> -->
+        <!-- <section class="example-section radio-options-cb">
+                <label class="cbradio-group-label">Estribo de Lujo:</label>
+                <mat-radio-group aria-label="Estribo de Lujo" required name="estribo" [(ngModel)]="shared.encabezados.estribo">
+                    <mat-radio-button class="cb-radio-button" [value]="1">Si</mat-radio-button>
+                    <mat-radio-button class="cb-radio-button" [value]="0">No</mat-radio-button>
+                </mat-radio-group>
+            </section> -->
+        <!-- </div> -->
 
-    <!-- <section class="example-section radio-options-cb">
-            <label class="cbradio-group-label">Estribo de Lujo:</label>
-            <mat-radio-group aria-label="Estribo de Lujo" required name="estribo" [(ngModel)]="shared.encabezados.estribo">
-                <mat-radio-button class="cb-radio-button" [value]="1">Si</mat-radio-button>
-                <mat-radio-button class="cb-radio-button" [value]="0">No</mat-radio-button>
-            </mat-radio-group>
-        </section> -->
-    <!-- </div> -->
+        <!-- <div class="radio-group-5"> -->
+        <!-- <section class="example-section radio-options-cb">
+                <label class="cbradio-group-label">Vidrio Eléctrico:</label>
+                <mat-radio-group aria-label="Vidrio Eléctrico" required name="vidrios" [(ngModel)]="shared.encabezados.vidrios">
+                    <mat-radio-button class="cb-radio-button" [value]="1">Si</mat-radio-button>
+                    <mat-radio-button class="cb-radio-button" [value]="0">No</mat-radio-button>
+                </mat-radio-group>
+            </section> -->
 
-    <!-- <div class="radio-group-5"> -->
-    <!-- <section class="example-section radio-options-cb">
-            <label class="cbradio-group-label">Vidrio Eléctrico:</label>
-            <mat-radio-group aria-label="Vidrio Eléctrico" required name="vidrios" [(ngModel)]="shared.encabezados.vidrios">
-                <mat-radio-button class="cb-radio-button" [value]="1">Si</mat-radio-button>
-                <mat-radio-button class="cb-radio-button" [value]="0">No</mat-radio-button>
-            </mat-radio-group>
-        </section> -->
+        <!-- <section class="example-section radio-options-cb">
+                <label class="cbradio-group-label">Techo Vidrio:</label>
+                <mat-radio-group aria-label="Techo Vidrio" required name="techo_vidrio" [(ngModel)]="shared.encabezados.techo_vidrio">
+                    <mat-radio-button class="cb-radio-button" [value]="1">Si</mat-radio-button>
+                    <mat-radio-button class="cb-radio-button" [value]="0">No</mat-radio-button>
+                </mat-radio-group>
+            </section>
+    
+            <section class="example-section radio-options-cb">
+                <label class="cbradio-group-label">Retrovisores Eléctricos:</label>
+                <mat-radio-group aria-label="Retrovisores Eléctricos" required name="retrovisores_electricos" [(ngModel)]="shared.encabezados.retrovisores_electricos">
+                    <mat-radio-button class="cb-radio-button" [value]="1">Si</mat-radio-button>
+                    <mat-radio-button class="cb-radio-button" [value]="0">No</mat-radio-button>
+                </mat-radio-group>
+            </section>
+            <section class="example-section radio-options-cb">
+                <label class="cbradio-group-label">Barras De Techo:</label>
+                <mat-radio-group aria-label="Barras De Techo" required name="barra_techo" [(ngModel)]="shared.encabezados.barra_techo">
+                    <mat-radio-button class="cb-radio-button" [value]="1">Si</mat-radio-button>
+                    <mat-radio-button class="cb-radio-button" [value]="0">No</mat-radio-button>
+                </mat-radio-group>
+            </section>
+    
+            <section class="example-section radio-options-cb">
+                <label class="cbradio-group-label">Exploradoras:</label>
+                <mat-radio-group aria-label="Exploradoras" required name="exploradora" [(ngModel)]="shared.encabezados.exploradora">
+                    <mat-radio-button class="cb-radio-button" [value]="1">Si</mat-radio-button>
+                    <mat-radio-button class="cb-radio-button" [value]="0">No</mat-radio-button>
+                </mat-radio-group>
+            </section> -->
+        <!-- </div> -->
+    </mat-card>
+    <mat-card class="card-peritaje-fields">
+        <div class="form-group-cb-alt">
+            <mat-form-field>
+                <mat-label>Nº de Airbag:</mat-label>
+                <input matInput type="number" placeholder="Nº de Airbag" class="encabezado-required" name="no_airbags" [(ngModel)]="shared.encabezados.no_airbags">
+            </mat-form-field>
 
-    <!-- <section class="example-section radio-options-cb">
-            <label class="cbradio-group-label">Techo Vidrio:</label>
-            <mat-radio-group aria-label="Techo Vidrio" required name="techo_vidrio" [(ngModel)]="shared.encabezados.techo_vidrio">
-                <mat-radio-button class="cb-radio-button" [value]="1">Si</mat-radio-button>
-                <mat-radio-button class="cb-radio-button" [value]="0">No</mat-radio-button>
-            </mat-radio-group>
-        </section>
-
-        <section class="example-section radio-options-cb">
-            <label class="cbradio-group-label">Retrovisores Eléctricos:</label>
-            <mat-radio-group aria-label="Retrovisores Eléctricos" required name="retrovisores_electricos" [(ngModel)]="shared.encabezados.retrovisores_electricos">
-                <mat-radio-button class="cb-radio-button" [value]="1">Si</mat-radio-button>
-                <mat-radio-button class="cb-radio-button" [value]="0">No</mat-radio-button>
-            </mat-radio-group>
-        </section>
-        <section class="example-section radio-options-cb">
-            <label class="cbradio-group-label">Barras De Techo:</label>
-            <mat-radio-group aria-label="Barras De Techo" required name="barra_techo" [(ngModel)]="shared.encabezados.barra_techo">
-                <mat-radio-button class="cb-radio-button" [value]="1">Si</mat-radio-button>
-                <mat-radio-button class="cb-radio-button" [value]="0">No</mat-radio-button>
-            </mat-radio-group>
-        </section>
-
-        <section class="example-section radio-options-cb">
-            <label class="cbradio-group-label">Exploradoras:</label>
-            <mat-radio-group aria-label="Exploradoras" required name="exploradora" [(ngModel)]="shared.encabezados.exploradora">
-                <mat-radio-button class="cb-radio-button" [value]="1">Si</mat-radio-button>
-                <mat-radio-button class="cb-radio-button" [value]="0">No</mat-radio-button>
-            </mat-radio-group>
-        </section> -->
-    <!-- </div> -->
-    <div class="form-group-cb-alt">
-        <mat-form-field>
-            <mat-label>Nº de Airbag:</mat-label>
-            <input matInput type="number" placeholder="Nº de Airbag" class="encabezado-required" name="no_airbags" [(ngModel)]="shared.encabezados.no_airbags">
-        </mat-form-field>
-
-        <mat-form-field>
-            <mat-label>Nº de Rin:</mat-label>
-            <input matInput type="number" placeholder="Nº de Rin" class="encabezado-required" name="no_rin" [(ngModel)]="shared.encabezados.no_rin">
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Kilometraje Actual:</mat-label>
-            <input matInput id="kmInput" type="number" placeholder="Kilometraje Actual" class="encabezado-required" name="km" [(ngModel)]="shared.encabezados.km" />
-            <mat-hint>* Campo requerido</mat-hint>
-        </mat-form-field>
+            <mat-form-field>
+                <mat-label>Nº de Rin:</mat-label>
+                <input matInput type="number" placeholder="Nº de Rin" class="encabezado-required" name="no_rin" [(ngModel)]="shared.encabezados.no_rin">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Kilometraje Actual:</mat-label>
+                <input matInput id="kmInput" type="number" placeholder="Kilometraje Actual" class="encabezado-required" name="km" [(ngModel)]="shared.encabezados.km" />
+                <mat-hint>* Campo requerido</mat-hint>
+            </mat-form-field>
 
 
 
-        <mat-form-field>
-            <mat-label>Valor Reclamo:</mat-label>
-            <input matInput type="number" placeholder="Valor Reclamo" class="encabezado-required" name="valor_reclamo_aseg" [(ngModel)]="shared.encabezados.valor_reclamo_aseg">
-        </mat-form-field>
+            <mat-form-field>
+                <mat-label>Valor Reclamo:</mat-label>
+                <input matInput type="number" placeholder="Valor Reclamo" class="encabezado-required" name="valor_reclamo_aseg" [(ngModel)]="shared.encabezados.valor_reclamo_aseg">
+            </mat-form-field>
 
-        <mat-form-field>
-            <mat-label>Marca Radio:</mat-label>
-            <input matInput placeholder="Marca Radio" class="encabezado-required" name="marca_radio" [(ngModel)]="shared.encabezados.marca_radio">
-            <mat-hint>* Campo requerido</mat-hint>
-        </mat-form-field>
+            <mat-form-field>
+                <mat-label>Marca Radio:</mat-label>
+                <input matInput placeholder="Marca Radio" class="encabezado-required" name="marca_radio" [(ngModel)]="shared.encabezados.marca_radio">
+                <mat-hint>* Campo requerido</mat-hint>
+            </mat-form-field>
 
-        <mat-form-field>
-            <mat-label>Marca Llantas:</mat-label>
-            <input matInput placeholder="Marca Llantas" class="encabezado-required" name="marca_llantas" [(ngModel)]="shared.encabezados.marca_llantas">
-            <mat-hint>* Campo requerido</mat-hint>
-        </mat-form-field>
+            <mat-form-field>
+                <mat-label>Marca Llantas:</mat-label>
+                <input matInput placeholder="Marca Llantas" class="encabezado-required" name="marca_llantas" [(ngModel)]="shared.encabezados.marca_llantas">
+                <mat-hint>* Campo requerido</mat-hint>
+            </mat-form-field>
 
-        <mat-form-field>
-            <mat-label>Marca Batería:</mat-label>
-            <input matInput placeholder="Marca Batería" class="encabezado-required" name="marca_bateria" [(ngModel)]="shared.encabezados.marca_bateria">
-            <mat-hint>* Campo requerido</mat-hint>
-        </mat-form-field>
+            <mat-form-field>
+                <mat-label>Marca Batería:</mat-label>
+                <input matInput placeholder="Marca Batería" class="encabezado-required" name="marca_bateria" [(ngModel)]="shared.encabezados.marca_bateria">
+                <mat-hint>* Campo requerido</mat-hint>
+            </mat-form-field>
 
-        <mat-form-field>
-            <mat-label>Lugar Mantenimiento:</mat-label>
-            <input matInput placeholder="Lugar Mantenimiento" class="encabezado-required" name="lugar_mante" [(ngModel)]="shared.encabezados.lugar_mante">
-            <mat-hint>* Campo requerido</mat-hint>
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Lugar Cambio Correa:</mat-label>
-            <input matInput placeholder="Donde Cambio Correa:" name="lugar_cambio_correa" [(ngModel)]="shared.encabezados.lugar_cambio_correa" [disabled]="shared.encabezados.cambio_correa == 0">
-            <mat-hint [ngClass]="{'hidden': shared.encabezados.cambio_correa == 0}">* Campo requerido</mat-hint>
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Próximo Mantenimiento</mat-label>
-            <input matInput id="fechaProxMantInput" [matDatepicker]="picker" required class="encabezado-required" name="fec_prox_mantenimiento" [(ngModel)]="shared.encabezados.fec_prox_mantenimiento">
-            <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
+            <mat-form-field>
+                <mat-label>Lugar Mantenimiento:</mat-label>
+                <input matInput placeholder="Lugar Mantenimiento" class="encabezado-required" name="lugar_mante" [(ngModel)]="shared.encabezados.lugar_mante">
+                <mat-hint>* Campo requerido</mat-hint>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Lugar Cambio Correa:</mat-label>
+                <input matInput placeholder="Donde Cambio Correa:" name="lugar_cambio_correa" [(ngModel)]="shared.encabezados.lugar_cambio_correa" [disabled]="shared.encabezados.cambio_correa == 0">
+                <mat-hint [ngClass]="{'hidden': shared.encabezados.cambio_correa == 0}">* Campo requerido</mat-hint>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Próximo Mantenimiento</mat-label>
+                <input matInput id="fechaProxMantInput" [matDatepicker]="picker" required class="encabezado-required" name="fec_prox_mantenimiento" [(ngModel)]="shared.encabezados.fec_prox_mantenimiento">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
 
 
-    </div>
-</mat-card>
+        </div>
+    </mat-card>
+</div>
 
 <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
 <!-- Cuarto Bloque  -->
@@ -400,29 +402,29 @@
     <div class="bloque-cb-6">
 
         <div class="form-group-cb">
-            <mat-form-field appearance="fill">
+            <mat-form-field>
                 <mat-label>Delantera Izquierda:</mat-label>
-                <input matInput placeholder="Delantera Izquierda" name="vida_llanta_del_izq" value="20">
+                <input matInput type="number" placeholder="Delantera Izquierda" name="llanta_delantera_iz" [(ngModel)]="shared.encabezados.llanta_delantera_iz">
             </mat-form-field>
 
-            <mat-form-field appearance="fill">
+            <mat-form-field>
                 <mat-label>Delantera Derecha:</mat-label>
-                <input matInput placeholder="Delantera derecha" name="vida_llanta_del_der" value="50">
+                <input matInput type="number" placeholder="Delantera derecha" name="llanta_delantera_der" [(ngModel)]="shared.encabezados.llanta_delantera_der">
             </mat-form-field>
 
-            <mat-form-field appearance="fill">
+            <mat-form-field>
                 <mat-label>Trasera Derecha:</mat-label>
-                <input matInput placeholder="Trasera Derecha" name="vida_llanta_tras_der" value="50">
+                <input matInput type="number" placeholder="Trasera Derecha" name="llanta_trasera_der" [(ngModel)]="shared.encabezados.llanta_trasera_der">
             </mat-form-field>
 
-            <mat-form-field appearance="fill">
+            <mat-form-field>
                 <mat-label>Trasera Izquierda:</mat-label>
-                <input matInput placeholder="Trasera Izquierda" name="vida_llanta_tras_izq" value="50">
+                <input matInput type="number" placeholder="Trasera Izquierda" name="llanta_trasera_iz" [(ngModel)]="shared.encabezados.llanta_trasera_iz">
             </mat-form-field>
 
-            <mat-form-field appearance="fill">
+            <mat-form-field>
                 <mat-label>Repuesto:</mat-label>
-                <input matInput placeholder="Repuesto" name="vida_llanta_repuesto" value="50">
+                <input matInput type="number" placeholder="Repuesto" name="llanta_repuesto" [(ngModel)]="shared.encabezados.llanta_repuesto">
             </mat-form-field>
 
         </div>

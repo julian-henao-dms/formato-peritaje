@@ -46,4 +46,9 @@ export interface Encabezados{
     linea: string;
     marca: string;
     modelo: string;
+    llanta_delantera_iz : number;
+    llanta_delantera_der : number;
+    llanta_trasera_iz : number;
+    llanta_trasera_der : number;
+    llanta_repuesto : number;
 }

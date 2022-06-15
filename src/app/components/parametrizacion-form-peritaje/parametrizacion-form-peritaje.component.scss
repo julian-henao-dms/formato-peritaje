@@ -66,6 +66,31 @@ $main-color: #b50411;
     }
 }
 
+h4.card-title.card-title-parametrizacion {
+    display: inline-block;
+    margin: 0.2em 0;
+}
+
+th.mat-header-cell.cdk-header-cel {
+    color: #b50411;
+    text-transform: uppercase;
+    border-bottom-color: rgba(0, 0, 0, 0.12);
+    padding: 0;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+
+.option-elements {
+    display: flex;
+    // justify-content: center;
+    padding: 0.5em;
+    p {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0;
+    }
+}
+
 .new_params {
     background-color: $main-color;
     color: #fff;
@@ -139,8 +164,46 @@ mat-card.mat-card.mat-focus-indicator.maestro-container {
 }
 
 .maestros-container {
+    // display: flex;
+    // flex-wrap: wrap;
     display: flex;
     flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    table {
+        width: 90%;
+        border: none;
+        tr.ng-star-inserted td {
+            // border: solid 1px #ddd;
+            // padding: 0.5em;
+            padding: 0;
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+        }
+        tr {
+            padding: 0;
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+        }
+    }
+}
+
+.table-form-peritaje tr td {
+    vertical-align: middle;
+    text-align: center;
+    // border: 1px solid #ddd;
+    // border-radius: 4px;
+}
+
+.table-form-peritaje tr td {
+    border-bottom-color: rgba(0, 0, 0, 0.12);
+    padding: 0;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+
+tr.mat-header-row {
+    height: 56px;
 }
 
 .maestro-container {

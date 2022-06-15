@@ -89,8 +89,6 @@ export class FormatoPeritajeComponent implements OnInit, OnDestroy {
       {name: 'manual', label: 'Manuales', option1: 1, optionTitle1: 'Si', option2: 0, optionTitle2: 'No'},
       {name: 'reclamo_aseg', label: 'Reclamos Aseguradora', option1: 1, optionTitle1: 'Si', option2: 0, optionTitle2: 'No'},
       {name: 'cambio_correa', label: 'Cambio Correa', option1: 1, optionTitle1: 'Si', option2: 0, optionTitle2: 'No'},
-      
-
     ];
   }
 

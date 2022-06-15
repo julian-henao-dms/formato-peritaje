@@ -21,6 +21,23 @@ mat-card.bloque-cb-5 {
     }
 }
 
+table.table-form-peritaje tr {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 83px;
+}
+
+table.table-form-peritaje td {
+    height: 5em;
+    width: 23em;
+    /* border-block-end-style: initial; */
+    border-bottom-color: #e3e3e3;
+    padding: 0;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+
 .label-select {
     display: flex;
     align-items: center;
@@ -33,7 +50,7 @@ mat-card.bloque-cb-5 {
 .estados-pintura-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
     .estado-pintura-container {
         margin: 10px;
     }

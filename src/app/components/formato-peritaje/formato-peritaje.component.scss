@@ -15,13 +15,13 @@ mat-hint {
 
 mat-card.bloque-cb-1,
 mat-card.bloque-cb-2 {
-    // display: flex;
-    // flex-wrap: wrap;
-    // flex-direction: column;
-    // justify-content: space-between;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+}
+
+.bloque-cb-2 {
+    margin-right: 0.5em;
 }
 
 mat-card.bloque-cb-1 {
@@ -81,6 +81,7 @@ mat-card.bloque-cb-3 {
     display: flex;
     flex-direction: column;
     min-width: 15em;
+    justify-content: center;
 }
 
 .radio-options-table {
@@ -99,6 +100,23 @@ table.table-form-peritaje {
         width: 10em;
         border: solid 1px #ddd;
         padding: 0.5em;
+    }
+}
+
+.grid-peritaje {
+    display: flex;
+    // align-items: flex-start;
+    justify-content: space-between;
+}
+
+.card-peritaje-fields {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 0.5em;
+    .form-group-cb-alt {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
     }
 }
 
@@ -128,18 +146,17 @@ section.rbtn-b1 {
     flex-wrap: wrap;
 }
 
-.form-group-cb-alt {
-    display: flex;
-    width: 56%;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    mat-form-field {
-        // width: 90%;
-        margin: 1.2em;
-    }
-}
-
+// .form-group-cb-alt {
+//     display: flex;
+//     width: 56%;
+//     flex-wrap: wrap;
+//     align-items: center;
+//     justify-content: space-between;
+//     mat-form-field {
+//         // width: 90%;
+//         margin: 1.2em;
+//     }
+// }
 .form-group-cb .firma {
     background-color: whitesmoke;
     width: 20%;
@@ -302,11 +319,35 @@ mat-icon.m-icon-cb {
     }
 }
 
-@media(max-width: 520px) {
+@media (max-width: 800px) {
+    .grid-peritaje {
+        display: flex;
+        flex-direction: column;
+    }
+    .table-form-peritaje {
+        width: 100%;
+    }
+    .bloque-cb-2 {
+        margin-right: 2em;
+    }
+    .card-peritaje-fields {
+        margin-left: 2em;
+    }
+    table.table-form-peritaje tr.ng-star-inserted td {
+        width: 15em;
+    }
+}
+
+@media(max-width: 570px) {
+    mat-card.bloque-cb-1 {
+        display: flex;
+        flex-direction: column;
+    }
     .form-group-cb,
     .form-group-cb-b {
         display: flex;
         flex-direction: column;
+        width: 100%;
     }
     .a {
         grid-column: col1-start / col2-end;
@@ -322,5 +363,25 @@ mat-icon.m-icon-cb {
     .title-cb-card {
         display: flex;
         justify-content: center;
+    }
+    table.table-form-peritaje {
+        // width: 40%;
+        .label-td {
+            min-width: 7em;
+        }
+        tr.ng-star-inserted td {
+            width: 5em;
+            border: solid 1px #ddd;
+            padding: 0.5em;
+        }
+    }
+    .form-group-cb-alt {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        .mat-form-field {
+            width: 90%;
+        }
     }
 }
