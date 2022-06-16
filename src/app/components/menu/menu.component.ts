@@ -49,7 +49,7 @@ export class MenuComponent implements OnInit {
   }
 
   public mostrarMenu(id: number, value: boolean): void {
-    console.log(id);
+  
     this.opciones.forEach(e => {
       if (e.id === id && !value) {
         e.isOpen = true;

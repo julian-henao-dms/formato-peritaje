@@ -24,6 +24,11 @@
         align-items: center;
     }
     
+    .bloque-cb-2 {
+        margin-right: 0.5em;
+        height: -webkit-fill-available;
+    }
+    
     mat-card.bloque-cb-1,
     mat-card.bloque-cb-2 {
         display: flex;
@@ -40,11 +45,6 @@
         color: red;
     }
     
-    .bloque-cb-2 {
-        margin-right: 0.5em;
-        height: -webkit-fill-available;
-    }
-    
     .form-group-cb .firma {
         background-color: whitesmoke;
         width: 20em;
@@ -56,11 +56,6 @@
         p {
             margin: 0.5em 0 0 0;
         }
-    }
-    
-    .example-margin,
-    .cbradio-group-label {
-        margin: 0 10px;
     }
     
     .example-radio-group {
@@ -155,29 +150,8 @@
         font-size: 15px;
     }
     
-    .m-icon-cb-interv {
-        color: $main-color;
-    }
-    
     .mat-tooltip {
         font-size: 14px;
-    }
-    
-    .group-btn-cb-ico {
-        display: flex;
-        justify-content: space-between;
-    }
-    
-    .group-btn-cb {
-        display: flex;
-        justify-content: end;
-        .btn-form-cb {
-            height: 30px;
-            width: 30px;
-            background: #fefefe;
-            color: $main-color;
-            border: solid 1px;
-        }
     }
     
     .mat-fab:not([class*=mat-elevation-z]),
@@ -196,14 +170,6 @@
     .porcentaje-llanta {
         display: flex;
         justify-content: space-around;
-    }
-    
-    .item-button {
-        float: right;
-    }
-    
-    .item-label {
-        float: left;
     }
     
     .title-cb-card {

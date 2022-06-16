@@ -69,7 +69,6 @@ table.table-form-peritaje td {
 table tr td.sections-td {
     width: 20em;
     text-align: justify;
-    /* margin-right: 8em; */
 }
 
 td.label-td {
@@ -80,7 +79,6 @@ td.label-td {
 td.td-select {
     width: 15em;
     text-align: center;
-    /* margin-right: 2em; */
 }
 
 td.td-select mat-form-field {
@@ -140,11 +138,3 @@ label.cbradio-label-parametrizado {
 .rbtn-first {
     min-width: 110px;
 }
-
-// @media (max-width: 800px) {
-//     div.scroll-table {
-//         display: flex;
-//         justify-content: flex-start;
-//         overflow-x: scroll;
-//     }
-// }

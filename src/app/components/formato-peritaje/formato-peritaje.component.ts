@@ -126,7 +126,7 @@ export class FormatoPeritajeComponent implements OnInit, OnDestroy {
       const itemValue = this.shared.formulario[items_formulario[i].getAttribute('name')!];
       if (itemValue === '' || itemValue === null) {
         let element = document.getElementsByName(items_formulario[i].getAttribute('name')!)[0];
-        console.log(element.tagName);
+      
         if (element.tagName !== 'INPUT') {
           this.focusInputChild(element)!;
         } else {
