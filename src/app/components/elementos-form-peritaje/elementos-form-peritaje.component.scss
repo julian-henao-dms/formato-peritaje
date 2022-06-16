@@ -4,6 +4,7 @@ table {
     padding: 0;
     width: 95%;
     table-layout: fixed;
+    border-collapse: collapse;
 }
 
 table caption {
@@ -12,14 +13,16 @@ table caption {
 }
 
 table tr {
-    border: 1px solid #ddd;
-    padding: .35em;
+    border-bottom: 1px solid #ddd;
+    padding: 0.35em;
 }
 
 table th,
 table td {
     padding: .625em;
     text-align: center;
+    // border-bottom: 1px solid #ddd;
+    // padding: 0.35em;
 }
 
 table th {
@@ -33,14 +36,11 @@ table.table-form-peritaje tr {
     // align-items: center;
     // justify-content: center;
     height: auto;
+    display: inherit;
 }
 
 table.table-form-peritaje td {
     height: 4em;
-    border-bottom-color: #e3e3e3;
-    padding: 0;
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
 }
 
 .title-card-pritaje {
@@ -86,11 +86,10 @@ div.container-save {
 table.table-form-peritaje {
     // width: 40%;
     .label-td {
-        min-width: 20em;
+        min-width: 38em;
     }
     tr.ng-star-inserted td {
-        width: 31em;
-        border-bottom: solid 1px #ddd;
+        width: 25em;
         padding: 0.5em;
     }
 }
@@ -99,6 +98,7 @@ table.table-form-peritaje {
     display: flex;
     justify-content: flex-start;
     margin-left: 4em;
+    min-width: 30em;
 }
 
 td.td-select {
@@ -108,6 +108,7 @@ td.td-select {
 div.scroll-table {
     display: flex;
     justify-content: center;
+    overflow-x: auto;
 }
 
 .ng-star-inserted {
@@ -244,10 +245,19 @@ button.delete-interv-btn {
     }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 820px) {
     div.scroll-table {
         display: flex;
         justify-content: flex-start;
         overflow-x: scroll;
+    }
+    .table-radios {
+        display: flex;
+        justify-content: flex-start;
+        margin-left: 4em;
+        min-width: 16em;
+    }
+    table.table-form-peritaje .label-td {
+        min-width: 20em;
     }
 }
