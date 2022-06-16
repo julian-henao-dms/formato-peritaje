@@ -13,7 +13,7 @@ interface CalificacionesEstado {
 }
 
 interface Combustible {
-  value: string;
+  value: number;
   viewValue: string;
 }
 interface RadioOptionForm{
@@ -68,11 +68,11 @@ export class FormatoPeritajeComponent implements OnInit, OnDestroy {
       {value: 1, viewValue: 'Malo'}
     ];
     this.combustibles = [
-      {value: '0', viewValue: 'Gasolina'},
-      {value: '1', viewValue: 'Diesel'},
-      {value: '2', viewValue: 'Gas'},
-      {value: '3', viewValue: 'Hibrido'},
-      {value: '4', viewValue: 'Eléctrico'}
+      {value: 0, viewValue: 'Gasolina'},
+      {value: 1, viewValue: 'Diesel'},
+      {value: 2, viewValue: 'Gas'},
+      {value: 3, viewValue: 'Hibrido'},
+      {value: 4, viewValue: 'Eléctrico'}
     ];
     this.optionsRadios = [
       {name: 'cojineria', label: 'Cojineria', option1: this.tela, optionTitle1: 'Tela', option2: this.cuero, optionTitle2: 'Cuero'},
@@ -93,9 +93,10 @@ export class FormatoPeritajeComponent implements OnInit, OnDestroy {
   }
 
   async ngOnInit(): Promise<void> {
+   
     this.sesion = await this.sharedService.getSesion();
     this.shared = await this.sharedService.getValues();
-    this.kmActual = this.shared.encabezados.km;
+    this.kmActual = this.shared.encabezados.km;  
   }
 
   public openModalFirma(nombre: string): void {
@@ -113,6 +114,9 @@ export class FormatoPeritajeComponent implements OnInit, OnDestroy {
       this.shared.encabezados.lugar_cambio_correa = ''
     }
   }
+
+
+
 
   private validarCampos(): boolean {
     let valid = true;

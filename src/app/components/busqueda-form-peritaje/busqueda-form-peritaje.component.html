@@ -24,10 +24,6 @@
                 <mat-icon>settings_suggest</mat-icon>  Parametrización 
           </button>
 
-            <!-- <button mat-raised-button class="demo-button btns-search-peritaje" [disabled]="disabledBtnEditar" (click)="editarFormulario()">
-                    <mat-icon>edit_note</mat-icon>  Editar <span>Formulario</span>
-              </button> -->
-
             <button mat-raised-button class="demo-button btns-search-peritaje" [disabled]="disabledBtnCrear" (click)="nuevoFormulario()">
                 <mat-icon>fact_check</mat-icon> Crear <span>Formulario</span>
               </button>
@@ -61,8 +57,7 @@
                 <tr class="row-peritaje" mat-row *matRowDef="let row; columns: displayedColumns;">
                 </tr>
             </table>
-            <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of forms">
-            </mat-paginator> -->
+
         </div>
     </mat-card-content>
 

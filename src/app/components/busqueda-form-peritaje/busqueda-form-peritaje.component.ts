@@ -19,7 +19,6 @@ export class BusquedaFormPeritajeComponent implements OnInit, OnDestroy {
   public selectedRowIndex = -1;
   public disabledBtnCrear: boolean;
   public formularios: formulario[] = [];
-  // public selectedFormulario: formulario | undefined;
   public placa: string = '';
   public vin: string = '';
   public shared: any;
@@ -51,7 +50,7 @@ export class BusquedaFormPeritajeComponent implements OnInit, OnDestroy {
       const params = '/' + idEmp + '/' + (this.placa === '' ? '%20' : this.placa) + '/' + (this.vin === '' ? '%20' : this.vin) + '';
       (await this.apiService.getInformacion(servicio, params)).subscribe((response: any) => {
         this.formularios = response.data;
-        console.log(this.formularios);
+     
         if (response.message == 'FVH' ) {
           setTimeout(
             () => {
@@ -86,7 +85,7 @@ export class BusquedaFormPeritajeComponent implements OnInit, OnDestroy {
       this.shared.encabezados.id_usuario = 1; // usuario quemado
       this.shared.encabezados.id_usu_inspector = 1; // usuario inspector quemado
       this.shared.encabezados.fec_prox_mantenimiento = (this.shared.encabezados.fec_prox_mantenimiento == '0001-01-01T00:00:00' ? new Date() : this.shared.encabezados.fec_prox_mantenimiento);
-      console.log(this.shared);
+    
       this.router.navigate(['formato-peritaje/encabezados']);
     }, error => {
       this.messageService.error("Oops...", "Error interno en el servidor");
@@ -109,7 +108,7 @@ export class BusquedaFormPeritajeComponent implements OnInit, OnDestroy {
         this.shared.formulario.prueba_ruta = this.shared.encabezados.prueba_ruta;
         this.shared.formulario.fecfin = this.shared.encabezados.fecfin;
         this.shared.formulario.califica2 = this.shared.encabezados.califica2;
-        console.log(this.shared);
+   
         this.router.navigate(['formato-peritaje/encabezados']);
       } else {
         this.messageService.error("Oops...", "No se encontraron registros guardados en el servidor");
@@ -123,22 +122,7 @@ export class BusquedaFormPeritajeComponent implements OnInit, OnDestroy {
     this.router.navigate(['/formato-peritaje/parametrizacion']);
   }
 
-  // public rowSelect(row: any): void {
-  //   if (row.id == this.selectedRowIndex) {
-  //     this.selectedFormulario = undefined;
-  //     this.selectedRowIndex = -1;
-  //     this.disabledBtnEditar = true;
-  //     this.disabledBtnParametr  = false;
-  //     this.disabledBtnCrear  = false;
-  //   } else {
-  //     this.selectedFormulario = row;
-  //     this.selectedRowIndex = row.id;
-  //     this.disabledBtnEditar = false;
-  //     this.disabledBtnParametr  = true;
-  //     this.disabledBtnCrear  = true;
-      
-  //   }
-  // }
+
 
   private estructuraFormulario(id_cot_item_lote: number): formulario {
     return {

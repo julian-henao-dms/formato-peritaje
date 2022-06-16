@@ -90,43 +90,51 @@
 
         <mat-form-field>
             <mat-label>Combustible:</mat-label>
-            <mat-select name="combustible" [(ngModel)]="shared.encabezados.combustible">
+            <mat-select name="combustible" [(value)]="selectedCombustible" [(ngModel)]="shared.encabezados.combustible">
                 <mat-option *ngFor="let combustible of combustibles" [value]="combustible.value">
                     {{combustible.viewValue}}
                 </mat-option>
             </mat-select>
         </mat-form-field>
+
+        <!-- <div class="firma" (click)="openModalFirma('Inspector')">
+            <p *ngIf="!firma">Firma</p>
+            <img class="imagen-firma" [src]="firma" *ngIf="firma">
+            <p>Inspector</p>
+        </div> -->
+
     </div>
 </mat-card>
 <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
 <!-- Tercer Bloque -->
 <div class="grid-peritaje grid-container">
     <mat-card class="bloque-cb-2 mat-elevation-z1 a">
-        <table class="demo-table table-form-peritaje">
+        <div class="scroll-table">
+            <table class="demo-table table-form-peritaje">
 
-            <tbody>
-                <tr *ngFor="let i of optionsRadios; let c = index">
-                    <section class="example-section radio-options-table">
-                        <mat-radio-group required name="{{i.name}}" [(ngModel)]="shared.encabezados[i.name]">
-                            <td class="label-td {{i.name}}">
-                                <label class="cbradio-group-label example-margin">{{i.label}}:</label>
-                            </td>
+                <tbody>
+                    <tr *ngFor="let i of optionsRadios; let c = index">
+                        <section class="example-section radio-options-table">
+                            <mat-radio-group required name="{{i.name}}" [(ngModel)]="shared.encabezados[i.name]">
+                                <td class="label-td {{i.name}}">
+                                    <label class="cbradio-group-label example-margin">{{i.label}}:</label>
+                                </td>
 
-                            <td>
-                                <mat-radio-button class="cb-radio-button" [value]="i.option1">{{i.optionTitle1}}</mat-radio-button>
-                            </td>
-                            <td>
-                                <mat-radio-button class="cb-radio-button" [value]="i.option2">{{i.optionTitle2}}</mat-radio-button>
-                            </td>
-                        </mat-radio-group>
-                    </section>
-                </tr>
+                                <td>
+                                    <mat-radio-button class="cb-radio-button" [value]="i.option1">{{i.optionTitle1}}</mat-radio-button>
+                                </td>
+                                <td>
+                                    <mat-radio-button class="cb-radio-button" [value]="i.option2">{{i.optionTitle2}}</mat-radio-button>
+                                </td>
+                            </mat-radio-group>
+                        </section>
+                    </tr>
 
 
 
-            </tbody>
-        </table>
-
+                </tbody>
+            </table>
+        </div>
     </mat-card>
     <mat-card class="card-peritaje-fields b">
         <div class="form-group-cb-alt">
@@ -198,35 +206,34 @@
         </div>
         <div class="bloque-cb-6">
 
-            <div class="form-group-cb">
-                <div class="form-group-cb">
-                    <mat-form-field>
-                        <mat-label>Delantera Izquierda:</mat-label>
-                        <input matInput type="number" class="encabezado-llantas" placeholder="Delantera Izquierda" name="llanta_delantera_iz" [(ngModel)]="shared.encabezados.llanta_delantera_iz">
-                    </mat-form-field>
+            <div class="form-group-cb porcentaje-llantas">
 
-                    <mat-form-field>
-                        <mat-label>Delantera Derecha:</mat-label>
-                        <input matInput type="number" class="encabezado-llantas" placeholder="Delantera derecha" name="llanta_delantera_der" [(ngModel)]="shared.encabezados.llanta_delantera_der">
-                    </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Delantera Izquierda:</mat-label>
+                    <input matInput type="number" class="encabezado-llantas" placeholder="Delantera Izquierda" name="llanta_delantera_iz" [(ngModel)]="shared.encabezados.llanta_delantera_iz">
+                </mat-form-field>
 
-                    <mat-form-field>
-                        <mat-label>Trasera Derecha:</mat-label>
-                        <input matInput type="number" class="encabezado-llantas" placeholder="Trasera Derecha" name="llanta_trasera_der" [(ngModel)]="shared.encabezados.llanta_trasera_der">
-                    </mat-form-field>
-                </div>
-                <div class="form-group-cb">
-                    <mat-form-field>
-                        <mat-label>Trasera Izquierda:</mat-label>
-                        <input matInput type="number" class="encabezado-llantas" placeholder="Trasera Izquierda" name="llanta_trasera_iz" [(ngModel)]="shared.encabezados.llanta_trasera_iz">
-                    </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Delantera Derecha:</mat-label>
+                    <input matInput type="number" class="encabezado-llantas" placeholder="Delantera derecha" name="llanta_delantera_der" [(ngModel)]="shared.encabezados.llanta_delantera_der">
+                </mat-form-field>
 
-                    <mat-form-field>
-                        <mat-label>Repuesto:</mat-label>
-                        <input matInput type="number" class="encabezado-llantas" placeholder="Repuesto" name="llanta_repuesto" [(ngModel)]="shared.encabezados.llanta_repuesto">
-                    </mat-form-field>
-                </div>
+                <mat-form-field>
+                    <mat-label>Trasera Derecha:</mat-label>
+                    <input matInput type="number" class="encabezado-llantas" placeholder="Trasera Derecha" name="llanta_trasera_der" [(ngModel)]="shared.encabezados.llanta_trasera_der">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Trasera Izquierda:</mat-label>
+                    <input matInput type="number" class="encabezado-llantas" placeholder="Trasera Izquierda" name="llanta_trasera_iz" [(ngModel)]="shared.encabezados.llanta_trasera_iz">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Repuesto:</mat-label>
+                    <input matInput type="number" class="encabezado-llantas" placeholder="Repuesto" name="llanta_repuesto" [(ngModel)]="shared.encabezados.llanta_repuesto">
+                </mat-form-field>
             </div>
+
         </div>
     </mat-card>
 

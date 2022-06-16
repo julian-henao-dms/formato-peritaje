@@ -11,7 +11,7 @@
             <tbody>
                 <tr *ngFor="let estadoPintura of listaPartes">
 
-                    <!-- <mat-radio-group required name="{{estadoPintura.parte}}-repi_tipo" [(ngModel)]="estadoPintura.repi_tipo"> -->
+
                     <td class="label-td">
                         <label class="cbradio-label-parametrizado" style="margin-right:10px">{{estadoPintura.parte}}</label>
                     </td>
@@ -37,22 +37,7 @@
                     </td>
 
 
-                    <!-- </mat-radio-group> -->
 
-
-                    <!-- <mat-radio-group required name="{{estadoPintura.parte}}-repar_tipo" [(ngModel)]="estadoPintura.repar_tipo">
-                            <td class="label-td">
-                                <mat-radio-button class="cb-radio-button rbtn-first" [value]="reparTipoA">Repar TIPO A </mat-radio-button>
-                                <mat-radio-button class="cb-radio-button" [value]="reparTipoB">Repar TIPO B </mat-radio-button>
-                            </td>
-                        </mat-radio-group> -->
-
-                    <!-- <mat-radio-group required name="{{estadoPintura.parte}}-estado_parte" [(ngModel)]="estadoPintura.estadoParte">
-                            <td class="label-td">
-                                <mat-radio-button class="cb-radio-button rbtn-first" [value]="cambiado">Cambiado </mat-radio-button>
-                                <mat-radio-button class="cb-radio-button" [value]="removido">Removido </mat-radio-button>
-                            </td>
-                        </mat-radio-group> -->
 
                     <td class="td-select">
                         <mat-form-field class="select-estado">
@@ -67,64 +52,13 @@
 
                 </tr>
 
-                <!-- <section class="example-section radio-options-cb">
-                <mat-radio-group aria-label="Tracción" required name="traccion" [(ngModel)]="shared.encabezados.caja">
-                    <tr>
-                        <td>
-                            <label class="cbradio-group-label example-margin">Caja:</label>
-                        </td>
-                        <td>
-                            <mat-radio-button class="cb-radio-button" [value]="mecanica">Mecánica</mat-radio-button>
-                        </td>
-                        <td>
-                            <mat-radio-button class="cb-radio-button" [value]="automatica">Automática</mat-radio-button>
-                        </td>
-                    </tr>
-                </mat-radio-group>
-            </section> -->
+
 
             </tbody>
         </table>
     </div>
 </mat-card>
-<!-- <div class="estados-pintura-container" *ngIf="listaPartes.length > 0"> -->
 
-
-<!-- <mat-card class="group-radio-options-cb estado-pintura-container" *ngFor="let estadoPintura of listaPartes">
-            <div class="label-select">
-                <label class="cbradio-label-parametrizado" style="margin-right:10px">{{estadoPintura.parte}}</label>
-                <mat-form-field class="select-estado">
-                    <mat-select name="{{estadoPintura.parte}}-estado" [(ngModel)]="estadoPintura.id_chk_estado">
-                        <mat-option [value]="0">Buen estado</mat-option>
-                        <mat-option *ngFor="let estado of estados" [value]="estado.id">
-                            {{estado.descripcion}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </div>
-            <section class="example-section radio-options-cb">
-                <mat-radio-group required name="{{estadoPintura.parte}}-repi_tipo" [(ngModel)]="estadoPintura.repi_tipo">
-                    <mat-radio-button class="cb-radio-button rbtn-first" [value]="repiTipoA">Repi TIPO A </mat-radio-button>
-                    <mat-radio-button class="cb-radio-button" [value]="repiTipoB">Repi TIPO B </mat-radio-button>
-                </mat-radio-group>
-            </section>
-            <section class="example-section radio-options-cb">
-                <mat-radio-group required name="{{estadoPintura.parte}}-repar_tipo" [(ngModel)]="estadoPintura.repar_tipo">
-                    <mat-radio-button class="cb-radio-button rbtn-first" [value]="reparTipoA">Repar TIPO A </mat-radio-button>
-                    <mat-radio-button class="cb-radio-button" [value]="reparTipoB">Repar TIPO B </mat-radio-button>
-                </mat-radio-group>
-            </section>
-            <section class="example-section radio-options-cb">
-                <mat-radio-group required name="{{estadoPintura.parte}}-estado_parte" [(ngModel)]="estadoPintura.estadoParte">
-                    <mat-radio-button class="cb-radio-button rbtn-first" [value]="cambiado">Cambiado </mat-radio-button>
-                    <mat-radio-button class="cb-radio-button" [value]="removido">Removido </mat-radio-button>
-                </mat-radio-group>
-            </section>
-                </mat-card>
-            </div>
-        </mat-card> -->
-
-<!-- </div> -->
 <div class="footer-button">
     <button class="back-btn" mat-raised-button (click)="atras()"><mat-icon>keyboard_backspace</mat-icon>Atras</button>
     <button class="next-btn" mat-raised-button (click)="siguiente()">Siguiente<mat-icon>east</mat-icon></button>
