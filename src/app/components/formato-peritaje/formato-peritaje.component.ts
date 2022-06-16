@@ -161,6 +161,23 @@ export class FormatoPeritajeComponent implements OnInit, OnDestroy {
         valid = false;
       }
     }
+    if (valid) { //Porcentaje LLantas
+      let items_encabezados = document.getElementsByClassName('encabezado-llantas');
+      for (let i = 0; i < items_encabezados.length; i++) {
+        const itemValue = this.shared.encabezados[items_encabezados[i].getAttribute('name')!];
+      if (itemValue > 100) {
+        let element = document.getElementsByName(items_encabezados[i].getAttribute('name')!)[0];
+          if (element.tagName !== 'INPUT') {
+            this.focusInputChild(element)!;
+          } else {
+            element.focus();
+          }
+        this.messageService.warning('Oops...', 'El porcentaje del campo "' + items_encabezados[i].getAttribute('placeholder') + '" no puede ser mayor a 100%');
+        valid = false;
+        break;
+      }
+      }
+    }
     if (valid) { //Cilindraje valor numerico decimal
       this.shared.encabezados.cilindraje = this.shared.encabezados.cilindraje.replace(',','.');
       if (isNaN(this.shared.encabezados.cilindraje)) {

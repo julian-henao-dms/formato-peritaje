@@ -78,17 +78,34 @@ th.mat-header-cell.cdk-header-cel {
     padding: 0;
     border-bottom-width: 1px;
     border-bottom-style: solid;
+    text-align: center;
 }
 
 .option-elements {
     display: flex;
-    // justify-content: center;
     padding: 0.5em;
+    justify-content: center;
     p {
         display: flex;
         align-items: center;
         margin-bottom: 0;
     }
+}
+
+.no-tiene-malo {
+    padding-left: 4.3em;
+}
+
+.leve-fuerte {
+    padding-left: 3.2em;
+}
+
+.ok-bajo {
+    padding-left: 0.8em;
+}
+
+.p-option {
+    margin-right: 0.2em;
 }
 
 .new_params {
@@ -238,5 +255,18 @@ tr.mat-header-row {
         mat-card-subtitle {
             text-align: center;
         }
+    }
+    .no-tiene-malo {
+        padding-left: 3.2em;
+    }
+    .title-btn-span {
+        display: none;
+    }
+    .maestros-container {
+        justify-content: flex-start;
+        overflow: auto;
+    }
+    .table-form-peritaje tr td {
+        min-width: 5em;
     }
 }

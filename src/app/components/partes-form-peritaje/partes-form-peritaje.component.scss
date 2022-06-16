@@ -1,9 +1,42 @@
 $main-color: #b50411;
+table {
+    margin: 0;
+    padding: 0;
+    width: 95%;
+    table-layout: fixed;
+}
+
+table caption {
+    font-size: 1.5em;
+    margin: .5em 0 .75em;
+}
+
+table tr {
+    border: 1px solid #ddd;
+    padding: .35em;
+}
+
+table th,
+table td {
+    padding: .625em;
+    text-align: center;
+}
+
+table th {
+    font-size: .85em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+mat-card.tabla-partes {
+    margin: 1em 2em;
+}
+
 mat-card.bloque-cb-5 {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    margin: 1.2em;
+    margin: 1em 2em;
 }
 
 .title-card-pritaje {
@@ -22,20 +55,45 @@ mat-card.bloque-cb-5 {
 }
 
 table.table-form-peritaje tr {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 83px;
+    height: auto;
 }
 
 table.table-form-peritaje td {
-    height: 5em;
-    width: 23em;
-    /* border-block-end-style: initial; */
+    height: 6em;
     border-bottom-color: #e3e3e3;
     padding: 0;
     border-bottom-width: 1px;
     border-bottom-style: solid;
+}
+
+table tr td.sections-td {
+    width: 20em;
+    text-align: justify;
+    /* margin-right: 8em; */
+}
+
+td.label-td {
+    width: 25em;
+    text-align: center;
+}
+
+td.td-select {
+    width: 15em;
+    text-align: center;
+    /* margin-right: 2em; */
+}
+
+td.td-select mat-form-field {
+    margin-left: 2em;
+}
+
+section.example-section.radio-options-cb {
+    margin-bottom: 0.3em;
+}
+
+div.scroll-table {
+    overflow: auto;
+    overflow-y: hidden;
 }
 
 .label-select {
@@ -44,15 +102,6 @@ table.table-form-peritaje td {
     justify-content: space-between;
     mat-form-field.select-estado {
         max-width: 160px;
-    }
-}
-
-.estados-pintura-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    .estado-pintura-container {
-        margin: 10px;
     }
 }
 
@@ -91,3 +140,11 @@ label.cbradio-label-parametrizado {
 .rbtn-first {
     min-width: 110px;
 }
+
+// @media (max-width: 800px) {
+//     div.scroll-table {
+//         display: flex;
+//         justify-content: flex-start;
+//         overflow-x: scroll;
+//     }
+// }

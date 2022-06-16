@@ -1,4 +1,48 @@
 $main-color: #b50411;
+table {
+    margin: 0;
+    padding: 0;
+    width: 95%;
+    table-layout: fixed;
+}
+
+table caption {
+    font-size: 1.5em;
+    margin: .5em 0 .75em;
+}
+
+table tr {
+    border: 1px solid #ddd;
+    padding: .35em;
+}
+
+table th,
+table td {
+    padding: .625em;
+    text-align: center;
+}
+
+table th {
+    font-size: .85em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+table.table-form-peritaje tr {
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
+    height: auto;
+}
+
+table.table-form-peritaje td {
+    height: 4em;
+    border-bottom-color: #e3e3e3;
+    padding: 0;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+
 .title-card-pritaje {
     display: flex;
     margin: 0 0 1.2em 0;
@@ -42,19 +86,28 @@ div.container-save {
 table.table-form-peritaje {
     // width: 40%;
     .label-td {
-        min-width: 11em;
+        min-width: 20em;
     }
     tr.ng-star-inserted td {
-        width: 11em;
-        border: solid 1px #ddd;
+        width: 31em;
+        border-bottom: solid 1px #ddd;
         padding: 0.5em;
     }
+}
+
+.table-radios {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 4em;
+}
+
+td.td-select {
+    height: 2em;
 }
 
 div.scroll-table {
     display: flex;
     justify-content: center;
-    overflow-x: scroll;
 }
 
 .ng-star-inserted {
@@ -188,5 +241,13 @@ button.delete-interv-btn {
         height: 24px;
         width: 24px;
         font-size: 21px;
+    }
+}
+
+@media (max-width: 800px) {
+    div.scroll-table {
+        display: flex;
+        justify-content: flex-start;
+        overflow-x: scroll;
     }
 }

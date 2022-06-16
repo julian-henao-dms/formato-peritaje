@@ -95,11 +95,27 @@ span.mat-button-wrapper {
     }
 }
 
+.scroller-table {
+    width: 100%;
+}
+
 @media(max-width: 520px) {
-    .vin-placa mat-form-field {
+    .busqueda-peritaje mat-card-content .vin-placa mat-form-field {
+        margin-right: 0em;
         width: 100%;
     }
     .btns-form-peritaje .btns-search-peritaje span {
         display: none;
+    }
+    .busqueda-peritaje mat-card-content .vin-placa .btns-search-peritaje {
+        margin-top: 0.8em;
+        width: 100%;
+    }
+    .scroller-table {
+        width: 100%;
+        overflow: auto;
+        table.mat-table td {
+            width: 3em;
+        }
     }
 }
