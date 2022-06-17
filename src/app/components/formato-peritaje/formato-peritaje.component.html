@@ -1,6 +1,6 @@
 <mat-card class="bloque-cb-1 mat-elevation-z1">
     <div class="form-group-cb">
-        <section class="example-section radio-options-cb rbtn-b1 rbtn-initial">
+        <section class="example-section radio-options-cb  rbtn-b1 rbtn-initial">
             <label class="cbradio-group-label">Calificación:</label>
             <mat-radio-group aria-label="Calificación" [(ngModel)]="shared.formulario.califica">
                 <mat-radio-button class="formulario-required cb-radio-button" name="califica" [value]="'A'">A</mat-radio-button>
@@ -9,7 +9,7 @@
             <mat-hint>* Campo requerido</mat-hint>
         </section>
 
-        <section class="example-section radio-options-cb rbtn-b1 rbtn-initial">
+        <section class="example-section radio-options-cb  rbtn-b1 rbtn-initial">
             <label class="cbradio-group-label">Prueba de Ruta:</label>
             <mat-radio-group aria-label="Prueba de Ruta" required [(ngModel)]="shared.formulario.prueba_ruta">
                 <mat-radio-button class="formulario-required cb-radio-button" name="prueba_ruta" [value]="1">Si</mat-radio-button>
@@ -17,7 +17,7 @@
             </mat-radio-group>
         </section>
 
-        <mat-form-field>
+        <mat-form-field class="cb-child">
             <mat-label>Fecha Final:</mat-label>
             <input matInput [matDatepicker]="datepicker" [(ngModel)]="shared.formulario.fecfin">
             <mat-hint>MM/DD/YYYY</mat-hint>
@@ -26,26 +26,26 @@
         </mat-form-field>
 
 
-        <mat-form-field>
+        <mat-form-field class="cb-child">
             <mat-label>Nombre Inspector:</mat-label>
             <input matInput placeholder="Nombre Inspector" name="Id_usu_inspector">
         </mat-form-field>
 
 
 
-        <mat-form-field>
+        <mat-form-field class="cb-child">
             <mat-label>Marca:</mat-label>
             <input matInput placeholder="Marca" class="encabezado-required" name="marca" [ngModel]="shared.encabezados.marca" disabled>
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field class="cb-child">
             <mat-label>Linea:</mat-label>
             <input matInput placeholder="Linea" class="encabezado-required" name="linea" [ngModel]="shared.encabezados.linea" disabled>
         </mat-form-field>
 
 
 
-        <mat-form-field>
+        <mat-form-field class="cb-child">
             <mat-label>Calificación Estado:</mat-label>
             <mat-select [(ngModel)]="shared.formulario.califica2" name="Califica2">
                 <mat-option *ngFor="let calificacion of calificaciones" [value]="calificacion.value">
@@ -54,41 +54,41 @@
             </mat-select>
         </mat-form-field>
 
-        <mat-form-field class="a">
+        <mat-form-field class="cb-child">
             <mat-label>Matriculado en:</mat-label>
             <input matInput placeholder="Lugar Matricula" class="encabezado-required" name="lugar_matricula" [(ngModel)]="shared.encabezados.lugar_matricula">
             <mat-hint>* Campo requerido</mat-hint>
         </mat-form-field>
 
-        <mat-form-field class="b">
+        <mat-form-field class="cb-child">
             <mat-label>Capacidad Sillas:</mat-label>
             <input matInput type="number" placeholder="Capacidad sillas" class="encabezado-required" name="capacidad_sillas" [(ngModel)]="shared.encabezados.capacidad_sillas">
         </mat-form-field>
 
 
-        <mat-form-field>
+        <mat-form-field class="cb-child">
             <mat-label>Cilindraje:</mat-label>
             <input matInput id="cilindrajeInput" placeholder="Cilindraje" class="encabezado-required" name="cilindraje" [(ngModel)]="shared.encabezados.cilindraje">
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field class="cb-child">
             <mat-label>Color:</mat-label>
             <input matInput placeholder="Color" class="encabezado-required" name="color" [(ngModel)]="shared.encabezados.color">
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field class="cb-child">
             <mat-label>Referencia:</mat-label>
             <input matInput placeholder="Referencia" class="encabezado-required" name="referencia" [(ngModel)]="shared.encabezados.referencia">
             <mat-hint>* Campo requerido</mat-hint>
         </mat-form-field>
     </div>
     <div class="form-group-cb">
-        <mat-form-field>
+        <mat-form-field class="cb-child">
             <mat-label>Modelo:</mat-label>
             <input matInput placeholder="Modelo" class="encabezado-required" name="modelo" [ngModel]="shared.encabezados.modelo" disabled>
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field class="combustible-select cb-child">
             <mat-label>Combustible:</mat-label>
             <mat-select name="combustible" [(value)]="selectedCombustible" [(ngModel)]="shared.encabezados.combustible">
                 <mat-option *ngFor="let combustible of combustibles" [value]="combustible.value">

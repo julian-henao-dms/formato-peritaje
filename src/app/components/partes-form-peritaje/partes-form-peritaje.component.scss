@@ -1,4 +1,61 @@
 $main-color: #b50411;
+.footer-button {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    padding: 15px 0;
+    button {
+        background-color: $main-color;
+        color: #fff;
+        padding: 0 0.6em;
+    }
+    .back-btn mat-icon {
+        margin-right: 0.3em;
+    }
+    .next-btn mat-icon {
+        margin-left: 0.3em;
+    }
+}
+
+.group-radio-options-cb {
+    margin-bottom: 1.2em;
+}
+
+.group-radio-options-cb mat-radio-group {
+    margin-bottom: 0.5em;
+}
+
+div.scroll-table {
+    overflow: auto;
+    overflow-y: hidden;
+}
+
+.label-select {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    mat-form-field.select-estado {
+        max-width: 160px;
+    }
+}
+
+label.cbradio-label-parametrizado {
+    text-decoration: underline;
+    font-size: 15px;
+    text-decoration-color: #b50411;
+}
+
+mat-card.tabla-partes {
+    margin: 1em 2em;
+}
+
+mat-card.bloque-cb-5 {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin: 1em 2em;
+}
+
 table {
     margin: 0;
     padding: 0;
@@ -9,11 +66,6 @@ table {
 table caption {
     font-size: 1.5em;
     margin: .5em 0 .75em;
-}
-
-table tr {
-    border: 1px solid #ddd;
-    padding: .35em;
 }
 
 table th,
@@ -28,34 +80,10 @@ table th {
     text-transform: uppercase;
 }
 
-mat-card.tabla-partes {
-    margin: 1em 2em;
-}
-
-mat-card.bloque-cb-5 {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    margin: 1em 2em;
-}
-
-.title-card-pritaje {
-    display: flex;
-    margin: 0 0 1.2em 1.2em;
-    align-items: center;
-    h2 {
-        margin-bottom: -3px;
-        font-size: 18px;
-        text-transform: uppercase;
-    }
-    .icon-title-card-peritaje {
-        color: $main-color;
-        margin-right: 0.5em;
-    }
-}
-
 table.table-form-peritaje tr {
     height: auto;
+    border: 1px solid #ddd;
+    padding: .35em;
 }
 
 table.table-form-peritaje td {
@@ -79,62 +107,30 @@ td.label-td {
 td.td-select {
     width: 15em;
     text-align: center;
+    mat-form-field {
+        margin-left: 2em;
+    }
 }
 
-td.td-select mat-form-field {
-    margin-left: 2em;
-}
-
-section.example-section.radio-options-cb {
-    margin-bottom: 0.3em;
-}
-
-div.scroll-table {
-    overflow: auto;
-    overflow-y: hidden;
-}
-
-.label-select {
+.title-card-pritaje {
     display: flex;
+    margin: 0 0 1.2em 1.2em;
     align-items: center;
-    justify-content: space-between;
-    mat-form-field.select-estado {
-        max-width: 160px;
+    h2 {
+        margin-bottom: -3px;
+        font-size: 18px;
+        text-transform: uppercase;
     }
-}
-
-label.cbradio-label-parametrizado {
-    text-decoration: underline;
-    font-size: 15px;
-    text-decoration-color: #b50411;
-}
-
-.group-radio-options-cb {
-    margin-bottom: 1.2em;
-}
-
-.group-radio-options-cb mat-radio-group {
-    margin-bottom: 0.5em;
-}
-
-.footer-button {
-    display: flex;
-    justify-content: space-evenly;
-    width: 100%;
-    padding: 15px 0;
-    button {
-        background-color: $main-color;
-        color: #fff;
-        padding: 0 0.6em;
-    }
-    .back-btn mat-icon {
-        margin-right: 0.3em;
-    }
-    .next-btn mat-icon {
-        margin-left: 0.3em;
+    .icon-title-card-peritaje {
+        color: $main-color;
+        margin-right: 0.5em;
     }
 }
 
 .rbtn-first {
     min-width: 110px;
+}
+
+section.example-section.radio-options-cb {
+    margin-bottom: 0.3em;
 }

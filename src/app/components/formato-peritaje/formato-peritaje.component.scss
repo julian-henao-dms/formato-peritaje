@@ -1,4 +1,8 @@
     $main-color: #b50411;
+    mat-form-field.combustible-select {
+        margin-left: 3em;
+    }
+    
     .hidden {
         display: none;
     }
@@ -13,11 +17,6 @@
     
     mat-card {
         margin: 2em;
-    }
-    
-    mat-card,
-    .group-radio-options-cb {
-        margin-bottom: 1.6em;
     }
     
     mat-card.bloque-cb-1 {
@@ -36,10 +35,6 @@
         flex-wrap: wrap;
     }
     
-    .group-radio-options-cb mat-radio-group.mat-radio-group {
-        margin-bottom: 0.5em;
-    }
-    
     mat-hint {
         font-size: 9px;
         color: red;
@@ -56,17 +51,6 @@
         p {
             margin: 0.5em 0 0 0;
         }
-    }
-    
-    .example-radio-group {
-        display: flex;
-        flex-direction: column;
-        margin: 15px 0;
-        align-items: flex-start;
-    }
-    
-    .example-radio-button {
-        margin: 5px;
     }
     
     .example-margin,
@@ -271,6 +255,9 @@
     @media(max-width: 570px) {
         table.table-form-peritaje tr td {
             width: 9em;
+        }
+        .combustible-select {
+            margin-left: 1em;
         }
         .porcentaje-llantas mat-form-field {
             max-width: unset;
