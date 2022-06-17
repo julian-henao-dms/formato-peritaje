@@ -1,120 +1,7 @@
     $main-color: #b50411;
-    mat-form-field.combustible-select {
-        margin-left: 3em;
-    }
-    
-    .hidden {
-        display: none;
-    }
-    
-    .porcentaje-llantas mat-form-field {
-        max-width: 8em;
-    }
-    
-    div.scroll-table {
-        overflow-x: auto;
-    }
-    
-    mat-card {
-        margin: 2em;
-    }
-    
-    mat-card.bloque-cb-1 {
-        align-items: center;
-    }
-    
     .bloque-cb-2 {
         margin-right: 0.5em;
         height: -webkit-fill-available;
-    }
-    
-    mat-card.bloque-cb-1,
-    mat-card.bloque-cb-2 {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-    }
-    
-    mat-hint {
-        font-size: 9px;
-        color: red;
-    }
-    
-    .form-group-cb .firma {
-        background-color: whitesmoke;
-        width: 20em;
-        height: 100%;
-        min-height: 60px;
-        padding-bottom: 5px;
-        text-align: center;
-        border-radius: 5px;
-        p {
-            margin: 0.5em 0 0 0;
-        }
-    }
-    
-    .example-margin,
-    .cbradio-group-label {
-        margin: 5px 0;
-    }
-    
-    .radio-options-cb {
-        display: flex;
-        flex-direction: column;
-        min-width: 15em;
-        justify-content: center;
-    }
-    
-    .radio-options-table {
-        display: flex;
-        flex-direction: column;
-        padding: 0em 0.2em;
-        min-width: 15em;
-    }
-    
-    table.table-form-peritaje {
-        .label-td {
-            min-width: 11em;
-        }
-        tr.ng-star-inserted td {
-            width: 11em;
-            border: solid 1px #ddd;
-            padding: 0.5em;
-        }
-    }
-    
-    .grid-peritaje {
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
-    }
-    
-    .card-peritaje-fields .form-group-cb-alt {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-    }
-    
-    .mat-form-field {
-        margin: 1.2em;
-    }
-    
-    .fecha p {
-        margin: 0;
-    }
-    
-    section.rbtn-b1 {
-        margin-left: 2em;
-        min-width: 9em;
-        margin-top: -5px;
-        width: 180px;
-    }
-    
-    .form-group-cb,
-    .form-group-cb-b {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
     }
     
     .btn-form-cb {
@@ -128,46 +15,47 @@
         color: $main-color;
     }
     
-    mat-icon.m-icon-cb {
-        height: 25px;
-        width: 25px;
-        font-size: 15px;
-    }
-    
-    .mat-tooltip {
-        font-size: 14px;
-    }
-    
-    .mat-fab:not([class*=mat-elevation-z]),
-    .mat-mini-fab:not([class*=mat-elevation-z]) {
-        box-shadow: 0px 1px 3px -1px rgb(0 0 0 / 14%), 0px 2px 3px 0px rgb(0 0 0 / 14%), 0px 1px 6px 0px rgb(0 0 0 / 12%);
-    }
-    
-    .rbtn-first {
-        width: 105px;
-    }
-    
-    .mat-radio-button~.mat-radio-button {
-        margin-right: 4px;
-    }
-    
-    .porcentaje-llanta {
+    .card-peritaje-fields .form-group-cb-alt {
         display: flex;
-        justify-content: space-around;
+        flex-wrap: wrap;
+        justify-content: space-between;
     }
     
-    .title-cb-card {
+    div.scroll-table {
+        overflow-x: auto;
+    }
+    
+    .example-margin,
+    .cbradio-group-label {
+        margin: 5px 0;
+    }
+    
+    .fecha p {
+        margin: 0;
+    }
+    
+    .form-group-cb,
+    .form-group-cb-b {
         display: flex;
-        align-items: center;
-        margin-bottom: 1.2em;
-        h2 {
-            margin-bottom: -3px;
-            font-size: 18px;
-            text-transform: uppercase;
-        }
-        .icon-title-card-peritaje {
-            color: $main-color;
-            margin-right: 0.5em;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    
+    .firma-card {
+        display: flex;
+        justify-content: center;
+    }
+    
+    .form-group-cb .firma {
+        background-color: whitesmoke;
+        width: 20em;
+        height: 100%;
+        min-height: 60px;
+        padding-bottom: 5px;
+        text-align: center;
+        border-radius: 5px;
+        p {
+            margin: 0.5em 0 0 0;
         }
     }
     
@@ -186,6 +74,134 @@
         }
         .next-btn mat-icon {
             margin-left: 0.3em;
+        }
+    }
+    
+    .grid-peritaje {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+    }
+    
+    .hidden {
+        display: none;
+    }
+    
+    mat-form-field.combustible-select {
+        margin-left: 3em;
+    }
+    
+    .porcentaje-llantas mat-form-field {
+        max-width: 8em;
+    }
+    
+    mat-card {
+        margin: 2em;
+    }
+    
+    mat-card.bloque-cb-1 {
+        align-items: center;
+    }
+    
+    mat-card.mat-card.porcentajes-llantas {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    mat-card.bloque-cb-1,
+    mat-card.bloque-cb-2 {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    
+    mat-hint {
+        font-size: 9px;
+        color: red;
+    }
+    
+    .mat-form-field {
+        margin: 1.2em;
+    }
+    
+    .mat-radio-button~.mat-radio-button {
+        margin-right: 4px;
+    }
+    
+    mat-icon.m-icon-cb {
+        height: 25px;
+        width: 25px;
+        font-size: 15px;
+    }
+    
+    .mat-tooltip {
+        font-size: 14px;
+    }
+    
+    .mat-fab:not([class*=mat-elevation-z]),
+    .mat-mini-fab:not([class*=mat-elevation-z]) {
+        box-shadow: 0px 1px 3px -1px rgb(0 0 0 / 14%), 0px 2px 3px 0px rgb(0 0 0 / 14%), 0px 1px 6px 0px rgb(0 0 0 / 12%);
+    }
+    
+    .p-firma {
+        text-decoration: underline;
+        text-decoration-color: $main-color;
+    }
+    
+    .porcentaje-llanta {
+        display: flex;
+        justify-content: space-around;
+    }
+    
+    .radio-options-cb {
+        display: flex;
+        flex-direction: column;
+        min-width: 15em;
+        justify-content: center;
+    }
+    
+    .radio-options-table {
+        display: flex;
+        flex-direction: column;
+        padding: 0em 0.2em;
+        min-width: 15em;
+    }
+    
+    .rbtn-first {
+        width: 105px;
+    }
+    
+    section.rbtn-b1 {
+        margin-left: 2em;
+        min-width: 9em;
+        margin-top: -5px;
+        width: 180px;
+    }
+    
+    table.table-form-peritaje {
+        .label-td {
+            min-width: 11em;
+        }
+        tr.ng-star-inserted td {
+            width: 11em;
+            border: solid 1px #ddd;
+            padding: 0.5em;
+        }
+    }
+    
+    .title-cb-card {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.2em;
+        h2 {
+            margin-bottom: -3px;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+        .icon-title-card-peritaje {
+            color: $main-color;
+            margin-right: 0.5em;
         }
     }
     
@@ -256,7 +272,7 @@
         table.table-form-peritaje tr td {
             width: 9em;
         }
-        .combustible-select {
+        mat-form-field.combustible-select {
             margin-left: 1em;
         }
         .porcentaje-llantas mat-form-field {
