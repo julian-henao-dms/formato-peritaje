@@ -99,6 +99,11 @@ span.mat-button-wrapper {
     width: 100%;
 }
 
+.title-button-wrapper {
+    display: flex;
+    align-items: center;
+}
+
 @media(max-width: 520px) {
     .busqueda-peritaje mat-card-content .vin-placa mat-form-field {
         margin-right: 0em;
