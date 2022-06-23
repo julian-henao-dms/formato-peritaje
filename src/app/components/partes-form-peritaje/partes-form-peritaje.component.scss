@@ -134,3 +134,10 @@ td.td-select {
 section.example-section.radio-options-cb {
     margin-bottom: 0.3em;
 }
+
+@media(max-width: 520px) {
+    td.label-td {
+        width: 18em;
+        text-align: center;
+    }
+}

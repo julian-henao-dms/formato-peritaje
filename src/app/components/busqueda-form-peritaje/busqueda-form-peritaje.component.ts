@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { ApiService } from '../../services/api.service';
 import { MessagesService } from '../../services/messages.service';
@@ -20,13 +20,14 @@ export class BusquedaFormPeritajeComponent implements OnInit, OnDestroy {
   public disabledBtnCrear: boolean;
   public formularios: formulario[] = [];
   public placa: string = '';
-  public vin: string = '';
+  public vin: string | null = null;
   public shared: any;
   private sesion: any;
   public assets: string;
 
   constructor(
     private readonly router: Router,
+    private readonly route: ActivatedRoute,
     private readonly apiService: ApiService,
     private readonly sharedService: SharedService,
     private readonly messageService: MessagesService
@@ -37,6 +38,13 @@ export class BusquedaFormPeritajeComponent implements OnInit, OnDestroy {
 
   async ngOnInit(): Promise<void> {
     this.sesion = await this.sharedService.getSesion();
+    this.route.queryParamMap.subscribe(params =>{
+      this.vin = params.get('vin');
+      if(this.vin !== null){
+        this.onEnter();
+      }
+      
+    })
   }
 
   public async onEnter(): Promise<void> {
