@@ -1,35 +1,4 @@
 $main-color: #b50411;
-.title-card-pritaje {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1.2em;
-    h2 {
-        margin-bottom: -3px;
-        font-size: 18px;
-        text-transform: uppercase;
-    }
-    .icon-title-card-peritaje {
-        color: $main-color;
-        margin-right: 0.5em;
-    }
-}
-
-.footer-button {
-    display: flex;
-    justify-content: space-evenly;
-    width: 100%;
-    padding: 15px 0;
-    button {
-        background-color: $main-color;
-        color: #fff;
-        padding: 0 0.6em;
-    }
-    .back-btn mat-icon {
-        margin-right: 0.3em;
-    }
-}
-
 .card-parametrizacion {
     margin: 1.2em 1.2em;
     mat-card-subtitle {
@@ -66,24 +35,25 @@ $main-color: #b50411;
     }
 }
 
-.new_params {
-    background-color: $main-color;
-    color: #fff;
-    padding: 0 1em 0 0.5em;
+.card-title {
+    max-width: 200px;
 }
 
-.header-icon-modal {
-    width: 100px;
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.mat-b-success {
-    background-color: #2cae94;
-    color: white;
+.card-header-buttons {
+    margin-left: 25px;
 }
 
-.mat-b-warning {
-    background-color: $main-color;
-    color: white;
+.card-title-parametrizacion {
+    font-size: 15px;
+    text-decoration: underline;
+    text-decoration-color: #b50411;
+    text-decoration-thickness: from-font;
 }
 
 .close-div-container {
@@ -105,18 +75,33 @@ $main-color: #b50411;
     }
 }
 
-.card-title {
-    max-width: 200px;
-}
-
-.card-header {
+.footer-button {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    padding: 15px 0;
+    button {
+        background-color: $main-color;
+        color: #fff;
+        padding: 0 0.6em;
+    }
+    .back-btn mat-icon {
+        margin-right: 0.3em;
+    }
 }
 
-.card-header-buttons {
-    margin-left: 25px;
+h4.card-title.card-title-parametrizacion {
+    display: inline-block;
+    margin: 0.2em 0;
+}
+
+.header-button .icon-button-header {
+    font-size: 18px;
+    color: $main-color;
+}
+
+.header-icon-modal {
+    width: 100px;
 }
 
 .header-button {
@@ -124,14 +109,29 @@ $main-color: #b50411;
     padding: 0 5px;
 }
 
-.card-content p {
+.option-elements {
     display: flex;
-    align-items: center;
-    margin: 3px 9px;
+    padding: 0.5em;
+    justify-content: center;
+    p {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0;
+    }
 }
 
-.card-content {
-    display: flex;
+.leve-fuerte {
+    padding-left: 3.2em;
+}
+
+.mat-b-success {
+    background-color: #2cae94;
+    color: white;
+}
+
+.mat-b-warning {
+    background-color: $main-color;
+    color: white;
 }
 
 mat-card.mat-card.mat-focus-indicator.maestro-container {
@@ -141,6 +141,22 @@ mat-card.mat-card.mat-focus-indicator.maestro-container {
 .maestros-container {
     display: flex;
     flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    table {
+        width: 90%;
+        border: none;
+        tr.ng-star-inserted td {
+            padding: 0;
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+        }
+        tr {
+            padding: 0;
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+        }
+    }
 }
 
 .maestro-container {
@@ -148,16 +164,64 @@ mat-card.mat-card.mat-focus-indicator.maestro-container {
     box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 25%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
 }
 
-.card-title-parametrizacion {
-    font-size: 15px;
-    text-decoration: underline;
-    text-decoration-color: #b50411;
-    text-decoration-thickness: from-font;
+.new_params {
+    background-color: $main-color;
+    color: #fff;
+    padding: 0 1em 0 0.5em;
 }
 
-.header-button .icon-button-header {
-    font-size: 18px;
-    color: $main-color;
+.no-tiene-malo {
+    padding-left: 4.3em;
+}
+
+.ok-bajo {
+    padding-left: 0.8em;
+}
+
+.p-option {
+    margin-right: 0.2em;
+}
+
+.table-form-peritaje tr td {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.table-form-peritaje tr td {
+    border-bottom-color: rgba(0, 0, 0, 0.12);
+    padding: 0;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+
+th.mat-header-cell.cdk-header-cel {
+    color: #b50411;
+    text-transform: uppercase;
+    border-bottom-color: rgba(0, 0, 0, 0.12);
+    padding: 0;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    text-align: center;
+}
+
+tr.mat-header-row {
+    height: 56px;
+}
+
+.title-card-pritaje {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.2em;
+    h2 {
+        margin-bottom: -3px;
+        font-size: 18px;
+        text-transform: uppercase;
+    }
+    .icon-title-card-peritaje {
+        color: $main-color;
+        margin-right: 0.5em;
+    }
 }
 
 @media(max-width: 520px) {
@@ -175,5 +239,18 @@ mat-card.mat-card.mat-focus-indicator.maestro-container {
         mat-card-subtitle {
             text-align: center;
         }
+    }
+    .no-tiene-malo {
+        padding-left: 3.2em;
+    }
+    .title-btn-span {
+        display: none;
+    }
+    .maestros-container {
+        justify-content: flex-start;
+        overflow: auto;
+    }
+    .table-form-peritaje tr td {
+        min-width: 5em;
     }
 }

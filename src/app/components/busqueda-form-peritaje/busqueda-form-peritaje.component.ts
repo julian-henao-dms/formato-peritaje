@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { ApiService } from '../../services/api.service';
 import { MessagesService } from '../../services/messages.service';
@@ -15,31 +15,36 @@ import { formulario } from './interfaces/formulario.interface';
 export class BusquedaFormPeritajeComponent implements OnInit, OnDestroy {
   private readonly title: string = 'FormatoPeritaje';
   private readonly subtitle: string = 'busqueda';
-  public displayedColumns: string[] = ['Id', 'Fecini', 'Fecfin', 'Califica'];
+  public displayedColumns: string[] = ['Id', 'Fecini', 'Fecfin', 'Califica', 'Editar'];
   public selectedRowIndex = -1;
   public disabledBtnCrear: boolean;
-  public disabledBtnEditar: boolean;
   public formularios: formulario[] = [];
-  public selectedFormulario: formulario | undefined;
   public placa: string = '';
-  public vin: string = '';
+  public vin: string | null = null;
   public shared: any;
   private sesion: any;
   public assets: string;
 
   constructor(
     private readonly router: Router,
+    private readonly route: ActivatedRoute,
     private readonly apiService: ApiService,
     private readonly sharedService: SharedService,
     private readonly messageService: MessagesService
   ) {
     this.disabledBtnCrear = true;
-    this.disabledBtnEditar = true;
     this.assets = environment.assets;
   }
 
   async ngOnInit(): Promise<void> {
     this.sesion = await this.sharedService.getSesion();
+    this.route.queryParamMap.subscribe(params =>{
+      this.vin = params.get('vin');
+      if(this.vin !== null){
+        this.onEnter();
+      }
+      
+    })
   }
 
   public async onEnter(): Promise<void> {
@@ -53,12 +58,13 @@ export class BusquedaFormPeritajeComponent implements OnInit, OnDestroy {
       const params = '/' + idEmp + '/' + (this.placa === '' ? '%20' : this.placa) + '/' + (this.vin === '' ? '%20' : this.vin) + '';
       (await this.apiService.getInformacion(servicio, params)).subscribe((response: any) => {
         this.formularios = response.data;
-        console.log(this.formularios);
+     
         if (response.message == 'FVH' ) {
           setTimeout(
             () => {
               this.messageService.info("Atención...", "La Placa o VIN ingresados no corresponden a ningún vehículo asociado");
             }, 1000);
+            this.disabledBtnCrear = false;
         } else{
           this.disabledBtnCrear = false;
           if (response.data.length === 0 ) {
@@ -87,17 +93,17 @@ export class BusquedaFormPeritajeComponent implements OnInit, OnDestroy {
       this.shared.encabezados.id_usuario = 1; // usuario quemado
       this.shared.encabezados.id_usu_inspector = 1; // usuario inspector quemado
       this.shared.encabezados.fec_prox_mantenimiento = (this.shared.encabezados.fec_prox_mantenimiento == '0001-01-01T00:00:00' ? new Date() : this.shared.encabezados.fec_prox_mantenimiento);
-      console.log(this.shared);
+    
       this.router.navigate(['formato-peritaje/encabezados']);
     }, error => {
       this.messageService.error("Oops...", "Error interno en el servidor");
     });
   }
 
-  public async editarFormulario(): Promise<void> {
+  public async editarFormulario(element: any): Promise<void> {
     const servicio = '/vehiculosusados/formulariocompleto';
     const idEmp = this.sesion.empresa;
-    const params = '/' + idEmp + '/' + this.selectedFormulario?.id;
+    const params = '/' + idEmp + '/' + element.id;
     (await this.apiService.getInformacion(servicio, params)).subscribe(async (response: any) => {
       if (response.length > 0) {
         this.shared.encabezados = response[0];
@@ -110,7 +116,7 @@ export class BusquedaFormPeritajeComponent implements OnInit, OnDestroy {
         this.shared.formulario.prueba_ruta = this.shared.encabezados.prueba_ruta;
         this.shared.formulario.fecfin = this.shared.encabezados.fecfin;
         this.shared.formulario.califica2 = this.shared.encabezados.califica2;
-        console.log(this.shared);
+   
         this.router.navigate(['formato-peritaje/encabezados']);
       } else {
         this.messageService.error("Oops...", "No se encontraron registros guardados en el servidor");
@@ -124,17 +130,7 @@ export class BusquedaFormPeritajeComponent implements OnInit, OnDestroy {
     this.router.navigate(['/formato-peritaje/parametrizacion']);
   }
 
-  public rowSelect(row: any): void {
-    if (row.id == this.selectedRowIndex) {
-      this.selectedFormulario = undefined;
-      this.selectedRowIndex = -1;
-      this.disabledBtnEditar = true;
-    } else {
-      this.selectedFormulario = row;
-      this.selectedRowIndex = row.id;
-      this.disabledBtnEditar = false;
-    }
-  }
+
 
   private estructuraFormulario(id_cot_item_lote: number): formulario {
     return {
@@ -152,7 +148,6 @@ export class BusquedaFormPeritajeComponent implements OnInit, OnDestroy {
 
   private resetinitData(): void {
     this.disabledBtnCrear = true;
-    this.disabledBtnEditar = true;
     this.formularios = []
   }
 

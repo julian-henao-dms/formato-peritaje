@@ -43,7 +43,7 @@ export class PartesFormPeritajeComponent implements OnInit {
     this.sesion = await this.sharedService.getSesion();
     this.shared = await this.sharedService.getValues();
     this.idChk = this.shared.formulario.id;
-    console.log(this.shared);
+  
 
     const servicio = '/vehiculosusados/estadospintura';
     (await this.apiService.getInformacion(servicio, '')).subscribe(async (response: any) => {
@@ -83,7 +83,7 @@ export class PartesFormPeritajeComponent implements OnInit {
       if (this.idChk !== 0) {
         this.procesarInformacion(false);
       }
-      console.log(this.listaPartes);
+ 
     }, error => {
       this.messageService.error("Oops...", "Error interno en el servidor");
     });

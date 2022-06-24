@@ -73,7 +73,7 @@ export class ParametrizacionFormPeritrajeComponent implements OnInit {
       data: { 
         nombre: this.parametrizacion, 
         maestro: maestro,
-        textModalElement : 'Escriba el nombre del elemento a crear y seleccione uno de los tipos disponibles para crear el elemento con sus opciones de elección.',
+        textModalElement : 'Escriba el nombre del elemento a crear y seleccione una de las opciones disponibles',
         textModalPart : 'Escriba el nombre de la parte a crear.',
         listaMaestros: this.listaMaestros,
         editMaestro: value,

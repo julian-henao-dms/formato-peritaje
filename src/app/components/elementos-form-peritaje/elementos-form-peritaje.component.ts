@@ -38,6 +38,7 @@ export class ElementosFormPeritajeComponent implements OnInit {
     this.shared = await this.sharedService.getValues();
     this.idChk = this.shared.formulario.id;
     this.cargarlistaElementos();
+   
   }
 
   private async cargarlistaElementos(): Promise<void> {
@@ -46,20 +47,16 @@ export class ElementosFormPeritajeComponent implements OnInit {
     const params = '/' + idEmp + '/' + this.idChk.toString();
     (await this.apiService.getInformacion(servicio, params)).subscribe((response: any) => {
       this.listaElementos = response;
+      this.agregarIntervencion();
+
     }, error => {
       this.messageService.error("Oops...", "Error interno en el servidor");
     });
   }
 
   public agregarIntervencion(): void {
-    if (this.idElementoIntervencion !== 0) {
-      for (let i = 0; i < this.listaElementos.length; i++) {
-        if (this.listaElementos[i].id_chk_maestro_elementos == this.idElementoIntervencion) {
-          this.listaElementos[i].intervencion = 1;
-          break;
-        }
-      }
-      this.idElementoIntervencion = 0;
+    for (let i = 0; i < this.listaElementos.length; i++) {
+      this.listaElementos[i].intervencion = 1;
     }
   }
 
@@ -70,7 +67,7 @@ export class ElementosFormPeritajeComponent implements OnInit {
 
   public async guardarFormulario(): Promise<void> {
     this.shared.listaElementos = this.listaElementos;
-    console.log(this.shared);
+    
     let servicio = '/vehiculosusados/guardarformulario';
     (await this.apiService.saveInformacion(servicio, this.shared.formulario)).subscribe(async (response: any) => {
       if (response > 0) {

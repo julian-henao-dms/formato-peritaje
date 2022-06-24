@@ -13,8 +13,16 @@ interface CalificacionesEstado {
 }
 
 interface Combustible {
-  value: string;
+  value: number;
   viewValue: string;
+}
+interface RadioOptionForm{
+  name: string,
+  label: string;
+  option1: number;
+  optionTitle1: string;
+  option2: number;
+  optionTitle2: string;
 }
 
 @Component({
@@ -23,6 +31,7 @@ interface Combustible {
   styleUrls: ['./formato-peritaje.component.scss']
 })
 export class FormatoPeritajeComponent implements OnInit, OnDestroy {
+  
   private readonly title: string = 'FormatoPeritaje';
   private readonly subtitle: string = 'formulario';
   public kmActual: number;
@@ -33,6 +42,7 @@ export class FormatoPeritajeComponent implements OnInit, OnDestroy {
 
   public calificaciones: CalificacionesEstado[];
   public combustibles: Combustible[];
+  public optionsRadios: RadioOptionForm[];
   public automatica = 1;
   public mecanica = 0;
   public t4x2 = 0;
@@ -58,18 +68,35 @@ export class FormatoPeritajeComponent implements OnInit, OnDestroy {
       {value: 1, viewValue: 'Malo'}
     ];
     this.combustibles = [
-      {value: '0', viewValue: 'Gasolina'},
-      {value: '1', viewValue: 'Diesel'},
-      {value: '2', viewValue: 'Gas'},
-      {value: '3', viewValue: 'Hibrido'},
-      {value: '4', viewValue: 'Eléctrico'}
+      {value: 0, viewValue: 'Gasolina'},
+      {value: 1, viewValue: 'Diesel'},
+      {value: 2, viewValue: 'Gas'},
+      {value: 3, viewValue: 'Hibrido'},
+      {value: 4, viewValue: 'Eléctrico'}
+    ];
+    this.optionsRadios = [
+      {name: 'cojineria', label: 'Cojineria', option1: this.tela, optionTitle1: 'Tela', option2: this.cuero, optionTitle2: 'Cuero'},
+      {name: 'caja', label: 'Caja', option1: this.mecanica, optionTitle1: 'Mecánica', option2: this.automatica, optionTitle2: 'Automática'},
+      {name: 'traccion', label: 'Tracción', option1: this.t4x2, optionTitle1: '4X2', option2: this.t4x4, optionTitle2: '4X4'},
+      {name: 'rin', label: 'Rin de Lujo', option1: 1, optionTitle1: 'Si', option2: 0, optionTitle2: 'No'},
+      {name: 'vidrios', label: 'Vidrio Eléctrico', option1: 1, optionTitle1: 'Si', option2: 0, optionTitle2: 'No'},
+      {name: 'techo_vidrio', label: 'Techo Vidrio', option1: 1, optionTitle1: 'Si', option2: 0, optionTitle2: 'No'},
+      {name: 'retrovisores_electricos', label: 'Retrovisores Eléctricos', option1: 1, optionTitle1: 'Si', option2: 0, optionTitle2: 'No'},
+      {name: 'barra_techo', label: 'Barras De Techo', option1: 1, optionTitle1: 'Si', option2: 0, optionTitle2: 'No'},
+      {name: 'exploradora', label: 'Exploradoras', option1: 1, optionTitle1: 'Si', option2: 0, optionTitle2: 'No'},
+      {name: 'llave', label: 'Repuesto Llaves', option1: 1, optionTitle1: 'Si', option2: 0, optionTitle2: 'No'},
+      {name: 'herramienta', label: 'Herramienta Completa', option1: 1, optionTitle1: 'Si', option2: 0, optionTitle2: 'No'},
+      {name: 'manual', label: 'Manuales', option1: 1, optionTitle1: 'Si', option2: 0, optionTitle2: 'No'},
+      {name: 'reclamo_aseg', label: 'Reclamos Aseguradora', option1: 1, optionTitle1: 'Si', option2: 0, optionTitle2: 'No'},
+      {name: 'cambio_correa', label: 'Cambio Correa', option1: 1, optionTitle1: 'Si', option2: 0, optionTitle2: 'No'},
     ];
   }
 
   async ngOnInit(): Promise<void> {
+   
     this.sesion = await this.sharedService.getSesion();
     this.shared = await this.sharedService.getValues();
-    this.kmActual = this.shared.encabezados.km;
+    this.kmActual = this.shared.encabezados.km;  
   }
 
   public openModalFirma(nombre: string): void {
@@ -88,6 +115,9 @@ export class FormatoPeritajeComponent implements OnInit, OnDestroy {
     }
   }
 
+
+
+
   private validarCampos(): boolean {
     let valid = true;
     //Campos vacios del formulario
@@ -96,7 +126,7 @@ export class FormatoPeritajeComponent implements OnInit, OnDestroy {
       const itemValue = this.shared.formulario[items_formulario[i].getAttribute('name')!];
       if (itemValue === '' || itemValue === null) {
         let element = document.getElementsByName(items_formulario[i].getAttribute('name')!)[0];
-        console.log(element.tagName);
+      
         if (element.tagName !== 'INPUT') {
           this.focusInputChild(element)!;
         } else {
@@ -133,6 +163,23 @@ export class FormatoPeritajeComponent implements OnInit, OnDestroy {
         this.messageService.warning('Oops...', 'El kilometraje actual no puede ser menor al kilometraje anterior');
         this.shared.encabezados.km = this.kmActual;
         valid = false;
+      }
+    }
+    if (valid) { //Porcentaje LLantas
+      let items_encabezados = document.getElementsByClassName('encabezado-llantas');
+      for (let i = 0; i < items_encabezados.length; i++) {
+        const itemValue = this.shared.encabezados[items_encabezados[i].getAttribute('name')!];
+      if (itemValue > 100) {
+        let element = document.getElementsByName(items_encabezados[i].getAttribute('name')!)[0];
+          if (element.tagName !== 'INPUT') {
+            this.focusInputChild(element)!;
+          } else {
+            element.focus();
+          }
+        this.messageService.warning('Oops...', 'El porcentaje del campo "' + items_encabezados[i].getAttribute('placeholder') + '" no puede ser mayor a 100%');
+        valid = false;
+        break;
+      }
       }
     }
     if (valid) { //Cilindraje valor numerico decimal

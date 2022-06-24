@@ -9,9 +9,9 @@
     <mat-card-content>
         <mat-button-toggle-group name="parametrizacion" [(ngModel)]="parametrizacion" class="btns-parametrizacion">
             <mat-button-toggle value="partes" (click)="toogleTagPartes()">
-                <mat-icon class="icon-title-card-peritaje">format_color_fill</mat-icon>Parametrización Partes</mat-button-toggle>
+                <mat-icon class="icon-title-card-peritaje">format_color_fill</mat-icon><span class="title-btn-span">Parametrización</span> Partes</mat-button-toggle>
             <mat-button-toggle value="elementos" (click)="toogleTagPartes()">
-                <mat-icon class="icon-title-card-peritaje">car_repair</mat-icon>Parametrización Elementos</mat-button-toggle>
+                <mat-icon class="icon-title-card-peritaje">car_repair</mat-icon><span class="title-btn-span">Parametrización</span> Elementos</mat-button-toggle>
         </mat-button-toggle-group>
 
         <div class="container-elementosAz">
@@ -30,43 +30,65 @@
                 <p class="parametrizacion-descript" *ngIf="parametrizacion == 'partes'">Edite o elimine partes del formulario.</p>
                 <p class="parametrizacion-descript" *ngIf="parametrizacion == 'elementos'">Edite o elimine elementos A-Z del formulario.</p>
                 <div class="maestros-container">
-                    <mat-card *ngFor="let maestro of listaMaestros; index as i" class="maestro-container">
-                        <div class="card-header">
-                            <mat-card-title class="card-title card-title-parametrizacion">{{maestro.descripcion}}</mat-card-title>
-                            <div class="card-header-buttons">
-                                <button mat-button class="header-button" matTooltipPosition="above" matTooltip="Editar" (click)="openModalEdit(maestro, true)"><mat-icon class="icon-button-header">edit</mat-icon></button>
-                                <button mat-button class="header-button" matTooltipPosition="above" matTooltip="Borrar" (click)="eliminarMaestro(i)"><mat-icon class="icon-button-header">delete</mat-icon></button>
-                            </div>
-                        </div>
-                        <mat-card-content>
-                            <div class="card-content" *ngIf="maestro.valor_def == 1">
-                                <p>
-                                    <mat-icon>check_box_outline_blank</mat-icon>&nbsp;Malo</p>
-                                <!-- <p>
-                                    <mat-icon>radio_button_checked</mat-icon>&nbsp;No tiene</p>
-                                <p>
-                                    <mat-icon>radio_button_unchecked</mat-icon>&nbsp;Malo</p> -->
-                            </div>
-                            <div class="card-content" *ngIf="maestro.valor_def == 2">
-                                <p>
-                                    <mat-icon>radio_button_checked</mat-icon>&nbsp;Leve</p>
-                                <p>
-                                    <mat-icon>radio_button_unchecked</mat-icon>&nbsp;Fuerte</p>
-                            </div>
-                            <div class="card-content" *ngIf="maestro.valor_def == 3">
-                                <p>
-                                    <mat-icon>radio_button_checked</mat-icon>&nbsp;OK</p>
-                                <p>
-                                    <mat-icon>radio_button_unchecked</mat-icon>&nbsp;Bajo</p>
-                            </div>
-                            <div class="card-content" *ngIf="maestro.valor_def == 4">
-                                <p>
-                                    <mat-icon>radio_button_checked</mat-icon>&nbsp;Si</p>
-                                <p>
-                                    <mat-icon>radio_button_unchecked</mat-icon>&nbsp;No</p>
-                            </div>
-                        </mat-card-content>
-                    </mat-card>
+
+                    <table class="mat-table cdk-table  demo-table table-form-peritaje" *ngIf="parametrizacion">
+                        <thead>
+                            <tr class="mat-header-row">
+                                <th class="mat-header-cell cdk-header-cel">Nombre</th>
+                                <th class="mat-header-cell cdk-header-cel" *ngIf="parametrizacion == 'elementos'">Opción</th>
+                                <th class="mat-header-cell cdk-header-cel">Editar</th>
+                                <th class="mat-header-cell cdk-header-cel">Borrar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let maestro of listaMaestros; index as i">
+
+                                <td class="label-td">
+                                    <h4 class="card-title card-title-parametrizacion">{{maestro.descripcion}}</h4>
+                                </td>
+                                <td *ngIf="maestro.valor_def == 1" class="option-td">
+                                    <div class="option-elements no-tiene-malo">
+                                        <p class="p-option">
+                                            <mat-icon>radio_button_checked</mat-icon>&nbsp;No tiene</p>
+                                        <p>
+                                            <mat-icon>radio_button_unchecked</mat-icon>&nbsp;Malo</p>
+                                    </div>
+                                </td>
+                                <td *ngIf="maestro.valor_def == 2" class="option-td">
+                                    <div class="option-elements leve-fuerte">
+                                        <p class="p-option">
+                                            <mat-icon>radio_button_checked</mat-icon>&nbsp;Leve</p>
+                                        <p>
+                                            <mat-icon>radio_button_unchecked</mat-icon>&nbsp;Fuerte</p>
+                                    </div>
+                                </td>
+                                <td *ngIf="maestro.valor_def == 3" class="option-td">
+                                    <div class="option-elements ok-bajo">
+                                        <p class="p-option">
+                                            <mat-icon>radio_button_checked</mat-icon>&nbsp;OK</p>
+                                        <p>
+                                            <mat-icon>radio_button_unchecked</mat-icon>&nbsp;Bajo</p>
+                                    </div>
+                                </td>
+                                <td *ngIf="maestro.valor_def == 4" class="option-td">
+                                    <div class="option-elements ">
+                                        <p class="p-option">
+                                            <mat-icon>radio_button_checked</mat-icon>&nbsp;Si</p>
+                                        <p>
+                                            <mat-icon>radio_button_unchecked</mat-icon>&nbsp;No</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button mat-button class="header-button" matTooltipPosition="above" matTooltip="Editar" (click)="openModalEdit(maestro, true)"><mat-icon class="icon-button-header">edit</mat-icon></button>
+                                </td>
+                                <td>
+                                    <button mat-button class="header-button" matTooltipPosition="above" matTooltip="Borrar" (click)="eliminarMaestro(i)"><mat-icon class="icon-button-header">delete</mat-icon></button>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
                 </div>
             </div>
         </div>

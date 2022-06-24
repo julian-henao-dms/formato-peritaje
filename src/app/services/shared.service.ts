@@ -76,6 +76,11 @@ export class SharedService {
         linea: '',
         marca: '',
         modelo: '',
+        llanta_delantera_iz : 0,
+        llanta_delantera_der : 0,
+        llanta_trasera_iz : 0,
+        llanta_trasera_der : 0,
+        llanta_repuesto : 0
       },
       listaPartes: [],
       listaElementos: []
@@ -190,7 +195,12 @@ export class SharedService {
         placa: '',
         linea: '',
         marca: '',
-        modelo: ''
+        modelo: '',
+        llanta_delantera_iz : 0,
+        llanta_delantera_der : 0,
+        llanta_trasera_iz : 0,
+        llanta_trasera_der : 0,
+        llanta_repuesto : 0
       },
       listaPartes: [],
       listaElementos: []
