@@ -64,7 +64,7 @@ export class BusquedaFormPeritajeComponent implements OnInit, OnDestroy {
             () => {
               this.messageService.info("Atención...", "La Placa o VIN ingresados no corresponden a ningún vehículo asociado");
             }, 1000);
-            this.disabledBtnCrear = false;
+            // this.disabledBtnCrear = false;
         } else{
           this.disabledBtnCrear = false;
           if (response.data.length === 0 ) {

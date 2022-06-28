@@ -1,12 +1,12 @@
 <div class="modal-parametrizacion">
     <h1 *ngIf="data.maestro.id !== 0" class="title-modal-elements" mat-dialog-title>Editar {{data.nombre}}</h1>
-    <h1 *ngIf="data.maestro.id == 0" class="title-modal-elements" mat-dialog-title>Crear nuevos {{data.nombre}}</h1>
+    <h1 *ngIf="data.maestro.id == 0" class="title-modal-elements" mat-dialog-title>Crear {{data.nombre}}</h1>
     <mat-dialog-content>
         <p *ngIf="data.nombre == 'elementos'" class="new-element-text">{{data.textModalElement}} </p>
         <p *ngIf="data.nombre == 'partes'" class="new-element-text">{{data.textModalPart}}</p>
         <mat-card class="card-modal-elements">
             <mat-form-field class="new-element-input" appearance="fill">
-                <mat-label>Nuevo elemento</mat-label>
+                <mat-label>Nuevo</mat-label>
                 <input matInput [(ngModel)]="data.maestro.descripcion">
             </mat-form-field>
             <mat-card-content *ngIf="data.nombre == 'elementos'">
