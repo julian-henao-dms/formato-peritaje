@@ -11,7 +11,7 @@ import { HomePeritajeComponent } from './components/home-peritaje/home-peritaje.
 const routes: Routes = [
   { path: '', redirectTo: 'home-peritaje', pathMatch: 'full' },
   { path: 'home-peritaje', component: HomePeritajeComponent },
-  { path: 'main/:headlightSpecString', component: MenuComponent },
+  { path: 'main/:headlightSpecString?', component: MenuComponent },
   { path: 'formato-peritaje', component: BusquedaFormPeritajeComponent },
   { path: 'formato-peritaje/parametrizacion', component: ParametrizacionFormPeritrajeComponent },
   { path: 'formato-peritaje/encabezados', component: FormatoPeritajeComponent },
