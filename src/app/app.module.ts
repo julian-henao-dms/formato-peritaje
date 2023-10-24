@@ -3,7 +3,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -38,6 +38,8 @@ import { HeaderComponent } from './templates/header/header.component';
 import { ModalFirmaComponent } from './templates/modal-firma/modal-firma.component';
 import { ModalEditComponent } from './templates/modal-edit/modal-edit.component';
 import { ParametrizacionFormPeritrajeComponent } from './components/parametrizacion-form-peritaje/parametrizacion-form-peritaje.component';
+import { HomePeritajeComponent } from './components/home-peritaje/home-peritaje.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,8 @@ import { ParametrizacionFormPeritrajeComponent } from './components/parametrizac
     MenuComponent,
     PartesFormPeritajeComponent,
     ElementosFormPeritajeComponent,
-    ParametrizacionFormPeritrajeComponent
+    ParametrizacionFormPeritrajeComponent,
+    HomePeritajeComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +69,7 @@ import { ParametrizacionFormPeritrajeComponent } from './components/parametrizac
     MatIconModule,
     MatInputModule,
     MatListModule,
-    MatProgressBarModule,  
+    MatProgressBarModule,
     MatRadioModule,
     MatSelectModule,
     MatSnackBarModule,
@@ -81,7 +84,13 @@ import { ParametrizacionFormPeritrajeComponent } from './components/parametrizac
     MatPaginatorModule,
     MatButtonToggleModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

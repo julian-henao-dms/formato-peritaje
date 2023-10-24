@@ -10,6 +10,8 @@ import { EstadoPintura } from '../partes-form-peritaje/interfaces/estadoPintura.
 import { ModalEditComponent } from 'src/app/templates/modal-edit/modal-edit.component';
 import { MatDialog } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
+import { SessionStorageService } from 'src/app/services/session-storage.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 
@@ -47,7 +49,10 @@ export class ParametrizacionFormPeritrajeComponent implements OnInit {
     private readonly apiService: ApiService,
     private readonly sharedService: SharedService,
     private readonly messageService: MessagesService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private _storaged: SessionStorageService,
+    private authService: AuthService,
+
   ) {
     this.assets = environment.assets;
     this.nuevoMaestro = {
@@ -60,6 +65,7 @@ export class ParametrizacionFormPeritrajeComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
+
     this.sesion = await this.sharedService.getSesion();
   }
 
@@ -70,8 +76,8 @@ export class ParametrizacionFormPeritrajeComponent implements OnInit {
   public openModalEdit(maestro: Maestro, value:boolean): void {
     const dialogRef = this.dialog.open(ModalEditComponent, {
       width: '400px',
-      data: { 
-        nombre: this.parametrizacion, 
+      data: {
+        nombre: this.parametrizacion,
         maestro: maestro,
         textModalElement : 'Escriba el nombre del elemento a crear y seleccione una de las opciones disponibles',
         textModalPart : 'Escriba el nombre de la parte a crear.',
@@ -131,6 +137,7 @@ export class ParametrizacionFormPeritrajeComponent implements OnInit {
   public atras(){
     this.router.navigate(['/formato-peritaje']);
   }
+
 
   private resetMaestro(): Maestro {
     return {

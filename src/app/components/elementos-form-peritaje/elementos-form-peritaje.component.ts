@@ -6,6 +6,8 @@ import { MessagesService } from '../../services/messages.service';
 import { SharedService } from '../../services/shared.service';
 import { ElementosAz } from './interfaces/elementosAZ.interface';
 import { EstadoPintura } from './interfaces/estadoPintura.interface';
+import { SessionStorageService } from 'src/app/services/session-storage.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-elementos-form-peritaje',
@@ -26,7 +28,9 @@ export class ElementosFormPeritajeComponent implements OnInit {
     private readonly router: Router,
     private readonly apiService: ApiService,
     private readonly sharedService: SharedService,
-    private readonly messageService: MessagesService
+    private readonly messageService: MessagesService,
+    private _storaged: SessionStorageService,
+    private authService: AuthService,
   ) {
     this.assets = environment.assets;
     this.idElementoIntervencion = 0;
@@ -34,11 +38,12 @@ export class ElementosFormPeritajeComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
+
     this.sesion = await this.sharedService.getSesion();
     this.shared = await this.sharedService.getValues();
     this.idChk = this.shared.formulario.id;
     this.cargarlistaElementos();
-   
+
   }
 
   private async cargarlistaElementos(): Promise<void> {
@@ -67,7 +72,7 @@ export class ElementosFormPeritajeComponent implements OnInit {
 
   public async guardarFormulario(): Promise<void> {
     this.shared.listaElementos = this.listaElementos;
-    
+
     let servicio = '/vehiculosusados/guardarformulario';
     (await this.apiService.saveInformacion(servicio, this.shared.formulario)).subscribe(async (response: any) => {
       if (response > 0) {
@@ -121,6 +126,8 @@ export class ElementosFormPeritajeComponent implements OnInit {
   public atras(): void {
     this.router.navigate(['formato-peritaje/listaPartes']);
   }
+
+
 
   async ngOnDestroy(): Promise<void> {
     this.sharedService.setValues(this.shared);

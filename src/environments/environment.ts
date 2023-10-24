@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  casaBritanicaApi: 'https://localhost:44336/api',
+  casaBritanicaApi: 'http://localhost:5000/api',
   //casaBritanicaApiProd: 'http://',
   assets: '../assets'
 };

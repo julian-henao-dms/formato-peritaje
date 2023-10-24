@@ -6,6 +6,8 @@ import { SharedService } from '../../services/shared.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { OnDestroy } from '@angular/core';
 import { ModalFirmaComponent } from '../../templates/modal-firma/modal-firma.component';
+import { SessionStorageService } from 'src/app/services/session-storage.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 interface CalificacionesEstado {
   value: number;
@@ -31,7 +33,7 @@ interface RadioOptionForm{
   styleUrls: ['./formato-peritaje.component.scss']
 })
 export class FormatoPeritajeComponent implements OnInit, OnDestroy {
-  
+
   private readonly title: string = 'FormatoPeritaje';
   private readonly subtitle: string = 'formulario';
   public kmActual: number;
@@ -56,12 +58,14 @@ export class FormatoPeritajeComponent implements OnInit, OnDestroy {
     private readonly router: Router,
     private readonly sharedService: SharedService,
     private readonly messageService: MessagesService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private _storaged: SessionStorageService,
+    private authService: AuthService,
   ) {
     this.kmActual = 0;
     this.assets = environment.assets;
     this.calificaciones = [
-      {value: 5, viewValue: 'Nuevo'}, 
+      {value: 5, viewValue: 'Nuevo'},
       {value: 4, viewValue: 'Muy Bueno'},
       {value: 3, viewValue: 'Defectos'},
       {value: 2, viewValue: 'Problemas'},
@@ -93,10 +97,10 @@ export class FormatoPeritajeComponent implements OnInit, OnDestroy {
   }
 
   async ngOnInit(): Promise<void> {
-   
+
     this.sesion = await this.sharedService.getSesion();
     this.shared = await this.sharedService.getValues();
-    this.kmActual = this.shared.encabezados.km;  
+    this.kmActual = this.shared.encabezados.km;
   }
 
   public openModalFirma(nombre: string): void {
@@ -126,7 +130,7 @@ export class FormatoPeritajeComponent implements OnInit, OnDestroy {
       const itemValue = this.shared.formulario[items_formulario[i].getAttribute('name')!];
       if (itemValue === '' || itemValue === null) {
         let element = document.getElementsByName(items_formulario[i].getAttribute('name')!)[0];
-      
+
         if (element.tagName !== 'INPUT') {
           this.focusInputChild(element)!;
         } else {
@@ -223,6 +227,8 @@ export class FormatoPeritajeComponent implements OnInit, OnDestroy {
   public atras(): void {
     this.router.navigate(['formato-peritaje']);
   }
+
+
 
   async ngOnDestroy(): Promise<void> {
     this.sharedService.setValues(this.shared);

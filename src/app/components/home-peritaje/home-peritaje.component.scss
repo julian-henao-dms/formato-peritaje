@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 130px);
+}
+
+.content {
+  text-align: center;
+  display: contents;
+}
+
+.logo {
+  width: 250px; /* Cambia esto para ajustar el tamaño de tu logo */
+  height: auto;
+  margin-bottom: 20px;
+}

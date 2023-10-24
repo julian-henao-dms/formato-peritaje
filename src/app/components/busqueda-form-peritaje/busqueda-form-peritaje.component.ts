@@ -6,6 +6,8 @@ import { ApiService } from '../../services/api.service';
 import { MessagesService } from '../../services/messages.service';
 import { SharedService } from '../../services/shared.service';
 import { formulario } from './interfaces/formulario.interface';
+import { SessionStorageService } from 'src/app/services/session-storage.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-busqueda-form-peritaje',
@@ -25,25 +27,30 @@ export class BusquedaFormPeritajeComponent implements OnInit, OnDestroy {
   private sesion: any;
   public assets: string;
 
+
   constructor(
     private readonly router: Router,
     private readonly route: ActivatedRoute,
     private readonly apiService: ApiService,
     private readonly sharedService: SharedService,
-    private readonly messageService: MessagesService
+    private readonly messageService: MessagesService,
+    private _storaged: SessionStorageService,
+    private authService: AuthService,
+
   ) {
     this.disabledBtnCrear = true;
     this.assets = environment.assets;
   }
 
   async ngOnInit(): Promise<void> {
+
     this.sesion = await this.sharedService.getSesion();
     this.route.queryParamMap.subscribe(params =>{
       this.vin = params.get('vin');
       if(this.vin !== null){
         this.onEnter();
       }
-      
+
     })
   }
 
@@ -58,7 +65,7 @@ export class BusquedaFormPeritajeComponent implements OnInit, OnDestroy {
       const params = '/' + idEmp + '/' + (this.placa === '' ? '%20' : this.placa) + '/' + (this.vin === '' ? '%20' : this.vin) + '';
       (await this.apiService.getInformacion(servicio, params)).subscribe((response: any) => {
         this.formularios = response.data;
-     
+
         if (response.message == 'FVH' ) {
           setTimeout(
             () => {
@@ -72,9 +79,9 @@ export class BusquedaFormPeritajeComponent implements OnInit, OnDestroy {
               () => {
                 this.messageService.info("Atención...", "La Placa o VIN ingresado no tiene ningún formulario previamente diligenciado");
               }, 1000);
-          } 
-        }  
-       
+          }
+        }
+
       }, error => {
         this.messageService.error("Oops...", "Error interno en el servidor, no se pudieron consultar los formularios de peritaje");
       });
@@ -93,7 +100,7 @@ export class BusquedaFormPeritajeComponent implements OnInit, OnDestroy {
       this.shared.encabezados.id_usuario = 1; // usuario quemado
       this.shared.encabezados.id_usu_inspector = 1; // usuario inspector quemado
       this.shared.encabezados.fec_prox_mantenimiento = (this.shared.encabezados.fec_prox_mantenimiento == '0001-01-01T00:00:00' ? new Date() : this.shared.encabezados.fec_prox_mantenimiento);
-    
+
       this.router.navigate(['formato-peritaje/encabezados']);
     }, error => {
       this.messageService.error("Oops...", "Error interno en el servidor");
@@ -116,7 +123,7 @@ export class BusquedaFormPeritajeComponent implements OnInit, OnDestroy {
         this.shared.formulario.prueba_ruta = this.shared.encabezados.prueba_ruta;
         this.shared.formulario.fecfin = this.shared.encabezados.fecfin;
         this.shared.formulario.califica2 = this.shared.encabezados.califica2;
-   
+
         this.router.navigate(['formato-peritaje/encabezados']);
       } else {
         this.messageService.error("Oops...", "No se encontraron registros guardados en el servidor");
@@ -145,6 +152,7 @@ export class BusquedaFormPeritajeComponent implements OnInit, OnDestroy {
       califica2: 0
     }
   }
+
 
   private resetinitData(): void {
     this.disabledBtnCrear = true;
