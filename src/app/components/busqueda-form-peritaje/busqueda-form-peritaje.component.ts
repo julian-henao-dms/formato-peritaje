@@ -45,13 +45,30 @@ export class BusquedaFormPeritajeComponent implements OnInit, OnDestroy {
   async ngOnInit(): Promise<void> {
 
     this.sesion = await this.sharedService.getSesion();
-    this.route.queryParamMap.subscribe(params =>{
-      this.vin = params.get('vin');
-      if(this.vin !== null){
-        this.onEnter();
-      }
 
-    })
+    this.route.queryParamMap.subscribe(params => {
+        this.vin = params.get('vin');
+        const headlightSpecString = params.get('headlightSpecString');
+
+        if (headlightSpecString) {
+            this.authService.authenticate(headlightSpecString).subscribe({
+                next: data => {
+                    this.authService.setToken(data.token);
+                    if (this.vin) {
+                        this.onEnter();
+                    }
+                },
+                error: error => {
+                    console.error('Error:', error);
+                    this.router.navigate(['/home-peritaje']);
+                }
+            });
+        } else {
+            if (this.vin) {
+                this.onEnter();
+            }
+        }
+    });
   }
 
   public async onEnter(): Promise<void> {

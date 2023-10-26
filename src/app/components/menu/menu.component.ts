@@ -49,25 +49,25 @@ export class MenuComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    this.route.paramMap.subscribe(params => {
-      this.headlightSpecString = params.get('headlightSpecString');
+    this.route.queryParamMap.subscribe(queryParams => {
+        this.headlightSpecString = queryParams.get('headlightSpecString');
 
-      if (this.headlightSpecString) {
-          this.authService.authenticate(this.headlightSpecString).subscribe({
-              next: data => {
-                  this.authService.setToken(data.token);
-              },
-              error: error => {
-                  console.error('Error:', error);
-                  this.router.navigate(['/home-peritaje']);
-              }
-          });
-      }
+        if (this.headlightSpecString) {
+            this.authService.authenticate(this.headlightSpecString).subscribe({
+                next: data => {
+                    this.authService.setToken(data.token);
+                },
+                error: error => {
+                    console.error('Error:', error);
+                    this.router.navigate(['/home-peritaje']);
+                }
+            });
+        }
     });
     const sesion = this.sharedService.sesion;
     sesion.empresa = '309';
     await this.sharedService.setSesion(sesion);
-  }
+}
 
   public mostrarMenu(id: number, value: boolean): void {
 
